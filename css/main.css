@@ -186,6 +186,11 @@ h1, h2, h3, h4, h5, h6, label {
  * On tablets and other medium-sized devices, we want to customize some
  * of the mobile styles.
  */
+ @media (max-width: 48em) {
+   body {
+     font-size: 13px;
+   }
+ }
 @media (min-width: 48em) {
 
     /* We want to give the content area some more padding */
