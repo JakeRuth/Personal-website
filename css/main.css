@@ -153,7 +153,7 @@ h1, h2, h3, h4, h5, h6, label {
     font-weight: 400;
     text-transform: uppercase;
     letter-spacing: 0.1em;
-    margin: 2em 0 1em;
+    margin: 1em 0;
 }
 
 /* This is a modifier class used when the content-head is inside a ribbon */
@@ -179,6 +179,9 @@ h1, h2, h3, h4, h5, h6, label {
 .footer {
     background: #002a57;
     color: white;
+}
+.github-footer-link {
+  color: white;
 }
 
 /*
