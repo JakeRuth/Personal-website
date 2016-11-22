@@ -144,8 +144,6 @@ h1, h2, h3, h4, h5, h6, label {
     width: 100%;
     min-height: 12%;
     z-index: 2;
-    background: white;
-
 }
 
 /* This is the class used for the main content headers (<h2>) */
@@ -153,7 +151,13 @@ h1, h2, h3, h4, h5, h6, label {
     font-weight: 400;
     text-transform: uppercase;
     letter-spacing: 0.1em;
-    margin: 1em 0;
+    padding: 1em 0 0;
+    margin: 0;
+}
+.content-head-subtitle {
+  margin: 15px;
+  font-size: 14px;
+  color: whitesmoke;
 }
 
 /* This is a modifier class used when the content-head is inside a ribbon */
@@ -173,6 +177,21 @@ h1, h2, h3, h4, h5, h6, label {
 .ribbon {
     background: #004791;
     color: #aaa;
+}
+
+#tech-stack-link {
+  padding-bottom: 45px;
+  background-color: white;
+}
+
+.tech-title {
+  color: white;
+  margin: 3px;
+}
+
+.main-qualities-container {
+  background: white;
+  margin-bottom: -30px; /* used in help with #tech-stack-link so the page jumps to th correct spot when clicking link on top 'Tech Stack' */
 }
 
 /* This is the class used for the footer */
