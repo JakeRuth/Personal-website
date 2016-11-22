@@ -102,7 +102,7 @@
 
       <div id="tech-stack" class="ribbon">
         <h2 class="content-head content-head-ribbon is-center">My Tech Stack</h2>
-        <p class="content-head-subtitle is-center">3 (Expert) - 2 (Good) - 1 (Novice/It's been a while...)</p>
+        <p class="content-head-subtitle is-center">3 (Expert) - 2 (Up To Snuff) - 1 (Novice/It's been a while...)</p>
 
         <div class="pure-g">
 
@@ -124,7 +124,7 @@
             <p class="tech-label">Grails(3)</p>
             <p class="tech-label">MongoDB(3)</p>
             <p class="tech-label">Git(3)</p>
-            <p class="tech-label">Gradle(3)</p>
+            <p class="tech-label">Gradle(2)</p>
             <p class="tech-label">DropWizard(2)</p>
             <p class="tech-label">Chef(2)</p>
             <p class="tech-label">SQL(1)</p>
@@ -133,19 +133,38 @@
         </div>
       </div>
 
-      <div class="ribbon l-box-lrg pure-g">
-        <div class="l-box-lrg is-center pure-u-1 pure-u-md-1-2 pure-u-lg-2-5">
-          <img class="pure-img-responsive" alt="File Icons" width="300" src="https://scontent-ort2-1.xx.fbcdn.net/v/t1.0-9/14718643_10154266681044039_8197783566940389097_n.jpg?oh=72a954c62acd0efd0698834aa07c5c55&oe=58C8318B">
+      <div class="portfolio-container">
+
+        <h2 class="content-head is-center">Portfolio</h2>
+        <div class="pure-g l-box">
+          <div class="pure-u-1 pure-u-md-1-2 pure-u-lg-3-5">
+            <h3 class="content-head">Youni iOS Mobile App (2015 - 2016)</h3>
+            <p>
+              See the video below (to the right on desktop) to see a real live demo of Youni  !
+            </p>
+            <p>
+              I created the mobile application Youni (no longer on app store) as apart of a startup venture I took on, acting
+              as the Lead Developer and CTO.  The app was developed with <a href="https://facebook.github.io/react-native/">React Native</a>
+              for the front-end.  I prototyped an API using Grails, the API was the real brain of the application that
+              handled everything from authentication to generating post feeds and more.  The front end React Native project
+              was lean and only served as a light rendering engine that made calls to the API.  The API was hosted using services
+              provided by AWS.  I used MongoDB as my datastore.
+            </p>
+            <p>
+              Reflection:  I am happy with the performanace of the app.  It handled thousands of users and thanks to AWS I was
+              able to host the API in a scalable load balanced environment that scaled up as the API received more traffic.
+              In hindsight I would choose a different technology to create the API, since Grails had a slow startup time and
+              was a bit heavy weight for what I needed at the time.
+            </p>
+          </div>
+          <div class="is-center pure-u-1 pure-u-md-1-2 pure-u-lg-2-5">
+            <h3 class="content-head">Watch a live demo of Youni!</h3>
+            <div class="youni-demo-video-container">
+              <iframe src="https://drive.google.com/file/d/0BzeuO4QnYgP3d0Vrb3oyOFVMRms/preview" width="300"></iframe>
+            </div>
+          </div>
         </div>
-        <div class="pure-u-1 pure-u-md-1-2 pure-u-lg-3-5">
-          <h2 class="content-head content-head-ribbon">Laboris nisi ut aliquip.</h2>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-            quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-            consequat. Duis aute irure dolor.
-          </p>
-        </div>
+
       </div>
 
       <div class="footer l-box is-center">
