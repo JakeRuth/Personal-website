@@ -174,9 +174,13 @@ h1, h2, h3, h4, h5, h6, label {
     color: #aaa;
 }
 
-#tech-stack-link, #portfolio-link {
+#tech-stack-link {
   padding-bottom: 45px;
   background-color: white;
+}
+#portfolio-link {
+  padding-bottom: 45px;
+  background-color: #004791;
 }
 
 .tech-title {
@@ -191,7 +195,6 @@ h1, h2, h3, h4, h5, h6, label {
 
 .portfolio-container {
   background-color:  white;
-  margin-top: -20px;
 }
 
 .youni-demo-video-container {
