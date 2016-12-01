@@ -1,0 +1,66 @@
+html {
+	background-color: beige;
+}
+
+.score {
+	position: absolute;
+	top: 150px;
+	left: 80px;
+	width: 200px;
+	min-height: 200px;
+}
+
+p {
+	margin: 0 auto;
+}
+
+h1 {
+	text-align: center;
+	padding: 16px;
+	font-size: 45px;
+	color: black;
+}
+
+p.score-title {
+	font-size: 50px;
+}
+
+p.score-number {
+	font-size: 90px;
+}
+
+img {
+	position: absolute; 
+	top: 0; 
+	left: 0; 
+	border: 0;
+}
+
+.container {
+	margin: 0 auto;
+}
+
+#page-title {
+	font-size: 60px;
+	text-align: center;
+}
+
+#game {
+	background-color: gainsboro;
+	width: 500px;
+	min-height: 500px;
+	margin: 0 auto;
+}
+
+.start-over {
+	position: absolute;
+	background-color: white;
+	border-radius: 1500px;
+	top: 150px;
+	right: 80px;
+	width: 200px;
+	min-height: 200px;
+	cursor: default;
+	border-style: dashed;
+	border-width: 8px;
+}

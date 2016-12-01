@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Card Order</title>
+		<link rel="stylesheet" href="cardOrder.css">
+		<script type="text/javascript" src="kineticjs.js"></script>
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+		<script type="text/javascript" src="cardOrder.js"></script>
+	</head>
+	
+	<body>
+		<span id="title"><h1>Card Order Medium</h1></span>
+		<span id="sub-title"><h4>Click the choices in <span id="subtitle-guidance">left to right</span> order.</h4></span>
+			<span class="about"><a id="about" href="javascript:Utilities.toggleInstructions()">How to play</a></span>
+			<div id="instructions" style="display: none">
+				<div class="instruction-title">
+					<h2 id="instruction-title-text">Card Order Medium</h2>
+					<img id="instruction-close" src="close-button.png">
+				</div>
+				<h3>How to play</h3>
+				<ul>
+					<li>Read the instructions that appear beneath the title at the top of the page.</li>
+					<li>The instructions will change from round to round.</li>
+					<li>Remember the cards on the screen, in the order specified at the top of the page.</li>
+					<li>When the cards turn over and the response selection appears, select the cards in the order that was specified above
+						(either 'left to right', or 'right to left').</li>
+				</ul>
+			</div>
+			
+			<div id="game">
+				<div id="startUp">
+					<h1 class='centered'>Click the cooresponding matching cards on the bottom of </h1>
+					<h1 class='centered'>the screen, in the same order that they appear.</h1>
+					<h2>Get Ready!</h2>
+					<button id="start" type="button">Start!</button>
+					<li id="help">Click <i>how to play</i> for help.</li>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
