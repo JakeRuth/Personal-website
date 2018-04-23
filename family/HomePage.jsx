@@ -27,19 +27,19 @@ class HomePage extends React.Component {
   render() {
     return (
       <div>
-        <h1>An attempt at parsing csv files generated from gedcom files, fun!</h1>
-        <hr/>
-        <br/><br/>
+        <h1 className="page-title">
+          Discover more about your family &#9825;
+        </h1>
 
         <ExtremeUniversalSearch
           familyJson={this.state.familyJson}
           personJson={this.state.personJson}
           placeJson={this.state.placeJson}
         />
-        <br/><br/>
-        <hr/>
 
-        <h2>Below is a data dump of the csv files.</h2>
+        <h2 className="data-dump-title">
+          Below is a data dump (for best experience, use the search bar at the top of the page).
+        </h2>
         <h3>Person JSON</h3>
         <PapaParseTableView json={this.state.personJson}/>
         <hr/>
@@ -125,13 +125,15 @@ class ExtremeUniversalSearch extends React.Component {
 
     return (
       <div>
-        <label>Search for names, dates, places, etc!</label>
-        <input
-          onChange={this.onInputChange}
-          maxLength={100}
-          placeholder="Explore"
-          size={30}
-        />
+        <div className="search-container">
+          <input
+            className="search"
+            onChange={this.onInputChange}
+            maxLength={100}
+            placeholder="Explore (Search for names, dates, etc!)"
+            size={80}
+          />
+        </div>
         {this.renderAllResults()}
       </div>
     );
@@ -162,7 +164,7 @@ class PapaParseTableView extends React.Component {
             return (
               <tr>
                 {Object.keys(field).map((key) => {
-                  return <th key={key}>{field[key]}</th>
+                  return <td key={key}>{field[key]}</td>
                 })}
               </tr>
             );
