@@ -1,9 +1,12 @@
 # Official source code for my official website: www.jakeruth.com
 ---
-Created with the help of [Pure css](http://purecss.io/ Pure's Homepage")
+Created with the help of
+- [Pure css](http://purecss.io/ Pure's Homepage")
+-- Small/simple css lib to help style my site
+- [ReactJS](https://reactjs.org/)
+-- Well known front-end framework that uses JavaScript to provide rich features/syntax to build wicked cool UIs.
 
-I chose Pure over other popular choices such as Foundation and Bootstrap because Pure is very simple and only provides the base building blocks for creating a simple webpage.  Other popular frameworks like those listed above are huge and opinionated, and while they are useful for building big web applications for my simple website it didn't make the cut.
-
-Quote from Pure's website: `Pure is ridiculously tiny. The entire set of modules clocks in at 4.0KB* minified and gzipped.`
+It's me own person website! I try to keep this up to date/just have fun with it.
+Mostly just amused to own the domain with my full name, so I feel it should have some static content ya know?
 
 Feel free to fork/copy/pull request... anything your heart desires.  I love hearing other people's opinions!
