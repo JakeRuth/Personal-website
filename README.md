@@ -1,4 +1,4 @@
-# Official source code for my official website: www.jakeruth.com
+# www.jakeruth.com
 ---
 Created with the help of
 * [Pure css](http://purecss.io/)
