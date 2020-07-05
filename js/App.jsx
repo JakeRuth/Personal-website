@@ -8,7 +8,15 @@ const {
 
 function App() {
   return (
-    <RefactorMe />
+    <Fragment>
+      <StickyHeader />
+      <LandingScreen />
+      <div className="content-wrapper">
+        <AboutMe />
+        <TechStack />
+        <OldProjects />
+      </div>
+    </Fragment>
   );
 }
 

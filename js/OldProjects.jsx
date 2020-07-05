@@ -1,133 +1,11 @@
 // Massive copy paste of index.html into this component, will refactor in follow up commits
-function RefactorMe() {
+function OldProjects() {
   return (
     <Fragment>
-      <div className="header">
-        <div className="home-menu pure-menu pure-menu-horizontal pure-menu-fixed">
-          <img className="pure-menu-heading pure-img menu-heading-image" src="images/logo.gif" />
-
-          <ul className="pure-menu-list">
-            <li className="pure-menu-item"><a href="#" className="pure-menu-link">Home</a></li>
-            <li className="pure-menu-item"><a href="#tech-stack-link" className="pure-menu-link">Tech Stack</a></li>
-            <li className="pure-menu-item"><a href="#portfolio-link" className="pure-menu-link">Portfolio</a></li>
-          </ul>
-        </div>
-      </div>
-
-      <div className="splash-container">
-        <a href="https://github.com/JakeRuth/Personal-website">
-      		<img className="forkme" src="images/forkme.png" />
-      	</a>
-
-        <div className="social-media-container">
-          <a href="https://www.facebook.com/jake.t.ruth">
-            <img className="social" src="images/social/Facebook.png" />
-          </a>
-          <a href="https://www.linkedin.com/in/JakeRuth">
-            <img className="social" src="images/social/Linkedin.png" />
-          </a>
-          <a href="https://github.com/JakeRuth">
-            <img className="social" src="images/social/Share.png" />
-          </a>
-        </div>
-
-        <img className="pure-img splash-container-background-image" src="images/background.jpg" />
-
-        <div className="splash">
-          <h1 className="splash-head">Jake Ruth</h1>
-          <p className="splash-subhead">
-            Software Engineer at <a className="oscar-link" href="https://www.hioscar.com/">Oscar Health</a>
-          </p>
-          <a className="pure-button pure-button-primary" href="http://jakeruth.com/official_resume.pdf">Resume</a>
-        </div>
-      </div>
-
-      <div className="content-wrapper">
-        <div className="main-qualities-container">
-          <h2 className="content-head is-center">Noteworthy Qualities</h2>
-
-          <div className="pure-g">
-            <div className="l-box pure-u-1 pure-u-md-1-2 pure-u-lg-1-4">
-              <h3 className="content-subhead">
-                <i className="fa fa-mobile"></i>
-                Mobile App Developer
-              </h3>
-              <p>
-                I am a self taught mobile app developer.  I used React Native to create a mobile application for IOS that received over 4000 downloads!
-                <a href="#portfolio-link">Learn more!</a>
-              </p>
-            </div>
-            <div className="l-box pure-u-1 pure-u-md-1-2 pure-u-lg-1-4">
-              <h3 className="content-subhead">
-                <i className="fa fa-cloud"></i>
-                Cloud Hosting Fan!
-              </h3>
-              <p>
-                I am a very big fan of 'the cloud' and abstracting the infrasture away from projects so you can put more focus on the code.
-                I have experience with AWS and have used many services they offer.
-              </p>
-            </div>
-            <div className="l-box pure-u-1 pure-u-md-1-2 pure-u-lg-1-4">
-              <h3 className="content-subhead">
-                <i className="fa fa-desktop"></i>
-                Web App Developer
-              </h3>
-              <p>
-                I have over three years of experience developing web apps.  I have utilized multiple languages/frameworks
-                over my short career, across different development teams.
-              </p>
-            </div>
-            <div className="l-box pure-u-1 pure-u-md-1-2 pure-u-lg-1-4">
-              <h3 className="content-subhead">
-                <i className="fa fa-child"></i>
-                I'm Unique!
-              </h3>
-              <p>
-                I love trying out new things and experimenting!  A few interesting hobbies I've picked up along the years are speed cubing, trick unicycling, and hiking, to name a few.
-              </p>
-            </div>
-          </div>
-        </div>
-        <div id="tech-stack-link"></div>
-
-        <div id="tech-stack" className="ribbon">
-          <h2 className="content-head content-head-ribbon is-center">My Tech Stack</h2>
-          <p className="content-head-subtitle is-center">3 (Expert) - 2 (Up To Snuff) - 1 (Novice/It's been a while...)</p>
-
-          <div className="pure-g">
-
-            <div className="pure-u-1-2 is-center">
-              <h4 className="tech-title">Languages</h4>
-              <p className="tech-label">Groovy(3)</p>
-              <p className="tech-label">JavaScript(3)</p>
-              <p className="tech-label">Java(2.5)</p>
-              <p className="tech-label">Html(2)</p>
-              <p className="tech-label">CSS(2)</p>
-              <p className="tech-label">C(1)</p>
-              <p className="tech-label">Assembly(1)</p>
-            </div>
-
-            <div className="pure-u-1-2 is-center">
-              <h4 className="tech-title">Frameworks/Technologies</h4>
-              <p className="tech-label">React Native/ReactJS(3)</p>
-              <p className="tech-label">Grails(3)</p>
-              <p className="tech-label">MongoDB(3)</p>
-              <p className="tech-label">Git(3)</p>
-              <p className="tech-label">Node/Npm(2)</p>
-              <p className="tech-label">Gradle(2)</p>
-              <p className="tech-label">DropWizard(2)</p>
-              <p className="tech-label">Chef(2)</p>
-              <p className="tech-label">SQL(1)</p>
-            </div>
-
-          </div>
-        </div>
-
         <div id="portfolio-link"></div>
 
         <div className="portfolio-container">
-
-          <h2 className="content-head is-center">Portfolio</h2>
+          <h2 className="content-head is-center">Old Projects</h2>
           <div className="pure-g l-box">
             <div className="pure-u-1 pure-u-md-1-2 pure-u-lg-3-5">
               <h3 className="content-head">Youni iOS Mobile App (2015 - 2016)</h3>
@@ -136,8 +14,8 @@ function RefactorMe() {
               </p>
               <p>
                 I created the mobile application Youni (no longer on app store) as a part of a startup venture I took on, acting
-                as the Lead Developer and CTO.  The app was developed with <a href="https://facebook.github.io/react-native/">React Native</a>
-                for the front-end.  I prototyped an API using Grails, the API was the real brain of the application that
+                as the Lead Developer and CTO.  The app was developed with <a href="https://facebook.github.io/react-native/">React Native</a> for
+                the front-end.  I prototyped an API using Grails, the API was the real brain of the application that
                 handled everything from authentication to generating post feeds and more.  The front end React Native project
                 was lean and only served as a light rendering engine that made calls to the API.  The API was hosted using services
                 provided by AWS.  I used MongoDB as my datastore.
@@ -224,13 +102,6 @@ function RefactorMe() {
           </div>
 
         </div>
-      </div>
-
-
-
-      <div className="footer l-box is-center">
-        You can find the source code for this website on my <a className="github-footer-link" href="https://github.com/JakeRuth/Personal-website">Github</a>, I hope you enjoyed your visit!
-      </div>
     </Fragment>
   );
 }

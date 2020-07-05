@@ -197,9 +197,9 @@ h1, h2, h3, h4, h5, h6, label {
   background-color: #004791;
 }
 
-.tech-title {
-  color: white;
-  margin: 3px;
+.tech-stack-items-container {
+  padding-bottom: 1px; /* fixes bug with background image being seen under this section (conflicting with purecss) */
+  text-align: center;
 }
 
 .main-qualities-container {
@@ -213,15 +213,6 @@ h1, h2, h3, h4, h5, h6, label {
 
 .portfolio-media-container {
   margin-top: 20px;
-}
-
-/* This is the class used for the footer */
-.footer {
-    background: #002a57;
-    color: white;
-}
-.github-footer-link {
-  color: white;
 }
 
 /*
