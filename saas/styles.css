@@ -20,12 +20,6 @@
   --red: #ef5e5e;
   --violet: #8b7bff;
 
-  --swatch-core:    #3E9BFF;
-  --swatch-service: #27C678;
-  --swatch-data:    #f0b33c;
-  --swatch-edge:    #b9d9ff;
-  --swatch-ai:      #8b7bff;
-
   --radius: 6px;
   --radius-sm: 4px;
 
@@ -531,11 +525,11 @@ h1, h2, h3, h4 { font-weight: 600; letter-spacing: -0.012em; margin: 0; }
 .arch-legend ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 7px; }
 .arch-legend li { display: inline-flex; align-items: center; gap: 10px; font-size: 13px; color: var(--ink-2); }
 .swatch { width: 10px; height: 10px; border-radius: 50%; box-shadow: 0 0 0 2px rgba(255,255,255,0.02); }
-.swatch-core    { background: var(--swatch-core); }
-.swatch-service { background: var(--swatch-service); }
-.swatch-data    { background: var(--swatch-data); }
-.swatch-edge    { background: var(--swatch-edge); }
-.swatch-ai      { background: var(--swatch-ai); }
+.swatch-core    { background: var(--accent); }
+.swatch-service { background: var(--green); }
+.swatch-data    { background: var(--amber); }
+.swatch-edge    { background: var(--accent-3); }
+.swatch-ai      { background: var(--violet); }
 
 .arch-panel {
   background: var(--card-2);
