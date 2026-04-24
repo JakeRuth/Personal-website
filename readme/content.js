@@ -1,7 +1,7 @@
 /* All the rendered content lives here.
    Markdown strings for the README chrome + sibling docs.
    Issues + PR data for the Issues/PRs tabs.
-   Facts sourced from /_shared/content.json. Voice per /_shared/VOICE.md. */
+   Facts sourced from /content/content.json. Voice per /content/VOICE.md. */
 
 window.CONTENT = {};
 

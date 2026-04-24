@@ -1,57 +1,21 @@
-/* ================================================================
-   transition-cube-v5.js
+/* Cross-page Rubik's Cube transition. Two phases, no peak hold:
 
-   v5 choreography (per Jake, 2026-04-22):
-     "the Rubik's Cube should be getting bigger while it fades in,
-      maybe like a full second, gets to max size, which is the full
-      screen, then immediately starts to fade out as it gets solved
-      and dim while the new page fades in. So the opacities are like
-      inverses of each other."
+     GROW (~1000ms)  — stage scales small → viewport; cube fades in
+                       while source page fades out; at phase end,
+                       scrambled-facelets + solve-moves are written to
+                       sessionStorage and the browser navigates.
+     SHRINK_SOLVE (~800-1400ms) — dest page picks up: cube starts
+                       full-size, shrinks back to tiny, fades out while
+                       dest page fades in; solve moves play concurrently.
 
-   Two phases, no peak hold:
+   Public API (window.TransitionCube):
+     playTransition({ destinationUrl, onComplete?, sourceFadeTarget?,
+                      destFadeTarget?, onPhase2End? })
+     initArrival()  — no-op unless sessionStorage payload is fresh.
+                      Auto-fires on DOMContentLoaded, so pages don't
+                      need to call it explicitly.
 
-     GROW (~1000ms)
-       • Stage scales from ~48px → viewport-filling (100vmax).
-       • Cube opacity 0 → 1.
-       • Source page opacity 1 → 0 (inverse of cube).
-       • Cube is already scrambled at t=0 (silent scramble). Ambient
-         Y-spin is the only movement — no face rotations here.
-       • On cross-page: at the END of GROW we write the scrambled
-         facelet state + solve move list to sessionStorage and
-         navigate. The dest page picks up mid-flight.
-
-     SHRINK_SOLVE (~solve-length-driven, clamped to [800, 1400]ms)
-       • Stage scales from full → ~48px.
-       • Cube opacity 1 → 0.
-       • Destination opacity 0 → 1 (inverse of cube).
-       • Solve moves play concurrently with shrink + fade. Per-move
-         timing unchanged (125ms turn + 40ms pause). Cube ends
-         solved at tiny size, invisible.
-
-   Everything else is v4-verbatim: cube geometry, palette, camera
-   tilt, solver, group.attach/detach reparent pattern, ambient spin
-   softening after snaps, identity self-check, reduced-motion path.
-
-   Public API (parity with v4 — window.TransitionCubeV4 alias
-   preserved so existing callers keep working):
-     TransitionCubeV5.playTransition({
-       onComplete,          // () => void, only fires when no destinationUrl
-       destinationUrl,      // if set, navigates AT END OF GROW
-                            //   (cross-page handoff via sessionStorage)
-       sourceFadeTarget,    // optional: what to fade 1→0 during grow.
-                            //   default: <body> children minus overlay.
-       destFadeTarget,      // optional (demo/single-page only): what to
-                            //   fade 0→1 during shrink. If omitted,
-                            //   shrink fades sourceFadeTarget back in
-                            //   (reversible no-nav demo).
-       onPhase2End,         // (kept for v4 API compat — called right
-                            //   before SHRINK begins in single-page mode)
-     });
-     TransitionCubeV5.initArrival();
-       Call on every page load. If sessionStorage has a fresh payload
-       from a cross-page transition, draws cube at full + runs
-       SHRINK_SOLVE. Otherwise no-ops.
-   ================================================================ */
+   prefers-reduced-motion: falls back to a 220ms cross-fade. */
 
 (function (global) {
   "use strict";
@@ -59,7 +23,7 @@
   const THREE_CDN = "https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js";
   const SOLVER_SRC_NAME = "cube-solver.js";
 
-  // Classic cube palette (verbatim from v2/v3/v4).
+  // Classic cube palette.
   const STICKER_COLORS = {
     W: 0xffffff, R: 0xb71234, G: 0x009b48,
     Y: 0xffd500, O: 0xff5800, B: 0x0046ad,
@@ -70,14 +34,14 @@
   // Scales with cube opacity in both phases so there's no flash.
   const PEAK_BACKDROP = "rgba(8, 10, 14, 0.82)";
 
-  // v5 phase durations.
+  // Phase durations.
   const GROW_MS = 1000;
   // SHRINK duration tracks the solve move queue — the cube should
   // end solved at the instant it vanishes.
   const SHRINK_MS_MIN = 800;
   const SHRINK_MS_MAX = 1400;
 
-  // Per-move timing (v3/v4 verbatim).
+  // Per-move timing.
   const MOVE_DURATION_MS = 125;
   const MOVE_PAUSE_MS    = 40;
   const SCRAMBLE_LEN     = 6;
@@ -123,7 +87,7 @@
     ensureDeps().then(() => {
       runGrow(opts, sourceFade, destFade, onDone);
     }).catch((err) => {
-      console.error("[transition-cube-v5] dependency load failed:", err);
+      console.error("[transition-cube] dependency load failed:", err);
       reducedMotionFallback(opts, sourceFade, onDone);
     });
   }
@@ -146,7 +110,7 @@
     ensureDeps().then(() => {
       runArrival(payload);
     }).catch((err) => {
-      console.error("[transition-cube-v5] arrival dependency load failed:", err);
+      console.error("[transition-cube] arrival dependency load failed:", err);
     });
   }
 
@@ -160,7 +124,7 @@
   function ensureDeps() {
     const ps = [];
     if (!global.THREE) ps.push(loadScript(THREE_CDN));
-    if (!global.TransitionCubeV4Solver) ps.push(loadScript(resolveSolverSrc()));
+    if (!global.CubeSolver) ps.push(loadScript(resolveSolverSrc()));
     return Promise.all(ps);
   }
 
@@ -170,9 +134,6 @@
       const src = scripts[i].src || "";
       if (src.endsWith("/transition-cube.js") || src.endsWith("transition-cube.js")) {
         return src.replace(/transition-cube\.js(\?.*)?$/, SOLVER_SRC_NAME);
-      }
-      if (src.endsWith("/transition-cube-v4.js") || src.endsWith("transition-cube-v4.js")) {
-        return src.replace(/transition-cube-v4\.js(\?.*)?$/, SOLVER_SRC_NAME);
       }
     }
     return SOLVER_SRC_NAME;
@@ -194,7 +155,7 @@
   function resolveFadeTargets(target) {
     if (!target) {
       return Array.from(document.body.children).filter(el => {
-        return !el.classList.contains("transition-cube-v5-overlay");
+        return !el.classList.contains("transition-cube-overlay");
       });
     }
     if (typeof target === "string") return Array.from(document.querySelectorAll(target));
@@ -226,7 +187,7 @@
 
   function makeOverlay() {
     const el = document.createElement("div");
-    el.className = "transition-cube-v5-overlay";
+    el.className = "transition-cube-overlay";
     el.setAttribute("aria-hidden", "true");
     el.style.cssText = [
       "position:fixed",
@@ -245,7 +206,7 @@
 
   function makeStage() {
     const stage = document.createElement("div");
-    stage.className = "transition-cube-v5-stage";
+    stage.className = "transition-cube-stage";
     stage.style.cssText = [
       "position:absolute",
       "top:50%",
@@ -263,7 +224,7 @@
   // --- Phase 1: GROW (leaving) ------------------------------------
 
   function runGrow(opts, sourceFade, destFade, onDone) {
-    const Solver = global.TransitionCubeV4Solver;
+    const Solver = global.CubeSolver;
 
     const overlay = makeOverlay();
     document.body.appendChild(overlay);
@@ -285,24 +246,6 @@
     const solveMoves = Solver.solveFromFacelets(
       Solver.cloneFacelets(ctx.facelets)
     ) || [];
-
-    console.log(
-      "[transition-cube-v5] scramble (" + scrambleMoves.length + "):",
-      scrambleMoves.join(" ")
-    );
-    console.log(
-      "[transition-cube-v5] solve (" + solveMoves.length + "):",
-      solveMoves.join(" ")
-    );
-    console.log(
-      "[transition-cube-v5] grow:", GROW_MS + "ms",
-      "| shrink-solve: driven by", solveMoves.length, "moves"
-    );
-
-    if (!global.__transitionCubeV5IdentityChecked) {
-      global.__transitionCubeV5IdentityChecked = true;
-      runIdentityCheck(global.THREE);
-    }
 
     const state = {
       running: true,
@@ -335,7 +278,7 @@
   // --- Arrival: SHRINK-only (dest page picks up mid-flight) -------
 
   function runArrival(payload) {
-    const Solver = global.TransitionCubeV4Solver;
+    const Solver = global.CubeSolver;
 
     // Destination page starts at 0, fades to 1 during shrink.
     const destFade = Array.from(document.body.children);
@@ -371,11 +314,6 @@
     if (!solveMoves) {
       solveMoves = Solver.solveFromFacelets(Solver.cloneFacelets(ctx.facelets)) || [];
     }
-
-    console.log(
-      "[transition-cube-v5] arrival — shrink+solve starting (" +
-      solveMoves.length + " moves, " + computeShrinkMs(solveMoves.length) + "ms)"
-    );
 
     const onDone = () => {
       clearElsOpacity(destFade);
@@ -491,7 +429,6 @@
           solveMoves: state.solveMoves,
         }));
       } catch (e) { /* graceful degrade */ }
-      console.log("[transition-cube-v5] grow end — navigating:", state.opts.destinationUrl);
       state.running = false;
       window.location.href = state.opts.destinationUrl;
       return;
@@ -509,13 +446,12 @@
     state.pauseUntil = now;
     state.phase = "shrink";
     state.phaseStartT = now;
-    console.log("[transition-cube-v5] shrink+solve begin (single-page)");
   }
 
   // SHRINK: cube scale 1→tiny, cube opacity 1→0, dest opacity 0→1.
   // Solve moves play concurrently.
   function tickShrink(state, now) {
-    // Move player (v3/v4 semantics — unchanged).
+    // Move player.
     if (state.currentMove) {
       const mv = state.currentMove;
       const p = clamp((now - mv.startT) / (mv.endT - mv.startT), 0, 1);
@@ -544,11 +480,11 @@
   }
 
   // --- Cube context (scene graph, renderer, cubies) ---------------
-  // (Unchanged from v4 — identical cube build, palette, camera.)
+  // (Identical cube build, palette, camera.)
 
   function createCubeContext(stage) {
     const THREE = global.THREE;
-    const Solver = global.TransitionCubeV4Solver;
+    const Solver = global.CubeSolver;
 
     const intrinsic = 800;
 
@@ -604,7 +540,7 @@
     return v || 800;
   }
 
-  // --- Move player (v3/v4 semantics, operates on `state`) ---------
+  // --- Move player (operates on `state`) --------------------------
 
   function startNextMove(state, moveStr, idx, total) {
     const THREE = global.THREE;
@@ -633,16 +569,10 @@
       endT: performance.now() + MOVE_DURATION_MS,
       cubies: affected,
     };
-
-    console.log(
-      "[transition-cube-v5] [move " + (idx + 1) + "/" + total + "] " +
-      moveStr + " — axis " + spec.axis + " target " +
-      (targetAngle * 180 / Math.PI).toFixed(1) + "°"
-    );
   }
 
   function commitMove(state, mv) {
-    const Solver = global.TransitionCubeV4Solver;
+    const Solver = global.CubeSolver;
     mv.group.rotation[mv.axis] = mv.targetAngle;
 
     mv.cubies.forEach(c => {
@@ -665,7 +595,7 @@
     state.lastSnapT = performance.now();
   }
 
-  // --- Cubie + sticker construction (VERBATIM from v2/v3/v4) ------
+  // --- Cubie + sticker construction -------------------------------
 
   function buildCubies(THREE) {
     const cubies = [];
@@ -785,52 +715,6 @@
     B: { axis: 'z', sign: +1, pick: p => p.z < -0.5 },
   };
 
-  // --- Identity self-check (retained from v3/v4) ------------------
-  function runIdentityCheck(THREE) {
-    const scene = new THREE.Scene();
-    const root = new THREE.Group();
-    scene.add(root);
-
-    const probes = [];
-    for (let x = -1; x <= 1; x++) {
-      for (let z = -1; z <= 1; z++) {
-        const g = new THREE.Group();
-        g.position.set(x, 1, z);
-        root.add(g);
-        probes.push({ start: { x, y: 1, z }, g });
-      }
-    }
-
-    for (let i = 0; i < 4; i++) {
-      const layer = new THREE.Group();
-      root.add(layer);
-      probes.forEach(p => { if (p.g.position.y > 0.5) layer.attach(p.g); });
-      layer.rotation.y = -Math.PI / 2;
-      layer.updateMatrixWorld(true);
-      probes.forEach(p => {
-        root.attach(p.g);
-        p.g.position.set(
-          Math.round(p.g.position.x),
-          Math.round(p.g.position.y),
-          Math.round(p.g.position.z)
-        );
-      });
-      root.remove(layer);
-    }
-
-    let ok = true;
-    for (const p of probes) {
-      const dx = Math.abs(p.g.position.x - p.start.x);
-      const dy = Math.abs(p.g.position.y - p.start.y);
-      const dz = Math.abs(p.g.position.z - p.start.z);
-      if (dx > 1e-6 || dy > 1e-6 || dz > 1e-6) ok = false;
-    }
-    console.log(
-      "[transition-cube-v5] identity check (4× U): " +
-      (ok ? "OK" : "FAILED")
-    );
-  }
-
   // --- Small helpers -----------------------------------------------
 
   function clamp(x, lo, hi) { return Math.max(lo, Math.min(hi, x)); }
@@ -851,9 +735,13 @@
     return "rgba(" + r + ", " + g + ", " + b + ", " + a.toFixed(4) + ")";
   }
 
-  const api = { playTransition, initArrival };
-  global.TransitionCubeV5 = api;
-  // v4 alias for back-compat — callers in wizard/topnav still use it.
-  if (!global.TransitionCubeV4) global.TransitionCubeV4 = api;
-  if (!global.TransitionCube) global.TransitionCube = api;
+  global.TransitionCube = { playTransition, initArrival };
+
+  // Auto-fire the arrival animation if a cross-page transition payload
+  // is fresh in sessionStorage. No-ops otherwise.
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initArrival);
+  } else {
+    initArrival();
+  }
 })(typeof window !== "undefined" ? window : globalThis);

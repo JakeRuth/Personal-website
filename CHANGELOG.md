@@ -10,7 +10,8 @@ longer exist on disk — recover from git history if needed.
   through 10, saas-a/b/c and v3-v5 precursors, picker-wizard v1-v5,
   transition-cube v1-v4, nav-*, graph-a/b/c, etc.) and the design-canvas
   `concepts/index.html`. ~70 folders, ~299 files.
-- Promoted `concepts/v1/` → repo root, `concepts/_shared/` → `_shared/`.
+- Promoted `concepts/v1/` → repo root; `concepts/_shared/` → `content/`
+  (renamed to avoid the `shared/` ↔ `_shared/` collision in a later pass).
 - Deleted the 2017-era React site at root (`index.html`, `js/`, `css/`,
   `portfolioExternal/`, `README.md`).
 - Rewrote root `README.md` for the flat layout; updated `CLAUDE.md`

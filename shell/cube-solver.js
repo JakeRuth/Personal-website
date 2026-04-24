@@ -1,17 +1,6 @@
-/* ================================================================
-   CubeMaster XP v3 — Real 3x3 Solver
-   ================================================================
-
-   Inherits v2's cubie model and bidirectional BFS. Polish:
-     - Scramble depth aligned with solver maxPerSide (scrambles <= 8
-       guarantee a solution within the default 9-per-side search).
-     - Faster move application: applyMoveOnce inline on reused arrays,
-       no per-move allocation in the hot expansion loop.
-     - State hashing tightened (cp/co/ep/eo serialized to a single
-       packed string of bytes — fewer map-key allocations).
-     - Scramble prevents the "third move cancels" pattern more
-       strictly, producing a cleaner-feeling scramble.
-   ================================================================ */
+/* Real 3x3 cube solver. Bidirectional BFS over a compact cubie model.
+   Used by the cross-page transition animation and by the XP desktop's
+   interactive Rubik's Cube widget. Exposes `window.CubeSolver`. */
 
 (function () {
   "use strict";

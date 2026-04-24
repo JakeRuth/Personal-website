@@ -29,15 +29,14 @@ No build step. Vanilla HTML/CSS/JS, CDN libs only. Deployed to GitHub Pages from
 ├── styles.css         ← wizard styles
 ├── ambient.js         ← drifting-cubes WebGL background
 ├── wizard.js          ← 2-step flow, fires TransitionCube on Launch
-├── shared/
-│   ├── topnav.{css,js}    ← shared top-nav, auto-injected + first-arrival cue
-│   ├── transition.js      ← V1Transition.go wrapper over TransitionCube
+├── shell/             ← cross-experience chrome (nav + transition)
+│   ├── topnav.{css,js}    ← top-nav, auto-injected on every experience
 │   ├── transition-cube.js ← grow → solve → navigate → shrink
-│   └── cube-solver.js     ← cube solver used by the transition
+│   └── cube-solver.js     ← 3x3 solver (used by the transition + XP widget)
 ├── xp/                ← Windows XP Luna experience
 ├── readme/            ← GitHub README + git log experience
 ├── saas/              ← SaaS marketing experience
-├── _shared/           ← canonical content + voice rules
+├── content/           ← canonical content + voice rules
 │   ├── content.json       ← single source of truth for facts
 │   ├── VOICE.md           ← tone rules
 │   └── PARITY_AUDIT.md    ← cross-experience parity tracking
@@ -52,8 +51,8 @@ No build step. Vanilla HTML/CSS/JS, CDN libs only. Deployed to GitHub Pages from
 
 `TransitionCube` is available on `window` and has two entry points:
 
-- `TransitionCube.playTransition({ destinationUrl })` — runs grow + solve on the source page, writes `sessionStorage.jrTransitionArrive`, navigates. Called by `wizard.js` on Launch and by `shared/topnav.js` on any nav click.
-- `TransitionCube.initArrival()` — no-op unless the session flag is set. When set, plays shrink + dest fade-in. Wired at the end of `<body>` in each experience's `index.html`. Stale-flag guard: ignores flags older than 3 seconds.
+- `TransitionCube.playTransition({ destinationUrl })` — runs grow + solve on the source page, writes `sessionStorage.jrTransitionArrive`, navigates. Called by `wizard.js` on Launch and by `shell/topnav.js` on any nav click.
+- `TransitionCube.initArrival()` — no-op unless a fresh session flag is set. When set, plays shrink + dest fade-in. Auto-fires on DOMContentLoaded; pages don't need to call it explicitly. Stale-flag guard: ignores flags older than 3 seconds.
 
 Three.js falls back to a 220ms crossfade if the CDN fails to load, and the whole transition collapses to the crossfade under `prefers-reduced-motion: reduce`.
 

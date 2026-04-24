@@ -1,34 +1,17 @@
-/* =========================================================
-   v1 shared top-nav — v4 integrated
-   ---------------------------------------------------------
+/* Shared top-nav auto-injected on every experience page.
    [ JR logo + "Jake Ruth" ]     [ Old-school OS | Code repo | SaaS product ]
-       ^ fixed far-left                        ^ centered segmented pill
 
    Behavior:
-   - Auto-detects current experience via pathname (xp / readme / saas).
-   - Clicking the JR brand returns to the Setup Wizard via V1Transition.
+   - Auto-detects the current experience from the URL pathname.
+   - Clicking the JR brand plays the cube transition back to the wizard.
    - Clicking a non-current tab plays the cube transition + navigates.
-   - Clicking the current tab smooth-scrolls to top (gentle affordance).
+   - Clicking the current tab smooth-scrolls to top.
 
-   First-arrival onboarding (once per session):
-   - Pulse the two non-current tabs for ~3-4 seconds.
-   - Floating pill below the nav reads "Switch experiences anytime
-     from the top" (VOICE.md-compliant — tight, not cute). Fades in
-     ~400ms after arrival, auto-fades after 4s.
-   - sessionStorage.jrNavOnboardingShown gates — runs once across any
-     experience per session.
-   - Waits until any TransitionCubeV4 arrival animation has settled
-     (~500ms grace) before showing the cue.
-   - prefers-reduced-motion: show the pill statically, skip the pulse.
-
-   Expected script order on an experience page:
-     <link rel="stylesheet" href="../shared/topnav.css">
-     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-     <script src="../shared/cube-solver.js"></script>
-     <script src="../shared/transition-cube.js"></script>
-     <script src="../shared/transition.js"></script>
-     <script src="../shared/topnav.js"></script>
-   ========================================================= */
+   First-arrival onboarding (once per browser, gated by localStorage):
+   - Non-current tabs pulse and a small pill appears under the nav
+     reading "Three ways to read Jake. Switch up top anytime."
+   - prefers-reduced-motion: pill renders statically, pulse suppressed.
+   - Append ?reonboard to re-trigger. */
 
 (function () {
   "use strict";
@@ -80,9 +63,9 @@
   }
 
   function navTo(url) {
-    if (window.V1Transition && typeof window.V1Transition.go === "function") {
-      window.V1Transition.go(url);
-    } else {
+    try {
+      window.TransitionCube.playTransition({ destinationUrl: url });
+    } catch (_e) {
       window.location.href = url;
     }
   }

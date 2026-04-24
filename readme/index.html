@@ -10,13 +10,11 @@
 <link id="hljs-theme-dark" rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/styles/github-dark.min.css" />
 <link id="hljs-theme-light" rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/styles/github.min.css" disabled />
 <link rel="stylesheet" href="styles.css" />
-<link rel="stylesheet" href="../shared/topnav.css" />
-<!-- Shared transition + topnav -->
+<link rel="stylesheet" href="../shell/topnav.css" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-<script src="../shared/cube-solver.js"></script>
-<script src="../shared/transition-cube.js"></script>
-<script src="../shared/transition.js"></script>
-<script src="../shared/topnav.js" defer></script>
+<script src="../shell/cube-solver.js"></script>
+<script src="../shell/transition-cube.js"></script>
+<script src="../shell/topnav.js" defer></script>
 </head>
 <body>
 
@@ -283,13 +281,5 @@
 <script src="content.js"></script>
 <script src="timeline.js"></script>
 <script src="app.js"></script>
-<!-- Arrival half of the cube transition. Plays phase 3 (cube shrinks,
-     page fades in) if sessionStorage.jrTransitionArrive is set by the
-     previous page; no-ops on a fresh visit. -->
-<script>
-  if (window.TransitionCubeV4 && typeof window.TransitionCubeV4.initArrival === "function") {
-    window.TransitionCubeV4.initArrival();
-  }
-</script>
 </body>
 </html>

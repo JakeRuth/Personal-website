@@ -315,18 +315,12 @@
 
   function triggerTransition() {
     if (state.selectedId === null) return;
-    const sel = getExperience(state.selectedId);
-    const destinationUrl = sel.path;
-
-    if (window.TransitionCubeV4 && typeof window.TransitionCubeV4.playTransition === "function") {
-      window.TransitionCubeV4.playTransition({ destinationUrl: destinationUrl });
-      return;
+    const destinationUrl = getExperience(state.selectedId).path;
+    try {
+      window.TransitionCube.playTransition({ destinationUrl });
+    } catch (_e) {
+      window.location.href = destinationUrl;
     }
-    if (window.TransitionCube && typeof window.TransitionCube.playTransition === "function") {
-      window.TransitionCube.playTransition({ destinationUrl: destinationUrl });
-      return;
-    }
-    window.location.href = destinationUrl;
   }
 
   // ---- Picker wiring ----
