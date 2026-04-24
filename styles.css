@@ -802,7 +802,6 @@ body {
 }
 .modal[hidden] { display: none !important; }
 .modal-window { margin: 0; width: 440px; height: auto; }
-.modal-window .menubar { display: none; }
 .modal-body { padding: 18px; }
 .modal-row { display: flex; gap: 12px; align-items: flex-start; }
 .modal-row p { margin: 0 0 6px; }
