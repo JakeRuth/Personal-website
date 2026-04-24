@@ -1,8 +1,15 @@
-/* XP experience: draggable windows, Start menu, taskbar, clock,
-   Bliss wallpaper chrome, CubeMaster 3D Rubik's Cube with live
-   timer, network graph, toast. */
+/* XP experience. Three independent modules, loaded in one file:
+     1. Window manager — toast, clock, windows, dragging, Start menu,
+        click dispatch for data-open / data-scroll / data-copy.
+     2. CubeMaster — Three.js Rubik's Cube with bidirectional-BFS
+        solver, live timer, and a scramble/solve UI.
+     3. Network graph — the Search Companion SVG graph + dog bubble.
+   Modules share no state; each is its own IIFE. */
 
-(function () {
+/* ==================================================================
+   1. Window manager
+   ================================================================== */
+(function windowManager() {
   "use strict";
 
   // ---------- window registry ----------
@@ -67,8 +74,8 @@
     OPEN_STATE[id] = "open";
     focusWindow(id);
     rebuildTaskStrip();
-    if (id === "cubemaster") ensureCubeStarted();
-    if (id === "search-companion") ensureGraphBuilt();
+    // cubeMaster + networkGraph self-register MutationObservers on
+    // their window elements; they build lazily on first un-hide.
   }
 
   function minimizeWindow(id) {
@@ -367,9 +374,29 @@
     if (e.key === "Escape") closeStartMenu();
   });
 
-  // ==============================================================
-  // CubeMaster — real solver viz
-  // ==============================================================
+})();
+
+/* ==================================================================
+   2. CubeMaster — Three.js Rubik's Cube
+   ================================================================== */
+(function cubeMaster() {
+  "use strict";
+
+  // The only cross-module handle we need: the window element, so we
+  // can pause rAF while it's hidden/minimized.
+  const CUBE_WIN = document.getElementById("win-cubemaster");
+
+  // Local toast helper. Writes to the same element as windowManager's
+  // toast() — keeps a single UI surface without sharing JS state.
+  let toastTimer = null;
+  function toast(msg) {
+    const TOAST = document.getElementById("xp-toast");
+    if (!TOAST) return;
+    TOAST.textContent = msg;
+    TOAST.classList.add("show");
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => TOAST.classList.remove("show"), 2400);
+  }
 
   let faceletCube = window.CubeSolver.solvedFacelets();
 
@@ -507,8 +534,7 @@
     const loop = () => {
       cubeRAF = requestAnimationFrame(loop);
       if (!THREE_READY) return;
-      const winEl = WINDOWS["cubemaster"];
-      if (winEl && (winEl.classList.contains("hidden") || winEl.classList.contains("minimized"))) {
+      if (CUBE_WIN && (CUBE_WIN.classList.contains("hidden") || CUBE_WIN.classList.contains("minimized"))) {
         // Don't burn GPU while hidden.
         return;
       }
@@ -763,9 +789,24 @@
 
   setTimeout(updateStatus, 200);
 
-  // ==============================================================
-  // Network graph (Search Companion)
-  // ==============================================================
+  // Lazy-build the Three.js cube the first time the window is shown
+  // (observing .hidden class removal keeps the modules decoupled).
+  if (CUBE_WIN) {
+    const obs = new MutationObserver(() => {
+      if (!CUBE_WIN.classList.contains("hidden")) ensureCubeStarted();
+    });
+    obs.observe(CUBE_WIN, { attributes: true, attributeFilter: ["class"] });
+    if (!CUBE_WIN.classList.contains("hidden")) ensureCubeStarted();
+  }
+})();
+
+/* ==================================================================
+   3. Network graph — Search Companion
+   ================================================================== */
+(function networkGraph() {
+  "use strict";
+
+  const SEARCH_WIN = document.getElementById("win-search-companion");
   const GRAPH_EL = document.getElementById("graph");
   const DOG_EL = document.getElementById("dog");
   const BUBBLE = document.getElementById("dog-bubble");
@@ -940,12 +981,12 @@
     }
   }
 
-  // ==============================================================
-  // expose for debugging
-  // ==============================================================
-  window.__JAKEXP = {
-    openWindow, closeWindow, minimizeWindow,
-    cube: () => faceletCube,
-    solver: window.CubeSolver,
-  };
+  // Lazy-build the SVG graph the first time the window is shown.
+  if (SEARCH_WIN) {
+    const obs = new MutationObserver(() => {
+      if (!SEARCH_WIN.classList.contains("hidden")) ensureGraphBuilt();
+    });
+    obs.observe(SEARCH_WIN, { attributes: true, attributeFilter: ["class"] });
+    if (!SEARCH_WIN.classList.contains("hidden")) ensureGraphBuilt();
+  }
 })();
