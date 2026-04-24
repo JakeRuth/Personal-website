@@ -497,7 +497,7 @@ kbd, .kbd-inline {
 @media (max-width: 720px) { .readme { padding: 28px 22px; } }
 
 /* ---------- markdown typography ---------- */
-.readme h1, .readme h2, .readme h3, .readme h4, .readme h5, .readme h6 {
+.readme h1, .readme h2, .readme h3 {
   margin: 32px 0 14px;
   font-weight: 600;
   line-height: 1.25;
@@ -518,7 +518,6 @@ kbd, .kbd-inline {
   scroll-margin-top: 100px;
 }
 .readme h3 { font-size: 19px; margin-top: 28px; scroll-margin-top: 100px; }
-.readme h4 { font-size: 16px; }
 
 /* light-mode: serif headings for the "editorial" feel */
 :root[data-theme="light"][data-skin="readme"] .readme h1,
@@ -559,15 +558,12 @@ kbd, .kbd-inline {
 }
 .readme h1:hover .anchor,
 .readme h2:hover .anchor,
-.readme h3:hover .anchor,
-.readme h4:hover .anchor { opacity: 1; }
+.readme h3:hover .anchor { opacity: 1; }
 
 .readme p { margin: 0 0 16px; max-width: 75ch; }
 .readme ul, .readme ol { margin: 0 0 16px; padding-left: 30px; max-width: 75ch; }
 .readme li { margin-bottom: 6px; }
 .readme li::marker { color: var(--fg-dim); }
-.readme li > p { margin-bottom: 8px; }
-.readme li > ul, .readme li > ol { margin-top: 6px; margin-bottom: 6px; }
 .readme hr { border: 0; border-top: 1px solid var(--border); margin: 36px 0; }
 
 .readme :not(pre) > code {
