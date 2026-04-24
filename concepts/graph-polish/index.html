@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Jake Ruth — Network (polished)</title>
+<link rel="stylesheet" href="styles.css" />
+<script src="https://cdn.jsdelivr.net/npm/d3@7.9.0/dist/d3.min.js"></script>
+</head>
+<body>
+  <canvas id="starfield"></canvas>
+  <svg id="graph" role="img" aria-label="Force-directed graph of Jake Ruth's career, skills, projects, hobbies and people"></svg>
+
+  <header class="topbar">
+    <div class="brand">
+      <span class="brand-dot"></span>
+      <span class="brand-name">jake_ruth</span>
+      <span class="brand-sub">// network</span>
+    </div>
+
+    <div class="search-wrap">
+      <div class="search">
+        <svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/><path d="M20 20l-3.5-3.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/></svg>
+        <input id="search" type="text" placeholder="try: Oscar · Rubik's · AI · Daniel · Stock Unlock" autocomplete="off" spellcheck="false" />
+        <kbd>/</kbd>
+      </div>
+      <div class="search-chips" id="search-chips" aria-label="example jumps">
+        <button class="chip" data-id="stockunlock">Stock Unlock</button>
+        <button class="chip" data-id="oscar">Oscar</button>
+        <button class="chip" data-id="rubiks">Rubik's</button>
+        <button class="chip" data-id="ai-tooling">AI</button>
+        <button class="chip" data-id="daniel">Daniel</button>
+      </div>
+    </div>
+
+    <div class="mode-dropdown" title="open in…">
+      <button id="mode-btn" class="mode-btn" aria-haspopup="listbox" aria-expanded="false">
+        <span class="mode-label">open in</span>
+        <span class="mode-current" id="mode-current">standalone</span>
+        <svg width="10" height="10" viewBox="0 0 10 10" aria-hidden="true"><path d="M1 3l4 4 4-4" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg>
+      </button>
+      <ul id="mode-menu" class="mode-menu" role="listbox" hidden>
+        <li role="option" data-mode="standalone">standalone</li>
+        <li role="option" data-mode="jakeOS">jakeOS mode</li>
+        <li role="option" data-mode="embed">embed widget</li>
+      </ul>
+    </div>
+  </header>
+
+  <aside class="legend">
+    <div class="legend-title">legend</div>
+    <ul>
+      <li><span class="dot" data-cat="career"></span>career</li>
+      <li><span class="dot" data-cat="skill"></span>skills</li>
+      <li><span class="dot" data-cat="project"></span>projects</li>
+      <li><span class="dot" data-cat="hobby"></span>hobbies</li>
+      <li><span class="dot" data-cat="person"></span>people</li>
+    </ul>
+    <div class="legend-hint">
+      click to inspect · drag to move<br/>
+      shift-drag to pin · hover to peek
+    </div>
+  </aside>
+
+  <section id="panel" class="panel" aria-live="polite">
+    <button id="panel-close" class="panel-close" aria-label="Close">×</button>
+    <div class="panel-kicker"><span id="panel-category">—</span></div>
+    <h2 id="panel-title">—</h2>
+    <p id="panel-body">Click a node to open its story.</p>
+    <div class="panel-related">
+      <div class="panel-related-title">connected</div>
+      <ul id="panel-related-list"></ul>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <span>concept · graph-polish</span>
+    <span class="footer-sep">·</span>
+    <span>jake@stockunlock.com</span>
+  </footer>
+
+  <script src="data.js"></script>
+  <script src="graph.js"></script>
+</body>
+</html>

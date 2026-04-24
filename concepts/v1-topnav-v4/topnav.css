@@ -1,0 +1,285 @@
+/* =========================================================
+   v1 topnav v4 — Variant A visuals, Variant C positioning
+   ---------------------------------------------------------
+   Base nav chrome, tab styling, and cube-mark colors are
+   lifted from v3/styles.css (the Variant A lineage) so this
+   file is a true drop-in replacement for v1/shared/topnav.css.
+
+   Positioning rule: the brand lockup is absolutely anchored
+   top-left as a constant. The tab group is centered in the
+   bar (via justify-content + margin auto). The right side is
+   left empty on purpose — the nav reads as brand-on-left +
+   one centered unit.
+   ========================================================= */
+
+:root {
+  --v1tn-bg:        rgba(14, 16, 20, 0.78);
+  --v1tn-border:    rgba(255, 255, 255, 0.08);
+  --v1tn-text:      #e8ebf1;
+  --v1tn-muted:     #9099a8;
+  --v1tn-xp:        #4c8ddb;
+  --v1tn-readme:    #3cb371;
+  --v1tn-saas:      #e49242;
+}
+
+/* =========================================================
+   Bar shell
+   ========================================================= */
+
+.v1-topnav {
+  position: relative;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;   /* Variant C positioning: center the tab group */
+  padding: 0 16px;
+  color: var(--v1tn-text);
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Inter, Helvetica, Arial, sans-serif;
+  font-size: 13px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.v1-topnav button,
+.v1-topnav a {
+  font-family: inherit;
+}
+
+/* When the bar is mounted directly at the top of a page rather
+   than inside a demo frame, the .v1-topnav-host can provide the
+   dark-glass background. Kept separate so the component itself
+   doesn't force a background on its container. */
+.v1-topnav-host {
+  position: relative;
+  height: 56px;
+  background: var(--v1tn-bg);
+  backdrop-filter: blur(14px) saturate(140%);
+  -webkit-backdrop-filter: blur(14px) saturate(140%);
+  border-bottom: 1px solid var(--v1tn-border);
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.25);
+}
+
+/* =========================================================
+   Left: JR logo + "Jake Ruth" lockup (CONSTANT)
+   Absolutely anchored to the far left. Does not move when
+   the centered tab group shifts.
+   ========================================================= */
+
+.v1-topnav-left {
+  position: absolute;
+  left: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2;
+}
+
+.v1-topnav-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 4px 10px 4px 4px;
+  border-radius: 10px;
+  border: 1px solid transparent;
+  background: transparent;
+  color: rgba(232, 235, 241, 0.78);
+  text-decoration: none;
+  cursor: pointer;
+  transition:
+    background 160ms ease,
+    border-color 160ms ease,
+    color 160ms ease;
+}
+.v1-topnav-brand:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+}
+.v1-topnav-brand:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(96, 165, 250, 0.55);
+}
+
+.v1-topnav-brand-logo {
+  display: block;
+  height: 30px;
+  width: auto;
+  /* logo.gif is a warm cream-on-black mark — no tint filters so
+     the original art reads correctly. A subtle contrast ring is
+     added below so it doesn't float unmoored on the glass. */
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.02);
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.06);
+  image-rendering: -webkit-optimize-contrast;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+.v1-topnav-brand-name {
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.1px;
+  line-height: 1;
+  color: inherit;
+  white-space: nowrap;
+}
+
+/* =========================================================
+   Center: tab group (Variant A visuals)
+   The segmented-control pill. Lives dead-center in the bar
+   thanks to the parent's justify-content: center.
+   ========================================================= */
+
+.v1-topnav-tabs {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px;
+  background: rgba(255, 255, 255, 0.025);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 10px;
+  margin: 0 auto;   /* belt-and-suspenders centering */
+}
+
+.v1-topnav-tab {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 12px;
+  background: transparent;
+  border: 0;
+  border-radius: 7px;
+  color: rgba(232, 235, 241, 0.62);
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: 0.1px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 160ms ease, color 160ms ease;
+  outline: none;
+}
+.v1-topnav-tab:hover {
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.05);
+}
+.v1-topnav-tab:focus-visible {
+  box-shadow: 0 0 0 2px rgba(96, 165, 250, 0.55);
+}
+
+/* Variant A highlight: filled pill + bottom-border accent in
+   the experience's signature color. */
+.v1-topnav-tab.is-current {
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.09);
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.08),
+    0 1px 0 rgba(0, 0, 0, 0.25);
+}
+.v1-topnav-tab.is-current::after {
+  content: "";
+  position: absolute;
+  left: 10px;
+  right: 10px;
+  bottom: 3px;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--v1-topnav-accent, #e8ebf1);
+  opacity: 0.9;
+}
+.v1-topnav-tab.is-current[data-exp="xp"]     { --v1-topnav-accent: var(--v1tn-xp); }
+.v1-topnav-tab.is-current[data-exp="readme"] { --v1-topnav-accent: var(--v1tn-readme); }
+.v1-topnav-tab.is-current[data-exp="saas"]   { --v1-topnav-accent: var(--v1tn-saas); }
+
+.v1-topnav-label { display: inline-block; }
+
+/* =========================================================
+   Tiny 3x3 cube mark beside each label (Variant A accent)
+   Same sticker palette per experience as v3.
+   ========================================================= */
+
+.v1-topnav-mark {
+  width: 14px;
+  height: 14px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  gap: 1px;
+  padding: 1px;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  border-radius: 3px;
+  background: rgba(0, 0, 0, 0.35);
+  flex-shrink: 0;
+  opacity: 0.75;
+  transition: opacity 160ms ease;
+}
+.v1-topnav-mark i {
+  display: block;
+  border-radius: 1px;
+  background: #333;
+}
+.v1-topnav-tab:hover .v1-topnav-mark,
+.v1-topnav-tab.is-current .v1-topnav-mark { opacity: 1; }
+
+/* XP — mostly blue with a green/red/white hint (the WinXP vibe) */
+.v1-topnav-mark[data-exp="xp"] i:nth-child(1) { background: #e8e8ea; }
+.v1-topnav-mark[data-exp="xp"] i:nth-child(2) { background: #2f6fc0; }
+.v1-topnav-mark[data-exp="xp"] i:nth-child(3) { background: #2f6fc0; }
+.v1-topnav-mark[data-exp="xp"] i:nth-child(4) { background: #2f6fc0; }
+.v1-topnav-mark[data-exp="xp"] i:nth-child(5) { background: #2f6fc0; }
+.v1-topnav-mark[data-exp="xp"] i:nth-child(6) { background: #2f9a5a; }
+.v1-topnav-mark[data-exp="xp"] i:nth-child(7) { background: #2f6fc0; }
+.v1-topnav-mark[data-exp="xp"] i:nth-child(8) { background: #c84236; }
+.v1-topnav-mark[data-exp="xp"] i:nth-child(9) { background: #2f6fc0; }
+
+/* README — terminal greens with a yellow prompt sticker */
+.v1-topnav-mark[data-exp="readme"] i:nth-child(1) { background: #2f9a5a; }
+.v1-topnav-mark[data-exp="readme"] i:nth-child(2) { background: #2f9a5a; }
+.v1-topnav-mark[data-exp="readme"] i:nth-child(3) { background: #e8e8ea; }
+.v1-topnav-mark[data-exp="readme"] i:nth-child(4) { background: #2f9a5a; }
+.v1-topnav-mark[data-exp="readme"] i:nth-child(5) { background: #2f9a5a; }
+.v1-topnav-mark[data-exp="readme"] i:nth-child(6) { background: #2f9a5a; }
+.v1-topnav-mark[data-exp="readme"] i:nth-child(7) { background: #e7c750; }
+.v1-topnav-mark[data-exp="readme"] i:nth-child(8) { background: #2f9a5a; }
+.v1-topnav-mark[data-exp="readme"] i:nth-child(9) { background: #2f9a5a; }
+
+/* SaaS — product-orange with red + yellow accents */
+.v1-topnav-mark[data-exp="saas"] i:nth-child(1) { background: #d0792c; }
+.v1-topnav-mark[data-exp="saas"] i:nth-child(2) { background: #d0792c; }
+.v1-topnav-mark[data-exp="saas"] i:nth-child(3) { background: #c84236; }
+.v1-topnav-mark[data-exp="saas"] i:nth-child(4) { background: #d0792c; }
+.v1-topnav-mark[data-exp="saas"] i:nth-child(5) { background: #d0792c; }
+.v1-topnav-mark[data-exp="saas"] i:nth-child(6) { background: #d0792c; }
+.v1-topnav-mark[data-exp="saas"] i:nth-child(7) { background: #e8e8ea; }
+.v1-topnav-mark[data-exp="saas"] i:nth-child(8) { background: #d0792c; }
+.v1-topnav-mark[data-exp="saas"] i:nth-child(9) { background: #e7c750; }
+
+/* =========================================================
+   Small screens
+   ========================================================= */
+
+@media (max-width: 720px) {
+  .v1-topnav { height: 52px; padding: 0 10px; }
+  .v1-topnav-host { height: 52px; }
+
+  .v1-topnav-left { left: 12px; }
+  .v1-topnav-brand { gap: 8px; padding: 3px 8px 3px 3px; }
+  .v1-topnav-brand-logo { height: 26px; }
+  .v1-topnav-brand-name { font-size: 13px; }
+
+  .v1-topnav-tab { padding: 6px 9px; font-size: 12.5px; gap: 6px; }
+  .v1-topnav-tabs { gap: 2px; padding: 3px; }
+}
+
+@media (max-width: 520px) {
+  /* On very narrow screens, hide the name and keep the JR mark
+     alone — the mark is the constant, the name is a refinement. */
+  .v1-topnav-brand-name { display: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .v1-topnav-brand,
+  .v1-topnav-tab,
+  .v1-topnav-mark { transition: none !important; }
+}

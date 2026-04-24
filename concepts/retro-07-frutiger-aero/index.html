@@ -1,0 +1,245 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Jake Ruth — Frutiger Aero</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&family=Karla:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+
+  <!-- sky / nature stack -->
+  <div class="scene" aria-hidden="true">
+    <div class="sky"></div>
+    <div class="sun"></div>
+    <div class="cloud cloud-a"></div>
+    <div class="cloud cloud-b"></div>
+    <div class="cloud cloud-c"></div>
+    <div class="ground"></div>
+    <div class="leaf-blur"></div>
+    <canvas id="bokeh"></canvas>
+  </div>
+
+  <!-- 3D Rubik's cube sits behind the panels -->
+  <div id="cubeStage" aria-hidden="true"></div>
+
+  <!-- top status ribbon -->
+  <header class="ribbon glass">
+    <div class="ribbon-left">
+      <span class="droplet"></span>
+      <span class="wordmark">jake.ruth<span class="tld">/aero</span></span>
+    </div>
+    <nav class="ribbon-nav">
+      <a href="#hero">home</a>
+      <a href="#career">career</a>
+      <a href="#stock">stock unlock</a>
+      <a href="#projects">projects</a>
+      <a href="#hobbies">hobbies</a>
+      <a href="#network">network</a>
+      <a href="#contact">contact</a>
+    </nav>
+    <div class="ribbon-right">
+      <button id="muteBtn" class="pill" aria-pressed="false" title="Ambient chillwave (off)">
+        <span class="eq"><i></i><i></i><i></i><i></i></span>
+        <span class="mute-label">chillwave: off</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- floating hero panel -->
+  <main class="spatial">
+
+    <section id="hero" class="panel glass hero">
+      <div class="hero-tag">
+        <span class="dot"></span>
+        <span>available · next chapter loading</span>
+      </div>
+      <h1 class="hero-name">
+        Jake <span class="hero-shine">Ruth</span>
+      </h1>
+      <p class="hero-pitch">
+        Software engineer &amp; founder. ~13 years of shipping things that didn't need to exist,
+        and a few that did. I like building software that respects the people who use it and
+        doesn't cost them a mortgage payment.
+      </p>
+      <div class="hero-actions">
+        <a class="drop-btn primary" href="#contact">
+          <span>say hi</span>
+        </a>
+        <a class="drop-btn ghost" href="#stock">
+          <span>what I built</span>
+        </a>
+      </div>
+      <div class="hero-chips">
+        <span class="chip">YC W22</span>
+        <span class="chip">$1.335M seed</span>
+        <span class="chip">profitable</span>
+        <span class="chip">13.95s avg</span>
+      </div>
+    </section>
+
+    <!-- satellite bubbles -->
+    <section id="career" class="panel glass bubble b-career" data-panel>
+      <button class="bubble-head" aria-expanded="false" aria-controls="career-body">
+        <span class="ico">
+          <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path fill="currentColor" d="M10 4h4a2 2 0 0 1 2 2v2h4v12H4V8h4V6a2 2 0 0 1 2-2zm0 4h4V6h-4v2z"/></svg>
+        </span>
+        <div>
+          <h2>Career</h2>
+          <p class="muted">13 years, four stops, one founder stint</p>
+        </div>
+        <span class="chev" aria-hidden="true"></span>
+      </button>
+      <div id="career-body" class="bubble-body">
+        <ol class="timeline">
+          <li>
+            <span class="yr">2022 → now</span>
+            <h3>Stock Unlock <span class="tag">founder · YC W22</span></h3>
+            <p>Co-built a retail investing platform. Scaled to 8 employees at peak and thousands of paying customers. Profitable. Now a side business, not full-time.</p>
+          </li>
+          <li>
+            <span class="yr">2017 → 2021</span>
+            <h3>Oscar Health <span class="tag">senior engineer</span></h3>
+            <p>Healthcare tech at scale. Shipped member-facing products and messy backend things alike.</p>
+          </li>
+          <li>
+            <span class="yr">2015 → 2016</span>
+            <h3>Youni <span class="tag">early engineer</span></h3>
+            <p>Consumer startup. Got very good at moving fast without breaking the wrong things.</p>
+          </li>
+          <li>
+            <span class="yr">2013 → 2016</span>
+            <h3>CommerceHub <span class="tag">engineer</span></h3>
+            <p>First real job. E-commerce integrations, the stuff that actually runs the internet.</p>
+          </li>
+          <li>
+            <span class="yr">college</span>
+            <h3>SUNY Albany <span class="tag">ACM president</span></h3>
+            <p>Ran the computing club. Organized hack nights. Wore a lot of free t-shirts.</p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <section id="stock" class="panel glass bubble b-stock" data-panel>
+      <button class="bubble-head" aria-expanded="false" aria-controls="stock-body">
+        <span class="ico s-green">
+          <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path fill="currentColor" d="M3 17l6-6 4 4 8-8v6h2V3h-8v2h6l-8 8-4-4-8 8z"/></svg>
+        </span>
+        <div>
+          <h2>Stock Unlock</h2>
+          <p class="muted">built it · scaled it · profitable · not full-time</p>
+        </div>
+        <span class="chev" aria-hidden="true"></span>
+      </button>
+      <div id="stock-body" class="bubble-body">
+        <div class="stat-grid">
+          <div class="stat"><b>YC W22</b><span>batch</span></div>
+          <div class="stat"><b>$1.335M</b><span>seed raised</span></div>
+          <div class="stat"><b>8</b><span>employees at peak</span></div>
+          <div class="stat"><b>1000s</b><span>paying customers</span></div>
+          <div class="stat"><b>profitable</b><span>side business</span></div>
+          <div class="stat"><b>next</b><span>chapter</span></div>
+        </div>
+        <p>
+          I co-founded Stock Unlock because retail investing software is expensive and bad.
+          We built a tool I'd actually use, priced it like a normal piece of software, and
+          grew it to profitability with a small team. Today it runs quietly in the background
+          of my life — I'm looking for the next thing.
+        </p>
+      </div>
+    </section>
+
+    <section id="projects" class="panel glass bubble b-projects" data-panel>
+      <button class="bubble-head" aria-expanded="false" aria-controls="projects-body">
+        <span class="ico s-orange">
+          <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path fill="currentColor" d="M12 2l2.39 4.84L20 8l-3.9 3.8.92 5.4L12 14.77 6.98 17.2 7.9 11.8 4 8l5.61-1.16z"/></svg>
+        </span>
+        <div>
+          <h2>Projects</h2>
+          <p class="muted">small sharp things</p>
+        </div>
+        <span class="chev" aria-hidden="true"></span>
+      </button>
+      <div id="projects-body" class="bubble-body">
+        <ul class="drops">
+          <li><b>Stock Unlock</b> — retail investing, fairly priced.</li>
+          <li><b>This site</b> — 17 parallel prototypes, one survives.</li>
+          <li><b>Cube trainers</b> — small tools I built for my own practice.</li>
+          <li><b>Assorted weekend code</b> — the kind that never ships but teaches you a thing.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="hobbies" class="panel glass bubble b-hobbies" data-panel>
+      <button class="bubble-head" aria-expanded="false" aria-controls="hobbies-body">
+        <span class="ico s-blue">
+          <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path fill="currentColor" d="M4 4h7v7H4zm9 0h7v7h-7zM4 13h7v7H4zm9 0h7v7h-7z"/></svg>
+        </span>
+        <div>
+          <h2>Hobbies</h2>
+          <p class="muted">cube, uni, fiancée, etc.</p>
+        </div>
+        <span class="chev" aria-hidden="true"></span>
+      </button>
+      <div id="hobbies-body" class="bubble-body">
+        <ul class="drops">
+          <li><b>Rubik's cube</b> — competitive solver, 13.95s average. The cube behind these panels is solving itself right now.</li>
+          <li><b>Unicycle + cube</b> — performed this at a talent show once. It is exactly as ridiculous as it sounds.</li>
+          <li><b>Getting married</b> — the best project I'm working on.</li>
+          <li><b>Building weird little websites</b> — hello.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="network" class="panel glass wide network">
+      <header class="wide-head">
+        <h2>Network</h2>
+        <p class="muted">people, places, and projects — drifting in fiber-optic</p>
+      </header>
+      <canvas id="netCanvas"></canvas>
+      <div class="net-legend">
+        <span><i class="n-dot n-j"></i> me</span>
+        <span><i class="n-dot n-c"></i> companies</span>
+        <span><i class="n-dot n-p"></i> projects</span>
+        <span><i class="n-dot n-h"></i> hobbies</span>
+      </div>
+    </section>
+
+    <section id="contact" class="panel glass wide contact">
+      <div class="contact-left">
+        <h2>Say hello.</h2>
+        <p>
+          I'm talking to people about what comes next. Product engineering, founding-team roles,
+          interesting consulting, good old-fashioned conversations. If it's interesting, email me.
+        </p>
+        <a class="drop-btn primary big" href="mailto:jake@stockunlock.com">
+          <span>jake@stockunlock.com</span>
+        </a>
+      </div>
+      <div class="contact-right">
+        <ul class="drops">
+          <li>Based in the US</li>
+          <li>Open to remote / hybrid</li>
+          <li>Hates overcharging for bad software</li>
+          <li>Reply rate: high, unless you&rsquo;re pitching crypto</li>
+        </ul>
+      </div>
+    </section>
+
+    <footer class="panel glass tiny foot">
+      <span>aero build · hand-rolled HTML/CSS/JS · 2026</span>
+      <span class="foot-sep">·</span>
+      <span>no trackers · no cookies · no drama</span>
+    </footer>
+
+  </main>
+
+  <!-- Three.js (CDN) for the glass cube -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="./app.js"></script>
+</body>
+</html>

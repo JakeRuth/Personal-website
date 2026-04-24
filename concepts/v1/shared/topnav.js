@@ -1,0 +1,256 @@
+/* =========================================================
+   v1 shared top-nav — v4 integrated
+   ---------------------------------------------------------
+   [ JR logo + "Jake Ruth" ]     [ Old-school OS | Code repo | SaaS product ]
+       ^ fixed far-left                        ^ centered segmented pill
+
+   Behavior:
+   - Auto-detects current experience via pathname (xp / readme / saas).
+   - Clicking the JR brand returns to the Setup Wizard via V1Transition.
+   - Clicking a non-current tab plays the cube transition + navigates.
+   - Clicking the current tab smooth-scrolls to top (gentle affordance).
+
+   First-arrival onboarding (once per session):
+   - Pulse the two non-current tabs for ~3-4 seconds.
+   - Floating pill below the nav reads "Switch experiences anytime
+     from the top" (VOICE.md-compliant — tight, not cute). Fades in
+     ~400ms after arrival, auto-fades after 4s.
+   - sessionStorage.jrNavOnboardingShown gates — runs once across any
+     experience per session.
+   - Waits until any TransitionCubeV4 arrival animation has settled
+     (~500ms grace) before showing the cue.
+   - prefers-reduced-motion: show the pill statically, skip the pulse.
+
+   Expected script order on an experience page:
+     <link rel="stylesheet" href="../shared/topnav.css">
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+     <script src="../shared/cube-solver.js"></script>
+     <script src="../shared/transition-cube.js"></script>
+     <script src="../shared/transition.js"></script>
+     <script src="../shared/topnav.js"></script>
+   ========================================================= */
+
+(function () {
+  "use strict";
+
+  // Paths are relative to an experience page at /v1/<exp>/index.html.
+  const EXPERIENCES = [
+    { id: "xp",     label: "Old-school OS", href: "../xp/" },
+    { id: "readme", label: "Code repo",     href: "../readme/" },
+    { id: "saas",   label: "SaaS product",  href: "../saas/" }
+  ];
+
+  const DEFAULT_LOGO_SRC = "/images/logo.gif";
+  const DEFAULT_SETUP_HREF = "../";
+
+  const ONBOARDING_FLAG = "jrNavOnboardingShown";
+  // Arrival-half cube animation runs ~700ms. Wait past that plus a
+  // short settle window before we cue the user toward the nav.
+  const ONBOARDING_DELAY_MS = 900;
+  const ONBOARDING_FADE_IN_MS = 300;  // pill fade-in offset after cue begins
+  const ONBOARDING_VISIBLE_MS = 5400; // pill visible duration
+  const ONBOARDING_GLOW_MS = 3400;    // nav-wide glow + tab pulse duration
+
+  /* ==== ONBOARDING TEXT — pick your favorite, swap the DEFAULT_TEXT const
+     below. Alternatives kept as comments so it's one-line to swap.
+     1. "Three ways to read Jake. Switch up top anytime."   (the default below)
+     2. "Three takes on the same person. Switch from the top."
+     3. "Same Jake, three chromes. Pick another anytime."
+     4. "Switch experiences up top — same Jake, different chrome."
+     5. "Bounce between the three anytime from the top."
+     6. "Three interpretations up top. Jump between them anytime."
+  */
+  const DEFAULT_ONBOARDING_TEXT = "Three ways to read Jake. Switch up top anytime.";
+
+  const reduceMotion = window.matchMedia &&
+    window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  function detectCurrent() {
+    const p = window.location.pathname;
+    if (p.indexOf("/xp/")     !== -1) return "xp";
+    if (p.indexOf("/readme/") !== -1) return "readme";
+    if (p.indexOf("/saas/")   !== -1) return "saas";
+    return null;
+  }
+
+  function makeCubeMark() {
+    let s = "";
+    for (let i = 0; i < 9; i++) s += "<i></i>";
+    return s;
+  }
+
+  function navTo(url) {
+    if (window.V1Transition && typeof window.V1Transition.go === "function") {
+      window.V1Transition.go(url);
+    } else {
+      window.location.href = url;
+    }
+  }
+
+  function render() {
+    if (document.getElementById("v1-topnav")) return; // already injected
+    document.body.classList.add("v1-has-topnav");
+
+    const currentId = detectCurrent();
+
+    // Outer host provides the dark-glass backdrop + the fixed bar layout.
+    const host = document.createElement("div");
+    host.id = "v1-topnav";
+    host.className = "v1-topnav-host";
+
+    const nav = document.createElement("nav");
+    nav.className = "v1-topnav";
+    nav.setAttribute("data-variant", "v4");
+    nav.setAttribute("aria-label", "Experience switcher");
+
+    // -------- Left: JR logo + "Jake Ruth" (CONSTANT) --------
+    const left = document.createElement("div");
+    left.className = "v1-topnav-left";
+
+    const brand = document.createElement("a");
+    brand.className = "v1-topnav-brand";
+    brand.href = DEFAULT_SETUP_HREF;
+    brand.setAttribute("aria-label", "Jake Ruth — back to Setup");
+
+    const logo = document.createElement("img");
+    logo.className = "v1-topnav-brand-logo";
+    logo.src = DEFAULT_LOGO_SRC;
+    logo.alt = "JR";
+    logo.setAttribute("draggable", "false");
+
+    const name = document.createElement("span");
+    name.className = "v1-topnav-brand-name";
+    name.textContent = "Jake Ruth";
+
+    brand.appendChild(logo);
+    brand.appendChild(name);
+
+    brand.addEventListener("click", (ev) => {
+      ev.preventDefault();
+      navTo(DEFAULT_SETUP_HREF);
+    });
+
+    left.appendChild(brand);
+    nav.appendChild(left);
+
+    // -------- Center: tab group (Variant A visuals) --------
+    const tabs = document.createElement("div");
+    tabs.className = "v1-topnav-tabs";
+    tabs.setAttribute("role", "tablist");
+
+    EXPERIENCES.forEach((exp) => {
+      const btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "v1-topnav-tab" + (exp.id === currentId ? " is-current" : "");
+      btn.setAttribute("role", "tab");
+      btn.setAttribute("aria-selected", exp.id === currentId ? "true" : "false");
+      btn.setAttribute("data-exp", exp.id);
+      if (exp.id === currentId) btn.setAttribute("aria-current", "page");
+
+      btn.innerHTML =
+        '<span class="v1-topnav-mark" data-exp="' + exp.id + '" aria-hidden="true">' +
+          makeCubeMark() +
+        '</span>' +
+        '<span class="v1-topnav-label">' + exp.label + '</span>';
+
+      btn.addEventListener("click", () => {
+        if (exp.id === currentId) {
+          try { window.scrollTo({ top: 0, behavior: "smooth" }); }
+          catch (_e) { window.scrollTo(0, 0); }
+          return;
+        }
+        navTo(exp.href);
+      });
+
+      tabs.appendChild(btn);
+    });
+    nav.appendChild(tabs);
+
+    host.appendChild(nav);
+    document.body.insertBefore(host, document.body.firstChild);
+
+    // -------- First-arrival onboarding cue --------
+    scheduleOnboarding(nav, currentId);
+  }
+
+  function scheduleOnboarding(nav, currentId) {
+    // localStorage gate so the cue runs ONCE per browser. Override with ?reonboard.
+    let already = false;
+    const forceOnboarding =
+      (new URLSearchParams(window.location.search)).has("reonboard");
+    if (!forceOnboarding) {
+      try {
+        already = localStorage.getItem(ONBOARDING_FLAG) === "1";
+      } catch (_e) { /* ignore */ }
+    }
+    if (already) return;
+    if (!currentId) return;
+
+    setTimeout(() => {
+      runOnboarding(nav, currentId);
+      try { localStorage.setItem(ONBOARDING_FLAG, "1"); } catch (_e) { /* ignore */ }
+    }, ONBOARDING_DELAY_MS);
+  }
+
+  function runOnboarding(nav, currentId) {
+    // 1. Nav-wide glow + a traveling tab pulse so the whole bar feels
+    //    alive for a few seconds. Much more visible than the v1 cue.
+    if (!reduceMotion) {
+      nav.classList.add("is-onboarding-glow");
+      nav.querySelectorAll(".v1-topnav-tab").forEach((btn, i) => {
+        // Stagger the pulse so tabs ripple left → right.
+        btn.style.setProperty("--onboard-delay", (i * 0.12) + "s");
+        btn.classList.add("is-onboarding-pulse");
+      });
+      setTimeout(() => {
+        nav.classList.remove("is-onboarding-glow");
+        nav.querySelectorAll(".v1-topnav-tab.is-onboarding-pulse").forEach((btn) => {
+          btn.classList.remove("is-onboarding-pulse");
+          btn.style.removeProperty("--onboard-delay");
+        });
+      }, ONBOARDING_GLOW_MS);
+    }
+
+    // 2. Floating pill just below the nav — fades in, holds, fades out.
+    const pill = document.createElement("div");
+    pill.className = "v1-topnav-onboarding-pill";
+    pill.setAttribute("role", "status");
+    pill.setAttribute("aria-live", "polite");
+    pill.innerHTML =
+      '<span class="v1-topnav-onboarding-arrow" aria-hidden="true">&uarr;</span>' +
+      '<span class="v1-topnav-onboarding-text">' +
+        escapeHtml(DEFAULT_ONBOARDING_TEXT) +
+      '</span>';
+
+    document.body.appendChild(pill);
+
+    if (reduceMotion) {
+      pill.classList.add("is-visible", "is-static");
+      setTimeout(() => {
+        try { pill.remove(); } catch (_e) { /* ignore */ }
+      }, ONBOARDING_VISIBLE_MS + 400);
+      return;
+    }
+
+    setTimeout(() => pill.classList.add("is-visible"), ONBOARDING_FADE_IN_MS);
+    setTimeout(() => {
+      pill.classList.remove("is-visible");
+      pill.classList.add("is-leaving");
+    }, ONBOARDING_FADE_IN_MS + ONBOARDING_VISIBLE_MS);
+    setTimeout(() => {
+      try { pill.remove(); } catch (_e) { /* ignore */ }
+    }, ONBOARDING_FADE_IN_MS + ONBOARDING_VISIBLE_MS + 600);
+  }
+
+  function escapeHtml(s) {
+    return String(s).replace(/[&<>"']/g, (c) => ({
+      "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;"
+    })[c]);
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", render);
+  } else {
+    render();
+  }
+})();

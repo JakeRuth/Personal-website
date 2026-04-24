@@ -1,0 +1,216 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Jake Ruth — Pick your experience</title>
+  <meta name="description" content="Jake Ruth. Engineer, founder. Pick your experience." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <a class="skip" href="#grid">Skip to picker</a>
+
+  <header class="page-header">
+    <div class="header-left">
+      <div class="name-block" aria-label="Jake Ruth">
+        <span class="name-line name-1">JAKE</span>
+        <span class="name-line name-2">RUTH</span>
+      </div>
+      <div class="marks" aria-hidden="true">
+        <span class="mark mark-sq"></span>
+        <span class="mark mark-ci"></span>
+        <span class="mark mark-tr"></span>
+      </div>
+    </div>
+    <div class="header-right">
+      <p class="kicker">Personal site · 2026</p>
+      <h1 class="tagline">Pick your experience.</h1>
+      <p class="sub">Five ways to read the same resume. Use <kbd>1</kbd>–<kbd>5</kbd> or click.</p>
+    </div>
+  </header>
+
+  <main id="grid" class="grid" role="list" aria-label="Experience modes">
+
+    <!-- 1. XP LUNA -->
+    <a class="card card-xp" href="../xp-luna-v2/" role="listitem" data-index="1" data-slug="xp-luna-v2" style="--i:1">
+      <div class="card-inner">
+        <div class="preview" aria-hidden="true">
+          <svg viewBox="0 0 200 140" preserveAspectRatio="xMidYMid meet">
+            <!-- yellow hills -->
+            <path class="xp-hill" d="M0,110 C40,80 80,130 120,100 C160,75 190,115 200,100 L200,140 L0,140 Z" />
+            <!-- blue window -->
+            <rect class="xp-window" x="30" y="30" width="140" height="60" rx="10" ry="10" />
+            <!-- green start orb -->
+            <circle class="xp-start" cx="46" cy="60" r="12" />
+            <!-- tiny window dots -->
+            <circle class="xp-dot xp-red" cx="158" cy="40" r="3" />
+            <circle class="xp-dot xp-amb" cx="148" cy="40" r="3" />
+            <circle class="xp-dot xp-grn" cx="138" cy="40" r="3" />
+          </svg>
+        </div>
+        <div class="card-meta">
+          <span class="num">01</span>
+          <span class="slug">/xp-luna</span>
+        </div>
+        <h2 class="mode">XP<br/>LUNA</h2>
+        <p class="desc">Fisher-Price era, maximum charm.</p>
+        <span class="go">ENTER &rarr;</span>
+      </div>
+    </a>
+
+    <!-- 2. ENTERPRISE SAAS -->
+    <a class="card card-saas" href="../enterprise-saas-v2/" role="listitem" data-index="2" data-slug="enterprise-saas-v2" style="--i:2">
+      <div class="card-inner">
+        <div class="preview" aria-hidden="true">
+          <svg viewBox="0 0 200 140" preserveAspectRatio="xMidYMid meet">
+            <!-- hairline grid -->
+            <g class="saas-grid">
+              <line x1="0"   y1="20"  x2="200" y2="20" />
+              <line x1="0"   y1="50"  x2="200" y2="50" />
+              <line x1="0"   y1="80"  x2="200" y2="80" />
+              <line x1="0"   y1="110" x2="200" y2="110" />
+              <line x1="40"  y1="0"   x2="40"  y2="140" />
+              <line x1="80"  y1="0"   x2="80"  y2="140" />
+              <line x1="120" y1="0"   x2="120" y2="140" />
+              <line x1="160" y1="0"   x2="160" y2="140" />
+            </g>
+            <!-- solid block (metric card) -->
+            <rect class="saas-bar" x="20" y="60" width="110" height="40" />
+            <!-- uptime dot -->
+            <circle class="saas-uptime" cx="170" cy="30" r="7" />
+          </svg>
+        </div>
+        <div class="card-meta">
+          <span class="num">02</span>
+          <span class="slug">/enterprise-saas</span>
+        </div>
+        <h2 class="mode">ENTER<br/>PRISE</h2>
+        <p class="desc">Sold to CTOs, bookmarked by PMs.</p>
+        <span class="go">ENTER &rarr;</span>
+      </div>
+    </a>
+
+    <!-- 3. GIT LOG -->
+    <a class="card card-git" href="../git-log-v2/" role="listitem" data-index="3" data-slug="git-log-v2" style="--i:3">
+      <div class="card-inner">
+        <div class="preview" aria-hidden="true">
+          <svg viewBox="0 0 200 140" preserveAspectRatio="xMidYMid meet">
+            <!-- vertical graph line -->
+            <line class="git-line" x1="30" y1="10" x2="30" y2="130" />
+            <!-- branch lines -->
+            <path class="git-branch" d="M30,55 C55,55 55,80 80,80" />
+            <path class="git-branch" d="M30,100 C55,100 55,115 80,115" />
+            <!-- commit dots on main -->
+            <circle class="git-dot git-red" cx="30" cy="25"  r="7" />
+            <circle class="git-dot git-blu" cx="30" cy="55"  r="7" />
+            <circle class="git-dot git-yel" cx="30" cy="85"  r="7" />
+            <circle class="git-dot git-red" cx="30" cy="115" r="7" />
+            <!-- branch dots -->
+            <circle class="git-dot git-blu small" cx="80" cy="80"  r="5" />
+            <circle class="git-dot git-yel small" cx="80" cy="115" r="5" />
+          </svg>
+        </div>
+        <div class="card-meta">
+          <span class="num">03</span>
+          <span class="slug">/git-log</span>
+        </div>
+        <h2 class="mode">GIT<br/>LOG</h2>
+        <p class="desc">Engineer-native. Commit messages included.</p>
+        <span class="go">ENTER &rarr;</span>
+      </div>
+    </a>
+
+    <!-- 4. README -->
+    <a class="card card-readme" href="../readme-mode/" role="listitem" data-index="4" data-slug="readme-mode" style="--i:4">
+      <div class="card-inner">
+        <div class="preview" aria-hidden="true">
+          <svg viewBox="0 0 200 140" preserveAspectRatio="xMidYMid meet">
+            <!-- stacked doc pages -->
+            <rect class="rm-page rm-back"  x="50" y="30" width="110" height="95" />
+            <rect class="rm-page rm-mid"   x="42" y="22" width="110" height="95" />
+            <rect class="rm-page rm-front" x="34" y="14" width="110" height="95" />
+            <!-- big "M" on front page -->
+            <path class="rm-m" d="M50,95 L50,35 L68,75 L86,35 L86,95" />
+            <!-- code-hash accent -->
+            <text class="rm-hash" x="100" y="110" font-family="JetBrains Mono" font-size="14" font-weight="700">#</text>
+          </svg>
+        </div>
+        <div class="card-meta">
+          <span class="num">04</span>
+          <span class="slug">/readme</span>
+        </div>
+        <h2 class="mode">READ<br/>ME</h2>
+        <p class="desc">Because of course I wrote one about myself.</p>
+        <span class="go">ENTER &rarr;</span>
+      </div>
+    </a>
+
+    <!-- 5. VISTA -->
+    <a class="card card-vista" href="../vista-faithful-v2/" role="listitem" data-index="5" data-slug="vista-faithful-v2" style="--i:5">
+      <div class="card-inner">
+        <div class="preview" aria-hidden="true">
+          <svg viewBox="0 0 200 140" preserveAspectRatio="xMidYMid meet">
+            <!-- overlapping translucent circles (glass aero) -->
+            <circle class="vs-orb vs-a" cx="70"  cy="75" r="42" />
+            <circle class="vs-orb vs-b" cx="115" cy="55" r="36" />
+            <circle class="vs-orb vs-c" cx="135" cy="90" r="30" />
+            <!-- highlight line -->
+            <path class="vs-shine" d="M40,50 Q60,30 95,38" />
+          </svg>
+        </div>
+        <div class="card-meta">
+          <span class="num">05</span>
+          <span class="slug">/vista</span>
+        </div>
+        <h2 class="mode">VIS<br/>TA</h2>
+        <p class="desc">Aero glass, without the bloat.</p>
+        <span class="go">ENTER &rarr;</span>
+      </div>
+    </a>
+
+    <!-- 6. about-card (keeps the grid full) -->
+    <div class="card card-about" role="listitem" style="--i:6" aria-label="About this picker">
+      <div class="card-inner about-inner">
+        <div class="about-marks" aria-hidden="true">
+          <span class="about-sq"></span>
+          <span class="about-ci"></span>
+          <span class="about-tr"></span>
+        </div>
+        <h2 class="mode about-mode">ONE<br/>VOICE</h2>
+        <p class="about-body">
+          Thirteen years shipping. Ex-Oscar. Ex-YC. Built Stock Unlock — eight employees, thousands of paying customers, profitable today. Not full-time there anymore.
+        </p>
+        <p class="about-body about-quiet">
+          Chrome varies; voice does not. Pick a chrome.
+        </p>
+        <p class="about-mail">
+          <a href="mailto:jake@stockunlock.com">jake@stockunlock.com</a>
+        </p>
+      </div>
+    </div>
+
+  </main>
+
+  <footer class="page-footer">
+    <span class="foot-left">Jake Ruth · NYC · 2026</span>
+    <span class="foot-mid" aria-hidden="true">
+      <span class="foot-sq"></span>
+      <span class="foot-ci"></span>
+      <span class="foot-tr"></span>
+    </span>
+    <span class="foot-right">Keys: <kbd>1</kbd> <kbd>2</kbd> <kbd>3</kbd> <kbd>4</kbd> <kbd>5</kbd> · <kbd>Enter</kbd></span>
+  </footer>
+
+  <div class="curtain" id="curtain" aria-hidden="true">
+    <span class="curtain-bar bar-red"></span>
+    <span class="curtain-bar bar-blue"></span>
+    <span class="curtain-bar bar-yellow"></span>
+    <span class="curtain-bar bar-black"></span>
+  </div>
+
+  <script src="./app.js"></script>
+</body>
+</html>

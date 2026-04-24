@@ -1,0 +1,460 @@
+/* =========================================================
+   v1 shared top-nav — v4 integrated
+   ---------------------------------------------------------
+   Base nav chrome from topnav-v4 (Variant A visuals, Variant C
+   positioning: brand-on-left-as-constant, tab-group-centered).
+   Bar height holds at 56px so the per-experience top-padding
+   overrides below (explorer/gh-header/saas-nav) still align.
+
+   Positioning rule:
+     • Brand lockup is absolutely anchored top-left as a constant.
+     • Tab group is centered via justify-content + margin: auto.
+     • Right side is intentionally empty.
+
+   First-arrival onboarding styles are at the bottom — pulse on
+   non-current tabs + floating pill below the nav.
+   ========================================================= */
+
+:root {
+  --v1tn-bg:        rgba(14, 16, 20, 0.78);
+  --v1tn-border:    rgba(255, 255, 255, 0.08);
+  --v1tn-text:      #e8ebf1;
+  --v1tn-muted:     #9099a8;
+  --v1tn-xp:        #4c8ddb;
+  --v1tn-readme:    #3cb371;
+  --v1tn-saas:      #e49242;
+}
+
+/* The injected host holds the glass background and the fixed position,
+   so the body doesn't need to know anything about nav layout. */
+#v1-topnav.v1-topnav-host {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 2147483000; /* below the transition overlay but above all experience chrome */
+  height: 56px;
+  background: var(--v1tn-bg);
+  backdrop-filter: blur(14px) saturate(140%);
+  -webkit-backdrop-filter: blur(14px) saturate(140%);
+  border-bottom: 1px solid var(--v1tn-border);
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.25);
+  pointer-events: auto;
+}
+
+/* Push the experience body down so content doesn't hide under the nav. */
+body.v1-has-topnav {
+  padding-top: 56px !important;
+}
+
+.v1-topnav {
+  position: relative;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;   /* center the tab group */
+  padding: 0 16px;
+  color: var(--v1tn-text);
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Inter, Helvetica, Arial, sans-serif;
+  font-size: 13px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.v1-topnav button,
+.v1-topnav a {
+  font-family: inherit;
+}
+
+/* =========================================================
+   Left: JR logo + "Jake Ruth" lockup (CONSTANT)
+   Absolutely anchored to the far left.
+   ========================================================= */
+
+.v1-topnav-left {
+  position: absolute;
+  left: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2;
+}
+
+.v1-topnav-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 4px 10px 4px 4px;
+  border-radius: 10px;
+  border: 1px solid transparent;
+  background: transparent;
+  color: rgba(232, 235, 241, 0.78);
+  text-decoration: none;
+  cursor: pointer;
+  transition:
+    background 160ms ease,
+    border-color 160ms ease,
+    color 160ms ease;
+}
+.v1-topnav-brand:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+}
+.v1-topnav-brand:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(96, 165, 250, 0.55);
+}
+
+.v1-topnav-brand-logo {
+  display: block;
+  height: 30px;
+  width: auto;
+  /* logo.gif is a warm cream-on-black mark — no tint filters so
+     the original art reads correctly. A subtle contrast ring is
+     added below so it doesn't float unmoored on the glass. */
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.02);
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.06);
+  image-rendering: -webkit-optimize-contrast;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+.v1-topnav-brand-name {
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.1px;
+  line-height: 1;
+  color: inherit;
+  white-space: nowrap;
+}
+
+/* =========================================================
+   Center: tab group (Variant A visuals)
+   ========================================================= */
+
+.v1-topnav-tabs {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px;
+  background: rgba(255, 255, 255, 0.025);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 10px;
+  margin: 0 auto;
+}
+
+.v1-topnav-tab {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 12px;
+  background: transparent;
+  border: 0;
+  border-radius: 7px;
+  color: rgba(232, 235, 241, 0.62);
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: 0.1px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 160ms ease, color 160ms ease;
+  outline: none;
+}
+.v1-topnav-tab:hover {
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.05);
+}
+.v1-topnav-tab:focus-visible {
+  box-shadow: 0 0 0 2px rgba(96, 165, 250, 0.55);
+}
+
+/* Variant A highlight: filled pill + bottom-border accent in
+   the experience's signature color. */
+.v1-topnav-tab.is-current {
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.09);
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.08),
+    0 1px 0 rgba(0, 0, 0, 0.25);
+}
+.v1-topnav-tab.is-current::after {
+  content: "";
+  position: absolute;
+  left: 10px;
+  right: 10px;
+  bottom: 3px;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--v1-topnav-accent, #e8ebf1);
+  opacity: 0.9;
+}
+.v1-topnav-tab.is-current[data-exp="xp"]     { --v1-topnav-accent: var(--v1tn-xp); }
+.v1-topnav-tab.is-current[data-exp="readme"] { --v1-topnav-accent: var(--v1tn-readme); }
+.v1-topnav-tab.is-current[data-exp="saas"]   { --v1-topnav-accent: var(--v1tn-saas); }
+
+.v1-topnav-label { display: inline-block; }
+
+/* =========================================================
+   Tiny 3x3 cube mark beside each label (Variant A accent)
+   ========================================================= */
+
+.v1-topnav-mark {
+  width: 14px;
+  height: 14px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  gap: 1px;
+  padding: 1px;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  border-radius: 3px;
+  background: rgba(0, 0, 0, 0.35);
+  flex-shrink: 0;
+  opacity: 0.75;
+  transition: opacity 160ms ease;
+}
+.v1-topnav-mark i {
+  display: block;
+  border-radius: 1px;
+  background: #333;
+}
+.v1-topnav-tab:hover .v1-topnav-mark,
+.v1-topnav-tab.is-current .v1-topnav-mark { opacity: 1; }
+
+/* XP — mostly blue with a green/red/white hint (the WinXP vibe) */
+.v1-topnav-mark[data-exp="xp"] i:nth-child(1) { background: #e8e8ea; }
+.v1-topnav-mark[data-exp="xp"] i:nth-child(2) { background: #2f6fc0; }
+.v1-topnav-mark[data-exp="xp"] i:nth-child(3) { background: #2f6fc0; }
+.v1-topnav-mark[data-exp="xp"] i:nth-child(4) { background: #2f6fc0; }
+.v1-topnav-mark[data-exp="xp"] i:nth-child(5) { background: #2f6fc0; }
+.v1-topnav-mark[data-exp="xp"] i:nth-child(6) { background: #2f9a5a; }
+.v1-topnav-mark[data-exp="xp"] i:nth-child(7) { background: #2f6fc0; }
+.v1-topnav-mark[data-exp="xp"] i:nth-child(8) { background: #c84236; }
+.v1-topnav-mark[data-exp="xp"] i:nth-child(9) { background: #2f6fc0; }
+
+/* README — terminal greens with a yellow prompt sticker */
+.v1-topnav-mark[data-exp="readme"] i:nth-child(1) { background: #2f9a5a; }
+.v1-topnav-mark[data-exp="readme"] i:nth-child(2) { background: #2f9a5a; }
+.v1-topnav-mark[data-exp="readme"] i:nth-child(3) { background: #e8e8ea; }
+.v1-topnav-mark[data-exp="readme"] i:nth-child(4) { background: #2f9a5a; }
+.v1-topnav-mark[data-exp="readme"] i:nth-child(5) { background: #2f9a5a; }
+.v1-topnav-mark[data-exp="readme"] i:nth-child(6) { background: #2f9a5a; }
+.v1-topnav-mark[data-exp="readme"] i:nth-child(7) { background: #e7c750; }
+.v1-topnav-mark[data-exp="readme"] i:nth-child(8) { background: #2f9a5a; }
+.v1-topnav-mark[data-exp="readme"] i:nth-child(9) { background: #2f9a5a; }
+
+/* SaaS — product-orange with red + yellow accents */
+.v1-topnav-mark[data-exp="saas"] i:nth-child(1) { background: #d0792c; }
+.v1-topnav-mark[data-exp="saas"] i:nth-child(2) { background: #d0792c; }
+.v1-topnav-mark[data-exp="saas"] i:nth-child(3) { background: #c84236; }
+.v1-topnav-mark[data-exp="saas"] i:nth-child(4) { background: #d0792c; }
+.v1-topnav-mark[data-exp="saas"] i:nth-child(5) { background: #d0792c; }
+.v1-topnav-mark[data-exp="saas"] i:nth-child(6) { background: #d0792c; }
+.v1-topnav-mark[data-exp="saas"] i:nth-child(7) { background: #e8e8ea; }
+.v1-topnav-mark[data-exp="saas"] i:nth-child(8) { background: #d0792c; }
+.v1-topnav-mark[data-exp="saas"] i:nth-child(9) { background: #e7c750; }
+
+/* =========================================================
+   Small screens
+   ========================================================= */
+
+@media (max-width: 720px) {
+  #v1-topnav.v1-topnav-host { height: 52px; }
+  body.v1-has-topnav { padding-top: 52px !important; }
+  .v1-topnav { height: 52px; padding: 0 10px; }
+
+  .v1-topnav-left { left: 12px; }
+  .v1-topnav-brand { gap: 8px; padding: 3px 8px 3px 3px; }
+  .v1-topnav-brand-logo { height: 26px; }
+  .v1-topnav-brand-name { font-size: 13px; }
+
+  .v1-topnav-tab { padding: 6px 9px; font-size: 12.5px; gap: 6px; }
+  .v1-topnav-tabs { gap: 2px; padding: 3px; }
+}
+
+@media (max-width: 520px) {
+  /* On very narrow screens, hide the name and keep the JR mark
+     alone — the mark is the constant. */
+  .v1-topnav-brand-name { display: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .v1-topnav-brand,
+  .v1-topnav-tab,
+  .v1-topnav-mark { transition: none !important; }
+}
+
+/* =========================================================
+   Per-experience layout nudges
+   Each experience positions its chrome slightly differently.
+   Rather than edit every styles.css, we nudge from the shared nav.
+   Nav height is 56px (52px on narrow), matching v3's dimensions,
+   so existing offsets carry over.
+   ========================================================= */
+
+/* XP Luna: absolute-positioned windows + fixed taskbar. Shift the main
+   explorer window down 56px so the topnav clears it. */
+body.v1-has-topnav .xp-window.explorer { top: 96px !important; }
+body.v1-has-topnav .desktop-icons      { top: 70px !important; }
+body.v1-has-topnav .cube-window        { top: 116px !important; }
+body.v1-has-topnav .search-window      { top: 156px !important; }
+
+@media (max-width: 640px) {
+  body.v1-has-topnav .xp-window.explorer { top: 92px !important; }
+  body.v1-has-topnav .desktop-icons      { top: 66px !important; }
+  body.v1-has-topnav .cube-window        { top: 112px !important; }
+  body.v1-has-topnav .search-window      { top: 152px !important; }
+}
+
+/* README / Git Fusion: .gh-header is sticky at top:0 — bump it down too. */
+body.v1-has-topnav .gh-header { top: 56px !important; }
+@media (max-width: 640px) {
+  body.v1-has-topnav .gh-header { top: 52px !important; }
+}
+
+/* SaaS: .nav is sticky at top:0 — bump it under our topnav. */
+body.v1-has-topnav .nav { top: 56px !important; }
+@media (max-width: 640px) {
+  body.v1-has-topnav .nav { top: 52px !important; }
+}
+
+/* =========================================================
+   First-arrival onboarding cue (one-time ever, localStorage-gated)
+   - Nav-wide glow ripple for ~3.4s to wake the whole bar up.
+   - All three tabs pulse in a staggered ripple (0s, 0.12s, 0.24s).
+   - Larger floating pill below the nav, fades in ~300ms after
+     the glow begins and holds ~5.4s so the message reads.
+   - Respects prefers-reduced-motion: static pill, no animations.
+   ========================================================= */
+
+@keyframes v1-topnav-onboard-bar-glow {
+  0%, 100% {
+    box-shadow:
+      0 2px 0 rgba(0, 0, 0, 0.35),
+      0 0 0 0 rgba(96, 165, 250, 0.0),
+      0 0 0 0 rgba(96, 165, 250, 0.0);
+  }
+  50% {
+    box-shadow:
+      0 2px 0 rgba(0, 0, 0, 0.35),
+      0 6px 28px 2px rgba(96, 165, 250, 0.55),
+      0 0 0 2px rgba(96, 165, 250, 0.30);
+  }
+}
+.v1-topnav.is-onboarding-glow {
+  animation: v1-topnav-onboard-bar-glow 1.4s ease-in-out 2;
+}
+
+@keyframes v1-topnav-onboard-pulse {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(96, 165, 250, 0);
+    background: rgba(255, 255, 255, 0.025);
+    transform: translateY(0);
+  }
+  50% {
+    box-shadow:
+      0 0 0 4px rgba(96, 165, 250, 0.34),
+      0 0 22px 4px rgba(96, 165, 250, 0.42);
+    background: rgba(255, 255, 255, 0.12);
+    transform: translateY(-1px);
+  }
+}
+.v1-topnav-tab.is-onboarding-pulse {
+  animation: v1-topnav-onboard-pulse 1.15s ease-in-out 3;
+  animation-delay: var(--onboard-delay, 0s);
+}
+
+.v1-topnav-onboarding-pill {
+  position: fixed;
+  top: 84px;               /* sits clear of the 56px nav + drop-shadow gap */
+  left: 50%;
+  transform: translateX(-50%) translateY(-8px);
+  z-index: 2147482000;     /* below the cube overlay but above experience chrome */
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 11px 20px 11px 16px;
+  /* Bright amber so it pops against both light AND dark experience chrome */
+  background: linear-gradient(180deg, #fff4d8 0%, #ffe19a 100%);
+  border: 1.5px solid #e8a13a;
+  box-shadow:
+    0 14px 38px rgba(0, 0, 0, 0.35),
+    0 0 0 3px rgba(232, 161, 58, 0.28),
+    0 0 26px 4px rgba(255, 203, 91, 0.55);
+  border-radius: 999px;
+  color: #3a2a06;
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Inter, Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.1px;
+  white-space: nowrap;
+  pointer-events: none;
+  user-select: none;
+  opacity: 0;
+  transition: opacity 280ms ease, transform 280ms ease;
+}
+.v1-topnav-onboarding-pill::before {
+  /* Upward pointer from the pill toward the nav — clear visual tie. */
+  content: '';
+  position: absolute;
+  top: -7px;
+  left: 50%;
+  transform: translateX(-50%) rotate(45deg);
+  width: 12px;
+  height: 12px;
+  background: #fff4d8;
+  border-top: 1.5px solid #e8a13a;
+  border-left: 1.5px solid #e8a13a;
+  box-shadow: 0 0 10px 2px rgba(255, 203, 91, 0.35);
+}
+.v1-topnav-onboarding-pill.is-visible {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+.v1-topnav-onboarding-pill.is-leaving {
+  opacity: 0;
+  transform: translateX(-50%) translateY(-2px);
+}
+.v1-topnav-onboarding-pill.is-static {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+  transition: none;
+}
+
+.v1-topnav-onboarding-arrow {
+  display: inline-block;
+  font-size: 17px;
+  line-height: 1;
+  color: #8a5a00;
+  transform: translateY(-1px);
+  font-weight: 800;
+  animation: v1-topnav-onboard-arrow-bob 1.4s ease-in-out infinite;
+}
+@keyframes v1-topnav-onboard-arrow-bob {
+  0%, 100% { transform: translateY(-1px); }
+  50%      { transform: translateY(-4px); }
+}
+.v1-topnav-onboarding-text {
+  line-height: 1.15;
+}
+
+@media (max-width: 720px) {
+  .v1-topnav-onboarding-pill {
+    top: 68px;
+    font-size: 12.5px;
+    padding: 8px 14px 8px 12px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .v1-topnav-tab.is-onboarding-pulse {
+    animation: none;
+  }
+  .v1-topnav-onboarding-pill {
+    transition: none !important;
+  }
+}

@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>jakeruth/life — git log --graph</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="terminal">
+    <header class="titlebar">
+      <div class="traffic">
+        <span class="dot red"></span>
+        <span class="dot yellow"></span>
+        <span class="dot green"></span>
+      </div>
+      <div class="title">jake@stockunlock:~/life — zsh — 142x48</div>
+      <div class="spacer"></div>
+    </header>
+
+    <div class="cmdbar">
+      <span class="prompt-user">jake@stockunlock</span><span class="prompt-sep">:</span><span class="prompt-path">~/life</span><span class="prompt-branch"> (main)</span><span class="prompt-dollar"> $ </span><span class="cmd">git log --graph --oneline --all --decorate jakeruth/life</span><span class="caret">&#9608;</span>
+    </div>
+
+    <div class="workspace">
+      <aside class="sidebar">
+        <div class="sidebar-section">
+          <div class="sidebar-title">REPO</div>
+          <div class="repo-name">jakeruth/life</div>
+          <div class="repo-meta">13 yrs &middot; 9 branches &middot; HEAD -> next/main</div>
+        </div>
+
+        <div class="sidebar-section">
+          <div class="sidebar-title">BRANCHES</div>
+          <ul class="branch-list" id="branchList"></ul>
+        </div>
+
+        <div class="sidebar-section">
+          <div class="sidebar-title">FILES</div>
+          <ul class="file-tree">
+            <li><span class="folder">&#9660; life/</span>
+              <ul>
+                <li><span class="folder">&#9660; careers/</span>
+                  <ul>
+                    <li><span class="file">commercehub.md</span></li>
+                    <li><span class="file">youni.md</span></li>
+                    <li><span class="file">oscar-health.md</span></li>
+                    <li><span class="file">stock-unlock.md</span></li>
+                  </ul>
+                </li>
+                <li><span class="folder">&#9660; hobbies/</span>
+                  <ul>
+                    <li><span class="file">rubiks.md</span></li>
+                    <li><span class="file">unicycle.md</span></li>
+                  </ul>
+                </li>
+                <li><span class="folder">&#9660; personal/</span>
+                  <ul>
+                    <li><span class="file">wedding.md</span></li>
+                  </ul>
+                </li>
+                <li><span class="file">README.md</span></li>
+                <li><span class="file">.gitignore</span></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+
+        <div class="sidebar-section sidebar-footer">
+          <div class="sidebar-title">CONTACT</div>
+          <div class="contact-line">jake@stockunlock.com</div>
+          <div class="contact-line muted">$ curl -sSL jake.sh | sh</div>
+        </div>
+      </aside>
+
+      <main class="graph-pane">
+        <div class="graph-scroller" id="graphScroller">
+          <div class="graph" id="graph"></div>
+        </div>
+      </main>
+
+      <aside class="detail-pane" id="detailPane">
+        <div class="detail-empty" id="detailEmpty">
+          <div class="detail-hint">// hover a commit to inspect</div>
+          <pre class="detail-art">
+  .=._
+ /=.=.\
+ \=-=-/
+  '-='
+ jakeruth
+ /life.git</pre>
+          <div class="detail-hint muted">$ git show &lt;sha&gt;</div>
+        </div>
+
+        <div class="detail-content" id="detailContent" hidden>
+          <div class="detail-row">
+            <span class="label">commit</span>
+            <span class="detail-hash" id="detailHash"></span>
+            <span class="detail-decoration" id="detailDecoration"></span>
+          </div>
+          <div class="detail-row"><span class="label">Author:</span> <span id="detailAuthor"></span></div>
+          <div class="detail-row"><span class="label">Date:</span>   <span id="detailDate"></span></div>
+          <div class="detail-row"><span class="label">Branch:</span> <span id="detailBranch"></span></div>
+          <hr class="detail-rule" />
+          <div class="detail-subject" id="detailSubject"></div>
+          <pre class="detail-body" id="detailBody"></pre>
+          <hr class="detail-rule" />
+          <div class="detail-diffstat" id="detailDiffstat"></div>
+          <div class="detail-pinhint muted" id="detailPinHint">// click a commit to pin</div>
+        </div>
+      </aside>
+    </div>
+
+    <footer class="statusbar">
+      <span class="status-branch" id="statusBranch">HEAD -> next/main</span>
+      <span class="status-sep">|</span>
+      <span>13 years tracked</span>
+      <span class="status-sep">|</span>
+      <span id="statusFilter">filter: none</span>
+      <span class="status-sep">|</span>
+      <span class="status-hint">hover, click to pin, click branch to filter &middot; press ESC to clear</span>
+    </footer>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

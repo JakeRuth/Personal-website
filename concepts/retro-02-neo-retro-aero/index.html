@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Jake Ruth — Neo-Retro Aero</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500&family=Inter+Tight:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- Ambient desktop background -->
+  <div class="desktop-bg" aria-hidden="true">
+    <div class="grain"></div>
+    <div class="aurora a1"></div>
+    <div class="aurora a2"></div>
+    <div class="aurora a3"></div>
+    <div class="vignette"></div>
+  </div>
+
+  <!-- Top menubar -->
+  <header class="topbar" role="banner">
+    <div class="topbar-left">
+      <span class="brandmark" aria-hidden="true">
+        <span class="brand-dot"></span>
+        <span class="brand-name">Aero</span>
+      </span>
+      <nav class="topnav" aria-label="Primary">
+        <button class="nav-item" data-scroll="hero">Overview</button>
+        <button class="nav-item" data-scroll="features">Features</button>
+        <button class="nav-item" data-scroll="cube">Cube</button>
+        <button class="nav-item" data-scroll="pricing">Pricing</button>
+        <button class="nav-item" data-scroll="testimonials">Quotes</button>
+      </nav>
+    </div>
+    <div class="topbar-right">
+      <span class="status-pill"><i data-lucide="signal" class="ic14"></i> live</span>
+      <span class="status-pill"><i data-lucide="battery-full" class="ic14"></i> 94%</span>
+      <span class="status-pill clock-mini" id="topbar-clock">--:--</span>
+    </div>
+  </header>
+
+  <!-- Desktop shell: main window + sidebar gadgets -->
+  <div class="shell">
+
+    <!-- MAIN WINDOW -->
+    <section class="glass window" id="mainwin" aria-label="Jake Ruth">
+      <div class="chrome" aria-hidden="true">
+        <div class="traffic">
+          <span class="tl tl-close"></span>
+          <span class="tl tl-min"></span>
+          <span class="tl tl-max"></span>
+        </div>
+        <div class="chrome-title">
+          <i data-lucide="sparkle" class="ic14"></i>
+          <span>Jake Ruth</span>
+          <span class="chrome-sub">/ personal.exe</span>
+        </div>
+        <div class="chrome-right">
+          <button class="chrome-btn" title="Back"><i data-lucide="chevron-left" class="ic14"></i></button>
+          <button class="chrome-btn" title="Forward"><i data-lucide="chevron-right" class="ic14"></i></button>
+          <button class="chrome-btn" title="Reload"><i data-lucide="rotate-cw" class="ic14"></i></button>
+        </div>
+      </div>
+
+      <div class="window-body" id="windowBody">
+
+        <!-- HERO -->
+        <section class="section hero" data-section="hero">
+          <div class="eyebrow"><span class="dot"></span> Jake Ruth &middot; software engineer &middot; founder</div>
+          <h1 class="display">
+            Opinionated software.<br/>
+            <span class="accent">Driver in the driver's seat.</span>
+          </h1>
+          <p class="lede">
+            Thirteen years shipping real things. Co-founded Stock Unlock
+            (YC W22, $1.335M seed, 8 at peak, thousands of customers, profitable
+            side business). Off the operator seat; on to the next chapter.
+          </p>
+          <div class="cta-row">
+            <a class="btn primary" href="mailto:jake@stockunlock.com">
+              <i data-lucide="mail" class="ic16"></i> jake@stockunlock.com
+            </a>
+            <button class="btn ghost" data-scroll="cube">
+              <i data-lucide="box" class="ic16"></i> See the cube solve
+            </button>
+          </div>
+
+          <div class="kpis">
+            <div class="kpi"><div class="kpi-n">13y</div><div class="kpi-l">coding</div></div>
+            <div class="kpi"><div class="kpi-n">YC W22</div><div class="kpi-l">Stock Unlock</div></div>
+            <div class="kpi"><div class="kpi-n">$1.335M</div><div class="kpi-l">seed</div></div>
+            <div class="kpi"><div class="kpi-n">13.95s</div><div class="kpi-l">cube avg</div></div>
+          </div>
+        </section>
+
+        <!-- FEATURES -->
+        <section class="section" data-section="features">
+          <div class="eyebrow"><span class="dot"></span> What I actually do</div>
+          <h2 class="display-2">Built for operators who still care about the craft.</h2>
+
+          <div class="features">
+            <div class="feat">
+              <i data-lucide="rocket" class="ic22"></i>
+              <h3>0-to-1 product</h3>
+              <p>Taking a thing from "slack message" to "customers paying for it." Done it twice as a founder, more than that as an engineer.</p>
+            </div>
+            <div class="feat">
+              <i data-lucide="layers" class="ic22"></i>
+              <h3>Systems at scale</h3>
+              <p>Four years at Oscar Health shipping member-facing software touched by hundreds of thousands. Production is a vibe you learn.</p>
+            </div>
+            <div class="feat">
+              <i data-lucide="compass" class="ic22"></i>
+              <h3>Taste + restraint</h3>
+              <p>Soft opinions, strong shipping. I'd rather ship a small thing that's good than a big thing that isn't.</p>
+            </div>
+            <div class="feat">
+              <i data-lucide="cpu" class="ic22"></i>
+              <h3>AI, the useful kind</h3>
+              <p>"Driver in the driver's seat." Agents that earn trust instead of borrowing it. No chatbot cosplay.</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- CUBE -->
+        <section class="section cube-section" data-section="cube">
+          <div class="eyebrow"><span class="dot"></span> Scroll-solve</div>
+          <h2 class="display-2">A Rubik's cube that solves as you scroll.</h2>
+          <p class="lede small">
+            Competitive cuber since middle school. 13.95s 3x3 average, competed
+            through Nationals. Once rode a unicycle across a stage solving one.
+            Scroll this section — the scramble resolves to the solved state.
+          </p>
+
+          <div class="cube-stage">
+            <div class="cube-progress-track"><div class="cube-progress-bar" id="cubeBar"></div></div>
+            <div class="cube-mount">
+              <div class="cube3d" id="cube3d">
+                <div class="face face-f"></div>
+                <div class="face face-b"></div>
+                <div class="face face-u"></div>
+                <div class="face face-d"></div>
+                <div class="face face-l"></div>
+                <div class="face face-r"></div>
+              </div>
+              <div class="cube-reflection"></div>
+            </div>
+            <div class="cube-caption" id="cubeCaption">
+              <span class="caption-state">SCRAMBLED</span>
+              <span class="caption-meta">scroll to solve &middot; 0%</span>
+            </div>
+          </div>
+        </section>
+
+        <!-- PRICING -->
+        <section class="section" data-section="pricing">
+          <div class="eyebrow"><span class="dot"></span> Engagement tiers</div>
+          <h2 class="display-2">Priced like software should be. Not like enterprise software.</h2>
+
+          <div class="pricing">
+            <div class="plan">
+              <div class="plan-name">Coffee</div>
+              <div class="plan-price">$0<span>/chat</span></div>
+              <ul>
+                <li><i data-lucide="check" class="ic14"></i> Genuinely interesting problem</li>
+                <li><i data-lucide="check" class="ic14"></i> You're building something real</li>
+                <li><i data-lucide="check" class="ic14"></i> I'll probably say yes</li>
+              </ul>
+              <button class="btn ghost tall">Reach out</button>
+            </div>
+            <div class="plan featured">
+              <div class="plan-badge">most like me</div>
+              <div class="plan-name">Advisor</div>
+              <div class="plan-price">market<span>/hour</span></div>
+              <ul>
+                <li><i data-lucide="check" class="ic14"></i> Product + engineering strategy</li>
+                <li><i data-lucide="check" class="ic14"></i> 0-to-1 founder cycles</li>
+                <li><i data-lucide="check" class="ic14"></i> Fractional technical sanity check</li>
+              </ul>
+              <button class="btn primary tall">Let's talk</button>
+            </div>
+            <div class="plan">
+              <div class="plan-name">Next chapter</div>
+              <div class="plan-price">?<span>/full-time</span></div>
+              <ul>
+                <li><i data-lucide="check" class="ic14"></i> Founding / early team</li>
+                <li><i data-lucide="check" class="ic14"></i> Consumer or tools, AI-native</li>
+                <li><i data-lucide="check" class="ic14"></i> Something I'd use myself</li>
+              </ul>
+              <button class="btn ghost tall">Pitch me</button>
+            </div>
+          </div>
+
+          <p class="legalese">
+            *Pricing subject to the vibe. "Enterprise" tier unavailable because
+            I hate overcharging for shit software.
+          </p>
+        </section>
+
+        <!-- TESTIMONIALS -->
+        <section class="section" data-section="testimonials">
+          <div class="eyebrow"><span class="dot"></span> Field reports</div>
+          <h2 class="display-2">What people said (lightly paraphrased).</h2>
+
+          <div class="quotes">
+            <figure class="quote">
+              <blockquote>"Jake will tell you the truth about your architecture. Book the calendar invite, accept the outcome."</blockquote>
+              <figcaption><span class="avatar">CF</span><span>Co-founder, YC batchmate</span></figcaption>
+            </figure>
+            <figure class="quote">
+              <blockquote>"Shipped more actual software in two quarters than the previous team did all year. Also: unicycle."</blockquote>
+              <figcaption><span class="avatar">EM</span><span>Engineering manager, Oscar Health</span></figcaption>
+            </figure>
+            <figure class="quote">
+              <blockquote>"Makes retail investing legible. We finally understand a stock without pretending to."</blockquote>
+              <figcaption><span class="avatar">SU</span><span>Stock Unlock customer, 2024</span></figcaption>
+            </figure>
+            <figure class="quote">
+              <blockquote>"Rides a unicycle. Solves cubes. Makes payroll. Unverifiable but all true."</blockquote>
+              <figcaption><span class="avatar">FR</span><span>A friend</span></figcaption>
+            </figure>
+          </div>
+        </section>
+
+        <!-- FOOTER / LEGALESE -->
+        <footer class="legal-footer" data-section="legal">
+          <div class="legal-grid">
+            <div>
+              <div class="legal-title">Jake Ruth</div>
+              <div class="legal-line">Software engineer &middot; founder &middot; cube person</div>
+              <div class="legal-line">jake@stockunlock.com</div>
+            </div>
+            <div>
+              <div class="legal-title">Credits</div>
+              <div class="legal-line">Silhouette: Windows Vista, fondly.</div>
+              <div class="legal-line">Type: Geist &middot; Inter Tight.</div>
+              <div class="legal-line">Icons: Lucide.</div>
+            </div>
+            <div>
+              <div class="legal-title">Legalese</div>
+              <div class="legal-line">No cookies. No tracking. No pop-ups.</div>
+              <div class="legal-line">Prototype &middot; one of 17.</div>
+              <div class="legal-line">&copy; 2026 — personal site rebuild.</div>
+            </div>
+          </div>
+        </footer>
+
+      </div>
+    </section>
+
+    <!-- SIDEBAR GADGETS -->
+    <aside class="sidebar" aria-label="Gadgets">
+
+      <!-- IDENTITY CARD -->
+      <div class="glass gadget identity">
+        <div class="id-row">
+          <div class="avatar-large">JR</div>
+          <div>
+            <div class="id-name">Jake Ruth</div>
+            <div class="id-handle">@jakeruth</div>
+          </div>
+          <span class="presence-dot" title="online"></span>
+        </div>
+        <div class="id-bio">
+          Built Stock Unlock (YC W22). Now: next chapter.
+          Hates overcharging for shit software.
+        </div>
+        <div class="id-tags">
+          <span class="tag">founder</span>
+          <span class="tag">cuber</span>
+          <span class="tag">married</span>
+        </div>
+      </div>
+
+      <!-- CLOCK GADGET -->
+      <div class="glass gadget clock-gadget">
+        <div class="gadget-head">
+          <i data-lucide="clock" class="ic14"></i>
+          <span>Local time</span>
+        </div>
+        <div class="clock-digital" id="clockDigital">--:--:--</div>
+        <div class="clock-date" id="clockDate">—</div>
+      </div>
+
+      <!-- CUBE GADGET (mini live state) -->
+      <div class="glass gadget cube-gadget">
+        <div class="gadget-head">
+          <i data-lucide="box" class="ic14"></i>
+          <span>Cube state</span>
+          <span class="gadget-tag" id="gadgetCubeTag">scrambled</span>
+        </div>
+        <div class="cube-mini-grid" id="cubeMini"></div>
+        <div class="cube-meta">
+          <span>PB avg <b>13.95s</b></span>
+          <span>Nationals &middot; 2014</span>
+        </div>
+      </div>
+
+      <!-- LATEST GADGET -->
+      <div class="glass gadget latest-gadget">
+        <div class="gadget-head">
+          <i data-lucide="activity" class="ic14"></i>
+          <span>Latest</span>
+        </div>
+        <ul class="feed">
+          <li>
+            <div class="feed-meta">note &middot; 2d</div>
+            <div class="feed-body">Stepped back from Stock Unlock day-to-day. Still profitable. Now: next thing.</div>
+          </li>
+          <li>
+            <div class="feed-meta">note &middot; 1w</div>
+            <div class="feed-body">The best AI UX so far is "drafts that I accept or rewrite," not "autopilot I can't see."</div>
+          </li>
+          <li>
+            <div class="feed-meta">cube &middot; 2w</div>
+            <div class="feed-body">New single: 11.2s. Average still hovering around 13.9.</div>
+          </li>
+          <li>
+            <div class="feed-meta">note &middot; 1mo</div>
+            <div class="feed-body">Wedding was great. Highly recommend.</div>
+          </li>
+        </ul>
+      </div>
+
+      <!-- NETWORK GADGET -->
+      <div class="glass gadget net-gadget">
+        <div class="gadget-head">
+          <i data-lucide="radio" class="ic14"></i>
+          <span>Network</span>
+          <span class="gadget-tag ok">healthy</span>
+        </div>
+        <div class="net-rows">
+          <div class="net-row">
+            <span class="net-label">Uplink</span>
+            <div class="net-bar"><span style="width:86%"></span></div>
+            <span class="net-val">86</span>
+          </div>
+          <div class="net-row">
+            <span class="net-label">Caffeine</span>
+            <div class="net-bar"><span style="width:72%"></span></div>
+            <span class="net-val">72</span>
+          </div>
+          <div class="net-row">
+            <span class="net-label">Focus</span>
+            <div class="net-bar"><span style="width:91%"></span></div>
+            <span class="net-val">91</span>
+          </div>
+          <div class="net-row">
+            <span class="net-label">Inbox</span>
+            <div class="net-bar warn"><span style="width:34%"></span></div>
+            <span class="net-val">34</span>
+          </div>
+        </div>
+      </div>
+
+    </aside>
+  </div>
+
+  <!-- Lucide icons library (CDN) -->
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

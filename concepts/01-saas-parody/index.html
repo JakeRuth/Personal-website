@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Jake Ruth — The Engineer-as-a-Service Platform</title>
+  <meta name="description" content="Ship Jake Ruth. One engineer. Infinite scale. The enterprise-grade human platform for turning ambiguous roadmaps into shipped software." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- Cursor spotlight -->
+  <div class="spotlight" aria-hidden="true"></div>
+
+  <!-- Top nav -->
+  <header class="nav">
+    <div class="nav-inner">
+      <a href="#" class="brand">
+        <svg class="brand-mark" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M4 4h7v7H4zM13 4h7v7h-7zM4 13h7v7H4zM13 13h7v7h-7z" fill="none" stroke="currentColor" stroke-width="1.6"/>
+          <path d="M13 13h7v7h-7z" fill="currentColor"/>
+        </svg>
+        <span>Jake Ruth<span class="brand-tm">&trade;</span></span>
+      </a>
+      <nav class="nav-links" aria-label="Primary">
+        <a href="#features">Product</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#testimonials">Customers</a>
+        <a href="#changelog">Changelog</a>
+        <a href="../../official_resume.pdf">Docs</a>
+      </nav>
+      <div class="nav-cta">
+        <a href="../../official_resume.pdf" class="btn btn-ghost">Sign in</a>
+        <a href="mailto:jake@stockunlock.com" class="btn btn-primary">Get a demo</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-inner">
+      <a href="#changelog" class="pill">
+        <span class="pill-badge">New</span>
+        <span>v13.0 — Now with 1 of 1 wedding. Ships April 2026.</span>
+        <svg viewBox="0 0 16 16" class="pill-arrow" aria-hidden="true"><path d="M6 3l5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+      </a>
+
+      <h1 class="hero-headline">
+        Ship Jake Ruth.<br/>
+        <span class="gradient-text">One engineer. Infinite scale.</span>
+      </h1>
+
+      <p class="hero-sub">
+        The enterprise-grade human platform for turning ambiguous roadmaps into shipped software.
+        Thirteen years of production uptime. Zero known bugs in the culture layer.
+      </p>
+
+      <div class="hero-ctas">
+        <a href="mailto:jake@stockunlock.com" class="btn btn-primary btn-lg">
+          Contact sales
+          <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M6 3l5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+        </a>
+        <a href="../../official_resume.pdf" class="btn btn-ghost btn-lg">
+          <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 4h10M3 8h10M3 12h7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+          View docs
+        </a>
+      </div>
+
+      <div class="hero-meta">
+        <span class="status-dot"></span>
+        <span>All systems operational &middot; 99.998% uptime since 2013</span>
+      </div>
+
+      <!-- Terminal mock -->
+      <div class="terminal" aria-hidden="true">
+        <div class="terminal-chrome">
+          <span class="dot dot-r"></span>
+          <span class="dot dot-y"></span>
+          <span class="dot dot-g"></span>
+          <span class="terminal-title">~/career — zsh</span>
+        </div>
+        <div class="terminal-body">
+          <p><span class="t-prompt">jake@prod</span> <span class="t-path">~</span> <span class="t-sym">$</span> <span class="t-cmd">ship</span> --idea "retail investors need better tools"</p>
+          <p class="t-dim">→ parsing requirements...</p>
+          <p class="t-dim">→ raising $1.335M seed (YC W22)...</p>
+          <p class="t-dim">→ hiring 8 engineers...</p>
+          <p class="t-ok">✓ <span class="t-highlight">stock-unlock</span> deployed. thousands of customers. profitable.</p>
+          <p><span class="t-prompt">jake@prod</span> <span class="t-path">~</span> <span class="t-sym">$</span> <span class="t-cmd">next</span><span class="cursor-blink">_</span></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Trusted by -->
+  <section class="logos" aria-label="Trusted by">
+    <p class="logos-label">Battle-tested in production at</p>
+    <div class="logos-row">
+      <div class="logo-item"><span class="logo-glyph">◎</span><span class="logo-name">Oscar Health</span></div>
+      <div class="logo-divider"></div>
+      <div class="logo-item"><span class="logo-glyph yc">Y</span><span class="logo-name">Combinator</span></div>
+      <div class="logo-divider"></div>
+      <div class="logo-item"><span class="logo-glyph">∞</span><span class="logo-name">Stock Unlock</span></div>
+      <div class="logo-divider"></div>
+      <div class="logo-item"><span class="logo-glyph">◢◣</span><span class="logo-name">CommerceHub</span></div>
+      <div class="logo-divider"></div>
+      <div class="logo-item"><span class="logo-glyph">ƒ</span><span class="logo-name">SUNY Albany ACM</span></div>
+    </div>
+  </section>
+
+  <!-- Features -->
+  <section id="features" class="features">
+    <div class="section-head">
+      <p class="eyebrow">Features</p>
+      <h2>Built for teams that actually need to ship.</h2>
+      <p class="lede">Six primitives. One engineer. Composable at any altitude from CEO&rsquo;s whiteboard to production database.</p>
+    </div>
+
+    <div class="features-grid" id="feature-grid">
+      <article class="feature-card" data-magnetic>
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+        </div>
+        <h3>Full-stack by default</h3>
+        <p>Ships business logic to production on day one. React, Node, Postgres, K8s, the design file your PM forgot to write. No hand-holding required.</p>
+      </article>
+
+      <article class="feature-card" data-magnetic>
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2v20M2 12h20" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>
+        </div>
+        <h3>Zero-to-one mode</h3>
+        <p>Turns a one-sentence thesis into a YC-backed company with thousands of paying customers. Production-grade cofounder. Warranty included.</p>
+      </article>
+
+      <article class="feature-card" data-magnetic>
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4l16 16M20 4L4 20" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><rect x="8" y="8" width="8" height="8" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>
+        </div>
+        <h3>Culture layer</h3>
+        <p>Led engineering culture at Oscar Health from 50 to 150+ engineers. Onboards junior devs. Disarms meetings. Won&rsquo;t take the management-track bait.</p>
+      </article>
+
+      <article class="feature-card" data-magnetic>
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M8 12l3 3 5-6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <h3>AI-native, not AI-addled</h3>
+        <p>Driver in the driver&rsquo;s seat, not driven by the car. Uses Claude, Cursor, and the whole pile to ship faster — never to think less.</p>
+      </article>
+
+      <article class="feature-card" data-magnetic>
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20L20 4M4 4h16v16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+        </div>
+        <h3>Taste as a service</h3>
+        <p>Actively refuses to ship software that rips off users. Known to audibly groan when a competitor defines <span class="mono">margin_of_safety = current_price / all_time_high</span>.</p>
+      </article>
+
+      <article class="feature-card" data-magnetic>
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="12" r="2" fill="currentColor"/><path d="M12 3v3M12 18v3M3 12h3M18 12h3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+        </div>
+        <h3>Low-latency context</h3>
+        <p>Rubik&rsquo;s cube avg: <span class="mono">13.95s</span>. Parses a new codebase about the same. Historically verified on a unicycle, in front of a live audience.</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- Pricing -->
+  <section id="pricing" class="pricing">
+    <div class="section-head">
+      <p class="eyebrow">Pricing</p>
+      <h2>Pick a plan that fits your org chart.</h2>
+      <p class="lede">All tiers include the same engineer. The only thing that changes is how much of him you get and for how long.</p>
+    </div>
+
+    <div class="pricing-grid">
+      <article class="price-card" data-magnetic>
+        <header>
+          <h3>Contract</h3>
+          <p class="price-tagline">For shipping something specific, yesterday.</p>
+        </header>
+        <div class="price">
+          <span class="price-amount">$250</span>
+          <span class="price-unit">/ hr</span>
+        </div>
+        <ul class="price-list">
+          <li>Fixed scope, fixed brain</li>
+          <li>Zero-to-MVP in weeks, not quarters</li>
+          <li>Async-first, Slack-channel-optional</li>
+          <li>Code review for your existing team</li>
+          <li>Opinions included (non-optional)</li>
+        </ul>
+        <a href="mailto:jake@stockunlock.com?subject=Contract%20inquiry" class="btn btn-ghost btn-block">Start a project</a>
+      </article>
+
+      <article class="price-card featured" data-magnetic>
+        <div class="featured-badge">Most popular</div>
+        <header>
+          <h3>Full-Time</h3>
+          <p class="price-tagline">For teams that want a force multiplier on payroll.</p>
+        </header>
+        <div class="price">
+          <span class="price-amount">Market</span>
+          <span class="price-unit">+ equity</span>
+        </div>
+        <ul class="price-list">
+          <li>Everything in Contract</li>
+          <li>Staff / Principal / Founding Eng scope</li>
+          <li>Owns a surface area end-to-end</li>
+          <li>Mentors the rest of the team for free</li>
+          <li>Will politely decline the manager track</li>
+          <li>NYC-area or remote-friendly</li>
+        </ul>
+        <a href="mailto:jake@stockunlock.com?subject=Full-time%20role" class="btn btn-primary btn-block">Contact sales</a>
+      </article>
+
+      <article class="price-card" data-magnetic>
+        <header>
+          <h3>Equity Founding</h3>
+          <p class="price-tagline">For the idea that doesn&rsquo;t exist yet.</p>
+        </header>
+        <div class="price">
+          <span class="price-amount">Let&rsquo;s</span>
+          <span class="price-unit">talk</span>
+        </div>
+        <ul class="price-list">
+          <li>Technical cofounder, fully loaded</li>
+          <li>Has done this once, won&rsquo;t do it lightly</li>
+          <li>Product + eng + fundraising help</li>
+          <li>High conviction required on both sides</li>
+          <li>No &ldquo;AI for X&rdquo; pitches, please</li>
+        </ul>
+        <a href="mailto:jake@stockunlock.com?subject=Cofounder%20conversation" class="btn btn-ghost btn-block">Pitch me</a>
+      </article>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section id="testimonials" class="testimonials">
+    <div class="section-head">
+      <p class="eyebrow">Customers</p>
+      <h2>Loved by people who had to sit next to him.</h2>
+    </div>
+    <div class="quotes-grid">
+      <figure class="quote" data-magnetic>
+        <blockquote>&ldquo;Jake shipped more production code in six months than our team of four did all year. He also fixed the build pipeline nobody asked him to touch.&rdquo;</blockquote>
+        <figcaption>
+          <div class="avatar" style="--a:#ff6b6b;--b:#ffb86b">DM</div>
+          <div>
+            <span class="q-name">Daniel Moretti</span>
+            <span class="q-title">Staff Engineer, Oscar Health</span>
+          </div>
+        </figcaption>
+      </figure>
+
+      <figure class="quote" data-magnetic>
+        <blockquote>&ldquo;We were a Notion doc and a Figma file. Two months later we were a product people paid for. I still don&rsquo;t fully understand what happened.&rdquo;</blockquote>
+        <figcaption>
+          <div class="avatar" style="--a:#8b5cf6;--b:#22d3ee">PS</div>
+          <div>
+            <span class="q-name">Priya Shah</span>
+            <span class="q-title">Cofounder, Stock Unlock</span>
+          </div>
+        </figcaption>
+      </figure>
+
+      <figure class="quote" data-magnetic>
+        <blockquote>&ldquo;He solved a Rubik&rsquo;s cube on a unicycle at our talent show. Then on Monday he refactored the auth service. Both ended cleanly.&rdquo;</blockquote>
+        <figcaption>
+          <div class="avatar" style="--a:#22d3ee;--b:#84cc16">AK</div>
+          <div>
+            <span class="q-name">Alex Kowalski</span>
+            <span class="q-title">Director of Engineering, Oscar Health</span>
+          </div>
+        </figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- Changelog / Stats strip -->
+  <section id="changelog" class="changelog">
+    <div class="section-head">
+      <p class="eyebrow">Changelog</p>
+      <h2>Thirteen years of shipped releases.</h2>
+    </div>
+    <ol class="log">
+      <li>
+        <span class="log-tag">v13.0</span>
+        <div><strong>2026 &middot; Next chapter.</strong> Stepped back from full-time at Stock Unlock (still profitable, still running). Redefining what&rsquo;s next. Also: getting married.</div>
+      </li>
+      <li>
+        <span class="log-tag">v8.0</span>
+        <div><strong>2022 &middot; Stock Unlock.</strong> YC W22. Raised $1.335M seed. Scaled to 8 engineers + thousands of paying customers. Built the thing spreadsheets were quietly pretending to be.</div>
+      </li>
+      <li>
+        <span class="log-tag">v4.0</span>
+        <div><strong>2017 &middot; Oscar Health.</strong> Senior SWE. Joined at ~50 engineers, left at 150+. Declined the management track. Helped define the culture of the eng org.</div>
+      </li>
+      <li>
+        <span class="log-tag">v2.0</span>
+        <div><strong>2015 &middot; Youni.</strong> Cofounder / CTO. College-only social iOS app. Learned what works, what doesn&rsquo;t, and which of those is worth more.</div>
+      </li>
+      <li>
+        <span class="log-tag">v1.0</span>
+        <div><strong>2013 &middot; Initial release.</strong> Started shipping code professionally at CommerceHub. BS CS + Applied Math @ SUNY Albany, 3.88 GPA. President of ACM.</div>
+      </li>
+    </ol>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-band">
+    <div class="cta-inner">
+      <h2>Start your free 30-minute trial.</h2>
+      <p>No credit card. No calendar tax. Just a short email and an honest reply.</p>
+      <a href="mailto:jake@stockunlock.com" class="btn btn-primary btn-lg">Contact sales</a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="#" class="brand">
+          <svg class="brand-mark" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M4 4h7v7H4zM13 4h7v7h-7zM4 13h7v7H4zM13 13h7v7h-7z" fill="none" stroke="currentColor" stroke-width="1.6"/>
+            <path d="M13 13h7v7h-7z" fill="currentColor"/>
+          </svg>
+          <span>Jake Ruth<span class="brand-tm">&trade;</span></span>
+        </a>
+        <p class="footer-blurb">
+          Engineer-as-a-Service since 2013. Based NYC. Opinions strictly his own, occasionally also correct.
+        </p>
+      </div>
+      <div class="footer-col">
+        <h4>Product</h4>
+        <ul>
+          <li><a href="#features">Features</a></li>
+          <li><a href="#pricing">Pricing</a></li>
+          <li><a href="#changelog">Changelog</a></li>
+          <li><a href="../../official_resume.pdf">Docs</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="#testimonials">Customers</a></li>
+          <li><a href="mailto:jake@stockunlock.com">Contact</a></li>
+          <li><a href="https://www.ycombinator.com/" target="_blank" rel="noopener">Investors</a></li>
+          <li><a href="#">Careers (1 / 1 filled)</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Legal</h4>
+        <ul>
+          <li><a href="#">Terms</a></li>
+          <li><a href="#">Privacy</a></li>
+          <li><a href="#">Security</a></li>
+          <li><a href="#">SOC 2 (pending)</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="legalese">
+      <p>
+        <strong>Jake Ruth, LLC.</strong> Headquartered at the intersection of code and taste. All solutions are backed by thirteen years of production experience and at least one public Rubik&rsquo;s cube performance. Past performance is indicative of future performance, because he writes tests. &copy; 2013&ndash;2026 Jake Ruth. The TM is a joke. The engineer is not.
+      </p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

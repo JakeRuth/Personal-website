@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Jake Ruth Setup Wizard - Typographic</title>
+
+<!-- Google Fonts: typography carries the whole step-2 aesthetic. -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+  href="https://fonts.googleapis.com/css2?family=VT323&family=Pixelify+Sans:wght@400;700&family=JetBrains+Mono:wght@400;500;700&family=Inter+Tight:wght@400;500;700;800&display=swap"
+  rel="stylesheet"
+/>
+
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<!-- Ambient WebGL background: drifting Rubik's cubes on invisible tracks. Carried over from v2. -->
+<canvas id="ambient" aria-hidden="true"></canvas>
+
+<!-- Thin stamp strip top-right, like build markers on an install disc. -->
+<div class="stamp" aria-hidden="true">
+  <span>jakeruth.setup &middot; build 20260420.T &middot; typographic edition</span>
+</div>
+
+<!-- The wizard window -->
+<div class="window" id="wizard" role="dialog" aria-label="Jake Ruth Setup Wizard">
+  <div class="titlebar">
+    <span class="title-icon" aria-hidden="true"></span>
+    <span class="title-text">Jake Ruth Setup Wizard</span>
+    <div class="title-buttons">
+      <button class="tb-btn" aria-label="Minimize" tabindex="-1">_</button>
+      <button class="tb-btn" aria-label="Maximize" tabindex="-1">&#9633;</button>
+      <button class="tb-btn close" aria-label="Close" id="tb-close">&times;</button>
+    </div>
+  </div>
+
+  <div class="body" id="wizard-body">
+    <!-- Step content injected here. -->
+  </div>
+
+  <div class="footer">
+    <div class="footer-left">
+      <span id="footer-hint">Step <span id="step-num">1</span> of 3</span>
+    </div>
+    <div class="footer-right">
+      <button class="btn" id="btn-back" disabled>&lt; Back</button>
+      <button class="btn primary" id="btn-next">Next &gt;</button>
+      <span class="btn-gap"></span>
+      <button class="btn" id="btn-cancel">Cancel</button>
+    </div>
+  </div>
+</div>
+
+<!-- Cancel confirmation dialog -->
+<div class="modal" id="modal-cancel" hidden>
+  <div class="window modal-window">
+    <div class="titlebar plain">
+      <span class="title-text">Jake Ruth Setup</span>
+      <div class="title-buttons">
+        <button class="tb-btn close" data-close-modal="modal-cancel" aria-label="Close">&times;</button>
+      </div>
+    </div>
+    <div class="body modal-body">
+      <div class="modal-row">
+        <div class="modal-icon warn" aria-hidden="true"></div>
+        <div>
+          <p><strong>Cancel Jake Ruth Setup?</strong></p>
+          <p class="dim">You can still reach him at <a href="mailto:jake@stockunlock.com">jake@stockunlock.com</a>.</p>
+        </div>
+      </div>
+    </div>
+    <div class="footer">
+      <div class="footer-left"></div>
+      <div class="footer-right">
+        <button class="btn" id="cancel-yes">Yes</button>
+        <button class="btn primary" data-close-modal="modal-cancel">No</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Three.js from CDN for the ambient cubes. -->
+<script src="https://unpkg.com/three@0.160.0/build/three.min.js"></script>
+<script src="ambient.js"></script>
+<script src="wizard.js"></script>
+</body>
+</html>

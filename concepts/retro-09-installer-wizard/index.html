@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Jake Ruth Setup Wizard</title>
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<!-- Faux desktop background behind the wizard -->
+<div class="desktop">
+  <div class="taskbar">
+    <button class="start">
+      <span class="start-flag"></span><span>Start</span>
+    </button>
+    <div class="taskbar-app">
+      <span class="tb-icon"></span> Jake Ruth Setup Wizard
+    </div>
+    <div class="tray">
+      <span class="tray-icon" title="Cube drivers registered">CUBE</span>
+      <span class="clock" id="clock">12:00 PM</span>
+    </div>
+  </div>
+</div>
+
+<!-- The wizard window -->
+<div class="window" id="wizard" role="dialog" aria-label="Jake Ruth Setup Wizard">
+  <div class="titlebar">
+    <span class="title-icon"></span>
+    <span class="title-text">Jake Ruth Setup Wizard</span>
+    <div class="title-buttons">
+      <button class="tb-btn" aria-label="Minimize" data-action="minimize">_</button>
+      <button class="tb-btn" aria-label="Maximize" data-action="maximize">&#9633;</button>
+      <button class="tb-btn close" aria-label="Close" data-action="close">&times;</button>
+    </div>
+  </div>
+
+  <div class="body" id="wizard-body">
+    <!-- Step template gets injected here -->
+  </div>
+
+  <div class="footer">
+    <div class="footer-left">
+      <span id="footer-hint">Step <span id="step-num">1</span> of 6</span>
+    </div>
+    <div class="footer-right">
+      <button class="btn" id="btn-back" disabled>&lt; Back</button>
+      <button class="btn primary" id="btn-next">Next &gt;</button>
+      <span class="btn-gap"></span>
+      <button class="btn" id="btn-cancel">Cancel</button>
+    </div>
+  </div>
+</div>
+
+<!-- Cancel confirmation (classic) -->
+<div class="modal" id="modal-cancel" hidden>
+  <div class="window modal-window">
+    <div class="titlebar plain">
+      <span class="title-text">Jake Ruth Setup</span>
+      <div class="title-buttons">
+        <button class="tb-btn close" data-close-modal="modal-cancel" aria-label="Close">&times;</button>
+      </div>
+    </div>
+    <div class="body modal-body">
+      <div class="modal-row">
+        <div class="modal-icon warn"></div>
+        <div>
+          <p><strong>Are you sure you want to cancel?</strong></p>
+          <p class="dim">If you cancel now, Jake will not be installed. You can still reach him at <a href="mailto:jake@stockunlock.com">jake@stockunlock.com</a>.</p>
+        </div>
+      </div>
+    </div>
+    <div class="footer">
+      <div class="footer-left"></div>
+      <div class="footer-right">
+        <button class="btn" id="cancel-yes">Yes</button>
+        <button class="btn primary" data-close-modal="modal-cancel">No</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Dependencies sub-window -->
+<div class="modal" id="modal-deps" hidden>
+  <div class="window modal-window wide">
+    <div class="titlebar">
+      <span class="title-icon"></span>
+      <span class="title-text">Dependency Viewer &mdash; jakeruth.exe</span>
+      <div class="title-buttons">
+        <button class="tb-btn close" data-close-modal="modal-deps" aria-label="Close">&times;</button>
+      </div>
+    </div>
+    <div class="body deps-body">
+      <div class="deps-toolbar">
+        <span class="deps-label">Module:</span>
+        <span class="deps-value">JAKE_RUTH.EXE</span>
+        <span class="deps-spacer"></span>
+        <span class="deps-label">Imports:</span>
+        <span class="deps-value" id="deps-count">42</span>
+      </div>
+      <div class="deps-split">
+        <div class="deps-tree" id="deps-tree"></div>
+        <canvas id="deps-canvas" width="320" height="260"></canvas>
+      </div>
+      <div class="deps-status" id="deps-status">Ready. Hover a node.</div>
+    </div>
+    <div class="footer">
+      <div class="footer-left"><span class="dim">All symbols resolved.</span></div>
+      <div class="footer-right">
+        <button class="btn primary" data-close-modal="modal-deps">OK</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Release notes (final) -->
+<div class="modal" id="modal-notes" hidden>
+  <div class="window modal-window">
+    <div class="titlebar">
+      <span class="title-icon"></span>
+      <span class="title-text">Release Notes &mdash; jakeruth.exe v13.0</span>
+      <div class="title-buttons">
+        <button class="tb-btn close" data-close-modal="modal-notes" aria-label="Close">&times;</button>
+      </div>
+    </div>
+    <div class="body notes-body">
+      <h3>What's new in this release</h3>
+      <ul class="notes-list">
+        <li><strong>+ 13 years of shipping.</strong> Turns out you learn a thing or two.</li>
+        <li><strong>+ Stock Unlock (YC W22).</strong> Built it, scaled to 8 + thousands of customers, profitable. Now a side business, not full-time &mdash; next chapter.</li>
+        <li><strong>+ "Driver in the driver's seat" AI philosophy.</strong> Humans steer. Models assist. No autopilot theater.</li>
+        <li><strong>+ 13.95s Rubik's cube average.</strong> Yes, that is load-bearing to the personality.</li>
+        <li><strong>&minus; Tolerance for overpriced garbage software.</strong> Removed.</li>
+      </ul>
+      <p class="dim">&copy; 2026 Jake Ruth. All rights (tastefully) reserved.</p>
+    </div>
+    <div class="footer">
+      <div class="footer-left"></div>
+      <div class="footer-right">
+        <button class="btn primary" data-close-modal="modal-notes">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="wizard.js"></script>
+</body>
+</html>

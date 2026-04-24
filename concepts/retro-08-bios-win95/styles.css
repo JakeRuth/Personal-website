@@ -1,0 +1,912 @@
+/* ============================================================
+   Retro-08 : BIOS -> Win95 layered boot
+   Jake Ruth personal site prototype
+   ============================================================ */
+
+:root {
+  --win-gray:        #c0c0c0;
+  --win-gray-dk:     #808080;
+  --win-gray-vdk:    #404040;
+  --win-white:       #ffffff;
+  --win-black:       #000000;
+  --win-blue:        #000080;
+  --win-teal:        #008080;
+  --win-red:         #800000;
+  --win-yellow:      #ffff80;
+  --win-hilite:      #0a246a;
+  --bios-amber:      #f7b300;
+  --bios-amber-dim:  #c88d00;
+  --bios-bg:         #000000;
+}
+
+* { box-sizing: border-box; }
+html, body {
+  margin: 0; padding: 0;
+  width: 100%; height: 100%;
+  overflow: hidden;
+  background: #000;
+  font-family: Tahoma, "MS Sans Serif", "Segoe UI", sans-serif;
+  font-size: 11px;
+  color: var(--win-black);
+  image-rendering: pixelated;
+  -webkit-font-smoothing: none;
+  -moz-osx-font-smoothing: auto;
+}
+
+/* ========= STAGE SWITCHER ========= */
+.stage {
+  position: fixed; inset: 0;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 400ms ease;
+  z-index: 0;
+}
+.stage.active {
+  opacity: 1;
+  pointer-events: auto;
+  z-index: 10;
+}
+.stage.fading-out {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* ====================================================
+   ACT 1 : BIOS
+   ==================================================== */
+.bios {
+  background: #000;
+  color: var(--bios-amber);
+  font-family: "VT323", "IBM Plex Mono", ui-monospace, monospace;
+  padding: 24px 28px 60px;
+  overflow: hidden;
+  text-shadow: 0 0 2px rgba(247, 179, 0, 0.55),
+               0 0 8px rgba(247, 179, 0, 0.25);
+}
+.bios::before {
+  /* scanlines */
+  content: "";
+  position: absolute; inset: 0;
+  background: repeating-linear-gradient(
+    to bottom,
+    rgba(0,0,0,0) 0 2px,
+    rgba(0,0,0,0.25) 2px 3px
+  );
+  pointer-events: none;
+  mix-blend-mode: multiply;
+}
+.bios::after {
+  /* subtle CRT vignette */
+  content: "";
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse at center,
+    rgba(0,0,0,0) 55%, rgba(0,0,0,0.65) 100%);
+  pointer-events: none;
+}
+.bios-text {
+  margin: 0;
+  font-family: inherit;
+  font-size: 22px;
+  line-height: 1.15;
+  white-space: pre-wrap;
+  letter-spacing: 0.5px;
+}
+.bios-text .dim { color: var(--bios-amber-dim); }
+.bios-text .ok  { color: #b5ff68; text-shadow: 0 0 4px rgba(181,255,104,.6); }
+.bios-text .caret {
+  display: inline-block;
+  width: 0.55em;
+  height: 1em;
+  background: var(--bios-amber);
+  vertical-align: -2px;
+  animation: caret-blink 1.05s steps(1) infinite;
+  margin-left: 2px;
+}
+@keyframes caret-blink { 50% { opacity: 0; } }
+
+.bios-hint {
+  position: absolute;
+  bottom: 12px; right: 16px;
+  color: var(--bios-amber-dim);
+  font-family: "VT323", monospace;
+  font-size: 18px;
+  letter-spacing: 1px;
+  opacity: 0.7;
+  z-index: 5;
+}
+
+/* ====================================================
+   ACT 2 : WIN95 SPLASH
+   ==================================================== */
+.splash {
+  background: #000;
+}
+.splash-sky {
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse 55% 35% at 30% 30%, rgba(255,255,255,0.55), rgba(255,255,255,0) 60%),
+    radial-gradient(ellipse 45% 30% at 70% 60%, rgba(255,255,255,0.40), rgba(255,255,255,0) 60%),
+    radial-gradient(ellipse 60% 40% at 80% 20%, rgba(255,255,255,0.25), rgba(255,255,255,0) 60%),
+    radial-gradient(ellipse 70% 40% at 20% 80%, rgba(255,255,255,0.35), rgba(255,255,255,0) 60%),
+    linear-gradient(180deg, #59a4d8 0%, #7cbce6 45%, #a8d4ef 100%);
+  display: grid;
+  place-items: center;
+}
+.splash-logo {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  transform: translateY(-10%);
+}
+.splash-flag {
+  width: 96px; height: 96px;
+  display: grid;
+  grid-template: 1fr 1fr / 1fr 1fr;
+  gap: 6px;
+  transform: perspective(320px) rotateY(-22deg) skewY(-8deg);
+  filter: drop-shadow(2px 4px 0 rgba(0,0,0,0.25));
+}
+.flag-q { border-radius: 2px; }
+.q1 { background: #ed1c24; }
+.q2 { background: #00a651; }
+.q3 { background: #00aeef; }
+.q4 { background: #fff200; }
+
+.splash-words { color: #fff; font-family: "Helvetica Neue", Arial, sans-serif; text-shadow: 2px 3px 0 rgba(0,0,0,0.35); }
+.splash-microsoft { font-size: 22px; font-weight: 400; font-style: italic; letter-spacing: 1px; }
+.splash-win { font-size: 84px; font-weight: 700; font-style: italic; letter-spacing: -1px; line-height: 1; }
+.splash-win .sup { font-size: 36px; vertical-align: super; font-weight: 700; }
+
+.splash-bar {
+  position: absolute;
+  bottom: 48px; left: 50%;
+  transform: translateX(-50%);
+  width: 260px; height: 16px;
+  background: #b8b8b8;
+  border: 2px solid #fff;
+  box-shadow: inset 1px 1px 0 #808080, 2px 2px 0 rgba(0,0,0,.25);
+  overflow: hidden;
+  padding: 2px;
+}
+.splash-bar-fill {
+  height: 100%; width: 0;
+  background: repeating-linear-gradient(90deg,
+    #000080 0 12px, transparent 12px 16px);
+  animation: splash-fill 1600ms linear forwards;
+}
+@keyframes splash-fill { to { width: 100%; } }
+
+.splash-copy {
+  position: absolute; bottom: 16px;
+  width: 100%; text-align: center;
+  color: #fff; font-family: Arial, sans-serif; font-size: 11px;
+  text-shadow: 1px 1px 0 rgba(0,0,0,0.4);
+  letter-spacing: .5px;
+}
+
+/* ====================================================
+   ACT 3 : WIN95 DESKTOP
+   ==================================================== */
+.desktop {
+  background: var(--win-teal);
+  color: var(--win-black);
+  font-family: "MS Sans Serif", Tahoma, "Segoe UI", sans-serif;
+  user-select: none;
+}
+
+/* -- Icons grid -- */
+.icons {
+  position: absolute;
+  top: 12px; left: 12px;
+  display: grid;
+  grid-template-columns: 88px;
+  gap: 10px;
+}
+.icon {
+  all: unset;
+  width: 88px;
+  display: grid;
+  justify-items: center;
+  gap: 4px;
+  padding: 4px 2px;
+  cursor: pointer;
+  color: #fff;
+  text-align: center;
+  font-size: 11px;
+  line-height: 1.1;
+  text-shadow: 1px 1px 0 rgba(0,0,0,.9);
+}
+.icon:focus, .icon.selected {
+  outline: 1px dotted #fff;
+  background: rgba(10, 36, 106, 0.45);
+}
+.icon .ico {
+  width: 32px; height: 32px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  image-rendering: pixelated;
+}
+.icon span {
+  padding: 1px 3px;
+}
+
+/* Pixel-ish icon art via layered gradients/boxes */
+.ico-mycomp {
+  background:
+    linear-gradient(#c8c8c8 0 0) 4px 4px / 24px 16px no-repeat,
+    linear-gradient(#000 0 0) 4px 4px / 24px 1px no-repeat,
+    linear-gradient(#000 0 0) 4px 19px / 24px 1px no-repeat,
+    linear-gradient(#000 0 0) 4px 4px / 1px 16px no-repeat,
+    linear-gradient(#000 0 0) 27px 4px / 1px 16px no-repeat,
+    linear-gradient(#50a0ff 0 0) 6px 6px / 20px 12px no-repeat,
+    linear-gradient(#c8c8c8 0 0) 2px 22px / 28px 6px no-repeat,
+    linear-gradient(#000 0 0) 2px 22px / 28px 1px no-repeat,
+    linear-gradient(#000 0 0) 2px 27px / 28px 1px no-repeat;
+}
+.ico-network {
+  background:
+    linear-gradient(#c0c0c0 0 0) 3px 4px / 12px 10px no-repeat,
+    linear-gradient(#000 0 0) 3px 4px / 12px 1px no-repeat,
+    linear-gradient(#000 0 0) 3px 13px / 12px 1px no-repeat,
+    linear-gradient(#50a0ff 0 0) 4px 5px / 10px 8px no-repeat,
+    linear-gradient(#c0c0c0 0 0) 17px 4px / 12px 10px no-repeat,
+    linear-gradient(#000 0 0) 17px 4px / 12px 1px no-repeat,
+    linear-gradient(#000 0 0) 17px 13px / 12px 1px no-repeat,
+    linear-gradient(#50a0ff 0 0) 18px 5px / 10px 8px no-repeat,
+    linear-gradient(#000 0 0) 15px 14px / 2px 10px no-repeat,
+    linear-gradient(#c0c0c0 0 0) 10px 22px / 12px 8px no-repeat,
+    linear-gradient(#000 0 0) 10px 22px / 12px 1px no-repeat;
+}
+.ico-recycle {
+  background:
+    linear-gradient(#7fbfff 0 0) 6px 4px / 20px 5px no-repeat,
+    linear-gradient(#000 0 0) 6px 4px / 20px 1px no-repeat,
+    linear-gradient(#000 0 0) 6px 8px / 20px 1px no-repeat,
+    linear-gradient(#c0c0c0 0 0) 8px 9px / 16px 19px no-repeat,
+    linear-gradient(#000 0 0) 8px 9px / 1px 19px no-repeat,
+    linear-gradient(#000 0 0) 23px 9px / 1px 19px no-repeat,
+    linear-gradient(#000 0 0) 8px 27px / 16px 1px no-repeat,
+    linear-gradient(#0a9c34 0 0) 14px 14px / 4px 10px no-repeat,
+    linear-gradient(#0a9c34 0 0) 12px 16px / 8px 4px no-repeat;
+}
+.ico-cube {
+  background:
+    linear-gradient(#ff2222 0 0) 4px 6px / 8px 8px no-repeat,
+    linear-gradient(#ffffff 0 0) 12px 6px / 8px 8px no-repeat,
+    linear-gradient(#2bc24a 0 0) 20px 6px / 8px 8px no-repeat,
+    linear-gradient(#1a76e0 0 0) 4px 14px / 8px 8px no-repeat,
+    linear-gradient(#ff9a1f 0 0) 12px 14px / 8px 8px no-repeat,
+    linear-gradient(#fff200 0 0) 20px 14px / 8px 8px no-repeat,
+    linear-gradient(#2bc24a 0 0) 4px 22px / 8px 8px no-repeat,
+    linear-gradient(#1a76e0 0 0) 12px 22px / 8px 8px no-repeat,
+    linear-gradient(#ff2222 0 0) 20px 22px / 8px 8px no-repeat,
+    linear-gradient(#000 0 0) 4px 6px / 24px 1px no-repeat,
+    linear-gradient(#000 0 0) 4px 13px / 24px 1px no-repeat,
+    linear-gradient(#000 0 0) 4px 21px / 24px 1px no-repeat,
+    linear-gradient(#000 0 0) 4px 29px / 24px 1px no-repeat,
+    linear-gradient(#000 0 0) 4px 6px / 1px 24px no-repeat,
+    linear-gradient(#000 0 0) 11px 6px / 1px 24px no-repeat,
+    linear-gradient(#000 0 0) 19px 6px / 1px 24px no-repeat,
+    linear-gradient(#000 0 0) 27px 6px / 1px 24px no-repeat;
+}
+.ico-txt {
+  background:
+    linear-gradient(#fff 0 0) 6px 3px / 20px 26px no-repeat,
+    linear-gradient(#000 0 0) 6px 3px / 20px 1px no-repeat,
+    linear-gradient(#000 0 0) 6px 28px / 20px 1px no-repeat,
+    linear-gradient(#000 0 0) 6px 3px / 1px 26px no-repeat,
+    linear-gradient(#000 0 0) 25px 3px / 1px 26px no-repeat,
+    linear-gradient(#808080 0 0) 8px 7px / 16px 1px no-repeat,
+    linear-gradient(#808080 0 0) 8px 11px / 16px 1px no-repeat,
+    linear-gradient(#808080 0 0) 8px 15px / 14px 1px no-repeat,
+    linear-gradient(#808080 0 0) 8px 19px / 16px 1px no-repeat,
+    linear-gradient(#808080 0 0) 8px 23px / 10px 1px no-repeat;
+}
+.ico-doc {
+  background:
+    linear-gradient(#fff 0 0) 6px 3px / 20px 26px no-repeat,
+    linear-gradient(#000 0 0) 6px 3px / 20px 1px no-repeat,
+    linear-gradient(#000 0 0) 6px 28px / 20px 1px no-repeat,
+    linear-gradient(#000 0 0) 6px 3px / 1px 26px no-repeat,
+    linear-gradient(#000 0 0) 25px 3px / 1px 26px no-repeat,
+    linear-gradient(#1a76e0 0 0) 8px 6px / 5px 5px no-repeat,
+    linear-gradient(#000080 0 0) 8px 13px / 16px 1px no-repeat,
+    linear-gradient(#000080 0 0) 8px 17px / 16px 1px no-repeat,
+    linear-gradient(#000080 0 0) 8px 21px / 14px 1px no-repeat,
+    linear-gradient(#000080 0 0) 8px 25px / 10px 1px no-repeat;
+}
+.ico-hlp {
+  background:
+    linear-gradient(#ffff00 0 0) 6px 3px / 20px 26px no-repeat,
+    linear-gradient(#000 0 0) 6px 3px / 20px 1px no-repeat,
+    linear-gradient(#000 0 0) 6px 28px / 20px 1px no-repeat,
+    linear-gradient(#000 0 0) 6px 3px / 1px 26px no-repeat,
+    linear-gradient(#000 0 0) 25px 3px / 1px 26px no-repeat,
+    linear-gradient(#000 0 0) 13px 9px / 6px 2px no-repeat,
+    linear-gradient(#000 0 0) 17px 9px / 2px 6px no-repeat,
+    linear-gradient(#000 0 0) 14px 15px / 4px 2px no-repeat,
+    linear-gradient(#000 0 0) 15px 20px / 2px 2px no-repeat;
+}
+.ico-lnk {
+  background:
+    linear-gradient(#50a0ff 0 0) 4px 6px / 24px 18px no-repeat,
+    linear-gradient(#000 0 0) 4px 6px / 24px 1px no-repeat,
+    linear-gradient(#000 0 0) 4px 23px / 24px 1px no-repeat,
+    linear-gradient(#000 0 0) 4px 6px / 1px 18px no-repeat,
+    linear-gradient(#000 0 0) 27px 6px / 1px 18px no-repeat,
+    linear-gradient(#fff 0 0) 8px 10px / 16px 2px no-repeat,
+    linear-gradient(#fff 0 0) 8px 14px / 12px 2px no-repeat,
+    linear-gradient(#fff 0 0) 8px 18px / 14px 2px no-repeat;
+  position: relative;
+}
+.ico-lnk::after {
+  content: "";
+  position: absolute; left: 2px; bottom: 4px;
+  width: 10px; height: 10px;
+  background:
+    linear-gradient(#fff 0 0) 0 0 / 10px 10px no-repeat,
+    linear-gradient(#000 0 0) 0 0 / 10px 1px no-repeat,
+    linear-gradient(#000 0 0) 0 9px / 10px 1px no-repeat,
+    linear-gradient(#000 0 0) 0 0 / 1px 10px no-repeat,
+    linear-gradient(#000 0 0) 9px 0 / 1px 10px no-repeat;
+}
+.ico-lnk::before {
+  content: "\21B1";
+  position: absolute; left: -2px; bottom: 0;
+  font-size: 12px; color: #000; font-weight: 700;
+}
+
+/* -- Taskbar -- */
+.taskbar {
+  position: fixed; bottom: 0; left: 0; right: 0;
+  height: 28px;
+  background: var(--win-gray);
+  border-top: 1px solid #fff;
+  box-shadow: inset 0 1px 0 #dfdfdf, 0 -1px 0 #404040;
+  display: flex; align-items: center;
+  padding: 2px;
+  gap: 4px;
+  z-index: 9999;
+}
+.start-btn {
+  all: unset;
+  display: inline-flex; align-items: center; gap: 4px;
+  height: 22px; padding: 0 6px 0 4px;
+  background: var(--win-gray);
+  border: 1px solid;
+  border-color: #fff #404040 #404040 #fff;
+  box-shadow: inset 1px 1px 0 #dfdfdf, inset -1px -1px 0 #808080;
+  cursor: pointer;
+  font-weight: 700; font-size: 11px;
+  color: #000;
+}
+.start-btn:active,
+.start-btn.open {
+  border-color: #404040 #fff #fff #404040;
+  box-shadow: inset 1px 1px 0 #808080, inset -1px -1px 0 #dfdfdf;
+  padding: 1px 5px 0 5px;
+}
+.start-flag {
+  width: 16px; height: 16px;
+  display: grid;
+  grid-template: 1fr 1fr / 1fr 1fr;
+  gap: 1.5px;
+  transform: skewY(-8deg) rotateY(-10deg);
+}
+.start-flag .flag-q { border-radius: 1px; }
+.task-divider {
+  width: 1px; height: 22px;
+  background: linear-gradient(#808080, #808080) center/1px 100% no-repeat,
+              linear-gradient(#fff, #fff) right/1px 100% no-repeat;
+  margin: 0 2px;
+}
+.taskbar-pills {
+  display: flex; gap: 3px;
+  flex: 1;
+  overflow: hidden;
+}
+.tb-pill {
+  height: 22px; min-width: 140px; max-width: 180px;
+  display: inline-flex; align-items: center; gap: 4px;
+  padding: 0 6px;
+  background: var(--win-gray);
+  border: 1px solid;
+  border-color: #fff #404040 #404040 #fff;
+  box-shadow: inset 1px 1px 0 #dfdfdf, inset -1px -1px 0 #808080;
+  font-size: 11px;
+  overflow: hidden; white-space: nowrap; text-overflow: ellipsis;
+  cursor: pointer;
+}
+.tb-pill.active {
+  border-color: #404040 #fff #fff #404040;
+  box-shadow: inset 1px 1px 0 #808080, inset -1px -1px 0 #dfdfdf;
+  background:
+    repeating-linear-gradient(135deg,
+      rgba(0,0,0,.06) 0 2px, transparent 2px 4px),
+    var(--win-gray);
+  font-weight: 700;
+}
+.tb-pill span.pill-ico { display: inline-block; width: 14px; height: 14px; background: #50a0ff; }
+.tray {
+  display: inline-flex; align-items: center; gap: 6px;
+  height: 22px; padding: 0 8px;
+  border: 1px solid;
+  border-color: #404040 #fff #fff #404040;
+  box-shadow: inset 1px 1px 0 #808080, inset -1px -1px 0 #dfdfdf;
+  font-size: 11px;
+}
+.tray-ico { font-size: 12px; }
+.tray-clock { min-width: 58px; text-align: right; }
+
+/* -- Start menu -- */
+.startmenu {
+  position: fixed;
+  left: 2px;
+  bottom: 30px;
+  width: 220px;
+  background: var(--win-gray);
+  border: 1px solid;
+  border-color: #fff #404040 #404040 #fff;
+  box-shadow: inset 1px 1px 0 #dfdfdf, inset -1px -1px 0 #808080,
+              2px 2px 0 rgba(0,0,0,0.4);
+  display: flex;
+  z-index: 10000;
+  padding: 2px;
+}
+.startmenu.sub {
+  bottom: auto;
+  left: 222px;
+  top: auto;
+}
+.startmenu-rail {
+  width: 22px;
+  background: var(--win-gray-dk);
+  background: linear-gradient(#808080, #404040);
+  position: relative;
+  overflow: hidden;
+}
+.rail-text {
+  position: absolute;
+  bottom: 8px; left: 2px;
+  transform: rotate(-90deg);
+  transform-origin: 0 0;
+  color: #fff;
+  font-weight: 700;
+  font-size: 18px;
+  font-family: Arial, sans-serif;
+  white-space: nowrap;
+  letter-spacing: 1px;
+}
+.rail-text span {
+  color: #c0c0c0;
+  font-size: 14px;
+}
+.startmenu-items {
+  list-style: none;
+  margin: 0; padding: 2px 0;
+  flex: 1;
+}
+.startmenu-items li {
+  display: flex; align-items: center; gap: 8px;
+  padding: 5px 16px 5px 6px;
+  font-size: 12px;
+  cursor: pointer;
+  position: relative;
+}
+.startmenu-items li.sep {
+  height: 2px; padding: 0;
+  border-top: 1px solid #808080;
+  border-bottom: 1px solid #fff;
+  margin: 4px 2px;
+}
+.startmenu-items li:hover {
+  background: var(--win-hilite);
+  color: #fff;
+}
+.smi-ico {
+  display: inline-block;
+  width: 18px; text-align: center;
+  font-size: 14px;
+}
+.smi-arrow {
+  position: absolute;
+  right: 4px;
+  font-size: 10px;
+}
+
+/* ====================================================
+   WIN95 WINDOWS (draggable)
+   ==================================================== */
+.windows {
+  position: absolute;
+  inset: 0 0 28px 0;
+  pointer-events: none;
+}
+.win95 {
+  position: absolute;
+  min-width: 220px;
+  background: var(--win-gray);
+  border: 1px solid;
+  border-color: #fff #404040 #404040 #fff;
+  box-shadow: inset 1px 1px 0 #dfdfdf, inset -1px -1px 0 #808080;
+  display: flex; flex-direction: column;
+  pointer-events: auto;
+}
+.win95.minimized { display: none; }
+.win95.maximized {
+  left: 0 !important; top: 0 !important;
+  width: 100% !important; height: calc(100% - 28px) !important;
+}
+
+.win95-title {
+  display: flex; align-items: center; gap: 4px;
+  height: 20px;
+  padding: 2px 2px 2px 4px;
+  background: linear-gradient(90deg, #000080 0%, #1084d0 100%);
+  color: #fff;
+  font-weight: 700;
+  font-size: 11px;
+  cursor: grab;
+  user-select: none;
+}
+.win95.inactive .win95-title {
+  background: linear-gradient(90deg, #808080 0%, #b5b5b5 100%);
+}
+.win95-title:active { cursor: grabbing; }
+.wt-ico {
+  width: 14px; height: 14px;
+  background: #50a0ff;
+  border: 1px solid #000;
+  display: inline-block;
+}
+.wt-name { flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.wt-spacer { flex: 0; }
+.wt-btn {
+  all: unset;
+  width: 16px; height: 14px;
+  background: var(--win-gray);
+  border: 1px solid;
+  border-color: #fff #404040 #404040 #fff;
+  box-shadow: inset 1px 1px 0 #dfdfdf, inset -1px -1px 0 #808080;
+  text-align: center;
+  line-height: 10px;
+  font-size: 10px;
+  color: #000;
+  font-weight: 700;
+  cursor: pointer;
+  font-family: "Marlett", "MS Sans Serif", sans-serif;
+}
+.wt-btn:active {
+  border-color: #404040 #fff #fff #404040;
+  box-shadow: inset 1px 1px 0 #808080, inset -1px -1px 0 #dfdfdf;
+}
+.wt-close { margin-left: 2px; }
+
+.win95-menu {
+  display: flex; gap: 10px;
+  padding: 2px 6px;
+  font-size: 11px;
+  border-bottom: 1px solid #808080;
+  background: var(--win-gray);
+}
+.win95-menu span {
+  padding: 1px 4px;
+  cursor: default;
+}
+.win95-menu span:hover { background: var(--win-hilite); color: #fff; }
+
+.win95-body {
+  flex: 1;
+  padding: 10px;
+  overflow: auto;
+  background: #fff;
+  border: 1px solid;
+  border-color: #404040 #fff #fff #404040;
+  box-shadow: inset 1px 1px 0 #808080, inset -1px -1px 0 #dfdfdf;
+  margin: 2px;
+  font-size: 12px;
+  line-height: 1.45;
+}
+.win95-body.gray { background: var(--win-gray); border: none; box-shadow: none; }
+.win95-body.explorer { padding: 0; background: #fff; }
+
+.win95-status {
+  display: flex; justify-content: space-between;
+  margin: 0 2px 2px;
+  padding: 2px 6px;
+  font-size: 11px;
+  border: 1px solid;
+  border-color: #404040 #fff #fff #404040;
+  box-shadow: inset 1px 1px 0 #808080, inset -1px -1px 0 #dfdfdf;
+  background: var(--win-gray);
+  min-height: 16px;
+}
+
+/* ====================================================
+   WINDOW CONTENT STYLES
+   ==================================================== */
+.wb h1, .wb h2, .wb h3 { font-family: Tahoma, Arial, sans-serif; margin: 0 0 6px; }
+.wb h1 { font-size: 16px; font-weight: 700; }
+.wb h2 { font-size: 13px; font-weight: 700; color: #000080; margin-top: 10px; }
+.wb h3 { font-size: 12px; font-weight: 700; }
+.wb p { margin: 0 0 8px; }
+.wb ul { margin: 0 0 8px; padding-left: 18px; }
+.wb li { margin: 2px 0; }
+.wb a { color: #0000ee; }
+.wb a:visited { color: #551a8b; }
+.wb hr { border: none; border-top: 1px solid #808080; border-bottom: 1px solid #fff; margin: 8px 0; }
+.wb code {
+  font-family: "Courier New", monospace;
+  font-size: 12px;
+  background: #ffffcc; padding: 1px 3px;
+}
+
+/* README notepad look */
+.notepad-body {
+  background: #fff;
+  font-family: "Courier New", "Lucida Console", monospace;
+  font-size: 13px;
+  line-height: 1.4;
+  white-space: pre-wrap;
+  padding: 12px;
+}
+
+/* Resume wordpad */
+.resume-body {
+  background: #fff;
+  padding: 18px 20px;
+  font-family: "Times New Roman", serif;
+  font-size: 13px;
+  color: #000;
+}
+.resume-body .name { font-size: 20px; font-weight: 700; letter-spacing: 1px; }
+.resume-body .subtitle { font-style: italic; color: #444; margin-bottom: 10px; }
+.resume-body .job {
+  display: grid; grid-template-columns: 1fr auto; gap: 4px;
+  margin: 10px 0 4px;
+}
+.resume-body .job b { font-size: 14px; }
+.resume-body .job .date { color: #333; font-size: 12px; }
+.resume-body ul { padding-left: 20px; margin: 4px 0 8px; }
+
+/* Help file */
+.helpfile {
+  background: #fff;
+  padding: 10px 14px;
+  font-size: 12px;
+  color: #000;
+}
+.helpfile h1 { font-size: 14px; margin-bottom: 6px; }
+.helpfile .field {
+  display: grid; grid-template-columns: 120px 1fr; gap: 4px;
+  padding: 3px 0; border-bottom: 1px dotted #c0c0c0;
+}
+.helpfile .field b { color: #000080; }
+
+/* Explorer list */
+.explorer-toolbar {
+  display: flex; align-items: center; gap: 4px;
+  padding: 3px 4px;
+  background: var(--win-gray);
+  border-bottom: 1px solid #808080;
+  box-shadow: inset 0 1px 0 #fff;
+  font-size: 11px;
+}
+.xt-btn {
+  height: 22px; padding: 0 6px;
+  display: inline-flex; align-items: center; gap: 3px;
+  background: var(--win-gray);
+  border: 1px solid transparent;
+  cursor: pointer;
+}
+.xt-btn:hover {
+  border-color: #fff #404040 #404040 #fff;
+  box-shadow: inset 1px 1px 0 #dfdfdf, inset -1px -1px 0 #808080;
+}
+.explorer-addr {
+  display: flex; align-items: center; gap: 4px;
+  padding: 2px 4px;
+  background: var(--win-gray);
+  border-bottom: 1px solid #808080;
+  font-size: 11px;
+}
+.explorer-addr .addr-input {
+  flex: 1;
+  height: 20px; padding: 2px 4px;
+  background: #fff;
+  border: 1px solid;
+  border-color: #404040 #fff #fff #404040;
+  box-shadow: inset 1px 1px 0 #808080;
+}
+.explorer-list {
+  padding: 8px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 92px);
+  gap: 8px;
+  background: #fff;
+  min-height: 200px;
+}
+.explorer-item {
+  display: grid; justify-items: center;
+  gap: 3px;
+  padding: 4px;
+  cursor: pointer;
+  font-size: 11px;
+  text-align: center;
+  line-height: 1.1;
+}
+.explorer-item .ei-ico {
+  width: 32px; height: 32px;
+  display: grid; place-items: center;
+  font-size: 22px;
+}
+.explorer-item.selected {
+  background: var(--win-hilite);
+  color: #fff;
+}
+.explorer-item span { padding: 1px 2px; }
+
+/* Network neighborhood tree */
+.network-split { display: grid; grid-template-columns: 180px 1fr; min-height: 280px; background: #fff; }
+.network-tree {
+  border-right: 1px solid #808080;
+  padding: 6px 4px;
+  font-size: 12px;
+  background: #fff;
+}
+.network-tree ul { list-style: none; padding-left: 14px; margin: 0; }
+.network-tree > ul { padding-left: 4px; }
+.network-tree li { padding: 1px 0; cursor: pointer; position: relative; }
+.network-tree li:hover > span { background: var(--win-hilite); color: #fff; }
+.network-tree .branch { font-weight: 700; }
+.network-detail {
+  padding: 10px 12px;
+  font-size: 12px;
+}
+.network-detail h3 { margin: 0 0 6px; }
+.network-detail .card {
+  border: 1px solid #808080;
+  background: #ffffe1;
+  padding: 6px 8px;
+  font-family: Tahoma, sans-serif;
+}
+
+/* Run dialog */
+.run-dialog {
+  padding: 12px;
+  font-size: 12px;
+  display: grid;
+  grid-template-columns: 36px 1fr;
+  gap: 8px 10px;
+}
+.run-dialog .run-label { grid-column: 1 / 3; }
+.run-dialog .run-ico { font-size: 22px; align-self: start; }
+.run-dialog input {
+  width: 100%;
+  height: 22px;
+  padding: 2px 4px;
+  background: #fff;
+  border: 1px solid;
+  border-color: #404040 #fff #fff #404040;
+  box-shadow: inset 1px 1px 0 #808080;
+  font-family: Tahoma, sans-serif;
+  font-size: 12px;
+}
+.run-dialog .run-actions {
+  grid-column: 1 / 3;
+  display: flex; justify-content: flex-end; gap: 6px;
+  margin-top: 10px;
+}
+
+/* buttons in bodies */
+.w95-btn {
+  all: unset;
+  display: inline-flex; align-items: center; justify-content: center;
+  min-width: 72px;
+  height: 22px;
+  padding: 0 10px;
+  background: var(--win-gray);
+  border: 1px solid;
+  border-color: #fff #404040 #404040 #fff;
+  box-shadow: inset 1px 1px 0 #dfdfdf, inset -1px -1px 0 #808080;
+  font-size: 11px;
+  cursor: pointer;
+  text-align: center;
+}
+.w95-btn:active {
+  border-color: #404040 #fff #fff #404040;
+  box-shadow: inset 1px 1px 0 #808080, inset -1px -1px 0 #dfdfdf;
+}
+.w95-btn.default { font-weight: 700; outline: 1px dotted #000; outline-offset: -3px; }
+
+/* Cube window */
+.cube-host { background: #000; padding: 0; }
+.cube-host canvas { display: block; width: 100%; height: 100%; }
+
+/* Shutdown dialog */
+.shutdown-dialog { padding: 16px 14px; font-size: 12px; }
+.shutdown-dialog .opt {
+  display: flex; align-items: center; gap: 6px;
+  margin: 4px 0;
+}
+.shutdown-dialog .opt input { transform: scale(1.1); }
+.shutdown-actions {
+  display: flex; justify-content: center; gap: 6px;
+  margin-top: 12px;
+}
+
+/* My Computer explorer */
+.mycomp-drives { padding: 12px; display: grid; grid-template-columns: repeat(auto-fill, 100px); gap: 12px; background: #fff; }
+.drive-item { display: grid; justify-items: center; gap: 4px; cursor: pointer; font-size: 11px; text-align: center; padding: 4px; }
+.drive-item:hover { background: var(--win-hilite); color: #fff; }
+.drive-item .di-ico { font-size: 28px; }
+
+/* blue screen of humblebrag (stock unlock) */
+.su-body {
+  background: #fff; padding: 14px 18px; font-size: 13px;
+  font-family: Tahoma, sans-serif;
+}
+.su-body .stat-row {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px;
+  margin: 10px 0;
+}
+.su-body .stat {
+  border: 1px solid;
+  border-color: #404040 #fff #fff #404040;
+  padding: 6px 8px;
+  background: #f3f3f3;
+}
+.su-body .stat b { display: block; font-size: 18px; color: #000080; }
+.su-body .stat small { color: #444; font-size: 11px; }
+
+/* find tool */
+.find-body { padding: 10px 12px; font-size: 12px; }
+.find-body .tabs { display: flex; gap: 0; }
+.find-body .tab {
+  padding: 3px 10px; border: 1px solid;
+  border-color: #fff #404040 #404040 #fff;
+  background: var(--win-gray);
+  border-bottom: none;
+  font-size: 11px;
+}
+.find-body .tab.active { background: #fff; position: relative; top: 1px; }
+.find-body .pane {
+  border: 1px solid;
+  border-color: #fff #404040 #404040 #fff;
+  padding: 12px;
+  background: var(--win-gray);
+}
+.find-body label { display: block; margin: 6px 0 2px; }
+.find-body input[type="text"], .find-body select {
+  width: 240px;
+  height: 22px;
+  background: #fff;
+  border: 1px solid;
+  border-color: #404040 #fff #fff #404040;
+  box-shadow: inset 1px 1px 0 #808080;
+  padding: 2px 4px;
+  font-size: 12px;
+  font-family: Tahoma, sans-serif;
+}
+
+/* Settings (control panel) */
+.cpl-grid { padding: 12px; display: grid; grid-template-columns: repeat(auto-fill, 96px); gap: 12px; background: #fff; }
+.cpl-item { display: grid; justify-items: center; gap: 4px; cursor: pointer; font-size: 11px; text-align: center; }
+.cpl-item .cpl-ico { font-size: 28px; }
+
+/* Selection rectangle on desktop (visual only) */
+.selection-rect {
+  position: absolute;
+  border: 1px dotted #fff;
+  background: rgba(255,255,255,0.08);
+  pointer-events: none;
+}
+
+/* Small screens: let it scroll */
+@media (max-width: 700px) {
+  .bios-text { font-size: 16px; }
+  .splash-win { font-size: 58px; }
+  .splash-win .sup { font-size: 24px; }
+  .icons { grid-template-columns: 76px; gap: 6px; }
+}

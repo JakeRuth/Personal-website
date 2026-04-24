@@ -1,0 +1,633 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Jake Ruth (C:) — Windows XP</title>
+<link rel="stylesheet" href="styles.css" />
+<!-- three.js via CDN for the CubeMaster XP toy -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+</head>
+<body>
+
+<!-- ====================== BLISS WALLPAPER ====================== -->
+<div class="wallpaper" aria-hidden="true">
+  <div class="sky"></div>
+  <div class="sun"></div>
+  <div class="cloud cloud-a"></div>
+  <div class="cloud cloud-b"></div>
+  <div class="cloud cloud-c"></div>
+  <div class="hill back"></div>
+  <div class="hill mid"></div>
+  <div class="hill front"></div>
+  <div class="grass-shine"></div>
+</div>
+
+<!-- ====================== DESKTOP ICONS ====================== -->
+<ul id="desktop-icons" class="desktop-icons" role="list">
+  <li class="icon" data-open="my-computer" tabindex="0">
+    <div class="icon-img">
+      <svg viewBox="0 0 48 48" width="36" height="36" aria-hidden="true">
+        <rect x="6" y="8" width="36" height="24" rx="2" fill="#cfd7e6" stroke="#4b5a72"/>
+        <rect x="9" y="11" width="30" height="18" fill="#1e60d6"/>
+        <rect x="14" y="34" width="20" height="4" fill="#9aa7bd" stroke="#4b5a72"/>
+        <rect x="10" y="38" width="28" height="3" rx="1" fill="#cfd7e6" stroke="#4b5a72"/>
+      </svg>
+    </div>
+    <div class="icon-label">Jake Ruth (C:)</div>
+  </li>
+
+  <li class="icon" data-open="cubemaster" tabindex="0">
+    <div class="icon-img">
+      <svg viewBox="0 0 48 48" width="36" height="36" aria-hidden="true">
+        <rect x="6" y="10" width="12" height="12" fill="#c40000" stroke="#222"/>
+        <rect x="18" y="10" width="12" height="12" fill="#ffffff" stroke="#222"/>
+        <rect x="30" y="10" width="12" height="12" fill="#0051ba" stroke="#222"/>
+        <rect x="6" y="22" width="12" height="12" fill="#009b48" stroke="#222"/>
+        <rect x="18" y="22" width="12" height="12" fill="#ffd500" stroke="#222"/>
+        <rect x="30" y="22" width="12" height="12" fill="#ff5800" stroke="#222"/>
+        <rect x="6" y="34" width="12" height="6" fill="#ffffff" stroke="#222"/>
+        <rect x="18" y="34" width="12" height="6" fill="#c40000" stroke="#222"/>
+        <rect x="30" y="34" width="12" height="6" fill="#0051ba" stroke="#222"/>
+      </svg>
+    </div>
+    <div class="icon-label">CubeMaster XP.exe</div>
+  </li>
+
+  <li class="icon" data-open="search-companion" tabindex="0">
+    <div class="icon-img">
+      <div class="dog-icon">&#128021;</div>
+    </div>
+    <div class="icon-label">Search Companion</div>
+  </li>
+
+  <li class="icon" data-copy="jake@stockunlock.com" tabindex="0">
+    <div class="icon-img">
+      <svg viewBox="0 0 48 48" width="36" height="36" aria-hidden="true">
+        <rect x="4" y="12" width="40" height="26" rx="2" fill="#f6f3df" stroke="#6a604a"/>
+        <path d="M4 14 L24 30 L44 14" fill="none" stroke="#6a604a" stroke-width="2"/>
+      </svg>
+    </div>
+    <div class="icon-label">Email Jake</div>
+  </li>
+</ul>
+
+<!-- ====================== EXPLORER: JAKE RUTH (C:) ====================== -->
+<section class="xp-window explorer" id="win-my-computer" data-title="Jake Ruth (C:)">
+  <header class="titlebar" data-drag-handle>
+    <div class="tb-icon">
+      <svg viewBox="0 0 16 16" width="14" height="14"><rect x="1" y="3" width="14" height="9" fill="#cfd7e6" stroke="#4b5a72"/><rect x="2" y="4" width="12" height="7" fill="#1e60d6"/></svg>
+    </div>
+    <div class="tb-title">Jake Ruth (C:)</div>
+    <div class="tb-buttons">
+      <button class="tb-btn minimize" aria-label="Minimize" data-action="minimize"><span>_</span></button>
+      <button class="tb-btn maximize" aria-label="Maximize" data-action="maximize"><span>&#9634;</span></button>
+      <button class="tb-btn close" aria-label="Close" data-action="close"><span>&times;</span></button>
+    </div>
+  </header>
+
+  <nav class="menubar">
+    <span>File</span><span>Edit</span><span>View</span><span>Favorites</span><span>Tools</span><span>Help</span>
+  </nav>
+
+  <div class="toolbar">
+    <button class="tool-btn" title="Back" data-action="back">
+      <svg viewBox="0 0 16 16" width="14" height="14"><path d="M10 3 L4 8 L10 13 Z" fill="#1e60d6"/></svg>
+      <span>Back</span>
+    </button>
+    <button class="tool-btn" disabled title="Forward">
+      <svg viewBox="0 0 16 16" width="14" height="14"><path d="M6 3 L12 8 L6 13 Z" fill="#8aa2c9"/></svg>
+    </button>
+    <button class="tool-btn" title="Up" data-scroll="hero">
+      <svg viewBox="0 0 16 16" width="14" height="14"><path d="M8 3 L3 9 L13 9 Z" fill="#1e60d6"/></svg>
+    </button>
+    <span class="tool-divider"></span>
+    <button class="tool-btn" title="Search" data-open="search-companion">&#128269; <span>Search</span></button>
+    <span class="tool-divider"></span>
+    <div class="address">
+      <label>Address</label>
+      <div class="address-field">
+        <svg viewBox="0 0 16 16" width="14" height="14"><rect x="2" y="4" width="12" height="8" fill="#cfd7e6" stroke="#4b5a72"/></svg>
+        <span>C:\Jake\</span>
+        <span class="combo-arrow">&#9662;</span>
+      </div>
+      <button class="go-btn">&rarr; Go</button>
+    </div>
+  </div>
+
+  <div class="explorer-body">
+    <!-- Task Pane (left blue gradient) -->
+    <aside class="task-pane" aria-label="Task pane">
+      <div class="tp-section">
+        <header class="tp-header" data-toggle>
+          <span class="tp-chev">&#9662;</span>
+          <span class="tp-title">File and Folder Tasks</span>
+        </header>
+        <ul class="tp-links">
+          <li><a href="#" data-scroll="hero"><span class="tp-ico">&#128196;</span>View this resume</a></li>
+          <li><a href="#" data-copy="jake@stockunlock.com"><span class="tp-ico">&#9993;</span>E-mail Jake</a></li>
+          <li><a href="#" data-scroll="hire" class="strong"><span class="tp-ico">&#128640;</span>Hire Jake Ruth</a></li>
+          <li><a href="#" data-open="cubemaster"><span class="tp-ico">&#129482;</span>Launch CubeMaster</a></li>
+        </ul>
+      </div>
+
+      <div class="tp-section">
+        <header class="tp-header" data-toggle>
+          <span class="tp-chev">&#9662;</span>
+          <span class="tp-title">Other Places</span>
+        </header>
+        <ul class="tp-links">
+          <li><a href="#" data-scroll="about"><span class="tp-ico">&#127968;</span>About</a></li>
+          <li><a href="#" data-scroll="stock-unlock"><span class="tp-ico">&#128202;</span>Stock Unlock</a></li>
+          <li><a href="#" data-scroll="work"><span class="tp-ico">&#128193;</span>Work history</a></li>
+          <li><a href="#" data-scroll="stories"><span class="tp-ico">&#128220;</span>Stories</a></li>
+          <li><a href="#" data-scroll="ai"><span class="tp-ico">&#129302;</span>AI philosophy</a></li>
+          <li><a href="#" data-open="search-companion"><span class="tp-ico">&#128021;</span>The network</a></li>
+        </ul>
+      </div>
+
+      <div class="tp-section">
+        <header class="tp-header" data-toggle>
+          <span class="tp-chev">&#9662;</span>
+          <span class="tp-title">Details</span>
+        </header>
+        <div class="tp-details">
+          <div><b>Jake Ruth</b></div>
+          <div>Type: Engineer / Founder</div>
+          <div>Location: NYC area</div>
+          <div>Date modified: 2026-04-20</div>
+          <div>Status: <em>re-entering the workforce</em></div>
+          <div class="tp-attrs">
+            <div><b>Attributes:</b></div>
+            <div><label><input type="checkbox" checked disabled> Ships production code day one</label></div>
+            <div><label><input type="checkbox" checked disabled> Won't manage unless team's right</label></div>
+            <div><label><input type="checkbox" disabled> Will buy you coffee first</label></div>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main content scroll area -->
+    <main class="content" id="content-scroll">
+      <!-- HERO -->
+      <section class="panel hero" id="hero">
+        <div class="hero-banner">
+          <div class="hero-text">
+            <div class="eyebrow">Welcome &middot; Jake Ruth (C:)</div>
+            <h1>Jake Ruth.</h1>
+            <p class="tagline">
+              Thirteen years shipping. One chapter ending, another beginning.
+            </p>
+            <p class="subtagline">
+              Ex-Oscar. Ex-YC. Currently between chapters.
+            </p>
+            <div class="hero-cta">
+              <button class="xp-button primary" data-action="hire">Hire Jake</button>
+              <button class="xp-button" data-copy="jake@stockunlock.com">Copy e-mail</button>
+              <button class="xp-button" data-open="cubemaster">Watch the cube</button>
+            </div>
+          </div>
+          <div class="hero-chip">
+            <div class="chip-lines">
+              <div class="chip-line"><b>Founded</b> Stock Unlock (YC W22)</div>
+              <div class="chip-line"><b>Senior SWE</b> at Oscar Health</div>
+              <div class="chip-line"><b>CS + Math</b> from SUNY Albany</div>
+              <div class="chip-line"><b>Rubik's 3&times;3:</b> 13.95s average</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ABOUT -->
+      <section class="panel" id="about">
+        <h2>About &mdash; <span class="soft">System Properties</span></h2>
+        <p>
+          I built <b>Stock Unlock</b>. Scaled it to eight employees and thousands of paying customers.
+          It runs today as a profitable side business with three full-time teammates handling the day-to-day.
+          I'm not full-time there anymore. I'm redefining my next chapter.
+        </p>
+        <p>
+          Before that: senior engineer at <b>Oscar Health</b> from 2017&ndash;2021, growing alongside the team
+          from about fifty engineers to over a hundred and fifty. Associate to Mid to Senior.
+          Declined the manager track twice. First real job was <b>CommerceHub</b> in Albany, where an
+          intern-me took down production by pressing a button I shouldn't have had access to.
+        </p>
+        <p>
+          Outside of work: competed at Rubik's cube tournaments from 2008 to 2014
+          (Northeast US and Nationals, 13.95s average on 3&times;3). Rode a unicycle while solving
+          a cube at an Oscar talent show. Josh Kushner was in the audience. I'm getting married this year.
+        </p>
+      </section>
+
+      <!-- AI LINE -->
+      <section class="panel" id="ai">
+        <h2>AI philosophy &mdash; <span class="soft">ReadMe.txt</span></h2>
+        <div class="ai-line">
+          <em>Driver in the driver's seat, not driven by the car.</em>
+          AI writes more code than I do now. I read every line before it ships.
+        </div>
+        <p>
+          Opus 4.5 was the inflection point. Since then I've migrated Stock Unlock off Customer.io onto
+          self-hosted AWS SES (saved roughly $6K a year), rewritten the marketing site in Webflow with
+          AI-assisted code, and shipped a tightly-permissioned internal Discord bot on EC2 that lets
+          non-technical teammates query logs, errors, code and user data in plain English.
+        </p>
+        <p class="fineprint">
+          Human-reviewed for business logic, security, and system architecture. AI-only is acceptable for
+          static front-end visualization. There's a real distinction between vibe coding and software engineering.
+        </p>
+      </section>
+
+      <!-- HIRE -->
+      <section class="panel" id="hire">
+        <h2>Hire &mdash; <span class="soft">Choose your edition</span></h2>
+        <div class="pricing">
+          <div class="tier pro featured">
+            <div class="tier-ribbon">The main thing</div>
+            <div class="tier-head">Full-Time</div>
+            <div class="tier-price">Market rate + equity</div>
+            <ul>
+              <li>Senior IC, founding engineer, or early-stage CTO</li>
+              <li>NYC / remote / hybrid</li>
+              <li>Not looking to manage unless the team is right</li>
+              <li>Ships production code on day one</li>
+            </ul>
+            <button class="xp-button primary" data-action="hire">Talk to Jake</button>
+          </div>
+
+          <div class="tier home">
+            <div class="tier-head">Equity Founding</div>
+            <div class="tier-price">Let's talk</div>
+            <ul>
+              <li>Co-founder track, real equity</li>
+              <li>Seed or earlier</li>
+              <li>Has to be a problem I care about</li>
+              <li>I've done it once profitably already</li>
+            </ul>
+            <button class="xp-button" data-copy="jake@stockunlock.com">Email Jake</button>
+          </div>
+
+          <div class="tier srv">
+            <div class="tier-head">Contract</div>
+            <div class="tier-price">Contact</div>
+            <ul>
+              <li>Defined deliverable, defined timeline</li>
+              <li>Selective on scope</li>
+              <li>Not a resume gap filler</li>
+              <li>Greenfield and refactor both welcome</li>
+            </ul>
+            <button class="xp-button" data-copy="jake@stockunlock.com">Inquire</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- STOCK UNLOCK -->
+      <section class="panel" id="stock-unlock">
+        <h2>Stock Unlock &mdash; <span class="soft">Program Files \ Founded</span></h2>
+        <div class="two-col">
+          <div class="col">
+            <p>
+              Built Stock Unlock. Eight employees at peak. Thousands of paying customers. Profitable.
+              It still runs &mdash; three full-time teammates handle the day-to-day. I'm key decisions only.
+              YC Winter 2022. Raised $1.335M (a $500K YC SAFE plus $835K from other investors). I was CEO;
+              I led the YC interview.
+            </p>
+            <p>
+              The origin: Daniel Pronk spent five to ten hours every weekend on Excel sheets for his
+              investing YouTube content. I wrote a Python automation in a weekend and emailed him the tool
+              for free. He ignored me. I kept emailing. He replied eventually to make me stop. Instead of
+              going away, I hopped on a video call, cracked a beer, and we started a company. YC reached out
+              cold via LinkedIn before we'd even applied.
+            </p>
+            <p>
+              <b>Core conviction:</b> overcharging for bad software is theft from people who can't afford to
+              be robbed. That's what Stock Unlock was built against.
+            </p>
+          </div>
+          <div class="col">
+            <div class="inset-panel">
+              <div class="inset-title">&#128202; Build log</div>
+              <div class="kv"><span>YC Batch</span><b>Winter 2022</b></div>
+              <div class="kv"><span>Seed total</span><b>$1.335M</b></div>
+              <div class="kv"><span>Seed breakdown</span><b>$500K YC + $835K</b></div>
+              <div class="kv"><span>Peak team</span><b>8</b></div>
+              <div class="kv"><span>Customers</span><b>Thousands</b></div>
+              <div class="kv"><span>P&amp;L</span><b class="ok">Profitable</b></div>
+              <div class="kv"><span>Today</span><b>Runs itself</b></div>
+              <div class="kv"><span>My role</span><b>Key decisions only</b></div>
+            </div>
+            <div class="quote-block">
+              &ldquo;I ignored his emails for weeks. That was the mistake.&rdquo;
+              <span class="quote-attr">&mdash; Daniel Pronk, co-founder</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- WORK HISTORY -->
+      <section class="panel" id="work">
+        <h2>Work history &mdash; <span class="soft">My Documents</span></h2>
+        <ul class="work-list" role="list">
+          <li class="work-row">
+            <div class="work-head">
+              <b>Stock Unlock</b>
+              <span class="work-dates">2021 &mdash; present (not full-time since late 2024)</span>
+            </div>
+            <div class="work-role">Co-founder, former CEO. Led the YC interview. Built the company, scaled it to eight employees and thousands of paying customers, then stepped back to key-decisions-only when it hit a stable profitable state.</div>
+          </li>
+          <li class="work-row">
+            <div class="work-head">
+              <b>Oscar Health</b>
+              <span class="work-dates">March 2017 &mdash; 2021</span>
+            </div>
+            <div class="work-role">Senior Software Engineer. Associate to Mid to Senior. Joined at ~50 engineers under Alan Warren (who scaled Google Docs from 2-3 to thousands), left at ~150+. Python, Golang, React. Built an internal ops site for hundreds of Arizona care-ops teammates. Pushed back publicly on post-IPO benefit cuts. Declined the manager track.</div>
+          </li>
+          <li class="work-row">
+            <div class="work-head">
+              <b>Youni</b>
+              <span class="work-dates">2015 &mdash; 2016</span>
+            </div>
+            <div class="work-role">Co-founder, CTO. College-focused social iOS app on React Native v0.13. Thousands of signups across two campuses. Couldn't solve cold-start. Shut down inside six months. Learning expensive, tuition cheap.</div>
+          </li>
+          <li class="work-row">
+            <div class="work-head">
+              <b>CommerceHub</b>
+              <span class="work-dates">November 2013 &mdash; July 2016</span>
+            </div>
+            <div class="work-role">Intern, then Associate Software Engineer. Part-time through senior year of college, full-time after. Groovy/Grails, early React, Java. Agile team of ten. Interview-squad participant. First real code-review culture.</div>
+          </li>
+          <li class="work-row">
+            <div class="work-head">
+              <b>SUNY Albany</b>
+              <span class="work-dates">2011 &mdash; 2015</span>
+            </div>
+            <div class="work-role">BS Computer Science + Applied Mathematics. 3.88 GPA. Dean's List every semester. ACM president &mdash; took over a failing club, recruited twenty-plus members, organized the Tekkapalooza field trip where I handed my resume to CommerceHub.</div>
+          </li>
+        </ul>
+      </section>
+
+      <!-- STORIES -->
+      <section class="panel" id="stories">
+        <h2>Stories &mdash; <span class="soft">Shared Documents</span></h2>
+
+        <div class="story">
+          <div class="story-head"><b>The AP CS switch</b> <span class="story-date">Senior year of high school, 2010</span></div>
+          <p>
+            I needed a math credit senior year. I refused to take AP Calculus.
+            Ms. Nalbandian mentioned she also taught AP Computer Science. I asked if it counted
+            as a math credit. She said yes. I took it purely to dodge Calc.
+            Fell in love with code in the first week. That sideways pivot became my career.
+          </p>
+        </div>
+
+        <div class="story">
+          <div class="story-head"><b>The production takedown</b> <span class="story-date">CommerceHub, intern era</span></div>
+          <p>
+            I took down production once with a single button press.
+            Walked into the meeting nervous and apologized before anyone spoke.
+            My manager stood up and said &ldquo;that wasn't your fault &mdash; you shouldn't have had
+            access to that button.&rdquo; The system was the problem, not the intern.
+            That's the code-review culture I've been trying to rebuild ever since.
+          </p>
+        </div>
+
+        <div class="story">
+          <div class="story-head"><b>The Pronk emails</b> <span class="story-date">2020&ndash;2021</span></div>
+          <p>
+            Daniel Pronk was spending whole weekends on Excel sheets for his investing YouTube channel.
+            I wrote a Python script in a weekend, emailed it to him free, and kept emailing.
+            He ignored me for about six weeks. He eventually replied to make me stop.
+            I didn't stop &mdash; I hopped on a video call with a beer. That's how
+            Stock Unlock got its co-founder.
+          </p>
+        </div>
+
+        <div class="story">
+          <div class="story-head"><b>The unicycle cube</b> <span class="story-date">Oscar talent show</span></div>
+          <p>
+            I rode a unicycle while solving a Rubik's cube.
+            Josh Kushner was in the audience. That's it. That's the whole story.
+            Everything else that day was forgettable.
+          </p>
+        </div>
+
+        <div class="story">
+          <div class="story-head"><b>The Customer.io hack-off</b> <span class="story-date">2026</span></div>
+          <p>
+            Migrated Stock Unlock off Customer.io onto self-hosted AWS SES with custom admin panels.
+            Built most of it with Claude Code, reviewed every line.
+            One person. One weekend of focused work. Roughly $6K a year saved.
+            This is what the AI-era capability stack actually looks like when you know what you're doing.
+          </p>
+        </div>
+      </section>
+
+      <!-- CUBE REFERENCE -->
+      <section class="panel narrow" id="cube">
+        <h2>CubeMaster XP &mdash; <span class="soft">A real solver, not a replay</span></h2>
+        <p>
+          Open <b>CubeMaster XP.exe</b> from the desktop. Scramble the cube, then hit Solve.
+          The solver runs bidirectional breadth-first search on the actual cube state &mdash;
+          it handles any reachable position, not just ones we scrambled into. The timer shows how long
+          from scramble start to solved.
+        </p>
+        <p class="fineprint">
+          Personal best 3&times;3 average: <b>13.95 seconds</b>. Competed 2008&ndash;2014 at Northeast US and
+          Nationals. Once solved one on a unicycle at an Oscar talent show. Josh Kushner was in the audience.
+        </p>
+        <button class="xp-button" data-open="cubemaster">Launch CubeMaster XP</button>
+      </section>
+
+      <!-- CONTACT -->
+      <section class="panel" id="contact">
+        <h2>Contact &mdash; <span class="soft">Send To</span></h2>
+        <div class="contact-card">
+          <div class="contact-line"><span>E-mail</span><a href="mailto:jake@stockunlock.com">jake@stockunlock.com</a></div>
+          <div class="contact-line"><span>GitHub</span><a href="https://github.com/JakeRuth" target="_blank" rel="noopener">github.com/JakeRuth</a></div>
+          <div class="contact-line"><span>Location</span><b>NYC area</b></div>
+          <div class="contact-line"><span>Reply time</span><b>Fast during business hours ET</b></div>
+          <div class="contact-line"><span>Prefers</span><b>E-mail over DMs</b></div>
+          <div class="contact-line"><span>Not interested in</span><b>Recruiter spam, 9-stage loops, &ldquo;ninja rockstar&rdquo;</b></div>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <footer class="statusbar">
+    <span id="status-left">Ready</span>
+    <span class="sb-sep"></span>
+    <span id="status-count">8 object(s)</span>
+    <span class="sb-sep-line"></span>
+    <span id="status-right">My Computer</span>
+  </footer>
+</section>
+
+<!-- ====================== CUBEMASTER XP WINDOW ====================== -->
+<section class="xp-window cube-window hidden" id="win-cubemaster" data-title="CubeMaster XP.exe">
+  <header class="titlebar" data-drag-handle>
+    <div class="tb-icon">&#129482;</div>
+    <div class="tb-title">CubeMaster XP.exe</div>
+    <div class="tb-buttons">
+      <button class="tb-btn minimize" data-action="minimize"><span>_</span></button>
+      <button class="tb-btn maximize" data-action="maximize"><span>&#9634;</span></button>
+      <button class="tb-btn close" data-action="close"><span>&times;</span></button>
+    </div>
+  </header>
+  <div class="cube-body">
+    <div class="cube-stage" id="cube-stage">
+      <div class="cube-hud">
+        <div class="cube-timer" id="cube-timer">0.00</div>
+        <div class="cube-pb">PB avg &middot; 13.95</div>
+      </div>
+    </div>
+    <div class="cube-panel">
+      <div class="cube-row"><span>State</span><b id="cube-state">Solved</b></div>
+      <div class="cube-row"><span>Queued</span><b id="cube-moves">0</b></div>
+      <div class="cube-row"><span>Last solve</span><b id="cube-last">&mdash;</b></div>
+      <div class="cube-row"><span>PB avg</span><b>13.95s</b></div>
+      <div class="cube-actions">
+        <button class="xp-button" id="cube-scramble">Scramble</button>
+        <button class="xp-button primary" id="cube-solve">Solve</button>
+      </div>
+      <div class="cube-actions">
+        <button class="xp-button" id="cube-reset">Reset</button>
+      </div>
+      <div class="cube-help">
+        Bidirectional BFS on the cube state. Solves from any position, not by undoing a recorded scramble.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====================== SEARCH COMPANION ====================== -->
+<section class="xp-window search-window hidden" id="win-search-companion" data-title="Search Companion">
+  <header class="titlebar" data-drag-handle>
+    <div class="tb-icon">&#128269;</div>
+    <div class="tb-title">Search Companion</div>
+    <div class="tb-buttons">
+      <button class="tb-btn close" data-action="close"><span>&times;</span></button>
+    </div>
+  </header>
+  <div class="search-body">
+    <div class="search-dog">
+      <div class="dog" id="dog">&#128021;</div>
+      <div class="dog-bubble" id="dog-bubble">
+        What can I help you find? Click any node on Jake's network below for a fact.
+      </div>
+    </div>
+    <div class="graph-wrap">
+      <div class="graph-title">Jake's network</div>
+      <svg id="graph" viewBox="0 0 420 340" role="img" aria-label="Network graph of Jake's network">
+        <!-- populated by JS -->
+      </svg>
+      <div class="graph-legend">
+        <span><i class="dot dot-self"></i> Jake</span>
+        <span><i class="dot dot-co"></i> Company</span>
+        <span><i class="dot dot-skill"></i> Skill</span>
+        <span><i class="dot dot-fun"></i> Life</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====================== TASKBAR ====================== -->
+<footer class="taskbar" role="toolbar" aria-label="Taskbar">
+  <button class="start-btn" id="start-btn" aria-haspopup="true" aria-expanded="false">
+    <span class="start-flag">
+      <span class="f f1"></span><span class="f f2"></span>
+      <span class="f f3"></span><span class="f f4"></span>
+    </span>
+    <span class="start-text">start</span>
+  </button>
+
+  <div class="quick-launch">
+    <button class="ql" data-open="my-computer" title="Jake Ruth (C:)">&#128421;&#65039;</button>
+    <button class="ql" data-open="cubemaster" title="CubeMaster XP">&#129482;</button>
+    <button class="ql" data-open="search-companion" title="Search">&#128269;</button>
+  </div>
+
+  <div class="task-strip" id="task-strip" aria-label="Open windows">
+    <!-- populated by JS -->
+  </div>
+
+  <div class="tray">
+    <span class="tray-icon" title="Network">&#128246;</span>
+    <span class="tray-icon" title="Messenger">&#128172;</span>
+    <span class="clock" id="clock">--:-- --</span>
+  </div>
+</footer>
+
+<!-- ====================== START MENU ====================== -->
+<div class="start-menu hidden" id="start-menu" role="menu">
+  <header class="sm-head">
+    <div class="sm-avatar">
+      <div class="avatar-circle">JR</div>
+    </div>
+    <div class="sm-user">Jake Ruth</div>
+  </header>
+
+  <div class="sm-body">
+    <div class="sm-col sm-left">
+      <div class="sm-pinned">
+        <button class="sm-item" data-open="my-computer">
+          <span class="sm-ico">&#128421;&#65039;</span>
+          <span class="sm-text">
+            <b>Jake Ruth (C:)</b>
+            <em>Explorer</em>
+          </span>
+        </button>
+        <button class="sm-item" data-copy="jake@stockunlock.com">
+          <span class="sm-ico">&#9993;</span>
+          <span class="sm-text">
+            <b>E-mail</b>
+            <em>jake@stockunlock.com</em>
+          </span>
+        </button>
+      </div>
+      <div class="sm-divider"><span>Navigate</span></div>
+      <div class="sm-progs">
+        <button class="sm-item" data-scroll="about"><span class="sm-ico">&#128100;</span><span class="sm-text"><b>About</b></span></button>
+        <button class="sm-item" data-scroll="ai"><span class="sm-ico">&#129302;</span><span class="sm-text"><b>AI philosophy</b></span></button>
+        <button class="sm-item" data-scroll="hire"><span class="sm-ico">&#128640;</span><span class="sm-text"><b>Hire</b></span></button>
+        <button class="sm-item" data-scroll="stock-unlock"><span class="sm-ico">&#128202;</span><span class="sm-text"><b>Stock Unlock</b></span></button>
+        <button class="sm-item" data-scroll="work"><span class="sm-ico">&#128193;</span><span class="sm-text"><b>Work history</b></span></button>
+        <button class="sm-item" data-scroll="stories"><span class="sm-ico">&#128220;</span><span class="sm-text"><b>Stories</b></span></button>
+        <button class="sm-item" data-scroll="contact"><span class="sm-ico">&#128222;</span><span class="sm-text"><b>Contact</b></span></button>
+      </div>
+    </div>
+
+    <div class="sm-col sm-right">
+      <button class="sm-item" data-open="cubemaster">
+        <span class="sm-ico">&#129482;</span>
+        <span class="sm-text"><b>CubeMaster XP</b><em>Real solver, three.js</em></span>
+      </button>
+      <button class="sm-item" data-open="search-companion">
+        <span class="sm-ico">&#128269;</span>
+        <span class="sm-text"><b>Search Companion</b><em>Network graph + dog</em></span>
+      </button>
+      <div class="sm-divider thin"></div>
+      <a class="sm-item" href="https://github.com/JakeRuth" target="_blank" rel="noopener">
+        <span class="sm-ico">&#128025;</span>
+        <span class="sm-text"><b>GitHub</b><em>github.com/JakeRuth</em></span>
+      </a>
+      <a class="sm-item" href="mailto:jake@stockunlock.com">
+        <span class="sm-ico">&#9993;</span>
+        <span class="sm-text"><b>Send mail</b><em>Fast during ET hours</em></span>
+      </a>
+    </div>
+  </div>
+
+  <footer class="sm-foot">
+    <button class="sm-power"><span>&#128274;</span> Log Off</button>
+    <button class="sm-power"><span>&#9211;</span> Turn Off</button>
+  </footer>
+</div>
+
+<!-- ====================== TOAST ====================== -->
+<div class="xp-toast" id="xp-toast" role="status" aria-live="polite"></div>
+
+<script src="cube-solver.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

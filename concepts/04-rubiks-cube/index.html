@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Jake Ruth — Cube</title>
+<style>
+  :root {
+    --bg: #0a0a0f;
+    --ink: #f2f0ea;
+    --muted: #8a8a93;
+    --accent: #f6c94a;
+
+    /* Desaturated classic cube palette */
+    --cube-white:  #e8e4d8;
+    --cube-yellow: #d9b64a;
+    --cube-red:    #b94a3c;
+    --cube-orange: #c87a3a;
+    --cube-blue:   #3a6aa8;
+    --cube-green:  #3e8a5c;
+  }
+
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow: hidden;
+    background: radial-gradient(ellipse at center, #121220 0%, #06060a 80%);
+    color: var(--ink);
+    font-family: "Inter", -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  canvas { display: block; cursor: grab; }
+  canvas:active { cursor: grabbing; }
+
+  #stars {
+    position: fixed; inset: 0; pointer-events: none; z-index: 0;
+    background-image:
+      radial-gradient(1px 1px at 20% 30%, #ffffff22, transparent),
+      radial-gradient(1px 1px at 70% 80%, #ffffff15, transparent),
+      radial-gradient(1px 1px at 40% 60%, #ffffff18, transparent),
+      radial-gradient(1px 1px at 90% 20%, #ffffff10, transparent);
+  }
+
+  #root { position: fixed; inset: 0; z-index: 1; }
+
+  /* HUD */
+  .hud {
+    position: fixed;
+    z-index: 10;
+    color: var(--muted);
+    font-size: 12px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    pointer-events: none;
+  }
+  .hud-tl { top: 20px; left: 24px; }
+  .hud-tl b {
+    display: block;
+    color: var(--ink);
+    font-size: 14px;
+    letter-spacing: 0.18em;
+  }
+  .hud-tr {
+    top: 20px; right: 24px; text-align: right;
+    pointer-events: auto;
+  }
+  .hud-bl { bottom: 20px; left: 24px; }
+  .hud-br { bottom: 20px; right: 24px; text-align: right; }
+
+  .btn {
+    background: transparent;
+    color: var(--ink);
+    border: 1px solid #2a2a35;
+    padding: 8px 14px;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    cursor: pointer;
+    font-family: inherit;
+    transition: all 0.18s ease;
+    margin-left: 8px;
+  }
+  .btn:hover { border-color: var(--accent); color: var(--accent); }
+  .btn.primary { border-color: var(--accent); color: var(--accent); }
+  .btn.primary:hover { background: var(--accent); color: #0a0a0f; }
+
+  /* Overlay panel */
+  .overlay {
+    position: fixed; inset: 0;
+    z-index: 50;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 20px;
+    background: rgba(5, 5, 10, 0.72);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+  }
+  .overlay.open { display: flex; animation: fadein 0.3s ease; }
+
+  @keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+  }
+
+  .panel {
+    position: relative;
+    max-width: 640px;
+    width: 100%;
+    max-height: 82vh;
+    overflow-y: auto;
+    background: linear-gradient(180deg, #14141c 0%, #0d0d14 100%);
+    border: 1px solid #25252f;
+    border-top: 3px solid var(--accent);
+    padding: 38px 40px 34px;
+    color: var(--ink);
+    animation: slidein 0.4s cubic-bezier(.22,.8,.2,1);
+  }
+  @keyframes slidein {
+    from { opacity: 0; transform: translateY(18px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .panel::-webkit-scrollbar { width: 6px; }
+  .panel::-webkit-scrollbar-thumb { background: #2a2a35; }
+
+  .panel .close {
+    position: absolute;
+    top: 12px; right: 14px;
+    background: none; border: none;
+    color: var(--muted);
+    font-size: 22px;
+    cursor: pointer;
+    line-height: 1;
+    padding: 6px 10px;
+  }
+  .panel .close:hover { color: var(--accent); }
+
+  .panel .eyebrow {
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  .panel h2 {
+    font-size: 32px;
+    margin: 0 0 18px;
+    letter-spacing: -0.01em;
+    font-weight: 700;
+  }
+  .panel p { line-height: 1.65; color: #d2d0c7; margin: 0 0 12px; }
+  .panel a { color: var(--accent); text-decoration: none; border-bottom: 1px solid transparent; }
+  .panel a:hover { border-bottom-color: var(--accent); }
+
+  .timeline { list-style: none; padding: 0; margin: 10px 0 0; }
+  .timeline li {
+    padding: 10px 0 10px 18px;
+    border-left: 2px solid #25252f;
+    margin-left: 6px;
+    position: relative;
+  }
+  .timeline li::before {
+    content: "";
+    position: absolute;
+    left: -6px; top: 16px;
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    background: var(--accent);
+  }
+  .timeline .year { color: var(--accent); font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase; }
+  .timeline .role { font-weight: 600; margin-top: 2px; }
+  .timeline .note { color: var(--muted); font-size: 13px; margin-top: 2px; }
+
+  .projects { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 8px; }
+  .project {
+    background: #10101a;
+    border: 1px solid #222230;
+    padding: 14px 16px;
+  }
+  .project h4 { margin: 0 0 6px; font-size: 14px; }
+  .project p { font-size: 13px; color: var(--muted); margin: 0; }
+
+  .tag {
+    display: inline-block;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    padding: 3px 8px;
+    border: 1px solid #2a2a35;
+    color: var(--muted);
+    margin-right: 6px; margin-bottom: 6px;
+  }
+
+  .pb-note {
+    position: fixed;
+    bottom: 70px; left: 50%;
+    transform: translateX(-50%) translateY(20px);
+    background: #0d0d14;
+    border: 1px solid var(--accent);
+    color: var(--accent);
+    padding: 14px 22px;
+    font-size: 13px;
+    letter-spacing: 0.1em;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.4s ease, transform 0.4s ease;
+    z-index: 20;
+  }
+  .pb-note.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+  .easter {
+    position: fixed;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 13px;
+    color: var(--accent);
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    pointer-events: none;
+    opacity: 0;
+    z-index: 30;
+    transition: opacity 0.3s ease;
+  }
+  .easter.show { opacity: 1; }
+
+  @media (max-width: 600px) {
+    .projects { grid-template-columns: 1fr; }
+    .panel { padding: 30px 22px 26px; }
+    .panel h2 { font-size: 26px; }
+    .hud-bl, .hud-br { font-size: 10px; }
+  }
+</style>
+</head>
+<body>
+  <div id="stars"></div>
+  <div id="root"></div>
+
+  <div class="hud hud-tl">
+    <b>JAKE RUTH</b>
+    <span>engineer / founder / cuber</span>
+  </div>
+
+  <div class="hud hud-tr">
+    <button class="btn primary" id="solve-btn">Solve</button>
+    <button class="btn" id="scramble-btn">Scramble</button>
+  </div>
+
+  <div class="hud hud-bl">
+    drag to rotate &nbsp;&middot;&nbsp; click face to open
+  </div>
+
+  <div class="hud hud-br">
+    try typing R U R' U'
+  </div>
+
+  <div class="pb-note" id="pb-note">13.95s average &middot; personal best</div>
+  <div class="easter" id="easter">// sune //</div>
+
+  <!-- Overlay templates -->
+  <div class="overlay" id="overlay">
+    <div class="panel" id="panel">
+      <button class="close" id="close-btn" aria-label="close">&times;</button>
+      <div id="panel-content"></div>
+    </div>
+  </div>
+
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://unpkg.com/three@0.160.0/build/three.module.js"
+    }
+  }
+  </script>
+  <script type="module" src="./cube.js"></script>
+</body>
+</html>

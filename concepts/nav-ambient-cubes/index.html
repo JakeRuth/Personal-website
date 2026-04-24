@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>nav-ambient-cubes — demo</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <!--
+    nav-ambient-cubes — staging page
+
+    Three tiny Three.js Rubik's cubes sit in the bottom-right corner
+    as the inter-experience nav. One cube per alpha experience:
+
+      xp      → xp-luna-v3       (the OS)
+      readme  → readme-git-fusion-v2 (the README)
+      saas    → saas-v5          (the SaaS)
+
+    The current experience's cube is largest; the other two are
+    smaller. Hover shows a tooltip; click fires the transition-cube
+    full-screen animation before navigating.
+
+    This page is filler content so you can see the nav against
+    something real, and so you can confirm the nav stays put while
+    scrolling.
+  -->
+
+  <div class="scroll-stripes" aria-hidden="true"></div>
+
+  <main class="wrap">
+
+    <div class="topbar">
+      <div><b>jakeruth.com</b> / staging / <span>readme mode</span></div>
+      <div>build 20260420 · alpha</div>
+    </div>
+
+    <div class="eyebrow">Currently</div>
+    <h1>Re-entering the workforce. <span class="accent">Shopping for what's next.</span></h1>
+    <p class="lead">
+      Thirteen years shipping. One chapter ending, another beginning.
+      NYC area. Open to full-time roles, contract work, or equity-founding
+      conversations. Email <a href="mailto:jake@stockunlock.com">jake@stockunlock.com</a>.
+    </p>
+    <p class="sub">
+      This page is a staging harness for the <code>nav-ambient-cubes</code>
+      pattern. The tiny cubes in the bottom-right corner are the nav.
+      Everything else below is filler so the nav has something to sit
+      against.
+    </p>
+
+    <!-- ====================== SECTION 1 ====================== -->
+
+    <h2>Stock Unlock <small>built it · scaled it · profitable</small></h2>
+    <p>
+      Built Stock Unlock. Scaled it to 8 employees and thousands of paying
+      customers. It runs today as a profitable side business. I'm not
+      full-time there anymore. I'm redefining my next chapter.
+    </p>
+
+    <div class="meta-grid">
+      <div><b>Role</b>Co-founder, former CEO</div>
+      <div><b>YC batch</b>Winter 2022</div>
+      <div><b>Seed raised</b>$1.335M ($500K YC SAFE + $835K)</div>
+      <div><b>Peak team</b>8 employees</div>
+      <div><b>Customers</b>thousands paying</div>
+      <div><b>Status</b>profitable side business</div>
+    </div>
+
+    <p class="pull">
+      &ldquo;I ignored his emails for weeks. That was the mistake.&rdquo;
+      <br><small style="color:var(--ink-2)">— Daniel Pronk, co-founder</small>
+    </p>
+
+    <!-- ====================== SECTION 2 ====================== -->
+
+    <h2>Timeline <small>13 years, roughly</small></h2>
+    <ul class="plain">
+      <li><span class="year">2010-11</span> <span class="lbl">AP Computer Science</span> — took it specifically to dodge AP Calc. Fell in love with code in the first week.</li>
+      <li><span class="year">2013-16</span> <span class="lbl">CommerceHub</span> — intern then FTE. Learned real engineering: code reviews, micro-services, test discipline.</li>
+      <li><span class="year">2015-16</span> <span class="lbl">Youni</span> — co-founder/CTO. College social app on React Native v0.13. Shut down.</li>
+      <li><span class="year">2017-21</span> <span class="lbl">Oscar Health</span> — senior IC. Joined at ~50 engineers, left at ~150+. Declined manager track.</li>
+      <li><span class="year">2021-24</span> <span class="lbl">Stock Unlock</span> — co-founded, raised seed, scaled to 8 + thousands of customers.</li>
+      <li><span class="year">2024-12</span> <span class="lbl">Maintenance mode</span> — stepped back. Three full-timers run day-to-day.</li>
+      <li><span class="year">2026-04</span> <span class="lbl">This page</span> — redefining the next chapter.</li>
+    </ul>
+
+    <!-- ====================== SECTION 3 ====================== -->
+
+    <h2>What I'm good at <small>without the buzzwords</small></h2>
+
+    <div class="card">
+      <h3>The senior IC who also raised a seed round</h3>
+      <p>
+        I've been the engineer who knows the codebase cold AND the CEO who
+        led the YC interview. Those two rarely live in the same person.
+        If you're hiring an early-stage technical founder, or a founding
+        engineer who'll become one, I'm wired for both.
+      </p>
+    </div>
+
+    <div class="card">
+      <h3>AI-era engineering, not vibe coding</h3>
+      <p>
+        Driver in the driver's seat, not driven by the car. AI writes more
+        code than I do; I read every line before it ships. Migrated SU off
+        Customer.io to self-hosted AWS SES in a weekend — saved $5-6K/yr.
+        Built a tightly-permissioned internal Discord bot so non-technical
+        teammates can query logs and user data in natural language.
+      </p>
+    </div>
+
+    <div class="card">
+      <h3>Production-day-one</h3>
+      <p>
+        No onboarding curve. First real PR within the first week at every
+        job I've ever had. I'd rather learn the codebase by breaking things
+        carefully than by reading docs for a month.
+      </p>
+    </div>
+
+    <!-- ====================== SECTION 4 ====================== -->
+
+    <h2>Anecdotes <small>three of many</small></h2>
+
+    <div class="card">
+      <h3>The production takedown</h3>
+      <p>
+        As a CommerceHub intern I took down production with one button.
+        Walked into the meeting and apologized before anyone spoke. My
+        manager stood up: &ldquo;That wasn't your fault — you shouldn't have
+        had access to that button.&rdquo; The system was the problem, not
+        the intern.
+      </p>
+    </div>
+
+    <div class="card">
+      <h3>The Pronk emails</h3>
+      <p>
+        Wrote a Python script in a weekend that automated Daniel's
+        spreadsheet work. Emailed him free. Got ignored. Kept emailing. He
+        answered eventually to make me stop. I didn't stop — I cracked a
+        beer on a video call and we started Stock Unlock.
+      </p>
+    </div>
+
+    <div class="card">
+      <h3>The unicycle cube</h3>
+      <p>
+        Rode a unicycle at an Oscar Health talent show while solving a
+        3x3. Josh Kushner was in the audience. 3x3 average: 13.95 seconds.
+        Competed 2008 to 2014 at Northeast US and Nationals.
+      </p>
+    </div>
+
+    <!-- ====================== SECTION 5 ====================== -->
+
+    <h2>Talk to me <small>email works</small></h2>
+    <p>
+      Full-time, equity-founding, or a defined contract engagement — any
+      of the three. No rockstars, no ninjas, no synergy. Just the actual
+      conversation.
+    </p>
+    <p>
+      <a href="mailto:jake@stockunlock.com">jake@stockunlock.com</a> ·
+      <a href="https://github.com/JakeRuth">github.com/JakeRuth</a>
+    </p>
+
+    <div class="footline">
+      jakeruth.com · 2026 · keep scrolling to confirm the cubes stay put
+    </div>
+
+    <!-- Extra scroll space so you can feel the fixed nav ride through a real page. -->
+    <div style="height:60vh"></div>
+    <h2>Scroll check <small>nav should still be bottom-right</small></h2>
+    <p class="sub">Everything in this document is placeholder for the purposes of pattern review. Content is wired to <code>_shared/content.json</code> semantically but rendered here inline.</p>
+    <div style="height:45vh"></div>
+
+  </main>
+
+  <!-- Instructional overlay (staging only — real experiences would not render this). -->
+  <aside class="instruction" id="instruction">
+    <button class="instruction-close" id="instruction-close" aria-label="Dismiss">&times;</button>
+    <strong>These tiny cubes are the nav.</strong>
+    Hover them. Click one to see the transition.
+    <div class="dim">bottom-right · hover · click</div>
+  </aside>
+
+  <!--
+    Scripts:
+      1. three.js (CDN)
+      2. transition-cube + solver — pre-loaded so the first click has
+         no network latency. (The nav will lazy-load them otherwise.)
+      3. ambient-cubes-nav.js — the component.
+      4. inline mount — one line of config per page.
+  -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="../transition-cube/cube-solver.js"></script>
+  <script src="../transition-cube/transition-cube.js"></script>
+  <script src="ambient-cubes-nav.js"></script>
+  <script>
+    // Mount the nav with "readme" active to match the staging content
+    // on this page (it reads like a README). Swap 'readme' to 'xp' or
+    // 'saas' to see the emphasis move.
+    AmbientCubesNav.mount({
+      current: "readme",
+      corner: "bottom-right",
+      // Staging URLs — real concepts under /concepts/.
+      destinations: {
+        xp:     "../xp-luna-v3/",
+        readme: "../readme-git-fusion-v2/",
+        saas:   "../saas-v5/",
+      },
+    });
+
+    // Dismiss the instructional overlay.
+    const inst = document.getElementById("instruction");
+    const close = document.getElementById("instruction-close");
+    close.addEventListener("click", () => { inst.style.display = "none"; });
+  </script>
+</body>
+</html>

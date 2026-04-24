@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Jake Bot — ask me anything about Jake Ruth</title>
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <div class="app">
+    <header class="topbar">
+      <div class="brand">
+        <span class="dot"></span>
+        <span class="brand-name">jake-bot</span>
+        <span class="brand-meta">/ chat interface v0.1</span>
+      </div>
+      <div class="status">
+        <span class="status-dot"></span> online · knows jake
+      </div>
+    </header>
+
+    <main id="chat" class="chat" aria-live="polite"></main>
+
+    <div class="suggestions" id="suggestions">
+      <button class="chip" data-prompt="Why should I hire him?">Why should I hire him?</button>
+      <button class="chip" data-prompt="What's Stock Unlock?">What's Stock Unlock?</button>
+      <button class="chip" data-prompt="Tell me about the Rubik's cube thing">Tell me about the Rubik's cube thing</button>
+      <button class="chip" data-prompt="What's his AI philosophy?">What's his AI philosophy?</button>
+      <button class="chip" data-prompt="What makes him different?">What makes him different?</button>
+      <button class="chip" data-prompt="Download resume">Download resume</button>
+    </div>
+
+    <form class="composer" id="composer" autocomplete="off">
+      <input
+        id="input"
+        class="input"
+        type="text"
+        placeholder="ask jake-bot something… (press enter to send)"
+        aria-label="message input"
+      />
+      <button id="send" class="send" type="submit" aria-label="send">
+        send <span class="arrow">&#9654;</span>
+      </button>
+    </form>
+
+    <footer class="footer">
+      hardcoded responses. no LLM was harmed in making this. email
+      <a href="mailto:jake@stockunlock.com">jake@stockunlock.com</a>.
+    </footer>
+  </div>
+
+  <script src="./app.js"></script>
+</body>
+</html>

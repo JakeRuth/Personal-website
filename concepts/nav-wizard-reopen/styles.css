@@ -1,0 +1,609 @@
+/* =========================================================
+   nav-wizard-reopen
+   Persistent Setup-style button that reopens the picker wizard
+   as a compact modal. Visually matches picker-wizard-v2 chrome.
+   Namespaced under .jr-wrn- so it can be dropped into any experience.
+   ========================================================= */
+
+/* ---------------- Demo page (staging only) ---------------- */
+/* Styles prefixed with .demo- only exist for index.html so reviewers
+   have something to stare at behind the button. */
+.demo-body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  font-family: "Inter", "Segoe UI", Tahoma, "Helvetica Neue", Arial, sans-serif;
+  font-size: 15px;
+  line-height: 1.6;
+  color: #1a1c20;
+  background:
+    radial-gradient(1400px 900px at 20% 0%, #f6f8fb 0%, #e9edf3 60%, #d6dce6 100%);
+}
+.demo-shell {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 72px 28px 200px;
+}
+.demo-eyebrow {
+  font-family: "SF Mono", "JetBrains Mono", Consolas, monospace;
+  font-size: 11px;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+  color: #5a6070;
+  margin-bottom: 10px;
+}
+.demo-shell h1 {
+  font-size: 40px;
+  line-height: 1.1;
+  margin: 0 0 12px;
+  letter-spacing: -0.5px;
+  font-weight: 700;
+}
+.demo-shell h2 {
+  font-size: 22px;
+  margin: 40px 0 10px;
+  letter-spacing: -0.2px;
+}
+.demo-shell p { margin: 0 0 14px; }
+.demo-shell code {
+  font-family: "SF Mono", "JetBrains Mono", Consolas, monospace;
+  font-size: 13px;
+  background: #fff;
+  border: 1px solid #d5d9e0;
+  border-radius: 3px;
+  padding: 1px 5px;
+}
+.demo-shell pre {
+  background: #0e1016;
+  color: #e6e8ee;
+  font-family: "SF Mono", "JetBrains Mono", Consolas, monospace;
+  font-size: 12.5px;
+  line-height: 1.55;
+  padding: 14px 16px;
+  border-radius: 4px;
+  overflow-x: auto;
+}
+.demo-shell pre code {
+  background: transparent;
+  border: none;
+  padding: 0;
+  color: inherit;
+}
+.demo-pill {
+  display: inline-block;
+  font-family: "SF Mono", "JetBrains Mono", Consolas, monospace;
+  font-size: 11px;
+  padding: 3px 8px;
+  background: #fff;
+  border: 1px solid #d0d5de;
+  border-radius: 999px;
+  color: #3a4050;
+  margin-right: 6px;
+}
+.demo-hint-toast {
+  position: fixed;
+  bottom: 96px;
+  right: 24px;
+  z-index: 10001;
+  max-width: 280px;
+  padding: 12px 14px;
+  background: #1a2036;
+  color: #eef1ff;
+  font-size: 12.5px;
+  line-height: 1.5;
+  border-radius: 6px;
+  box-shadow: 0 14px 36px -8px rgba(14, 20, 42, 0.45);
+  transform: translateY(8px);
+  opacity: 0;
+  transition: transform 280ms ease, opacity 280ms ease;
+  pointer-events: none;
+}
+.demo-hint-toast.visible {
+  transform: translateY(0);
+  opacity: 1;
+}
+.demo-hint-toast::after {
+  content: "";
+  position: absolute;
+  right: 30px;
+  bottom: -7px;
+  width: 14px;
+  height: 14px;
+  background: #1a2036;
+  transform: rotate(45deg);
+  border-radius: 2px;
+}
+.demo-hint-toast b {
+  color: #b9c4ff;
+  font-weight: 600;
+}
+
+/* =========================================================
+   Persistent Setup button (system-tray / control-panel pill)
+   ========================================================= */
+
+.jr-wrn-launcher {
+  position: fixed;
+  bottom: 18px;
+  right: 18px;
+  z-index: 9998;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  height: 32px;
+  padding: 0 12px 0 8px;
+  font-family: "Segoe UI", "Inter", Tahoma, sans-serif;
+  font-size: 12.5px;
+  font-weight: 600;
+  color: #111318;
+  letter-spacing: 0.2px;
+  /* InstallShield-adjacent bevel, smaller. Feels like a notification-area
+     badge a wizard would drop on the tray after install. */
+  background: linear-gradient(#f7f8fa, #e6e9ef);
+  border: 1px solid #1f2128;
+  border-radius: 3px;
+  box-shadow:
+    inset -1px -1px 0 #a4a7ad,
+    inset 1px 1px 0 #ffffff,
+    0 6px 18px -4px rgba(18, 24, 44, 0.28),
+    0 2px 4px rgba(18, 24, 44, 0.14);
+  cursor: pointer;
+  user-select: none;
+  transition: transform 120ms ease, box-shadow 120ms ease;
+}
+.jr-wrn-launcher:hover {
+  background: linear-gradient(#fafbfd, #eceff5);
+  transform: translateY(-1px);
+  box-shadow:
+    inset -1px -1px 0 #a4a7ad,
+    inset 1px 1px 0 #ffffff,
+    0 10px 24px -6px rgba(18, 24, 44, 0.34),
+    0 2px 6px rgba(18, 24, 44, 0.18);
+}
+.jr-wrn-launcher:active {
+  transform: translateY(0);
+  box-shadow:
+    inset 1px 1px 0 #a4a7ad,
+    inset -1px -1px 0 #ffffff;
+}
+.jr-wrn-launcher:focus-visible {
+  outline: 2px solid #2f56c4;
+  outline-offset: 2px;
+}
+
+/* Mini Rubik's-cube icon. Mirrors the wizard's title-icon but smaller. */
+.jr-wrn-launcher-icon {
+  width: 18px;
+  height: 18px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  gap: 1px;
+  padding: 1px;
+  background: #0c0e12;
+  border-radius: 2px;
+  flex: 0 0 18px;
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.4) inset,
+    0 1px 2px rgba(0, 0, 0, 0.4);
+}
+.jr-wrn-launcher-icon i { display: block; border-radius: 0.5px; }
+.jr-wrn-launcher-icon i:nth-child(1) { background: #e53935; }
+.jr-wrn-launcher-icon i:nth-child(2) { background: #fdd835; }
+.jr-wrn-launcher-icon i:nth-child(3) { background: #1e88e5; }
+.jr-wrn-launcher-icon i:nth-child(4) { background: #43a047; }
+.jr-wrn-launcher-icon i:nth-child(5) { background: #ffffff; }
+.jr-wrn-launcher-icon i:nth-child(6) { background: #fb8c00; }
+.jr-wrn-launcher-icon i:nth-child(7) { background: #1e88e5; }
+.jr-wrn-launcher-icon i:nth-child(8) { background: #e53935; }
+.jr-wrn-launcher-icon i:nth-child(9) { background: #43a047; }
+
+.jr-wrn-launcher-label {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 6px;
+}
+.jr-wrn-launcher-label .sub {
+  font-weight: 400;
+  color: #525766;
+  font-size: 11px;
+}
+
+/* Tooltip: tiny, system-tray style. Fades in on hover/focus. */
+.jr-wrn-tooltip {
+  position: absolute;
+  bottom: calc(100% + 8px);
+  right: 0;
+  background: #ffffe1;
+  color: #1a1a1a;
+  border: 1px solid #6f6f6f;
+  padding: 4px 8px;
+  font-family: "Segoe UI", Tahoma, sans-serif;
+  font-size: 11.5px;
+  font-weight: 400;
+  letter-spacing: 0.1px;
+  white-space: nowrap;
+  box-shadow: 1px 1px 0 rgba(0, 0, 0, 0.25);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 160ms ease;
+}
+.jr-wrn-launcher:hover .jr-wrn-tooltip,
+.jr-wrn-launcher:focus-visible .jr-wrn-tooltip {
+  opacity: 1;
+}
+
+/* =========================================================
+   Modal backdrop + wizard window
+   ========================================================= */
+
+.jr-wrn-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: rgba(18, 24, 44, 0.42);
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 180ms ease;
+}
+.jr-wrn-backdrop.open { opacity: 1; }
+.jr-wrn-backdrop[hidden] { display: none !important; }
+
+/* Reset that matches picker-wizard-v2 chrome without leaking out. */
+.jr-wrn-backdrop * { box-sizing: border-box; }
+
+.jr-wrn-window {
+  width: 520px;
+  max-width: calc(100vw - 32px);
+  background: #f3f4f6;
+  border: 1px solid #232428;
+  font-family: "Segoe UI", "Inter", Tahoma, "Helvetica Neue", Arial, sans-serif;
+  font-size: 12px;
+  color: #1a1a1a;
+  border-radius: 2px;
+  box-shadow:
+    inset -1px -1px 0 #b9bcc2,
+    inset 1px 1px 0 #ffffff,
+    0 30px 80px -20px rgba(20, 30, 60, 0.45),
+    0 12px 28px -8px rgba(20, 30, 60, 0.3);
+  transform: translateY(8px) scale(0.985);
+  transition: transform 180ms ease;
+}
+.jr-wrn-backdrop.open .jr-wrn-window {
+  transform: translateY(0) scale(1);
+}
+
+.jr-wrn-titlebar {
+  height: 26px;
+  padding: 3px 4px 3px 6px;
+  background: linear-gradient(to bottom, #0A246A 0%, #1a3a9a 55%, #2f56c4 100%);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: "Segoe UI", Tahoma, sans-serif;
+  font-weight: 600;
+  font-size: 12px;
+  user-select: none;
+  letter-spacing: 0.2px;
+}
+.jr-wrn-title-icon {
+  width: 16px; height: 16px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  gap: 1px; padding: 1px;
+  background: #000;
+  border-radius: 2px;
+  flex: 0 0 16px;
+}
+.jr-wrn-title-icon i { display: block; }
+.jr-wrn-title-icon i:nth-child(1) { background: #e53935; }
+.jr-wrn-title-icon i:nth-child(2) { background: #fdd835; }
+.jr-wrn-title-icon i:nth-child(3) { background: #1e88e5; }
+.jr-wrn-title-icon i:nth-child(4) { background: #43a047; }
+.jr-wrn-title-icon i:nth-child(5) { background: #fff; }
+.jr-wrn-title-icon i:nth-child(6) { background: #fb8c00; }
+.jr-wrn-title-icon i:nth-child(7) { background: #1e88e5; }
+.jr-wrn-title-icon i:nth-child(8) { background: #e53935; }
+.jr-wrn-title-icon i:nth-child(9) { background: #43a047; }
+
+.jr-wrn-title-text { flex: 1; letter-spacing: 0.2px; }
+.jr-wrn-title-buttons { display: flex; gap: 3px; }
+.jr-wrn-tb-btn {
+  width: 22px; height: 20px;
+  background: #ECECEC;
+  border: 1px solid #1f1f1f;
+  box-shadow: inset -1px -1px 0 #8c8f95, inset 1px 1px 0 #fff;
+  font-size: 11px;
+  line-height: 11px;
+  padding: 0;
+  cursor: default;
+  font-family: "Segoe UI", Tahoma, sans-serif;
+  color: #000;
+}
+.jr-wrn-tb-btn.close { background: #e1a5a5; cursor: pointer; }
+.jr-wrn-tb-btn:active {
+  box-shadow: inset 1px 1px 0 #8c8f95, inset -1px -1px 0 #fff;
+}
+
+/* ---- Compact banner (shorter than full picker) ---- */
+.jr-wrn-banner {
+  height: 54px;
+  background:
+    linear-gradient(to right, rgba(255,255,255,0) 55%, rgba(255,255,255,0.08) 100%),
+    linear-gradient(to right, #0A246A 0%, #2c4db8 65%, #6589df 100%);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 16px;
+  border-bottom: 1px solid #a4a7ad;
+  position: relative;
+}
+.jr-wrn-banner::after {
+  content: "";
+  position: absolute; left: 0; right: 0; bottom: -1px;
+  height: 1px; background: #ffffff;
+}
+.jr-wrn-banner-h1 {
+  font-weight: 600;
+  font-size: 13px;
+  text-shadow: 1px 1px 0 rgba(0,0,0,0.45);
+}
+.jr-wrn-banner-h2 {
+  font-size: 11px;
+  margin-top: 2px;
+  color: #d6deff;
+  padding-left: 10px;
+}
+.jr-wrn-banner-cube {
+  width: 36px; height: 36px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  gap: 1px; padding: 2px;
+  background: #000;
+  flex: 0 0 36px;
+  box-shadow: 0 0 0 1px rgba(255,255,255,0.3), 0 2px 6px rgba(0,0,0,0.4);
+}
+.jr-wrn-banner-cube i { display: block; border-radius: 0.5px; }
+.jr-wrn-banner-cube i:nth-child(1) { background: #e53935; }
+.jr-wrn-banner-cube i:nth-child(2) { background: #fdd835; }
+.jr-wrn-banner-cube i:nth-child(3) { background: #1e88e5; }
+.jr-wrn-banner-cube i:nth-child(4) { background: #43a047; }
+.jr-wrn-banner-cube i:nth-child(5) { background: #fff; }
+.jr-wrn-banner-cube i:nth-child(6) { background: #fb8c00; }
+.jr-wrn-banner-cube i:nth-child(7) { background: #1e88e5; }
+.jr-wrn-banner-cube i:nth-child(8) { background: #e53935; }
+.jr-wrn-banner-cube i:nth-child(9) { background: #43a047; }
+
+/* ---- Body ---- */
+.jr-wrn-body {
+  padding: 14px 16px 10px;
+  background: #f3f4f6;
+}
+.jr-wrn-body h2 {
+  font-family: "Segoe UI", Tahoma, sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  margin: 0 0 2px;
+}
+.jr-wrn-body p {
+  margin: 0 0 10px;
+  line-height: 1.5;
+  color: #2a2c31;
+}
+.jr-wrn-body .dim { color: #56595f; }
+
+/* ---- Radio cards (compact, 3 up) ---- */
+.jr-wrn-options {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 4px;
+  border: 1px solid #a4a7ad;
+  box-shadow: inset 1px 1px 0 #6b6d72, inset -1px -1px 0 #fff;
+  background: #fff;
+  padding: 5px;
+  max-height: 250px;
+  overflow: auto;
+}
+.jr-wrn-option {
+  display: grid;
+  grid-template-columns: 18px 56px 1fr;
+  align-items: center;
+  gap: 10px;
+  padding: 7px 8px;
+  cursor: pointer;
+  border: 1px dotted transparent;
+  border-radius: 2px;
+  background: transparent;
+}
+.jr-wrn-option:hover { background: #eaf1ff; }
+.jr-wrn-option.focused {
+  border: 1px dotted #333;
+  background: #e6eefe;
+}
+.jr-wrn-option.current {
+  box-shadow: inset 3px 0 0 #2f56c4;
+}
+.jr-wrn-option input[type="radio"] {
+  margin: 0;
+  justify-self: center;
+}
+.jr-wrn-option-thumb {
+  width: 56px;
+  height: 40px;
+  position: relative;
+  overflow: hidden;
+  border: 1px solid #8a8d93;
+  box-shadow: inset 1px 1px 0 #6b6d72, inset -1px -1px 0 #fff;
+  background: #000;
+  flex-shrink: 0;
+}
+.jr-wrn-option-body { min-width: 0; }
+.jr-wrn-option-head {
+  font-weight: 600;
+  font-size: 12.5px;
+  color: #0d0e12;
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+.jr-wrn-option-tag {
+  font-weight: 400;
+  color: #5c6068;
+  font-size: 11px;
+}
+.jr-wrn-option-current-chip {
+  font-family: "SF Mono", "Consolas", monospace;
+  font-size: 9.5px;
+  letter-spacing: 0.4px;
+  text-transform: uppercase;
+  padding: 1px 5px;
+  background: #0A246A;
+  color: #fff;
+  border-radius: 2px;
+}
+.jr-wrn-option-desc {
+  margin-top: 2px;
+  color: #3a3c42;
+  line-height: 1.35;
+  font-size: 11.5px;
+}
+
+/* Mini thumbnail backgrounds (scaled down versions of picker thumbs) */
+.jr-wrn-thumb { position: absolute; inset: 0; }
+.jr-wrn-thumb-xp {
+  background: linear-gradient(180deg, #3a84dd 0%, #5aa3e9 45%, #8dc63f 100%);
+}
+.jr-wrn-thumb-xp::before {
+  content: "";
+  position: absolute; bottom: 0; left: 0; right: 0; height: 8px;
+  background: linear-gradient(#245edb, #1941a5);
+  border-top: 1px solid #0a3cc0;
+}
+.jr-wrn-thumb-xp::after {
+  content: "";
+  position: absolute; bottom: 0; left: 0;
+  width: 18px; height: 8px;
+  background: linear-gradient(#3db83d, #0f6010);
+  border: 1px solid #0a4c0a;
+  border-radius: 0 4px 4px 0;
+}
+.jr-wrn-thumb-saas {
+  background: linear-gradient(180deg, #fafafa 0%, #f0f0f0 100%);
+}
+.jr-wrn-thumb-saas::before {
+  content: "SaaS";
+  position: absolute; top: 4px; left: 5px;
+  font-family: "Inter", Arial, sans-serif;
+  font-weight: 700; color: #6a5af9; font-size: 8px;
+  letter-spacing: 0.3px;
+}
+.jr-wrn-thumb-saas::after {
+  content: "";
+  position: absolute; bottom: 6px; left: 5px; right: 5px; height: 12px;
+  background: linear-gradient(90deg, #6a5af9, #33b5ff);
+  border-radius: 2px;
+}
+.jr-wrn-thumb-readme-git {
+  background: #0d1117;
+  color: #c9d1d9;
+  font-family: "SF Mono", "Consolas", monospace;
+  font-size: 5px;
+  line-height: 1.25;
+  padding: 4px 5px;
+  overflow: hidden;
+}
+.jr-wrn-thumb-readme-git::before {
+  content: "# jake-ruth\A\A* 2026 re-enter\A* 2022 $1.335M seed\A* 2021 leave oscar\A* 2017 join oscar\A* 2013 commercehub";
+  white-space: pre;
+  display: block;
+}
+
+/* ---- Footer ---- */
+.jr-wrn-footer {
+  border-top: 1px solid #ffffff;
+  box-shadow: 0 -1px 0 #a4a7ad;
+  background: #f3f4f6;
+  padding: 10px 14px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.jr-wrn-footer-left {
+  color: #555;
+  font-size: 11.5px;
+}
+.jr-wrn-footer-left kbd {
+  font-family: "SF Mono", "Consolas", monospace;
+  background: #fff;
+  border: 1px solid #bbb;
+  border-bottom-width: 2px;
+  border-radius: 2px;
+  padding: 0 4px;
+  font-size: 10px;
+  color: #333;
+}
+.jr-wrn-footer-right {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.jr-wrn-btn {
+  min-width: 82px;
+  height: 26px;
+  padding: 0 12px;
+  background: #f3f4f6;
+  border: 1px solid #1f1f1f;
+  box-shadow:
+    inset -1px -1px 0 #9ea1a7,
+    inset 1px 1px 0 #fff;
+  font-family: "Segoe UI", Tahoma, sans-serif;
+  font-size: 12px;
+  color: #111;
+  cursor: pointer;
+  border-radius: 2px;
+}
+.jr-wrn-btn:hover { background: #fbfcfe; }
+.jr-wrn-btn:active {
+  box-shadow: inset 1px 1px 0 #9ea1a7, inset -1px -1px 0 #fff;
+}
+.jr-wrn-btn:disabled {
+  color: #9a9da3;
+  text-shadow: 1px 1px 0 #fff;
+  cursor: not-allowed;
+}
+.jr-wrn-btn.primary {
+  font-weight: 600;
+  outline: 1px dotted #000;
+  outline-offset: -4px;
+}
+.jr-wrn-btn.primary:disabled { outline-color: #aaa; }
+
+/* ---- Responsive ---- */
+@media (max-width: 560px) {
+  .jr-wrn-window { width: 94vw; }
+  .jr-wrn-banner { height: 44px; padding: 0 12px; }
+  .jr-wrn-banner-cube { width: 28px; height: 28px; flex: 0 0 28px; }
+  .jr-wrn-option {
+    grid-template-columns: 18px 44px 1fr;
+    gap: 8px;
+  }
+  .jr-wrn-option-thumb { width: 44px; height: 32px; }
+  .jr-wrn-launcher-label .sub { display: none; }
+}
+
+/* ---- Reduced motion ---- */
+@media (prefers-reduced-motion: reduce) {
+  .jr-wrn-backdrop,
+  .jr-wrn-window,
+  .jr-wrn-launcher,
+  .demo-hint-toast { transition: none !important; }
+}

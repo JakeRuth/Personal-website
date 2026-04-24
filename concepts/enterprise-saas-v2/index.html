@@ -1,0 +1,851 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Jake 4.7 — The engineer your team actually needs | Ruth Systems</title>
+<link rel="preconnect" href="https://rsms.me/" />
+<link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lucide-static@0.453.0/font/lucide.css" />
+<link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+
+<!-- ===================== TOP ANNOUNCEMENT BAR ===================== -->
+<div class="announce">
+  <div class="container announce-row">
+    <span class="announce-pill">v2</span>
+    <span>Introducing Jake 4.7 — <a href="#configure">configure an engagement →</a></span>
+    <span class="announce-right">Status: <span class="dot-green"></span> All systems operational</span>
+  </div>
+</div>
+
+<!-- ===================== NAV ===================== -->
+<header class="nav">
+  <div class="container nav-row">
+    <a class="brand" href="#">
+      <span class="brand-mark"><i class="lucide lucide-hexagon"></i></span>
+      <span class="brand-name">Ruth<span class="brand-dot">.</span>Systems</span>
+    </a>
+
+    <nav class="nav-links">
+      <div class="nav-item has-menu">
+        Product <i class="lucide lucide-chevron-down nav-caret"></i>
+        <div class="menu menu-wide">
+          <div class="menu-col">
+            <div class="menu-label">Core engine</div>
+            <a href="#features" data-search="full-stack delivery"><i class="lucide lucide-cpu"></i><div><b>Full-stack delivery</b><span>Ticket to prod, no handoffs</span></div></a>
+            <a href="#features" data-search="ai native workflows driver"><i class="lucide lucide-wand-sparkles"></i><div><b>AI-native workflows</b><span>Driver in the driver's seat</span></div></a>
+            <a href="#features" data-search="observability metrics logs"><i class="lucide lucide-activity"></i><div><b>Observability, included</b><span>Metrics, logs, runbooks</span></div></a>
+          </div>
+          <div class="menu-col">
+            <div class="menu-label">Governance</div>
+            <a href="#docs" data-search="audit trail"><i class="lucide lucide-shield-check"></i><div><b>Audit trail</b><span>13 years of commits</span></div></a>
+            <a href="#features" data-search="migration cutover"><i class="lucide lucide-git-pull-request"></i><div><b>Zero-downtime migration</b><span>Boring cutovers on purpose</span></div></a>
+            <a href="#docs" data-search="api reference hire"><i class="lucide lucide-book-open"></i><div><b>API reference</b><span>POST /api/hire</span></div></a>
+          </div>
+          <div class="menu-col menu-feat">
+            <div class="menu-label">Featured</div>
+            <div class="menu-feature">
+              <div class="menu-feature-tag">Case study</div>
+              <div class="menu-feature-title">Stock Unlock — built it, scaled it, profitable.</div>
+              <div class="menu-feature-body">Eight employees at peak. Thousands of paying customers. Runs today without me.</div>
+              <a class="menu-feature-link" href="#stories">Read case study →</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <a href="#configure" class="nav-item">Configure</a>
+      <a href="#pricing" class="nav-item">Compare</a>
+      <a href="#docs" class="nav-item">Developers</a>
+      <a href="#stories" class="nav-item">Customers</a>
+    </nav>
+
+    <div class="nav-cta">
+      <button class="nav-search" id="nav-search" aria-label="Search">
+        <i class="lucide lucide-search"></i>
+        <span>Search</span>
+        <kbd>⌘K</kbd>
+      </button>
+      <a href="mailto:jake@stockunlock.com" class="nav-link-muted">Email Jake</a>
+      <a href="#configure" class="btn btn-primary">Configure a Jake</a>
+    </div>
+  </div>
+</header>
+
+<!-- ===================== HERO ===================== -->
+<section class="hero">
+  <div class="container hero-row">
+    <div class="hero-left">
+      <div class="eyebrow"><span class="dot-blue"></span> Introducing Jake 4.7 &middot; GA April 2026</div>
+      <h1 class="hero-title">The engineer your team actually needs.</h1>
+      <p class="hero-sub">
+        Thirteen years shipping. One chapter ending, another beginning. Ex-Oscar. Ex-YC. Currently between chapters —
+        and taking calls.
+      </p>
+      <div class="hero-ctas">
+        <a href="#configure" class="btn btn-primary btn-lg">Configure a Jake <i class="lucide lucide-arrow-right"></i></a>
+        <a href="mailto:jake@stockunlock.com" class="btn btn-ghost btn-lg">Email Jake</a>
+      </div>
+      <div class="hero-assurances">
+        <span><i class="lucide lucide-check"></i> 13 years of shipped commits</span>
+        <span><i class="lucide lucide-check"></i> Founded + ran a profitable YC company</span>
+        <span><i class="lucide lucide-check"></i> Ships production code day one</span>
+      </div>
+    </div>
+
+    <!-- Live status card (hero right) -->
+    <aside class="hero-right">
+      <div class="status-card" id="status-card">
+        <div class="status-card-head">
+          <div class="status-card-title">
+            <span class="live-dot"></span>
+            <span>status.ruth.systems</span>
+          </div>
+          <span class="status-pill status-pill-ok">Operational</span>
+        </div>
+        <div class="status-card-big">
+          <span class="status-big-dot"></span>
+          <div>
+            <div class="status-big-title">All systems operational</div>
+            <div class="status-big-sub">99.97% uptime &middot; 90-day rolling</div>
+          </div>
+        </div>
+        <ul class="status-list">
+          <li><span class="dot-green"></span>Backend <span class="status-latency">12ms</span></li>
+          <li><span class="dot-green"></span>Frontend <span class="status-latency">9ms</span></li>
+          <li><span class="dot-green"></span>AI integration <span class="status-latency">18ms</span></li>
+          <li><span class="dot-green"></span>Team culture <span class="status-latency">7ms</span></li>
+          <li><span class="dot-green"></span>On-call response <span class="status-latency">&lt; 4min</span></li>
+          <li><span class="dot-amber"></span>Currently deploying <span class="status-deploying">next chapter v1.0</span></li>
+        </ul>
+        <div class="uptime-bars" id="uptime-bars" aria-hidden="true"></div>
+        <div class="status-card-foot">
+          <span>Response latency</span>
+          <span class="mono" id="latency-value">18ms</span>
+        </div>
+      </div>
+    </aside>
+  </div>
+
+  <!-- Social proof bar -->
+  <div class="container logos-row">
+    <div class="logos-label">Shipped at</div>
+    <div class="logos">
+      <div class="logo">Oscar Health</div>
+      <div class="logo">Stock Unlock</div>
+      <div class="logo">CommerceHub</div>
+      <div class="logo">Youni</div>
+      <div class="logo">Y Combinator W22</div>
+      <div class="logo">SUNY Albany ACM</div>
+      <div class="logo">Webflow</div>
+      <div class="logo">AWS</div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== METRICS BAR ===================== -->
+<section class="metrics">
+  <div class="container metrics-row">
+    <div class="metric">
+      <div class="metric-value" data-count="13">13</div>
+      <div class="metric-label">years shipping</div>
+    </div>
+    <div class="metric">
+      <div class="metric-value">$1.335M</div>
+      <div class="metric-label">seed raised (YC W22)</div>
+    </div>
+    <div class="metric">
+      <div class="metric-value" data-count="8">8</div>
+      <div class="metric-label">engineers at peak (SU)</div>
+    </div>
+    <div class="metric">
+      <div class="metric-value">13.95<span class="metric-unit">s</span></div>
+      <div class="metric-label">3&times;3 avg solve</div>
+    </div>
+    <div class="metric">
+      <div class="metric-value">99.97<span class="metric-unit">%</span></div>
+      <div class="metric-label">uptime (90d)</div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== FEATURES ===================== -->
+<section class="section" id="features">
+  <div class="container">
+    <div class="section-head">
+      <div class="eyebrow"><span class="dot-blue"></span> Platform</div>
+      <h2 class="section-title">One engineer. Enterprise-grade surface area.</h2>
+      <p class="section-sub">
+        Ruth Systems is a single-tenant, opinionated engineer-as-a-service platform.
+        Full-stack delivery, AI-native workflows, and a public commit log that goes back to 2013.
+      </p>
+    </div>
+
+    <div class="feat-grid">
+      <article class="feat-card" data-search="full stack delivery python typescript go">
+        <div class="feat-icon"><i class="lucide lucide-layers"></i></div>
+        <h3>Full-stack delivery</h3>
+        <p>Backend, frontend, data layer, deploys. Python, TypeScript, Go, plus whatever your stack has accumulated. Ticket to production without an async handoff.</p>
+        <a class="feat-link" href="#docs">Read the docs <i class="lucide lucide-arrow-right"></i></a>
+      </article>
+
+      <article class="feat-card feat-card-featured" data-search="ai native claude cursor driver">
+        <div class="feat-badge">Most adopted</div>
+        <div class="feat-icon"><i class="lucide lucide-wand-sparkles"></i></div>
+        <h3>AI-native workflows</h3>
+        <p>Driver in the driver's seat, not driven by the car. AI writes more code than I do — and I read every line before it ships. Shipped Claude-integrated workflows in two production codebases without the slop.</p>
+        <a class="feat-link" href="#docs">Read the spec <i class="lucide lucide-arrow-right"></i></a>
+      </article>
+
+      <article class="feat-card" data-search="zero downtime migration cutover ses">
+        <div class="feat-icon"><i class="lucide lucide-git-pull-request"></i></div>
+        <h3>Zero-downtime migration</h3>
+        <p>Boring migrations are a feature. Dual-writes, shadow reads, feature flags. Migrated Stock Unlock off Customer.io in a weekend. Saved roughly $6K/yr. Users didn't notice.</p>
+        <a class="feat-link" href="#stories">Read the case study <i class="lucide lucide-arrow-right"></i></a>
+      </article>
+
+      <article class="feat-card" data-search="observability metrics logs runbook sre">
+        <div class="feat-icon"><i class="lucide lucide-activity"></i></div>
+        <h3>Observability, included</h3>
+        <p>Metrics, logs, dashboards, alerts. Built by someone who's been paged at 3 AM and refuses to ship a system without a runbook.</p>
+        <a class="feat-link" href="#architecture">See reference arch <i class="lucide lucide-arrow-right"></i></a>
+      </article>
+
+      <article class="feat-card" data-search="founder zero to one yc stock unlock">
+        <div class="feat-icon"><i class="lucide lucide-rocket"></i></div>
+        <h3>Zero-to-one, receipts attached</h3>
+        <p>Founded Stock Unlock. Led the YC interview. Closed a $1.335M seed. Scaled to eight engineers and thousands of paying customers. It runs today as a profitable side business — I'm not full-time there.</p>
+        <a class="feat-link" href="#stories">Read the brief <i class="lucide lucide-arrow-right"></i></a>
+      </article>
+
+      <article class="feat-card" data-search="audit trail commits github adr">
+        <div class="feat-icon"><i class="lucide lucide-shield-check"></i></div>
+        <h3>Audit trail</h3>
+        <p>13 years of shipped commits. Public PR history. Architectural decisions in writing. If you want receipts instead of a pitch, they're on GitHub.</p>
+        <a class="feat-link" href="https://github.com/JakeRuth">Open GitHub <i class="lucide lucide-arrow-right"></i></a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== ARCHITECTURE DIAGRAM ===================== -->
+<section class="section section-alt" id="architecture">
+  <div class="container">
+    <div class="section-head">
+      <div class="eyebrow"><span class="dot-blue"></span> Architecture</div>
+      <h2 class="section-title">A reference architecture for a human engineer.</h2>
+      <p class="section-sub">
+        Twelve loosely-coupled competency services connected through a stable interface layer.
+        Click any node to inspect the spec, SLO, and neighbors.
+      </p>
+    </div>
+
+    <div class="arch-wrap">
+      <div class="arch-sidebar">
+        <div class="arch-legend">
+          <div class="arch-legend-title">Service classes</div>
+          <ul>
+            <li><span class="swatch swatch-core"></span>Core engine</li>
+            <li><span class="swatch swatch-service"></span>Platform service</li>
+            <li><span class="swatch swatch-data"></span>Data layer</li>
+            <li><span class="swatch swatch-edge"></span>Edge / UX</li>
+            <li><span class="swatch swatch-ai"></span>AI orchestrator</li>
+          </ul>
+        </div>
+        <div class="arch-panel" id="arch-panel">
+          <div class="arch-panel-label">Selection</div>
+          <div class="arch-panel-title" id="arch-panel-title">No node selected</div>
+          <div class="arch-panel-body" id="arch-panel-body">Click any node to inspect its spec, SLO, and upstream dependencies.</div>
+          <div class="arch-panel-kv">
+            <div><span>SLO</span><b id="arch-slo">—</b></div>
+            <div><span>Owner</span><b>jake@stockunlock.com</b></div>
+            <div><span>Region</span><b>us-east-1 / nyc</b></div>
+          </div>
+        </div>
+      </div>
+      <div class="arch-canvas-wrap">
+        <svg id="arch-svg" aria-label="Architecture diagram"></svg>
+        <div class="arch-grid-overlay"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== CONFIGURE YOUR JAKE ===================== -->
+<section class="section" id="configure">
+  <div class="container">
+    <div class="section-head">
+      <div class="eyebrow"><span class="dot-blue"></span> Configure</div>
+      <h2 class="section-title">Configure your Jake.</h2>
+      <p class="section-sub">Pick a shape that fits the role. The numbers come later, in a conversation. This is how we align before we meet.</p>
+    </div>
+
+    <div class="configure-wrap">
+      <!-- Left: configurator options -->
+      <div class="configure-options">
+
+        <div class="opt-group">
+          <div class="opt-group-head">
+            <span class="opt-step">01</span>
+            <span class="opt-title">Engagement shape</span>
+          </div>
+          <label class="opt" data-group="tier" data-value="fulltime">
+            <input type="radio" name="tier" value="fulltime" checked />
+            <div class="opt-body">
+              <div class="opt-line">
+                <span class="opt-name">Full-time employment</span>
+                <span class="opt-price">Market rate + equity</span>
+              </div>
+              <span class="opt-desc">Senior IC, founding engineer, or early-stage CTO. NYC, remote, or hybrid. The main thing.</span>
+            </div>
+          </label>
+          <label class="opt" data-group="tier" data-value="founding">
+            <input type="radio" name="tier" value="founding" />
+            <div class="opt-body">
+              <div class="opt-line">
+                <span class="opt-name">Equity founding</span>
+                <span class="opt-price">Let's talk</span>
+              </div>
+              <span class="opt-desc">Co-founder track. Small seed or earlier. Has to be a problem I care about.</span>
+            </div>
+          </label>
+          <label class="opt" data-group="tier" data-value="contract">
+            <input type="radio" name="tier" value="contract" />
+            <div class="opt-body">
+              <div class="opt-line">
+                <span class="opt-name">Contract engagement</span>
+                <span class="opt-price">Contact sales</span>
+              </div>
+              <span class="opt-desc">Defined deliverable, defined timeline. Selective — I take work I can ship.</span>
+            </div>
+          </label>
+          <label class="opt" data-group="tier" data-value="starter">
+            <input type="radio" name="tier" value="starter" />
+            <div class="opt-body">
+              <div class="opt-line">
+                <span class="opt-name">Starter conversation</span>
+                <span class="opt-price">Free &middot; 30 min</span>
+              </div>
+              <span class="opt-desc">If you're not sure. Email me. We'll figure it out.</span>
+            </div>
+          </label>
+        </div>
+
+        <div class="opt-group">
+          <div class="opt-group-head">
+            <span class="opt-step">02</span>
+            <span class="opt-title">Primary surface area</span>
+          </div>
+          <label class="opt" data-group="surface" data-value="product">
+            <input type="radio" name="surface" value="product" checked />
+            <div class="opt-body">
+              <div class="opt-line"><span class="opt-name">Product engineering</span><span class="opt-price">Default</span></div>
+              <span class="opt-desc">Features users touch. Frontend + backend. React since pre-hooks.</span>
+            </div>
+          </label>
+          <label class="opt" data-group="surface" data-value="platform">
+            <input type="radio" name="surface" value="platform" />
+            <div class="opt-body">
+              <div class="opt-line"><span class="opt-name">Platform &amp; infra</span><span class="opt-price">Strong fit</span></div>
+              <span class="opt-desc">Postgres-first, AWS primitives, boring by design. SES, ECS, RDS — run in anger.</span>
+            </div>
+          </label>
+          <label class="opt" data-group="surface" data-value="ai">
+            <input type="radio" name="surface" value="ai" />
+            <div class="opt-body">
+              <div class="opt-line"><span class="opt-name">AI-native feature work</span><span class="opt-price">Strong fit</span></div>
+              <span class="opt-desc">Internal tooling, Discord bots, SES migrations. Claude Code + Codex, reviewed line by line.</span>
+            </div>
+          </label>
+          <label class="opt" data-group="surface" data-value="founding">
+            <input type="radio" name="surface" value="founding" />
+            <div class="opt-body">
+              <div class="opt-line"><span class="opt-name">Founding-engineer mode</span><span class="opt-price">Zero-to-one</span></div>
+              <span class="opt-desc">MVP, investors, hiring, the first on-call rotation. Done it once, awake for it.</span>
+            </div>
+          </label>
+        </div>
+
+        <div class="opt-group">
+          <div class="opt-group-head">
+            <span class="opt-step">03</span>
+            <span class="opt-title">Add-ons</span>
+          </div>
+          <label class="opt opt-check" data-group="addon" data-value="yc">
+            <input type="checkbox" name="addon" value="yc" />
+            <div class="opt-body">
+              <div class="opt-line"><span class="opt-name">YC interview prep</span><span class="opt-price">Included</span></div>
+              <span class="opt-desc">Led the W22 interview myself. Happy to sit in yours.</span>
+            </div>
+          </label>
+          <label class="opt opt-check" data-group="addon" data-value="review">
+            <input type="checkbox" name="addon" value="review" />
+            <div class="opt-body">
+              <div class="opt-line"><span class="opt-name">Architecture review</span><span class="opt-price">Talk to Jake</span></div>
+              <span class="opt-desc">Your stack, read honestly. With receipts, not a LinkedIn post.</span>
+            </div>
+          </label>
+          <label class="opt opt-check" data-group="addon" data-value="unicycle">
+            <input type="checkbox" name="addon" value="unicycle" />
+            <div class="opt-body">
+              <div class="opt-line"><span class="opt-name">Unicycle + cube talent show</span><span class="opt-price">Upon request</span></div>
+              <span class="opt-desc">Previously performed at Oscar Health. Josh Kushner was in the audience.</span>
+            </div>
+          </label>
+        </div>
+
+      </div>
+
+      <!-- Right: summary panel -->
+      <aside class="configure-summary">
+        <div class="summary-head">
+          <div class="summary-sku-label">Your configuration</div>
+          <div class="summary-sku mono" id="summary-sku">JAKE-47-FT-PRODUCT</div>
+        </div>
+        <div class="summary-title" id="summary-title">Full-time employment</div>
+        <div class="summary-desc" id="summary-desc">
+          Product engineering. Senior IC, founding engineer, or early-stage CTO.
+        </div>
+
+        <div class="summary-kv">
+          <div><span>Shape</span><b id="kv-tier">Full-time</b></div>
+          <div><span>Surface</span><b id="kv-surface">Product</b></div>
+          <div><span>Add-ons</span><b id="kv-addons">None</b></div>
+          <div><span>Location</span><b>NYC / remote</b></div>
+          <div><span>Start</span><b>Day one</b></div>
+        </div>
+
+        <div class="summary-price">
+          <span class="summary-price-label">Estimated terms</span>
+          <span class="summary-price-amount" id="summary-price">Market rate + equity</span>
+          <span class="summary-price-fine" id="summary-fine">Real numbers in a conversation. No decks, no proposals.</span>
+        </div>
+
+        <div class="summary-actions">
+          <a href="mailto:jake@stockunlock.com?subject=Configure%20a%20Jake" class="btn btn-primary btn-full" id="summary-cta">Email this configuration</a>
+          <button class="btn btn-ghost btn-full" id="copy-config">
+            <i class="lucide lucide-copy"></i>
+            <span>Copy config to clipboard</span>
+          </button>
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== FEATURE MATRIX (hybrid with configurator) ===================== -->
+<section class="section section-alt" id="pricing">
+  <div class="container">
+    <div class="section-head">
+      <div class="eyebrow"><span class="dot-blue"></span> Compare</div>
+      <h2 class="section-title">Four engagement shapes. Clear contracts.</h2>
+      <p class="section-sub">
+        Every shape includes production access, written design docs, and an actual human on the other end of Slack.
+      </p>
+    </div>
+
+    <div class="matrix-wrap">
+      <div class="matrix-head">
+        <div class="matrix-title">Full feature comparison</div>
+        <div class="matrix-sub">Every capability, every engagement. No hidden limits. No "call for details" line items.</div>
+      </div>
+      <table class="matrix">
+        <thead>
+          <tr>
+            <th>Capability</th>
+            <th>Starter <span class="mx-price">Free</span></th>
+            <th>Contract <span class="mx-price">Contact sales</span></th>
+            <th class="matrix-ent">Full-Time <span class="mx-price">Market + equity</span></th>
+            <th>Founding <span class="mx-price">Let's talk</span></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>30-minute first call</td><td class="td-yes"><i class="lucide lucide-check"></i></td><td class="td-yes"><i class="lucide lucide-check"></i></td><td class="matrix-ent td-yes"><i class="lucide lucide-check"></i></td><td class="td-yes"><i class="lucide lucide-check"></i></td></tr>
+          <tr><td>Written design docs</td><td class="td-no"><i class="lucide lucide-x"></i></td><td class="td-yes"><i class="lucide lucide-check"></i></td><td class="matrix-ent td-yes"><i class="lucide lucide-check"></i></td><td class="td-yes"><i class="lucide lucide-check"></i></td></tr>
+          <tr><td>Full-stack feature shipping</td><td class="td-no"><i class="lucide lucide-x"></i></td><td>Project-scoped</td><td class="matrix-ent">Day one</td><td>Day one</td></tr>
+          <tr><td>Architecture ownership</td><td class="td-no"><i class="lucide lucide-x"></i></td><td>Scoped</td><td class="matrix-ent td-yes"><i class="lucide lucide-check"></i></td><td class="td-yes"><i class="lucide lucide-check"></i></td></tr>
+          <tr><td>AI-native workflow integration</td><td>Advisory</td><td class="td-yes"><i class="lucide lucide-check"></i></td><td class="matrix-ent td-yes"><i class="lucide lucide-check"></i></td><td class="td-yes"><i class="lucide lucide-check"></i></td></tr>
+          <tr><td>Zero-to-one experience</td><td class="td-yes"><i class="lucide lucide-check"></i></td><td class="td-yes"><i class="lucide lucide-check"></i></td><td class="matrix-ent td-yes"><i class="lucide lucide-check"></i></td><td class="td-yes"><i class="lucide lucide-check"></i></td></tr>
+          <tr><td>YC interview prep / sparring</td><td class="td-no"><i class="lucide lucide-x"></i></td><td>On request</td><td class="matrix-ent td-yes"><i class="lucide lucide-check"></i></td><td class="td-yes"><i class="lucide lucide-check"></i></td></tr>
+          <tr><td>Fundraising sparring</td><td class="td-no"><i class="lucide lucide-x"></i></td><td class="td-no"><i class="lucide lucide-x"></i></td><td class="matrix-ent td-yes"><i class="lucide lucide-check"></i></td><td class="td-yes"><i class="lucide lucide-check"></i></td></tr>
+          <tr><td>Dedicated Slack channel</td><td class="td-no"><i class="lucide lucide-x"></i></td><td class="td-yes"><i class="lucide lucide-check"></i></td><td class="matrix-ent td-yes"><i class="lucide lucide-check"></i></td><td class="td-yes"><i class="lucide lucide-check"></i></td></tr>
+          <tr><td>On-call ownership</td><td class="td-no"><i class="lucide lucide-x"></i></td><td>Scoped</td><td class="matrix-ent">Shared rotation</td><td>Founding rotation</td></tr>
+          <tr><td>Unicycle &amp; cube talent-show integration</td><td class="td-no"><i class="lucide lucide-x"></i></td><td>On request</td><td class="matrix-ent">On request</td><td class="td-yes"><i class="lucide lucide-check"></i></td></tr>
+        </tbody>
+      </table>
+      <div class="matrix-foot">
+        <span class="muted">No real dollar prices listed, on purpose. Pricing happens in a conversation, not on a billboard.</span>
+        <a href="#configure" class="feat-link">Configure an engagement <i class="lucide lucide-arrow-right"></i></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== CUBE PANEL ===================== -->
+<section class="section" id="cube">
+  <div class="container">
+    <div class="section-head">
+      <div class="eyebrow"><span class="dot-blue"></span> Platform integration &middot; v3.1</div>
+      <h2 class="section-title">Rubik's cube — actually solved, not scramble-reversed.</h2>
+      <p class="section-sub">
+        The cube in the corner of the page? It's being solved move-by-move as you scroll, by a real
+        layer-by-layer algorithm running in your browser. Competitive average: 13.95s on a 3&times;3.
+      </p>
+    </div>
+
+    <div class="cube-panel">
+      <div class="cube-panel-stage" id="panel-cube"></div>
+      <div class="cube-panel-side">
+        <div class="cube-panel-meta">
+          <div class="modal-eyebrow">Solver &middot; beginner LBL</div>
+          <h3>Layer by layer, BFS per stage.</h3>
+          <p>Cross &rarr; corners &rarr; middle edges &rarr; yellow cross &rarr; last layer. Each stage planned fresh from the current state, not played back from a scramble log. Around 300 lines of vanilla JS, zero dependencies.</p>
+        </div>
+        <div class="modal-kv">
+          <div><span>Model</span><b>54-facelet string</b></div>
+          <div><span>Search</span><b>Masked BFS</b></div>
+          <div><span>Depth cap</span><b>12 HTM / stage</b></div>
+          <div><span>Avg solve</span><b id="panel-avg">~40 HTM</b></div>
+        </div>
+        <div class="cube-controls">
+          <button class="btn btn-ghost" id="panel-scramble"><i class="lucide lucide-shuffle"></i><span>Scramble</span></button>
+          <button class="btn btn-primary" id="panel-solve"><i class="lucide lucide-play"></i><span>Solve</span></button>
+        </div>
+        <div class="cube-panel-status mono" id="panel-solve-status">idle · press scramble</div>
+        <div class="cube-panel-moves mono" id="panel-moves">—</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== CASE STUDIES ===================== -->
+<section class="section section-alt" id="stories">
+  <div class="container">
+    <div class="section-head">
+      <div class="eyebrow"><span class="dot-blue"></span> Customer stories</div>
+      <h2 class="section-title">Outcomes, in production.</h2>
+      <p class="section-sub">Three deployments. Three very different companies. One operator.</p>
+    </div>
+
+    <div class="case-grid">
+      <article class="case-card" data-case="stockunlock" data-search="stock unlock yc seed fintech ses migration">
+        <div class="case-head">
+          <div class="case-logo">SU</div>
+          <div class="case-tags"><span>Fintech</span><span>YC W22</span></div>
+        </div>
+        <h3>Stock Unlock — built it, scaled it, profitable.</h3>
+        <p>Co-founded a YC W22 investing platform. Led the interview. Closed a $1.335M seed. Scaled to eight engineers and thousands of paying customers. It runs today as a profitable side business — not full-time, not gone.</p>
+        <div class="case-metrics">
+          <div><b>$1.335M</b><span>seed raised</span></div>
+          <div><b>8</b><span>engineers at peak</span></div>
+          <div><b>thousands</b><span>paying customers</span></div>
+        </div>
+        <a class="feat-link" href="#">Read case study <i class="lucide lucide-arrow-right"></i></a>
+      </article>
+
+      <article class="case-card" data-case="oscar" data-search="oscar health senior engineer python postgres">
+        <div class="case-head">
+          <div class="case-logo">OS</div>
+          <div class="case-tags"><span>Health</span><span>Enterprise</span></div>
+        </div>
+        <h3>Oscar Health — four years, three teams, 50→150 engineers.</h3>
+        <p>Senior engineer through hyper-growth. Member-facing Python systems. Leveled Associate → Mid → Senior. Declined the manager track to keep shipping.</p>
+        <div class="case-metrics">
+          <div><b>3&times;</b><span>team growth</span></div>
+          <div><b>4 yrs</b><span>tenure</span></div>
+          <div><b>Senior IC</b><span>exit title</span></div>
+        </div>
+        <a class="feat-link" href="#">Read case study <i class="lucide lucide-arrow-right"></i></a>
+      </article>
+
+      <article class="case-card" data-case="commercehub" data-search="commercehub intern first job groovy java">
+        <div class="case-head">
+          <div class="case-logo">CH</div>
+          <div class="case-tags"><span>E-commerce</span><span>First job</span></div>
+        </div>
+        <h3>CommerceHub — intern to production engineer in 18 months.</h3>
+        <p>Walked in green. Shipped integration pipelines for Fortune 500 retailers. Took down production exactly once, as an intern, and my manager stood up and said: "that's not your fault — you shouldn't have had the button."</p>
+        <div class="case-metrics">
+          <div><b>18 mo</b><span>intern → engineer</span></div>
+          <div><b>F500</b><span>customers served</span></div>
+          <div><b>2013–16</b><span>tenure</span></div>
+        </div>
+        <a class="feat-link" href="#">Read case study <i class="lucide lucide-arrow-right"></i></a>
+      </article>
+    </div>
+
+    <!-- Quote -->
+    <blockquote class="quote">
+      <div class="quote-mark"><i class="lucide lucide-quote"></i></div>
+      <p>"I ignored his emails for weeks. That was the mistake."</p>
+      <footer><b>Daniel Pronk</b> &middot; Stock Unlock co-founder</footer>
+    </blockquote>
+  </div>
+</section>
+
+<!-- ===================== DEVELOPER DOCS ===================== -->
+<section class="section" id="docs">
+  <div class="container">
+    <div class="section-head section-head-left">
+      <div class="eyebrow"><span class="dot-blue"></span> Developers &middot; API v13</div>
+      <h2 class="section-title">API reference.</h2>
+      <p class="section-sub">A REST API for the one resource that matters. Sold to engineers — so it documents like one.</p>
+    </div>
+
+    <div class="docs-wrap">
+      <aside class="docs-nav">
+        <div class="docs-nav-label">Getting started</div>
+        <a href="#ep-hire" class="docs-link active">POST /api/hire</a>
+        <a href="#ep-status" class="docs-link">GET /api/status</a>
+        <a href="#ep-cube" class="docs-link">GET /api/cube/solve</a>
+        <a href="#ep-role" class="docs-link">PATCH /api/role</a>
+        <a href="#ep-meeting" class="docs-link">POST /api/meeting</a>
+        <div class="docs-nav-label">Concepts</div>
+        <a href="#" class="docs-link muted">Authentication</a>
+        <a href="#" class="docs-link muted">Rate limits</a>
+        <a href="#" class="docs-link muted">Idempotency</a>
+        <a href="#" class="docs-link muted">Webhooks</a>
+        <div class="docs-nav-label">SDKs</div>
+        <a href="#" class="docs-link muted">ruth-node</a>
+        <a href="#" class="docs-link muted">ruth-python</a>
+        <a href="#" class="docs-link muted">ruth-go</a>
+      </aside>
+
+      <div class="docs-main">
+
+        <article class="endpoint" id="ep-hire" data-search="hire post api curl endpoint">
+          <div class="endpoint-head">
+            <span class="method method-post">POST</span>
+            <span class="path mono">/api/hire</span>
+          </div>
+          <p>Initiates a hiring flow for the <code>jake</code> resource. Returns <code>201 Created</code> on acceptance. Idempotent on <code>email</code>. Prices are not part of this payload — that conversation happens over email.</p>
+          <div class="endpoint-cols">
+            <div class="endpoint-prose">
+              <h4>Body parameters</h4>
+              <table class="param-table">
+                <tr><td><code>role</code></td><td class="type">string</td><td>Required. One of <code>ic</code>, <code>founding</code>, <code>advisor</code>.</td></tr>
+                <tr><td><code>stage</code></td><td class="type">string</td><td>Required. Company stage. Best fit: seed → Series B.</td></tr>
+                <tr><td><code>interesting</code></td><td class="type">boolean</td><td>Required. Must be <code>true</code>.</td></tr>
+                <tr><td><code>email</code></td><td class="type">string</td><td>Your email. Jake's will be returned.</td></tr>
+              </table>
+            </div>
+            <div class="endpoint-code">
+              <div class="code-head">
+                <span class="code-tab active">cURL</span>
+                <span class="code-tab">Node</span>
+                <span class="code-tab">Python</span>
+                <button class="copy-btn" data-copy="curl-hire"><i class="lucide lucide-copy"></i></button>
+              </div>
+<pre id="curl-hire"><code><span class="c-comment"># Contact Jake directly</span>
+<span class="c-kw">curl</span> <span class="c-str">mailto:jake@stockunlock.com</span> \
+  <span class="c-flag">-H</span> <span class="c-str">"Content-Type: application/json"</span> \
+  <span class="c-flag">-d</span> <span class="c-str">'{
+    "role": "founding",
+    "stage": "seed",
+    "interesting": true,
+    "email": "you@yourstartup.com"
+  }'</span></code></pre>
+              <div class="code-head code-resp-head"><span>Response</span><span class="mono muted">201 Created</span></div>
+<pre><code><span class="c-kw">{</span>
+  <span class="c-key">"jake"</span>: <span class="c-str">"jake@stockunlock.com"</span>,
+  <span class="c-key">"response_time"</span>: <span class="c-str">"~24h ET"</span>,
+  <span class="c-key">"status"</span>: <span class="c-str">"taking calls"</span>,
+  <span class="c-key">"pricing"</span>: <span class="c-str">"market rate + equity"</span>
+<span class="c-kw">}</span></code></pre>
+            </div>
+          </div>
+        </article>
+
+        <article class="endpoint" id="ep-status" data-search="status get availability uptime">
+          <div class="endpoint-head">
+            <span class="method method-get">GET</span>
+            <span class="path mono">/api/status</span>
+          </div>
+          <p>Returns the current availability of the <code>jake</code> resource. Always fresh, never cached longer than a cube solve.</p>
+          <div class="endpoint-cols">
+            <div class="endpoint-prose">
+              <h4>Response fields</h4>
+              <table class="param-table">
+                <tr><td><code>available</code></td><td class="type">boolean</td><td>Whether Jake is taking new engagements.</td></tr>
+                <tr><td><code>latency_ms</code></td><td class="type">integer</td><td>Mean response latency on email, trailing 7 days.</td></tr>
+                <tr><td><code>current_focus</code></td><td class="type">string</td><td>What I'm heads-down on today.</td></tr>
+              </table>
+            </div>
+            <div class="endpoint-code">
+              <div class="code-head">
+                <span class="code-tab active">cURL</span>
+                <button class="copy-btn" data-copy="curl-status"><i class="lucide lucide-copy"></i></button>
+              </div>
+<pre id="curl-status"><code><span class="c-kw">curl</span> <span class="c-str">https://ruth.systems/api/status</span></code></pre>
+              <div class="code-head code-resp-head"><span>Response</span><span class="mono muted">200 OK</span></div>
+<pre><code><span class="c-kw">{</span>
+  <span class="c-key">"available"</span>: <span class="c-str">true</span>,
+  <span class="c-key">"latency_ms"</span>: <span class="c-num">18</span>,
+  <span class="c-key">"current_focus"</span>: <span class="c-str">"next chapter"</span>,
+  <span class="c-key">"on_call"</span>: <span class="c-str">"weekdays ET"</span>,
+  <span class="c-key">"cube_pb"</span>: <span class="c-str">"13.95s avg"</span>
+<span class="c-kw">}</span></code></pre>
+            </div>
+          </div>
+        </article>
+
+        <article class="endpoint" id="ep-cube" data-search="cube solve rubiks get beginner lbl">
+          <div class="endpoint-head">
+            <span class="method method-get">GET</span>
+            <span class="path mono">/api/cube/solve</span>
+          </div>
+          <p>Returns a valid move sequence that solves the provided cube state. Strategy: beginner layer-by-layer. Implementation: BFS per stage against a 54-facelet model. See the <a href="#cube">cube panel above</a> to run it.</p>
+        </article>
+
+        <article class="endpoint" id="ep-role" data-search="role patch title scope">
+          <div class="endpoint-head">
+            <span class="method method-patch">PATCH</span>
+            <span class="path mono">/api/role</span>
+          </div>
+          <p>Updates the role descriptor on the <code>jake</code> resource. Side effect: a calendar invite.</p>
+        </article>
+
+        <article class="endpoint" id="ep-meeting" data-search="meeting post 30 minute">
+          <div class="endpoint-head">
+            <span class="method method-post">POST</span>
+            <span class="path mono">/api/meeting</span>
+          </div>
+          <p>Schedules a first call. 30 minutes. Agenda required. Camera optional.</p>
+        </article>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== CTA BAND ===================== -->
+<section class="cta-band">
+  <div class="container cta-row">
+    <div>
+      <div class="eyebrow"><span class="dot-blue"></span> Ready when you are</div>
+      <h2>Stop evaluating. Start shipping.</h2>
+      <p>30-minute technical call. No sales pitch, no proposal PDF, no deck. Just a conversation about what you're building.</p>
+    </div>
+    <div class="cta-actions">
+      <a href="mailto:jake@stockunlock.com" class="btn btn-primary btn-lg">Email Jake</a>
+      <a href="#configure" class="btn btn-ghost btn-lg">Configure first</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== FOOTER ===================== -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="brand">
+          <span class="brand-mark"><i class="lucide lucide-hexagon"></i></span>
+          <span class="brand-name">Ruth<span class="brand-dot">.</span>Systems</span>
+        </div>
+        <p>The engineer your team actually needs.<br/>Founded 2013. Built for the next chapter.</p>
+        <div class="newsletter">
+          <div class="newsletter-label">Subscribe to the changelog</div>
+          <form class="newsletter-form" onsubmit="event.preventDefault(); this.querySelector('.nl-msg').classList.add('show');">
+            <input type="email" placeholder="you@yourcompany.com" required />
+            <button type="submit" class="btn btn-primary">Subscribe</button>
+            <div class="nl-msg">Subscribed. You'll hear one email when the next chapter starts.</div>
+          </form>
+        </div>
+      </div>
+
+      <div class="footer-cols">
+        <div class="footer-col">
+          <div class="footer-col-title">Product</div>
+          <a href="#features">Full-stack delivery</a>
+          <a href="#features">AI-native workflows</a>
+          <a href="#features">Observability</a>
+          <a href="#features">Audit trail</a>
+          <a href="#configure">Configure a Jake</a>
+          <a href="#pricing">Compare</a>
+        </div>
+        <div class="footer-col">
+          <div class="footer-col-title">Developers</div>
+          <a href="#docs">API reference</a>
+          <a href="#docs">POST /api/hire</a>
+          <a href="#cube">Cube solver</a>
+          <a href="#architecture">Architecture</a>
+          <a href="https://github.com/JakeRuth">GitHub</a>
+        </div>
+        <div class="footer-col">
+          <div class="footer-col-title">Company</div>
+          <a href="#stories">Customers</a>
+          <a href="#stories">Stock Unlock</a>
+          <a href="#stories">Oscar Health</a>
+          <a href="#stories">CommerceHub</a>
+          <a href="mailto:jake@stockunlock.com">Contact</a>
+        </div>
+        <div class="footer-col">
+          <div class="footer-col-title">Legal-ish</div>
+          <a href="#">Terms of service</a>
+          <a href="#">Privacy policy</a>
+          <a href="#">SOC 2 (pending, self-attested)</a>
+          <a href="#">DPA</a>
+          <a href="#">Responsible disclosure</a>
+          <a href="#">Honesty policy</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bot">
+      <div class="footer-badges">
+        <div class="badge"><i class="lucide lucide-shield-check"></i> SOC 2 Type II<span class="badge-sub">(pending)</span></div>
+        <div class="badge"><i class="lucide lucide-globe"></i> GDPR compliant</div>
+        <div class="badge"><i class="lucide lucide-signal"></i> 99.97% uptime</div>
+        <div class="badge"><i class="lucide lucide-cpu"></i> Driver in the driver's seat</div>
+      </div>
+      <div class="footer-meta">
+        <span>© 2026 Ruth Systems — a tasteful fiction. Jake Ruth, the human, is real.</span>
+        <span class="footer-status"><span class="dot-green"></span> All systems operational</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- ===================== AMBIENT CUBE (scroll-solved) ===================== -->
+<aside class="ambient-cube" id="ambient-cube-wrap" aria-hidden="true">
+  <div class="ambient-cube-card">
+    <div class="ambient-cube-head">
+      <span class="ambient-dot"></span>
+      <span class="ambient-label">scroll-solver</span>
+      <span class="ambient-status mono" id="ambient-status">solving…</span>
+    </div>
+    <div id="ambient-cube" class="ambient-cube-box"></div>
+    <div class="ambient-cube-foot">
+      <div class="ambient-bar-wrap"><div class="ambient-bar" id="ambient-bar"></div></div>
+      <span class="ambient-progress mono" id="ambient-progress">0/0 turns</span>
+    </div>
+  </div>
+</aside>
+
+<!-- ===================== SEARCH PALETTE ===================== -->
+<div class="search-palette" id="search-palette" hidden>
+  <div class="search-backdrop" data-close></div>
+  <div class="search-panel" role="dialog" aria-label="Search">
+    <div class="search-input-wrap">
+      <i class="lucide lucide-search"></i>
+      <input type="text" id="search-input" placeholder="Search features, endpoints, customers, the cube…" autocomplete="off" />
+      <kbd>esc</kbd>
+    </div>
+    <div class="search-results" id="search-results">
+      <div class="search-empty">Start typing. Try: "cube", "YC", "api/hire", "stock unlock", "uptime", "ai".</div>
+    </div>
+    <div class="search-foot">
+      <span class="mono">↑↓ navigate</span>
+      <span class="mono">↵ jump</span>
+      <span class="mono">esc close</span>
+    </div>
+  </div>
+</div>
+
+<!-- Scripts -->
+<script src="./cube.js"></script>
+<script src="./app.js"></script>
+</body>
+</html>

@@ -1,0 +1,130 @@
+/* ==========================================================================
+ * bottom-segment-nav styles
+ * --------------------------------------------------------------------------
+ * A small, glassy, bottom-centered segmented control. One accent color.
+ * Restraint is the point.
+ * ========================================================================== */
+
+:root {
+  --bsn-accent: #8ab4ff;         /* one accent — cool, quiet blue */
+  --bsn-accent-ink: #0a0f1a;
+  --bsn-accent-soft: rgba(138, 180, 255, 0.16);
+  --bsn-track-bg: rgba(14, 17, 22, 0.62);
+  --bsn-track-border: rgba(255, 255, 255, 0.09);
+  --bsn-track-shadow: 0 12px 36px rgba(0, 0, 0, 0.45), 0 1px 0 rgba(255, 255, 255, 0.05) inset;
+  --bsn-label: #b9c1cc;
+  --bsn-label-hover: #e8ecf1;
+  --bsn-ease: cubic-bezier(.32, .72, 0, 1);  /* iOS-feeling pill ease */
+}
+
+/* -- Container ------------------------------------------------------------ */
+.bsn-root {
+  position: fixed;
+  left: 50%;
+  bottom: 24px;
+  transform: translateX(-50%);
+  z-index: 60;
+  display: flex;
+  justify-content: center;
+  pointer-events: none;           /* only the group itself catches clicks */
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+}
+
+/* -- The track ------------------------------------------------------------ */
+.bsn-group {
+  position: relative;
+  pointer-events: auto;
+  display: inline-flex;
+  align-items: stretch;
+  gap: 0;
+  padding: 4px;
+  background: var(--bsn-track-bg);
+  border: 1px solid var(--bsn-track-border);
+  border-radius: 999px;
+  backdrop-filter: blur(14px) saturate(140%);
+  -webkit-backdrop-filter: blur(14px) saturate(140%);
+  box-shadow: var(--bsn-track-shadow);
+}
+
+/* The sliding highlight — absolutely positioned behind the buttons. */
+.bsn-thumb {
+  position: absolute;
+  top: 4px;
+  bottom: 4px;
+  left: 0;
+  width: 0;
+  transform: translateX(0);
+  background: var(--bsn-accent);
+  border-radius: 999px;
+  box-shadow:
+    0 0 0 3px var(--bsn-accent-soft),
+    0 4px 16px rgba(138, 180, 255, 0.22);
+  opacity: 0;
+  transition:
+    transform 360ms var(--bsn-ease),
+    width 360ms var(--bsn-ease),
+    opacity 240ms ease;
+  will-change: transform, width;
+  pointer-events: none;
+}
+.bsn-thumb[data-ready="1"] { opacity: 1; }
+
+/* -- Segment buttons ------------------------------------------------------ */
+.bsn-seg {
+  position: relative;              /* keep buttons above the thumb */
+  z-index: 1;
+  appearance: none;
+  background: transparent;
+  border: 0;
+  color: var(--bsn-label);
+  font: inherit;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: -0.003em;
+  padding: 8px 18px;
+  border-radius: 999px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: color 220ms ease;
+}
+
+.bsn-seg:hover {
+  color: var(--bsn-label-hover);
+}
+
+/* Focus ring — visible on keyboard nav, not on mouse click */
+.bsn-seg:focus { outline: none; }
+.bsn-seg:focus-visible {
+  outline: 2px solid var(--bsn-accent);
+  outline-offset: 3px;
+}
+
+/* Current segment — sits on top of the thumb. Ink flips to dark. */
+.bsn-seg[data-current="true"] {
+  color: var(--bsn-accent-ink);
+}
+
+/* Small press feedback */
+.bsn-seg:active {
+  transform: translateY(0.5px);
+}
+
+/* While a navigation is in flight, lock interaction subtly */
+.bsn-root[data-in-flight="true"] .bsn-group {
+  pointer-events: none;
+  filter: saturate(0.85);
+}
+
+/* -- Mobile --------------------------------------------------------------- */
+@media (max-width: 520px) {
+  .bsn-root { bottom: 18px; }
+  .bsn-seg  { padding: 7px 14px; font-size: 12.5px; }
+}
+
+/* -- Reduced motion ------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  .bsn-thumb,
+  .bsn-seg {
+    transition: none !important;
+  }
+}

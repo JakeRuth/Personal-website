@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Jake Ruth — A Diary in Six Acts</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;0,9..144,900;1,9..144,600&family=Inter:wght@300;400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+<div class="cursor" id="cursor"></div>
+
+<!-- progress rail -->
+<nav class="rail" aria-label="chapter progress">
+  <a href="#ch-0" class="rail-dot" data-ch="0"><span>00</span><em>Overture</em></a>
+  <a href="#ch-1" class="rail-dot" data-ch="1"><span>01</span><em>Before Code</em></a>
+  <a href="#ch-2" class="rail-dot" data-ch="2"><span>02</span><em>The Pivot</em></a>
+  <a href="#ch-3" class="rail-dot" data-ch="3"><span>03</span><em>Rising</em></a>
+  <a href="#ch-4" class="rail-dot" data-ch="4"><span>04</span><em>Oscar</em></a>
+  <a href="#ch-5" class="rail-dot" data-ch="5"><span>05</span><em>Stock Unlock</em></a>
+  <a href="#ch-6" class="rail-dot" data-ch="6"><span>06</span><em>Now</em></a>
+</nav>
+
+<div class="progress-bar" id="progress-bar"></div>
+
+<!-- ============ OVERTURE ============ -->
+<header class="chapter overture" id="ch-0" data-accent="#eae2d0">
+  <div class="masthead">
+    <div class="masthead-top">
+      <span class="kicker">Vol. 01 · A Diary in Six Acts</span>
+      <span class="kicker right">Est. 2013 · New York &amp; Nowhere</span>
+    </div>
+    <h1 class="masthead-title">
+      <span class="mtitle-line">Jake</span>
+      <span class="mtitle-line serif-italic">Ruth</span>
+    </h1>
+    <p class="masthead-sub">An engineer, a founder, a guy who once took down production as an intern &mdash; told in six chapters, scrolled slowly.</p>
+    <div class="masthead-meta">
+      <span>Serendipity Edition</span>
+      <span>&#9679;</span>
+      <span>Scroll to begin</span>
+      <span>&#9679;</span>
+      <span>~ 12 min read</span>
+    </div>
+    <div class="scroll-hint" aria-hidden="true">
+      <span>SCROLL</span>
+      <div class="scroll-line"></div>
+    </div>
+  </div>
+</header>
+
+<!-- ============ CH 1 — BEFORE CODE ============ -->
+<section class="chapter ch1" id="ch-1" data-accent="#ff7a59">
+  <div class="ch-head">
+    <span class="ch-num">Chapter One</span>
+    <h2 class="ch-title">Before Code</h2>
+    <p class="ch-dek">Windows 95 hum. A Rubik&rsquo;s cube with a cracked corner. A skateboard leaning on the radiator. Guitar Hero on Expert.</p>
+  </div>
+
+  <div class="ch-body split">
+    <div class="col prose">
+      <p>Childhood ran on a desktop tower that sounded like it was about to take off. Before the internet was a place you <em>lived</em>, it was a place you visited &mdash; dial-up handshake, a little crackle, then: everything.</p>
+      <p>I fell for toys that rewarded stubbornness. A Rubik&rsquo;s cube that took three days to solve, then three weeks to shave a minute off, then three years to get to a 13.95-second average. Skateboards that punished you until they didn&rsquo;t. Guitar Hero buttons worn soft.</p>
+      <p>Nothing I cared about came with instructions.</p>
+    </div>
+    <div class="col pixel-stage">
+      <pre class="ascii-art" aria-hidden="true">
+      .--------------.
+      |  .--------.  |
+      |  |########|  |     ___________
+      |  |##&#9632;&#9632;&#9632;##|  |    /           \
+      |  |########|  |   /  ooooo     \
+      |  |########|  |  |  o     o     |
+      |  '--------'  |   \  ooooo     /
+      |______________|    \___________/
+       \____________/       guitar-hero
+          win 95                era
+      </pre>
+      <div class="cube-mini" id="cube-mini" aria-hidden="true">
+        <div class="cube-face"></div>
+      </div>
+      <div class="metric-tiles">
+        <div class="tile"><b>13.95s</b><span>cube PB avg</span></div>
+        <div class="tile"><b>1995</b><span>first boot</span></div>
+        <div class="tile"><b>&infin;</b><span>field trips to CompUSA</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CH 2 — THE PIVOT ============ -->
+<section class="chapter ch2" id="ch-2" data-accent="#8ef0c4">
+  <div class="ch-head">
+    <span class="ch-num">Chapter Two</span>
+    <h2 class="ch-title serif-italic">The Pivot</h2>
+    <p class="ch-dek">Senior year. Scheduling conflict. AP Computer Science is the loophole out of AP Calc. I sign up to dodge derivatives. Accidentally sign up for the rest of my life.</p>
+  </div>
+
+  <div class="ch-body center">
+    <p class="prose narrow">The first program we wrote was the oldest joke in the profession. I didn&rsquo;t know that. I just knew I typed something and the machine said it back.</p>
+
+    <div class="terminal" id="hello-terminal" aria-label="first program">
+      <div class="terminal-bar">
+        <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+        <span class="term-title">jake@highschool ~ %</span>
+      </div>
+      <pre class="terminal-body"><code><span class="prompt">$</span> <span class="cmd">javac Hello.java &amp;&amp; java Hello</span>
+<span class="out" id="hello-out"></span><span class="caret">&#9608;</span></code></pre>
+    </div>
+
+    <p class="prose narrow right">I went home that night and installed Java on our home desktop. My mom asked what I was doing. I said: I think this is it.</p>
+  </div>
+</section>
+
+<!-- ============ CH 3 — RISING ============ -->
+<section class="chapter ch3" id="ch-3" data-accent="#ffd166">
+  <div class="ch-head">
+    <span class="ch-num">Chapter Three</span>
+    <h2 class="ch-title">Rising</h2>
+    <p class="ch-dek">CommerceHub, Albany, 2013. A class field trip to Tekkapalooza. I printed twenty resumes and handed them out like flyers at a show.</p>
+  </div>
+
+  <div class="ch-body split">
+    <div class="col prose">
+      <p>That field trip got me my first internship. Serendipity &mdash; but the kind you have to reach out and grab while it&rsquo;s walking past you.</p>
+      <p>I was twenty and writing code that shipped to real customers. One afternoon I took down production. My manager looked at the incident and said, flatly, &ldquo;that shouldn&rsquo;t have been allowed to happen,&rdquo; and took the blame for me. I have tried to be that kind of manager ever since.</p>
+      <p>Three years at CommerceHub. The meter below is &mdash; approximately &mdash; how I felt about my own code. Calibrate for ego accordingly.</p>
+    </div>
+    <div class="col">
+      <div class="meter-block">
+        <div class="meter-label"><span>code quality</span><span id="meter-pct">0%</span></div>
+        <div class="meter-track">
+          <div class="meter-fill" id="meter-fill"></div>
+          <div class="meter-marks">
+            <span style="left:12%" data-y="2013">2013</span>
+            <span style="left:38%" data-y="2014">2014</span>
+            <span style="left:66%" data-y="2015">2015</span>
+            <span style="left:92%" data-y="2016">2016</span>
+          </div>
+        </div>
+        <div class="meter-callouts">
+          <span class="callout" style="left:26%">first PR approved</span>
+          <span class="callout top" style="left:52%">took down prod</span>
+          <span class="callout" style="left:82%">promoted</span>
+        </div>
+      </div>
+
+      <ul class="artifacts">
+        <li><b>ACM Club</b> &mdash; president, SUNY Albany</li>
+        <li><b>BS CS + Applied Math</b> &mdash; 2015</li>
+        <li><b>Youni</b> &mdash; 2015&ndash;16, side quest</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CH 4 — OSCAR ============ -->
+<section class="chapter ch4" id="ch-4" data-accent="#7aa2ff">
+  <div class="ch-head">
+    <span class="ch-num">Chapter Four</span>
+    <h2 class="ch-title">Oscar</h2>
+    <p class="ch-dek">2017. Manhattan. A health-insurance company that thought it was a software company. I arrive when engineering is 50 people. I leave when it&rsquo;s 150+.</p>
+  </div>
+
+  <div class="ch-body">
+    <p class="prose narrow">Oscar is where I learned that scale is mostly a communication problem wearing a code costume. I watched one engineering org become three, then seven. I watched standups turn into rituals, rituals turn into bureaucracy, bureaucracy turn into people leaving, people leaving turn into rebuilding. Four years of it.</p>
+    <p class="prose narrow">Somewhere in there I rode a unicycle on stage at the company talent show, solving a Rubik&rsquo;s cube. It remains the single most Oscar-coded thing I have ever done.</p>
+
+    <div class="timeline">
+      <svg id="timeline-svg" viewBox="0 0 1000 260" preserveAspectRatio="none" aria-hidden="true">
+        <defs>
+          <linearGradient id="tlgrad" x1="0" x2="1" y1="0" y2="0">
+            <stop offset="0%" stop-color="#7aa2ff" stop-opacity="0"/>
+            <stop offset="50%" stop-color="#7aa2ff" stop-opacity="1"/>
+            <stop offset="100%" stop-color="#7aa2ff" stop-opacity="0"/>
+          </linearGradient>
+        </defs>
+        <line x1="0" y1="130" x2="1000" y2="130" stroke="url(#tlgrad)" stroke-width="1.5"/>
+        <g id="timeline-bars"></g>
+        <g id="timeline-labels"></g>
+      </svg>
+      <div class="tl-legend">
+        <span><i style="background:#7aa2ff"></i> eng headcount</span>
+        <span><i style="background:#ffd166"></i> my scope</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CH 5 — STOCK UNLOCK ============ -->
+<section class="chapter ch5" id="ch-5" data-accent="#b07bff">
+  <div class="ch-head">
+    <span class="ch-num">Chapter Five</span>
+    <h2 class="ch-title serif-italic">Stock Unlock</h2>
+    <p class="ch-dek">I met Daniel Pronk by writing him free code. A spreadsheet automation, emailed into the void. He eventually answered. A year later we were in YC.</p>
+  </div>
+
+  <div class="ch-body split">
+    <div class="col prose">
+      <p>The whole thing started because I was annoyed. Retail investors were being charged steakhouse prices for gas-station data. I thought: surely we can do better than this, and charge less while we&rsquo;re at it.</p>
+      <p>YC W22. $1.335M seed. Eight people at peak. Thousands of paying customers. Profitable. I am proud of the thing and of the restraint &mdash; we built what we said we&rsquo;d build and charged what we said we&rsquo;d charge.</p>
+      <p>It&rsquo;s a profitable side business now. I&rsquo;m not full-time. Next chapter.</p>
+    </div>
+    <div class="col">
+      <div class="chart-wrap">
+        <svg id="stock-svg" viewBox="0 0 500 280" aria-hidden="true">
+          <defs>
+            <linearGradient id="sgfill" x1="0" x2="0" y1="0" y2="1">
+              <stop offset="0%" stop-color="#b07bff" stop-opacity="0.45"/>
+              <stop offset="100%" stop-color="#b07bff" stop-opacity="0"/>
+            </linearGradient>
+          </defs>
+          <g class="grid">
+            <line x1="0" x2="500" y1="70" y2="70"/>
+            <line x1="0" x2="500" y1="140" y2="140"/>
+            <line x1="0" x2="500" y1="210" y2="210"/>
+          </g>
+          <path id="stock-fill" d="" fill="url(#sgfill)"/>
+          <path id="stock-line" d="" fill="none" stroke="#b07bff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <g id="stock-marks"></g>
+        </svg>
+        <div class="chart-stats">
+          <div><b>W22</b><span>YC batch</span></div>
+          <div><b>$1.335M</b><span>seed</span></div>
+          <div><b>8</b><span>peak team</span></div>
+          <div><b>1000s</b><span>customers</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CH 6 — NOW ============ -->
+<section class="chapter ch6" id="ch-6" data-accent="#f5f5f5">
+  <div class="ch-head">
+    <span class="ch-num">Chapter Six</span>
+    <h2 class="ch-title">Now</h2>
+    <p class="ch-dek">The company is handed off, running on its own legs. I&rsquo;m staring at the next thing. The AI era is here. I want to be the driver, not the passenger.</p>
+  </div>
+
+  <div class="ch-body center">
+    <div class="terminal tall" id="thesis-terminal">
+      <div class="terminal-bar">
+        <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+        <span class="term-title">jake@driver-seat ~ % cat thesis.md</span>
+      </div>
+      <pre class="terminal-body"><code><span class="out" id="thesis-out"></span><span class="caret">&#9608;</span></code></pre>
+    </div>
+
+    <p class="prose narrow right sign-off">If any of this resonated &mdash; if you&rsquo;ve got a thing to build, an idea to kick around, or a Rubik&rsquo;s cube to race &mdash; <a class="mail" href="mailto:jake@stockunlock.com">jake@stockunlock.com</a>.</p>
+  </div>
+
+  <footer class="colophon">
+    <div>
+      <span>Colophon</span>
+      <p>Set in Fraunces &amp; Inter. Hand-scrolled in vanilla HTML, CSS, and JavaScript. No framework was harmed in the making of this diary.</p>
+    </div>
+    <div class="colophon-right">
+      <span>&copy; 2026 Jake Ruth</span>
+      <span>The End &mdash; for now.</span>
+    </div>
+  </footer>
+</section>
+
+<script src="script.js"></script>
+</body>
+</html>

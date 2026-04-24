@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>transition-cube — demo</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <!--
+    transition-cube demo
+
+    Two panels stacked in the same container. Hit "Trigger transition" and
+    the cube takes over the screen, solves itself, and the destination panel
+    fades in behind it as the cube shrinks.
+
+    Integration reference: see README.md and transition-cube.js.
+  -->
+  <div class="stage" id="stage" data-active="origin">
+
+    <!-- ===================== ORIGIN PANEL ===================== -->
+    <section class="panel origin" aria-label="origin panel">
+      <header class="panel-header">
+        <div class="brand"><strong>jake ruth</strong> &nbsp;/&nbsp; transition-cube</div>
+        <div class="brand">origin</div>
+      </header>
+
+      <div class="hero">
+        <div class="eyebrow">Component demo</div>
+        <h1>A cube-shaped <span class="accent">transition</span>.</h1>
+        <p class="sub">
+          The animation you fire between experiences. Scrambled cube fades in
+          large, solves itself with real slice rotations, then shrinks out of
+          the way. Whatever is behind it loads.
+        </p>
+        <p class="sub">
+          Competed 2008&ndash;2014. 13.95 second average on a 3x3. The solver is
+          a bidirectional BFS on the cubie state, not a scramble replay &mdash;
+          it finds a fresh solution every trigger.
+        </p>
+
+        <div class="cta-row">
+          <button class="btn primary" id="trigger">Trigger transition</button>
+          <span class="hint">fires <code>TransitionCube.playTransition()</code></span>
+        </div>
+      </div>
+
+      <div class="meta">
+        <span><b>stack</b>vanilla JS + three.js</span>
+        <span><b>solver</b>bidirectional BFS (cubie model)</span>
+        <span><b>timeline</b>~3.2s total</span>
+        <span><b>respects</b>prefers-reduced-motion</span>
+      </div>
+    </section>
+
+    <!-- ===================== DESTINATION PANEL ===================== -->
+    <section class="panel destination" aria-label="destination panel" aria-hidden="true">
+      <header class="panel-header">
+        <div class="brand"><strong>jake ruth</strong> &nbsp;/&nbsp; next experience</div>
+        <div class="brand">destination</div>
+      </header>
+
+      <div class="hero dest-body">
+        <div>
+          <div class="eyebrow">Arrived</div>
+          <h2>You're through the cube.</h2>
+          <p style="margin-top:16px">
+            The cube finished solving and shrunk out of the way. This panel
+            was always here &mdash; it just couldn't fade in until the solve
+            finished. In a real site this is another experience: the
+            terminal, the blueprint, whatever's next on the list.
+          </p>
+          <div class="reset-row" style="margin-top:28px">
+            <button class="btn" id="reset">&larr; Reset demo</button>
+            <button class="btn primary" id="trigger2">Run it again</button>
+          </div>
+        </div>
+
+        <div class="cards">
+          <div class="card">
+            <h3>Why cube-shaped</h3>
+            <p>
+              Personal: I ran track captain and I ran YC, and in between I
+              rode a unicycle while solving a cube on stage. Putting a real
+              solver on the page is not decoration &mdash; it's a signature.
+            </p>
+          </div>
+          <div class="card">
+            <h3>Why real</h3>
+            <p>
+              No scramble-then-reverse shortcut. The solver BFSes its way
+              out of whatever state the scramble drops it into. Fresh
+              solution every fire.
+            </p>
+          </div>
+          <div class="card">
+            <h3>Integration</h3>
+            <p>
+              Two scripts, one function call. Works between picker screens,
+              between experiences, or as a full-page navigation cover.
+              See <code>README.md</code>.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="meta">
+        <span><b>component</b>transition-cube.js</span>
+        <span><b>api</b>playTransition({ onComplete, destinationUrl, duration })</span>
+        <span><b>degrades to</b>fade if WebGL or three.js is unavailable</span>
+      </div>
+    </section>
+  </div>
+
+  <!-- ============== Scripts ============== -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="cube-solver.js"></script>
+  <script src="transition-cube.js"></script>
+  <script>
+    (function () {
+      const stage = document.getElementById("stage");
+      const triggerBtn = document.getElementById("trigger");
+      const trigger2Btn = document.getElementById("trigger2");
+      const resetBtn = document.getElementById("reset");
+
+      function arrived() {
+        stage.setAttribute("data-active", "destination");
+        // Re-enable buttons once the overlay is gone.
+        [triggerBtn, trigger2Btn, resetBtn].forEach(b => b && (b.disabled = false));
+      }
+      function back() {
+        stage.setAttribute("data-active", "origin");
+      }
+
+      function lockButtons() {
+        [triggerBtn, trigger2Btn, resetBtn].forEach(b => b && (b.disabled = true));
+      }
+
+      triggerBtn.addEventListener("click", () => {
+        lockButtons();
+        TransitionCube.playTransition({
+          duration: 3200,
+          onComplete: arrived,
+        });
+      });
+
+      trigger2Btn.addEventListener("click", () => {
+        // Go back to origin first (so you can see the fade again), then fire.
+        stage.setAttribute("data-active", "origin");
+        lockButtons();
+        // Small delay so the crossfade feels deliberate.
+        setTimeout(() => {
+          TransitionCube.playTransition({
+            duration: 3200,
+            onComplete: arrived,
+          });
+        }, 280);
+      });
+
+      resetBtn.addEventListener("click", back);
+    })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,237 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>v1 topnav v2 — preview</title>
+  <link rel="stylesheet" href="./topnav.css" />
+  <style>
+    /* ===== preview-only chrome, not part of the component ===== */
+    :root {
+      --bg: #0b0d12;
+      --panel: #11141b;
+      --panel-2: #161a23;
+      --text: #e8ebf1;
+      --muted: #9099a8;
+      --accent: #4c8ddb;
+    }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; background: var(--bg); color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Inter, Helvetica, Arial, sans-serif;
+      -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
+    }
+
+    .wrap {
+      max-width: 820px;
+      margin: 0 auto;
+      padding: 40px 24px 80px;
+    }
+
+    .hero {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      padding: 36px 0 24px;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .hero .eyebrow {
+      font-size: 12px;
+      color: var(--muted);
+      letter-spacing: 0.4px;
+      text-transform: uppercase;
+    }
+    .hero h1 {
+      margin: 0;
+      font-size: 34px;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      line-height: 1.15;
+    }
+    .hero p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.55;
+      max-width: 60ch;
+    }
+
+    section.block {
+      margin: 36px 0;
+      padding: 24px;
+      background: var(--panel);
+      border: 1px solid rgba(255,255,255,0.05);
+      border-radius: 14px;
+    }
+    section.block h2 {
+      margin: 0 0 10px;
+      font-size: 18px;
+      font-weight: 600;
+      letter-spacing: -0.005em;
+    }
+    section.block p {
+      margin: 0 0 10px;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.6;
+    }
+    section.block code {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 12.5px;
+      color: #cfd5e0;
+      background: rgba(255,255,255,0.05);
+      padding: 1px 6px;
+      border-radius: 4px;
+    }
+
+    .switcher {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 12px;
+    }
+    .switcher a {
+      display: inline-flex;
+      align-items: center;
+      padding: 6px 10px;
+      font-size: 12px;
+      color: #cfd5e0;
+      background: var(--panel-2);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 7px;
+      text-decoration: none;
+      transition: background 140ms ease, border-color 140ms ease;
+    }
+    .switcher a:hover { background: rgba(255,255,255,0.07); border-color: rgba(255,255,255,0.2); }
+    .switcher a.is-active {
+      background: rgba(76, 141, 219, 0.15);
+      border-color: rgba(76, 141, 219, 0.5);
+      color: #ffffff;
+    }
+
+    .spacer { height: 40vh; }
+    .spacer-s { height: 18vh; }
+
+    footer.foot {
+      margin-top: 60px;
+      padding: 20px 0 0;
+      color: var(--muted);
+      font-size: 12.5px;
+      border-top: 1px solid rgba(255,255,255,0.06);
+    }
+    kbd {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 11.5px;
+      padding: 1px 6px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 4px;
+      color: #e8ebf1;
+    }
+  </style>
+</head>
+<body>
+  <!--
+    The topnav detects the current experience from window.location.pathname.
+    For preview-only, a matching ?exp= query here will rewrite the perceived
+    pathname in memory so you can see each tab's "current" state. This trick
+    is demo-scaffolding only — the real production nav reads pathname direct.
+  -->
+  <script>
+    (function () {
+      var exp = new URLSearchParams(window.location.search).get("exp");
+      if (!exp) return;
+      // Pretend we are inside one of the experience folders. This only matters
+      // for detectCurrent() in topnav.js.
+      var fake = { xp: "/v1/xp/", readme: "/v1/readme/", saas: "/v1/saas/" }[exp];
+      if (!fake) return;
+      try {
+        Object.defineProperty(window.location, "pathname", { value: fake, configurable: true });
+      } catch (e) {
+        // Some browsers don't allow redefining location.pathname; fall back
+        // to overriding it on a history replaceState.
+        try { history.replaceState({}, "", fake + window.location.search); } catch (_e) {}
+      }
+    })();
+  </script>
+
+  <!-- Topnav v2 is injected into <body> by topnav.js -->
+  <script src="./topnav.js"></script>
+
+  <main class="wrap">
+    <div class="hero">
+      <span class="eyebrow">v1 topnav v2 · preview</span>
+      <h1>Clearer. More legible. Subtle.</h1>
+      <p>
+        A thin, dark-glass bar pinned at the top. Left: a Setup control that says what it does.
+        Right: three labelled tabs for the three experiences, with a small Rubik's-cube mark as a
+        quiet family-tie to the wizard. One glance, one decision.
+      </p>
+      <div class="switcher" role="group" aria-label="Preview which experience is current">
+        <a href="?exp=xp"     id="sw-xp">Preview: on Old-school OS</a>
+        <a href="?exp=readme" id="sw-readme">Preview: on Code repo</a>
+        <a href="?exp=saas"   id="sw-saas">Preview: on SaaS product</a>
+        <a href="./">Preview: no current</a>
+      </div>
+    </div>
+
+    <section class="block">
+      <h2>Scroll test</h2>
+      <p>
+        Scroll this page. The bar stays pinned at the top. The blur picks up whatever sits under it
+        without shouting. Tabs stay one-glance-parseable.
+      </p>
+      <p>
+        Clicking a non-current tab triggers the transition cube (when loaded) or falls straight
+        through to the destination URL. Clicking <code>Setup</code> goes back to the installer /
+        wizard at <code>../</code>.
+      </p>
+    </section>
+
+    <div class="spacer"></div>
+
+    <section class="block">
+      <h2>Section two</h2>
+      <p>
+        The current tab has a filled background and a 2px accent underline in that experience's
+        dominant cube colour — XP blue, README green, SaaS orange. The other two tabs stay quiet
+        but legible (~62% white). Hover brightens to 100%.
+      </p>
+      <p>Try clicking the preview links above to see each state.</p>
+    </section>
+
+    <div class="spacer-s"></div>
+
+    <section class="block">
+      <h2>Section three</h2>
+      <p>
+        Keyboard: <kbd>Tab</kbd> into the nav, <kbd>Space</kbd> / <kbd>Enter</kbd> to activate.
+        Focus ring is a soft blue halo that stays out of the way otherwise.
+      </p>
+      <p>
+        Reduced-motion users get the same nav with transitions disabled.
+      </p>
+    </section>
+
+    <div class="spacer"></div>
+
+    <section class="block">
+      <h2>End of page</h2>
+      <p>The bar is still there. That's the job.</p>
+    </section>
+
+    <footer class="foot">
+      Preview page. Not shipped. See <code>README.md</code> for how to swap this in as
+      <code>v1/shared/topnav.{js,css}</code>.
+    </footer>
+  </main>
+
+  <script>
+    // Highlight the active preview-switcher link.
+    (function () {
+      var exp = new URLSearchParams(window.location.search).get("exp");
+      var el = document.getElementById("sw-" + exp);
+      if (el) el.classList.add("is-active");
+    })();
+  </script>
+</body>
+</html>

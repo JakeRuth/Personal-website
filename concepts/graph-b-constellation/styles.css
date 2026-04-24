@@ -1,0 +1,258 @@
+:root {
+  --bg-0: #050816;
+  --bg-1: #0a0f1e;
+  --ink: #e9ecf5;
+  --ink-dim: #8a8fa3;
+  --ink-faint: #5a5f75;
+  --warm: #ff8a5b;     /* career — red-giant */
+  --blue: #9fd0ff;     /* skills — blue-white */
+  --rose: #ff9ec7;     /* hobbies */
+  --green: #8ee7b7;    /* projects */
+  --violet: #c9a8ff;   /* people */
+  --gold: #f5dc8a;     /* AI */
+}
+
+* { box-sizing: border-box; }
+html, body {
+  margin: 0; padding: 0;
+  height: 100%;
+  background: radial-gradient(ellipse at 20% 10%, #0f1a36 0%, var(--bg-1) 35%, var(--bg-0) 100%);
+  color: var(--ink);
+  font-family: 'Inter', system-ui, sans-serif;
+  font-weight: 300;
+  overflow: hidden;
+  -webkit-font-smoothing: antialiased;
+  letter-spacing: 0.02em;
+}
+
+/* Nebula wisps — faint radial gradients layered on top of the body */
+body::before {
+  content: "";
+  position: fixed; inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(60vmax 40vmax at 75% 30%, rgba(100,80,180,0.12), transparent 60%),
+    radial-gradient(50vmax 30vmax at 10% 80%, rgba(200,80,120,0.08), transparent 60%),
+    radial-gradient(40vmax 30vmax at 90% 90%, rgba(80,160,200,0.08), transparent 60%);
+  z-index: 0;
+}
+
+canvas#sky {
+  position: fixed; inset: 0;
+  width: 100vw; height: 100vh;
+  display: block;
+  z-index: 1;
+  cursor: crosshair;
+}
+
+/* Masthead */
+.masthead {
+  position: fixed;
+  top: 48px; left: 56px;
+  z-index: 5;
+  pointer-events: none;
+  max-width: 50vw;
+}
+.eyebrow {
+  font-size: 11px;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: var(--ink-dim);
+  margin-bottom: 14px;
+}
+.masthead h1 {
+  font-family: 'Cormorant', serif;
+  font-weight: 300;
+  font-size: 72px;
+  margin: 0;
+  letter-spacing: 0.01em;
+  color: #f5f3ea;
+  text-shadow: 0 0 30px rgba(255,255,255,0.08);
+}
+.masthead .sub {
+  margin-top: 12px;
+  font-size: 13px;
+  letter-spacing: 0.18em;
+  color: var(--ink-dim);
+  font-weight: 300;
+}
+
+/* Legend */
+.legend {
+  position: fixed;
+  top: 48px; right: 48px;
+  z-index: 5;
+  min-width: 200px;
+  padding: 22px 24px;
+  background: rgba(10, 14, 28, 0.5);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 2px;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+.legend-title {
+  font-size: 10px;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: var(--ink-dim);
+  margin-bottom: 14px;
+}
+.legend ul {
+  list-style: none;
+  margin: 0; padding: 0;
+}
+.legend li {
+  display: flex; align-items: center;
+  padding: 6px 0;
+  cursor: pointer;
+  font-size: 14px;
+  font-family: 'Cormorant', serif;
+  letter-spacing: 0.08em;
+  color: var(--ink);
+  transition: color 0.3s, opacity 0.3s;
+  opacity: 0.75;
+}
+.legend li:hover { opacity: 1; }
+.legend li.active { opacity: 1; color: #fff; }
+.legend li .swatch {
+  width: 8px; height: 8px; border-radius: 50%;
+  margin-right: 12px;
+  box-shadow: 0 0 8px currentColor;
+}
+.legend li .num {
+  margin-left: auto;
+  font-family: 'Inter', sans-serif;
+  font-size: 10px;
+  color: var(--ink-faint);
+  letter-spacing: 0.2em;
+}
+.legend-help {
+  margin-top: 16px;
+  padding-top: 14px;
+  border-top: 1px solid rgba(255,255,255,0.06);
+  font-size: 11px;
+  color: var(--ink-faint);
+  letter-spacing: 0.12em;
+  display: flex; flex-direction: column; gap: 4px;
+}
+.legend-help .k {
+  display: inline-block;
+  min-width: 44px;
+  padding: 1px 6px;
+  margin-right: 8px;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 2px;
+  color: var(--ink-dim);
+  font-family: 'Inter', sans-serif;
+  font-size: 10px;
+  text-align: center;
+}
+
+/* Detail panel */
+.detail {
+  position: fixed;
+  bottom: 64px; left: 56px;
+  z-index: 6;
+  width: 420px;
+  max-width: calc(100vw - 96px);
+  padding: 32px 36px 28px;
+  background: rgba(8, 12, 24, 0.72);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 2px;
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  opacity: 0;
+  transform: translateY(12px);
+  pointer-events: none;
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+.detail.open {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+.detail-kicker {
+  font-size: 10px;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: var(--ink-dim);
+  margin-bottom: 10px;
+}
+.detail h2 {
+  font-family: 'Cormorant', serif;
+  font-weight: 400;
+  font-size: 36px;
+  margin: 0 0 14px 0;
+  letter-spacing: 0.01em;
+  color: #f5f3ea;
+}
+.detail p {
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--ink);
+  font-weight: 300;
+  letter-spacing: 0.02em;
+  margin: 0 0 16px 0;
+}
+.detail-meta {
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+.close-btn {
+  position: absolute;
+  top: 16px; right: 18px;
+  background: none; border: none;
+  color: var(--ink-dim);
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  cursor: pointer;
+  font-family: 'Inter', sans-serif;
+  padding: 4px 8px;
+}
+.close-btn:hover { color: #fff; }
+
+/* Footer */
+.foot {
+  position: fixed;
+  bottom: 24px; right: 32px;
+  z-index: 5;
+  font-size: 11px;
+  color: var(--ink-faint);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  display: flex; gap: 12px;
+}
+.foot .dot { opacity: 0.5; }
+
+/* Hover label */
+.hover-label {
+  position: fixed;
+  z-index: 10;
+  padding: 4px 10px;
+  font-family: 'Cormorant', serif;
+  font-size: 16px;
+  letter-spacing: 0.1em;
+  color: #f5f3ea;
+  background: rgba(5,8,22,0.55);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 2px;
+  pointer-events: none;
+  opacity: 0;
+  transform: translate(-50%, -140%);
+  transition: opacity 0.2s;
+  white-space: nowrap;
+}
+.hover-label.show { opacity: 1; }
+
+@media (max-width: 720px) {
+  .masthead { top: 24px; left: 24px; }
+  .masthead h1 { font-size: 44px; }
+  .legend { top: 24px; right: 24px; min-width: 0; padding: 14px 16px; }
+  .legend li { font-size: 12px; }
+  .detail { left: 24px; right: 24px; bottom: 24px; width: auto; padding: 22px; }
+  .detail h2 { font-size: 26px; }
+}

@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Jake Ruth Setup</title>
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<!-- Ambient WebGL background: drifting Rubik's cubes on invisible tracks -->
+<canvas id="ambient" aria-hidden="true"></canvas>
+
+<!-- Thin stamp strip top-right, like build markers on an install disc -->
+<div class="stamp" aria-hidden="true">
+  <span>jakeruth.setup &middot; build 20260420.v1 &middot; integrated</span>
+</div>
+
+<!-- The wizard window -->
+<div class="window" id="wizard" role="dialog" aria-label="Jake Ruth Setup">
+
+  <!-- Chunky title bar with small window controls -->
+  <div class="titlebar">
+    <span class="title-icon"></span>
+    <span class="title-text">Jake Ruth Setup</span>
+    <div class="title-buttons">
+      <button class="tb-btn" aria-label="Minimize" tabindex="-1">_</button>
+      <button class="tb-btn" aria-label="Maximize" tabindex="-1">&#9633;</button>
+      <button class="tb-btn close" aria-label="Close" id="tb-close">&times;</button>
+    </div>
+  </div>
+
+  <!-- Thin menu bar underneath -->
+  <div class="menubar" aria-hidden="true">
+    <span class="menu-item"><u>F</u>ile</span>
+    <span class="menu-item"><u>E</u>dit</span>
+    <span class="menu-item"><u>V</u>iew</span>
+    <span class="menu-item"><u>H</u>elp</span>
+  </div>
+
+  <!-- Main layout: left side-banner + right content area -->
+  <div class="stage" id="wizard-body">
+    <!-- Step content injected here -->
+  </div>
+
+  <!-- Footer with step indicator + dot texture + Back/Next -->
+  <div class="footer">
+    <div class="footer-left">
+      <button class="btn" id="btn-back" disabled>&lt; Back</button>
+    </div>
+    <div class="footer-center">
+      <span class="footer-dots" aria-hidden="true"></span>
+      <span class="step-indicator" id="step-indicator">1 / 2</span>
+      <span class="footer-dots" aria-hidden="true"></span>
+    </div>
+    <div class="footer-right" id="footer-right">
+      <button class="btn primary" id="btn-next">Next &gt;</button>
+      <span class="btn-gap"></span>
+      <button class="btn" id="btn-cancel">Cancel</button>
+    </div>
+  </div>
+</div>
+
+<!-- Cancel confirmation dialog -->
+<div class="modal" id="modal-cancel" hidden>
+  <div class="window modal-window">
+    <div class="titlebar plain">
+      <span class="title-text">Jake Ruth Setup</span>
+      <div class="title-buttons">
+        <button class="tb-btn close" data-close-modal="modal-cancel" aria-label="Close">&times;</button>
+      </div>
+    </div>
+    <div class="body modal-body">
+      <div class="modal-row">
+        <div class="modal-icon warn"></div>
+        <div>
+          <p><strong>Cancel Jake Ruth Setup?</strong></p>
+          <p class="dim">No Jake gets installed. You can still reach him at <a href="mailto:jake@stockunlock.com">jake@stockunlock.com</a>.</p>
+        </div>
+      </div>
+    </div>
+    <div class="footer">
+      <div class="footer-left"></div>
+      <div class="footer-right">
+        <button class="btn" id="cancel-yes">Yes</button>
+        <button class="btn primary" data-close-modal="modal-cancel">No</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Three.js from CDN (shared by ambient + transition cube) -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<!-- Transition cube (solver must load before the animation) -->
+<script src="shared/cube-solver.js"></script>
+<script src="shared/transition-cube.js"></script>
+<script src="shared/transition.js"></script>
+<!-- Ambient + wizard -->
+<script src="ambient.js"></script>
+<script src="wizard.js"></script>
+</body>
+</html>

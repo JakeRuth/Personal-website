@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Ruth &amp; Co. — An engineer-as-a-service, printed on paper</title>
+<meta name="description" content="Jake Ruth. Thirteen years shipping. Ex-Oscar, ex-YC. An editorial SaaS for one engineer." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,300..900,0..100&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="./styles.css" />
+</head>
+<body data-theme="light">
+
+<!-- ============== MASTHEAD ============== -->
+<header class="masthead">
+  <div class="shell masthead-row">
+    <div class="masthead-left">
+      <div class="masthead-kicker">Volume XIII &middot; Issue 04 &middot; April 2026</div>
+    </div>
+    <a class="masthead-title" href="#top">
+      <span class="mt-name">Ruth &amp; Co.</span>
+      <span class="mt-rule"></span>
+      <span class="mt-tag">An engineer-as-a-service, printed on paper</span>
+    </a>
+    <div class="masthead-right">
+      <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">
+        <span class="tt-sun">Day</span><span class="tt-sep">/</span><span class="tt-moon">Night</span>
+      </button>
+    </div>
+  </div>
+
+  <nav class="subnav">
+    <div class="shell subnav-row">
+      <ul class="subnav-links">
+        <li><a href="#cover">Cover</a></li>
+        <li><a href="#essay">The Case</a></li>
+        <li><a href="#architecture">Architecture</a></li>
+        <li><a href="#api">API</a></li>
+        <li><a href="#configure">Configure</a></li>
+        <li><a href="#compare">Engagements</a></li>
+        <li><a href="#letters">Letters</a></li>
+      </ul>
+      <a href="mailto:jake@stockunlock.com" class="subnav-cta">Write to the editor &rarr;</a>
+    </div>
+  </nav>
+</header>
+
+<main id="top">
+
+<!-- ============== COVER ============== -->
+<section class="cover" id="cover">
+  <div class="shell cover-grid">
+    <div class="cover-left">
+      <p class="eyebrow">The Hire Issue</p>
+      <h1 class="cover-title">
+        An engineer<br />
+        <em>you can read</em><br />
+        cover to cover.
+      </h1>
+      <p class="cover-dek">
+        Thirteen years shipping. One chapter ending, another beginning.
+        Ex-Oscar, ex-YC, currently between chapters &mdash; and taking calls.
+      </p>
+
+      <div class="cover-byline">
+        <span class="by">By</span>
+        <span class="byline-name">Jake Ruth</span>
+        <span class="byline-sep">&middot;</span>
+        <span class="byline-city">New York</span>
+      </div>
+
+      <div class="cover-ctas">
+        <a href="#configure" class="btn btn-ink">Configure an engagement</a>
+        <a href="mailto:jake@stockunlock.com" class="btn btn-ghost">Email Jake</a>
+      </div>
+    </div>
+
+    <aside class="cover-right">
+      <figure class="plate">
+        <div class="plate-frame">
+          <div class="plate-letter" aria-hidden="true">J</div>
+          <div class="plate-mark">R.&amp;Co.</div>
+        </div>
+        <figcaption>
+          Plate I. <em>Portrait of the engineer, in serif.</em> Hand-set in Fraunces,
+          printed for the April issue.
+        </figcaption>
+      </figure>
+    </aside>
+  </div>
+
+  <!-- Contents strip -->
+  <div class="shell contents-strip">
+    <div class="contents-label">In this issue</div>
+    <ol class="contents-list">
+      <li><span class="c-num">01</span><a href="#essay">The case for one engineer</a></li>
+      <li><span class="c-num">02</span><a href="#architecture">A small, honest architecture</a></li>
+      <li><span class="c-num">03</span><a href="#api">POST /api/hire</a></li>
+      <li><span class="c-num">04</span><a href="#configure">Configure an engagement</a></li>
+      <li><span class="c-num">05</span><a href="#stock-unlock">Stock Unlock, a dispatch</a></li>
+      <li><span class="c-num">06</span><a href="#letters">Letters to the editor</a></li>
+    </ol>
+  </div>
+</section>
+
+<!-- ============== ESSAY ============== -->
+<section class="section essay" id="essay">
+  <div class="shell essay-shell">
+    <p class="chapter">Chapter One</p>
+    <h2 class="section-title">The case for <em>one engineer</em>.</h2>
+    <p class="lede">
+      This is a magazine about one engineer. The argument is short: most
+      teams need fewer people who ship more, not more people who ship less.
+      Here are the receipts.
+    </p>
+
+    <div class="dropcap-wrap">
+      <p class="body-copy">
+        <span class="dropcap">T</span>hirteen years. Four companies. One
+        YC batch. Jake shipped his first production code in 2013 at
+        CommerceHub, took down production once as an intern, and was told
+        by his manager to stop apologizing &mdash; "that wasn&rsquo;t your
+        fault, you shouldn&rsquo;t have had access to that button." That
+        sentence is the whole job, said out loud.
+      </p>
+
+      <p class="body-copy">
+        He joined Oscar Health at around fifty engineers and left at
+        roughly a hundred and fifty. Leveled Associate to Mid to Senior,
+        declined the manager track twice, and kept shipping Python and
+        Go behind the product. In 2021 he left to co-found Stock Unlock,
+        led the YC interview, closed a $1.335M seed, scaled the team to
+        eight and the customer list to thousands. Today it runs as a
+        profitable side business. He is not full-time there. He is
+        redefining what comes next.
+      </p>
+
+      <p class="body-copy">
+        If that&rsquo;s the kind of person you&rsquo;d want on day one,
+        keep reading. If it isn&rsquo;t, the rest of the internet is
+        forgiving.
+      </p>
+    </div>
+
+    <aside class="pullquote">
+      <p>&ldquo;Driver in the driver&rsquo;s seat, not driven by the car.&rdquo;</p>
+      <footer>&mdash; on how AI gets used around here</footer>
+    </aside>
+
+    <div class="essay-stats">
+      <div class="stat">
+        <div class="stat-num">13</div>
+        <div class="stat-cap">years shipping</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">$1.335M</div>
+        <div class="stat-cap">YC W22 seed, led the interview</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">8</div>
+        <div class="stat-cap">engineers at peak, Stock Unlock</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">13.95<span class="stat-unit">s</span></div>
+        <div class="stat-cap">3&times;3 Rubik&rsquo;s average, competitive era</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="rule rule-ornament" />
+
+<!-- ============== ARCHITECTURE ============== -->
+<section class="section architecture" id="architecture">
+  <div class="shell">
+    <p class="chapter">Chapter Two</p>
+    <h2 class="section-title">A small, honest <em>architecture</em>.</h2>
+    <p class="lede">
+      One engineer, four surfaces, one stable interface to the rest of
+      the company. That&rsquo;s it. No twelve-node dashboard, no SLOs
+      printed on mugs.
+    </p>
+
+    <div class="arch-plate">
+      <svg class="arch-svg" viewBox="0 0 860 420" aria-label="Architecture diagram">
+        <defs>
+          <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+            <path d="M0,0 L10,5 L0,10 z" fill="currentColor"></path>
+          </marker>
+        </defs>
+
+        <!-- Center node -->
+        <g class="node node-center" data-node="core">
+          <circle cx="430" cy="210" r="70"></circle>
+          <text x="430" y="205" text-anchor="middle" class="node-title">Jake</text>
+          <text x="430" y="225" text-anchor="middle" class="node-sub">v13.0 &middot; stable</text>
+        </g>
+
+        <!-- Four surfaces -->
+        <g class="node" data-node="product">
+          <rect x="60" y="60" rx="6" ry="6" width="200" height="90"></rect>
+          <text x="160" y="95" text-anchor="middle" class="node-title">Product</text>
+          <text x="160" y="118" text-anchor="middle" class="node-sub">React, TypeScript, user-facing</text>
+        </g>
+        <g class="node" data-node="platform">
+          <rect x="600" y="60" rx="6" ry="6" width="200" height="90"></rect>
+          <text x="700" y="95" text-anchor="middle" class="node-title">Platform</text>
+          <text x="700" y="118" text-anchor="middle" class="node-sub">Python, Go, AWS, Postgres</text>
+        </g>
+        <g class="node" data-node="ai">
+          <rect x="60" y="270" rx="6" ry="6" width="200" height="90"></rect>
+          <text x="160" y="305" text-anchor="middle" class="node-title">AI-native</text>
+          <text x="160" y="328" text-anchor="middle" class="node-sub">Claude, Codex, reviewed lines</text>
+        </g>
+        <g class="node" data-node="founding">
+          <rect x="600" y="270" rx="6" ry="6" width="200" height="90"></rect>
+          <text x="700" y="305" text-anchor="middle" class="node-title">Founding</text>
+          <text x="700" y="328" text-anchor="middle" class="node-sub">0&rarr;1, YC, hiring, on-call</text>
+        </g>
+
+        <!-- Connecting lines -->
+        <line class="arch-line" x1="260" y1="105" x2="365" y2="180" marker-end="url(#arrow)"></line>
+        <line class="arch-line" x1="600" y1="105" x2="495" y2="180" marker-end="url(#arrow)"></line>
+        <line class="arch-line" x1="260" y1="315" x2="365" y2="240" marker-end="url(#arrow)"></line>
+        <line class="arch-line" x1="600" y1="315" x2="495" y2="240" marker-end="url(#arrow)"></line>
+      </svg>
+
+      <figcaption class="plate-caption">
+        Figure 1. <em>One interface, four surfaces.</em> The boundary
+        between them is a human, not a queue.
+      </figcaption>
+    </div>
+  </div>
+</section>
+
+<hr class="rule rule-ornament" />
+
+<!-- ============== API ============== -->
+<section class="section api" id="api">
+  <div class="shell api-grid">
+    <div class="api-copy">
+      <p class="chapter">Chapter Three</p>
+      <h2 class="section-title"><em>POST</em> /api/hire</h2>
+      <p class="lede">
+        The API has one endpoint. It is documented like a magazine ought
+        to document things &mdash; plainly, with a worked example, no
+        pricing table in the payload.
+      </p>
+      <p class="body-copy">
+        Send a short brief. Get a reply within a business day. Pricing
+        is not in the request body; it happens in the conversation after
+        the reply. That conversation is usually short.
+      </p>
+      <ul class="api-bullets">
+        <li><span class="bullet-dot"></span>Response posture: fast during ET business hours.</li>
+        <li><span class="bullet-dot"></span>Preferred channel: email. DMs are a last resort.</li>
+        <li><span class="bullet-dot"></span>Pricing lives in a follow-up, not a landing page.</li>
+      </ul>
+    </div>
+
+    <figure class="api-code">
+      <div class="code-head">
+        <span class="code-dot"></span>
+        <span class="code-title">curl &mdash; one endpoint</span>
+        <button class="code-copy" id="copy-curl" aria-label="Copy example">Copy</button>
+      </div>
+<pre class="code-body"><code><span class="c-tok">POST</span> <span class="c-path">/api/hire</span> <span class="c-tok">HTTP/1.1</span>
+<span class="c-key">Host</span>: ruth.co
+<span class="c-key">Content-Type</span>: application/json
+
+{
+  <span class="c-str">"from"</span>:    <span class="c-str">"you@yourco.com"</span>,
+  <span class="c-str">"role"</span>:    <span class="c-str">"founding-engineer"</span>,
+  <span class="c-str">"shape"</span>:   <span class="c-str">"full-time"</span>,
+  <span class="c-str">"context"</span>: <span class="c-str">"two paragraphs, max"</span>
+}
+
+<span class="c-com"># reply within one business day
+# pricing happens in the reply, not here</span>
+</code></pre>
+    </figure>
+  </div>
+</section>
+
+<hr class="rule rule-ornament" />
+
+<!-- ============== CONFIGURE ============== -->
+<section class="section configure" id="configure">
+  <div class="shell">
+    <p class="chapter">Chapter Four</p>
+    <h2 class="section-title">Configure an <em>engagement</em>.</h2>
+    <p class="lede">
+      Pick a shape. The summary on the right updates. Email it when it
+      looks right. The numbers are a conversation, not a form field.
+    </p>
+
+    <div class="configure-grid">
+      <div class="configure-options">
+        <fieldset class="opt-group">
+          <legend class="opt-legend"><span class="opt-num">I.</span> Engagement shape</legend>
+          <label class="opt">
+            <input type="radio" name="shape" value="fulltime" checked />
+            <div class="opt-body">
+              <div class="opt-head"><span class="opt-name">Full-time employment</span><span class="opt-meta">Market rate + equity</span></div>
+              <p class="opt-desc">Senior IC, founding engineer, or early-stage CTO. NYC, remote, or hybrid. The main thing.</p>
+            </div>
+          </label>
+          <label class="opt">
+            <input type="radio" name="shape" value="founding" />
+            <div class="opt-body">
+              <div class="opt-head"><span class="opt-name">Equity founding</span><span class="opt-meta">Let&rsquo;s talk</span></div>
+              <p class="opt-desc">Co-founder track. Seed or earlier. Has to be a problem I actually care about.</p>
+            </div>
+          </label>
+          <label class="opt">
+            <input type="radio" name="shape" value="contract" />
+            <div class="opt-body">
+              <div class="opt-head"><span class="opt-name">Contract engagement</span><span class="opt-meta">Contact</span></div>
+              <p class="opt-desc">Defined deliverable, defined timeline. Selective &mdash; I take work I can ship.</p>
+            </div>
+          </label>
+          <label class="opt">
+            <input type="radio" name="shape" value="starter" />
+            <div class="opt-body">
+              <div class="opt-head"><span class="opt-name">Starter conversation</span><span class="opt-meta">Free &middot; 30 min</span></div>
+              <p class="opt-desc">If you&rsquo;re not sure yet. Email me, we&rsquo;ll figure it out.</p>
+            </div>
+          </label>
+        </fieldset>
+
+        <fieldset class="opt-group">
+          <legend class="opt-legend"><span class="opt-num">II.</span> Primary surface</legend>
+          <div class="surface-row">
+            <label class="chip"><input type="radio" name="surface" value="product" checked /><span>Product</span></label>
+            <label class="chip"><input type="radio" name="surface" value="platform" /><span>Platform</span></label>
+            <label class="chip"><input type="radio" name="surface" value="ai" /><span>AI-native</span></label>
+            <label class="chip"><input type="radio" name="surface" value="founding" /><span>Founding</span></label>
+          </div>
+        </fieldset>
+      </div>
+
+      <aside class="summary-card">
+        <div class="summary-plate">
+          <div class="summary-eyebrow">Configuration &middot; read-only</div>
+          <div class="summary-sku mono" id="sku">JAKE-13-FT-PRODUCT</div>
+        </div>
+        <h3 class="summary-title" id="summary-title">Full-time employment, product surface.</h3>
+        <p class="summary-desc" id="summary-desc">
+          A senior IC who ships the feature, the docs, and the runbook. Day one.
+        </p>
+        <dl class="summary-kv">
+          <dt>Shape</dt><dd id="kv-shape">Full-time</dd>
+          <dt>Surface</dt><dd id="kv-surface">Product</dd>
+          <dt>Location</dt><dd>NYC / remote</dd>
+          <dt>Terms</dt><dd>Market rate + equity</dd>
+        </dl>
+        <a href="mailto:jake@stockunlock.com?subject=Ruth%20%26%20Co.%20%E2%80%94%20configuration" class="btn btn-ink btn-full" id="summary-cta">Email this configuration &rarr;</a>
+        <p class="summary-fine">Real numbers in the reply. No decks, no proposals, no countdown timer.</p>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<hr class="rule rule-ornament" />
+
+<!-- ============== COMPARE ============== -->
+<section class="section compare" id="compare">
+  <div class="shell compare-shell">
+    <p class="chapter">Chapter Five</p>
+    <h2 class="section-title">Two shapes, <em>honestly</em>.</h2>
+    <p class="lede">
+      Every feature-matrix in the world is a distraction. The useful
+      comparison is this one, and it has two columns.
+    </p>
+
+    <table class="compare-table">
+      <thead>
+        <tr>
+          <th class="compare-empty"></th>
+          <th class="compare-col">Full-time / Founding</th>
+          <th class="compare-col compare-col-muted">Contract / Starter</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th>Ownership</th>
+          <td>End-to-end, architecture included</td>
+          <td class="muted">Scoped to the engagement</td>
+        </tr>
+        <tr>
+          <th>Ship speed</th>
+          <td>Production code on day one</td>
+          <td class="muted">After a kickoff and a design doc</td>
+        </tr>
+        <tr>
+          <th>On-call</th>
+          <td>Rotation, once the pager makes sense</td>
+          <td class="muted">Advisory</td>
+        </tr>
+        <tr>
+          <th>Fundraising sparring</th>
+          <td>Included &mdash; I led the YC interview myself</td>
+          <td class="muted">On request</td>
+        </tr>
+        <tr>
+          <th>Terms</th>
+          <td>Market rate + equity</td>
+          <td class="muted">Let&rsquo;s talk</td>
+        </tr>
+      </tbody>
+    </table>
+    <p class="compare-foot">
+      No real dollar prices listed, on purpose. Pricing happens in a
+      conversation, not on a billboard.
+    </p>
+  </div>
+</section>
+
+<hr class="rule rule-ornament" />
+
+<!-- ============== STOCK UNLOCK DISPATCH ============== -->
+<section class="section dispatch" id="stock-unlock">
+  <div class="shell dispatch-grid">
+    <div class="dispatch-copy">
+      <p class="chapter">Dispatch</p>
+      <h2 class="section-title">Stock Unlock, <em>in its own words</em>.</h2>
+      <p class="body-copy">
+        Built it. Scaled it to eight employees and thousands of paying
+        customers. It runs today as a profitable side business, with
+        three full-time employees keeping the lights on. I&rsquo;m not
+        full-time there anymore. I&rsquo;m redefining my next chapter.
+      </p>
+      <p class="body-copy">
+        The origin beat, for the record: Daniel Pronk, an investing
+        YouTuber, spent five to ten hours every weekend on Excel sheets.
+        I wrote a Python automation in a weekend and emailed it to him.
+        He ignored me for six weeks. He answered eventually to make me
+        stop. That&rsquo;s how Stock Unlock got a co-founder.
+      </p>
+      <dl class="dispatch-kv">
+        <dt>Seed</dt><dd>$1.335M &middot; YC W22</dd>
+        <dt>Team at peak</dt><dd>8 engineers</dd>
+        <dt>Customers</dt><dd>thousands of paying</dd>
+        <dt>State today</dt><dd>profitable, maintenance mode</dd>
+      </dl>
+    </div>
+
+    <figure class="dispatch-plate">
+      <blockquote class="quote">
+        <p>&ldquo;I ignored his emails for weeks. That was the mistake.&rdquo;</p>
+        <footer>
+          <span class="q-name">Daniel Pronk</span><br />
+          <span class="q-role">co-founder, Stock Unlock</span>
+        </footer>
+      </blockquote>
+    </figure>
+  </div>
+</section>
+
+<hr class="rule rule-ornament" />
+
+<!-- ============== LETTERS ============== -->
+<section class="section letters" id="letters">
+  <div class="shell">
+    <p class="chapter">Chapter Six</p>
+    <h2 class="section-title">Letters to <em>the editor</em>.</h2>
+    <p class="lede">A short selection. More, with permission, on request.</p>
+
+    <div class="letters-grid">
+      <figure class="letter">
+        <blockquote><p>&ldquo;Jake shipped more production code in six months than the rest of us did all year &mdash; and the code was better.&rdquo;</p></blockquote>
+        <figcaption>
+          <span class="letter-name">Senior Staff Engineer</span><br />
+          <span class="letter-from">Oscar Health</span>
+        </figcaption>
+      </figure>
+      <figure class="letter">
+        <blockquote><p>&ldquo;He&rsquo;s the only engineer I&rsquo;ve ever had to tell to stop writing the contract. He&rsquo;d already built the thing.&rdquo;</p></blockquote>
+        <figcaption>
+          <span class="letter-name">Former investor</span><br />
+          <span class="letter-from">Stock Unlock</span>
+        </figcaption>
+      </figure>
+      <figure class="letter">
+        <blockquote><p>&ldquo;Ran the YC interview himself. I was mostly there for the beer.&rdquo;</p></blockquote>
+        <figcaption>
+          <span class="letter-name">Co-founder</span><br />
+          <span class="letter-from">Stock Unlock</span>
+        </figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- ============== END MARK / CTA ============== -->
+<section class="endmark">
+  <div class="shell endmark-shell">
+    <div class="endmark-glyph" aria-hidden="true">&#x2766;</div>
+    <h2 class="endmark-title">The next chapter begins<br /> when you write first.</h2>
+    <p class="endmark-sub">
+      Market rate + equity, if the shape is right. A cup of coffee,
+      either way.
+    </p>
+    <a href="mailto:jake@stockunlock.com" class="btn btn-ink btn-lg">jake@stockunlock.com</a>
+  </div>
+</section>
+
+</main>
+
+<!-- ============== COLOPHON ============== -->
+<footer class="colophon">
+  <div class="shell colophon-row">
+    <div class="col-brand">
+      <div class="col-name">Ruth &amp; Co.</div>
+      <div class="col-tag">A magazine about one engineer.</div>
+    </div>
+    <div class="col-meta">
+      <p>
+        Set in <em>Fraunces</em> and <em>Inter</em>. Printed in one
+        accent colour, burnt orange, on cream. Hand-typed in HTML,
+        served cold. No build step. No tracking pixel.
+      </p>
+      <p class="col-meta-line">
+        <a href="mailto:jake@stockunlock.com">jake@stockunlock.com</a>
+        &middot;
+        <a href="https://github.com/JakeRuth" target="_blank" rel="noopener">github.com/JakeRuth</a>
+        &middot;
+        NYC / remote
+      </p>
+    </div>
+    <div class="col-folio">
+      &copy; 2026 Jake Ruth<br />
+      Vol. XIII &middot; No. 04
+    </div>
+  </div>
+</footer>
+
+<script src="./app.js"></script>
+</body>
+</html>

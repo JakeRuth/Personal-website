@@ -1,0 +1,241 @@
+/* =========================================================
+   nav-ambient-cubes — demo staging page
+
+   The real nav styles live inline inside ambient-cubes-nav.js
+   so the component is self-contained. This stylesheet exists
+   to dress the staging content around it — realistic Jake
+   content so the nav can sit against something non-empty.
+   ========================================================= */
+
+:root{
+  --bg-0: #0e1014;
+  --bg-1: #14171d;
+  --ink-0: #eaeff7;
+  --ink-1: #9aa4b2;
+  --ink-2: #6b7380;
+  --rule: rgba(255,255,255,0.07);
+  --accent: #7fb7ff;
+  --accent-warm: #d98383;
+  --accent-leaf: #7fb77f;
+  --max: 820px;
+}
+
+*{ box-sizing:border-box; }
+
+html, body{
+  margin:0;
+  padding:0;
+  background:
+    radial-gradient(1100px 700px at 80% -10%, rgba(127,183,255,0.09), transparent 60%),
+    radial-gradient(900px 600px at 10% 110%, rgba(217,131,131,0.08), transparent 60%),
+    var(--bg-0);
+  color: var(--ink-0);
+  font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, sans-serif;
+  font-size: 16px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+}
+
+a{
+  color: var(--accent);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(127,183,255,0.28);
+}
+a:hover{ border-bottom-color: var(--accent); }
+
+code{
+  font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  font-size: 13.5px;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid var(--rule);
+  padding: 1px 6px;
+  border-radius: 4px;
+}
+
+.wrap{
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 56px 28px 220px 28px;
+}
+
+/* --- Top chrome ----------------------------------- */
+
+.topbar{
+  display:flex;
+  justify-content:space-between;
+  align-items:baseline;
+  padding-bottom: 18px;
+  margin-bottom: 40px;
+  border-bottom: 1px solid var(--rule);
+  font-size: 12.5px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink-2);
+}
+.topbar b{ color: var(--ink-0); font-weight:600; letter-spacing:0.05em; }
+
+/* --- Hero ------------------------------------------ */
+
+.eyebrow{
+  font-size: 12.5px;
+  color: var(--ink-2);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+
+h1{
+  font-size: clamp(30px, 5vw, 44px);
+  line-height: 1.08;
+  letter-spacing: -0.01em;
+  margin: 0 0 18px 0;
+  font-weight: 600;
+}
+h1 .accent{ color: var(--accent); }
+
+.lead{
+  font-size: 18px;
+  color: var(--ink-1);
+  max-width: 640px;
+  margin: 0 0 14px 0;
+}
+
+.sub{ color: var(--ink-1); }
+
+/* --- Sections -------------------------------------- */
+
+h2{
+  margin-top: 64px;
+  margin-bottom: 14px;
+  font-size: 22px;
+  font-weight: 600;
+  letter-spacing: -0.005em;
+}
+h2 small{
+  font-size: 12px;
+  color: var(--ink-2);
+  margin-left: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-weight: 400;
+}
+
+.card{
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.005));
+  border: 1px solid var(--rule);
+  border-radius: 10px;
+  padding: 18px 20px;
+  margin: 12px 0;
+}
+.card h3{
+  margin: 0 0 8px 0;
+  font-size: 15px;
+  letter-spacing: 0.02em;
+}
+.card p{ margin: 0; color: var(--ink-1); font-size: 14.5px; }
+
+.meta-grid{
+  display:grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px 24px;
+  padding: 14px 0 0 0;
+  font-size: 14px;
+  color: var(--ink-1);
+}
+.meta-grid b{ color: var(--ink-0); font-weight: 500; margin-right: 8px; }
+
+ul.plain{
+  margin: 0; padding: 0; list-style: none;
+}
+ul.plain li{
+  padding: 10px 0;
+  border-bottom: 1px dashed var(--rule);
+  color: var(--ink-1);
+}
+ul.plain li:last-child{ border-bottom: 0; }
+ul.plain li .year{
+  display: inline-block;
+  min-width: 84px;
+  color: var(--ink-2);
+  font-family: ui-monospace, monospace;
+  font-size: 12.5px;
+}
+ul.plain li .lbl{ color: var(--ink-0); }
+
+.pull{
+  border-left: 3px solid var(--accent);
+  padding: 6px 0 6px 16px;
+  color: var(--ink-0);
+  font-size: 17px;
+  margin: 20px 0;
+}
+
+.footline{
+  margin-top: 80px;
+  padding-top: 22px;
+  border-top: 1px solid var(--rule);
+  font-size: 13px;
+  color: var(--ink-2);
+  letter-spacing: 0.05em;
+}
+
+/* --- Instructional overlay (staging only) --------- */
+
+.instruction{
+  position: fixed;
+  left: 20px;
+  bottom: 20px;
+  z-index: 990;
+  max-width: 280px;
+  background: rgba(20,22,28,0.86);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 10px;
+  padding: 14px 16px;
+  color: var(--ink-1);
+  font-size: 13px;
+  line-height: 1.5;
+  box-shadow: 0 6px 22px rgba(0,0,0,0.28);
+  transform-origin: bottom left;
+  animation: fade-in 640ms ease 400ms both;
+}
+.instruction strong{ color: var(--ink-0); font-weight: 600; display: block; margin-bottom: 4px; }
+.instruction .dim{ color: var(--ink-2); font-size: 11.5px; margin-top: 8px; letter-spacing: 0.04em; text-transform: uppercase; }
+
+.instruction-close{
+  position:absolute;
+  top:6px; right:8px;
+  background:transparent;
+  border:0;
+  color: var(--ink-2);
+  cursor:pointer;
+  font-size:14px;
+  line-height:1;
+  padding:4px;
+}
+.instruction-close:hover{ color: var(--ink-0); }
+
+@keyframes fade-in{
+  from{ opacity: 0; transform: translateY(6px) scale(0.98); }
+  to  { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+/* Scroll-marker stripes down the right gutter — helps confirm
+   the nav stays fixed as the page scrolls. */
+.scroll-stripes{
+  position: fixed;
+  top: 0; bottom: 0;
+  right: 0;
+  width: 2px;
+  background: repeating-linear-gradient(
+    to bottom,
+    rgba(255,255,255,0.05) 0 14px,
+    transparent 14px 48px
+  );
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: reduce){
+  .instruction{ animation: none; }
+}

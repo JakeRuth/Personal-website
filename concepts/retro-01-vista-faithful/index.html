@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Jake Ruth — Professional Edition</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<!-- Vista Desktop Wallpaper -->
+<div class="wallpaper">
+  <div class="wp-blob wp-blob-1"></div>
+  <div class="wp-blob wp-blob-2"></div>
+  <div class="wp-blob wp-blob-3"></div>
+  <div class="wp-blob wp-blob-4"></div>
+  <div class="wp-sweep"></div>
+</div>
+
+<!-- Desktop Icons -->
+<div class="desktop-icons">
+  <div class="desk-icon" data-icon="recycle">
+    <div class="icon-art recycle"><div class="rb"></div></div>
+    <div class="icon-label">Recycle Bin</div>
+  </div>
+  <div class="desk-icon" data-icon="computer">
+    <div class="icon-art computer"><div class="monitor"></div><div class="stand"></div></div>
+    <div class="icon-label">Computer</div>
+  </div>
+  <div class="desk-icon" data-icon="resume">
+    <div class="icon-art resume"><div class="doc"></div></div>
+    <div class="icon-label">Resume.docx</div>
+  </div>
+  <div class="desk-icon" data-icon="readme">
+    <div class="icon-art note"><div class="doc yellow"></div></div>
+    <div class="icon-label">readme.txt</div>
+  </div>
+</div>
+
+<!-- Main Window -->
+<div class="window" id="mainWindow">
+  <div class="title-bar" id="titleBar">
+    <div class="tb-icon"></div>
+    <div class="tb-title">Jake Ruth — Professional Edition</div>
+    <div class="tb-buttons">
+      <button class="tb-btn tb-min" title="Minimize">&#x2014;</button>
+      <button class="tb-btn tb-max" title="Maximize">&#x25A2;</button>
+      <button class="tb-btn tb-close" title="Close">&#x2715;</button>
+    </div>
+  </div>
+  <div class="menu-bar">
+    <span>File</span><span>Edit</span><span>View</span><span>Tools</span><span>Help</span>
+  </div>
+  <div class="ribbon">
+    <button class="tab active" data-tab="overview">Overview</button>
+    <button class="tab" data-tab="features">Features</button>
+    <button class="tab" data-tab="pricing">Pricing</button>
+    <button class="tab" data-tab="testimonials">Reviews</button>
+    <button class="tab" data-tab="about">About</button>
+    <div class="ribbon-spacer"></div>
+    <div class="address-bar">
+      <span class="addr-crumb">Computer</span>
+      <span class="addr-sep">&#x25B8;</span>
+      <span class="addr-crumb">Humans</span>
+      <span class="addr-sep">&#x25B8;</span>
+      <span class="addr-crumb active">Jake Ruth</span>
+    </div>
+  </div>
+
+  <div class="window-body" id="windowBody">
+
+    <!-- OVERVIEW / HERO -->
+    <section class="tab-section active" data-section="overview">
+      <div class="hero-banner">
+        <div class="hero-glow"></div>
+        <div class="hero-left">
+          <div class="certified-badge">
+            <div class="cert-star">&#x2605;</div>
+            <div class="cert-text">Certified for Windows Vista<br /><small>Ships June 2013 &mdash; 13 yrs in production</small></div>
+          </div>
+          <h1 class="hero-title">Ship Jake Ruth&trade;</h1>
+          <p class="hero-tag">The only senior engineer/founder with a sub-14-second Rubik&apos;s average and a YC W22 scar.</p>
+          <div class="hero-buttons">
+            <button class="aero-btn primary" id="downloadBtn">
+              <span class="btn-icon">&#x2193;</span>
+              Download Jake
+            </button>
+            <button class="aero-btn" id="trialBtn">
+              <span class="btn-icon">&#x1F552;</span>
+              Free 30-min Trial
+            </button>
+            <button class="aero-btn" id="emailBtn" onclick="window.location.href='mailto:jake@stockunlock.com'">
+              <span class="btn-icon">&#x2709;</span>
+              Email Installer
+            </button>
+          </div>
+          <div class="install-bar">
+            <div class="install-label">System readiness <span class="install-pct">98%</span></div>
+            <div class="install-track"><div class="install-fill"></div></div>
+            <div class="install-note">Minimum requirements: real problem, real autonomy, no BS.</div>
+          </div>
+        </div>
+        <div class="hero-right">
+          <div class="system-card">
+            <div class="sc-header">System Properties</div>
+            <div class="sc-row"><span>Name</span><strong>Jake Ruth</strong></div>
+            <div class="sc-row"><span>Role</span><strong>Engineer / Founder</strong></div>
+            <div class="sc-row"><span>Location</span><strong>New York, NY</strong></div>
+            <div class="sc-row"><span>Uptime</span><strong>~13 years</strong></div>
+            <div class="sc-row"><span>Status</span><strong class="green">&#x25CF; Open for new chapter</strong></div>
+            <div class="sc-row"><span>License</span><strong>Contract / FT / Co-founder</strong></div>
+            <div class="sc-row"><span>Email</span><strong>jake@stockunlock.com</strong></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel">
+        <div class="panel-heading">What is Ship Jake Ruth&trade;?</div>
+        <div class="panel-body prose">
+          <p>Jake Ruth is a software engineer and founder based in New York City. He has been writing code since 2013, co-founded <strong>Stock Unlock</strong> through Y Combinator (W22), raised a <strong>$1.335M seed</strong>, and scaled the team to <strong>8 employees and thousands of paying customers</strong>. Stock Unlock is profitable and runs as a side business; Jake is no longer full-time there and is deciding what to build next.</p>
+          <p>This installer wraps thirteen years of production-grade engineering, a working cofounder brain, and an allergy to overcharging for bad software. He&apos;s the guy who rode a unicycle solving a Rubik&apos;s cube at an Oscar Health talent show. Consider that a reference implementation.</p>
+        </div>
+      </div>
+
+      <div class="stat-grid">
+        <div class="stat-card">
+          <div class="stat-num">$1.335M</div>
+          <div class="stat-lbl">Seed raised, YC W22</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">8</div>
+          <div class="stat-lbl">Employees hired &amp; managed</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">13.95s</div>
+          <div class="stat-lbl">Rubik&apos;s 3x3 avg (competition)</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">3.88</div>
+          <div class="stat-lbl">GPA, CS + Applied Math</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FEATURES -->
+    <section class="tab-section" data-section="features">
+      <div class="panel">
+        <div class="panel-heading">Feature Highlights</div>
+        <div class="panel-body">
+          <div class="feature-grid">
+            <div class="feature-tile">
+              <div class="ft-icon gradient-a">&#x26A1;</div>
+              <h3>Zero-to-One</h3>
+              <p>Co-founded Stock Unlock from a napkin to a paying product in under a year. Landed Y Combinator Winter 2022.</p>
+            </div>
+            <div class="feature-tile">
+              <div class="ft-icon gradient-b">&#x1F4CA;</div>
+              <h3>Financial Product Chops</h3>
+              <p>Built fundamentals-first tooling for retail investors. Competitors defined "margin of safety" as <code>current_price / all_time_high</code>. That&apos;s ape-shit retarded.</p>
+            </div>
+            <div class="feature-tile">
+              <div class="ft-icon gradient-c">&#x1F3E5;</div>
+              <h3>Healthcare-grade</h3>
+              <p>Senior SWE at Oscar Health (2017&ndash;2021). Production systems where "works on my machine" ends careers.</p>
+            </div>
+            <div class="feature-tile">
+              <div class="ft-icon gradient-d">&#x1F9D1;&#x200D;&#x1F4BC;</div>
+              <h3>Hired &amp; Managed</h3>
+              <p>Scaled Stock Unlock to 8 people. Knows what a good hire feels like at week one and week fifty-two.</p>
+            </div>
+            <div class="feature-tile">
+              <div class="ft-icon gradient-e">&#x1F9E9;</div>
+              <h3>Speed-cubing Brain</h3>
+              <p>Competitive Rubik&apos;s cuber, Nationals 2008&ndash;2014. Pattern recognition under clock pressure is a transferable skill.</p>
+            </div>
+            <div class="feature-tile">
+              <div class="ft-icon gradient-f">&#x1F916;</div>
+              <h3>AI &ndash; Driver Seat</h3>
+              <p>"Driver in the driver&apos;s seat, not driven by the car." Uses AI hard, never outsources the taste.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel">
+        <div class="panel-heading">Timeline.log</div>
+        <div class="panel-body">
+          <ul class="timeline">
+            <li><b>2026 Apr</b> &mdash; Not full-time at Stock Unlock. Redefining next chapter. Getting married.</li>
+            <li><b>2022&ndash;2026</b> &mdash; Co-founder, Stock Unlock. YC W22. $1.335M seed. 8 employees. Thousands of paying customers. Profitable.</li>
+            <li><b>2017&ndash;2021</b> &mdash; Senior Software Engineer, Oscar Health.</li>
+            <li><b>2015&ndash;2016</b> &mdash; Co-founder / CTO, Youni.</li>
+            <li><b>2013&ndash;2016</b> &mdash; Software Engineer, CommerceHub. First paycheck for code.</li>
+            <li><b>2011&ndash;2015</b> &mdash; BS Computer Science + Applied Math, SUNY Albany. 3.88 GPA. ACM chapter president.</li>
+            <li><b>2008&ndash;2014</b> &mdash; Rubik&apos;s Cube Nationals competitor. 13.95s 3x3 average.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- PRICING -->
+    <section class="tab-section" data-section="pricing">
+      <div class="panel">
+        <div class="panel-heading">Editions &amp; Licensing</div>
+        <div class="panel-body">
+          <div class="price-grid">
+            <div class="price-card">
+              <div class="pc-head">Contract</div>
+              <div class="pc-price">Project rate</div>
+              <div class="pc-meta">Short, scoped, shipped.</div>
+              <ul class="pc-list">
+                <li>Greenfield prototypes</li>
+                <li>API + data plumbing</li>
+                <li>Ship-or-kill advisory</li>
+                <li>Remote, NYC-friendly</li>
+              </ul>
+              <button class="aero-btn">Request quote</button>
+            </div>
+            <div class="price-card featured">
+              <div class="pc-badge">Recommended</div>
+              <div class="pc-head">Full-Time</div>
+              <div class="pc-price">Salary + equity</div>
+              <div class="pc-meta">Senior / Staff / Founding Eng.</div>
+              <ul class="pc-list">
+                <li>Product-obsessed teams</li>
+                <li>Problems that matter</li>
+                <li>Autonomy &gt; headcount</li>
+                <li>No bullshit ladders</li>
+              </ul>
+              <button class="aero-btn primary">Start hiring flow</button>
+            </div>
+            <div class="price-card">
+              <div class="pc-head">Co-founder</div>
+              <div class="pc-price">Equity</div>
+              <div class="pc-meta">Build a real thing with me.</div>
+              <ul class="pc-list">
+                <li>You already hate the BS</li>
+                <li>You have a domain</li>
+                <li>I have the zero-to-one</li>
+                <li>Let&apos;s talk before Q3</li>
+              </ul>
+              <button class="aero-btn">Email proposal</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel">
+        <div class="panel-heading">EULA &mdash; Read this first</div>
+        <div class="panel-body prose small">
+          <p>By installing Jake Ruth&trade; you agree that: (a) you will not ship predatory software to retail investors; (b) "margin of safety" is not a ratio involving all-time highs; (c) process exists to serve the product, not the other way around; (d) AI is a tool, not a taste proxy; and (e) you&apos;ll occasionally tolerate a Rubik&apos;s cube being solved on the standup call.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- TESTIMONIALS -->
+    <section class="tab-section" data-section="testimonials">
+      <div class="panel">
+        <div class="panel-heading">User Reviews &mdash; 4.9 / 5 average</div>
+        <div class="panel-body">
+          <div class="review-grid">
+            <blockquote class="review">
+              <div class="stars">&#x2605;&#x2605;&#x2605;&#x2605;&#x2605;</div>
+              <p>"Rode a unicycle while solving a Rubik&apos;s cube at our talent show. Also shipped the stuff that actually mattered. Both things feel on-brand."</p>
+              <cite>&mdash; Former Oscar Health colleague</cite>
+            </blockquote>
+            <blockquote class="review">
+              <div class="stars">&#x2605;&#x2605;&#x2605;&#x2605;&#x2605;</div>
+              <p>"Rare founder who&apos;ll say the margin-of-safety emperor has no clothes AND then build the better tool."</p>
+              <cite>&mdash; Stock Unlock early user</cite>
+            </blockquote>
+            <blockquote class="review">
+              <div class="stars">&#x2605;&#x2605;&#x2605;&#x2605;&#x2606;</div>
+              <p>"Docked one star because he made me learn what a z-score was at 11pm on a Thursday."</p>
+              <cite>&mdash; Stock Unlock subscriber</cite>
+            </blockquote>
+            <blockquote class="review">
+              <div class="stars">&#x2605;&#x2605;&#x2605;&#x2605;&#x2605;</div>
+              <p>"Driver in the driver&apos;s seat. Uses AI harder than most of us and still has stronger taste than most of us. Both."</p>
+              <cite>&mdash; Collaborator, 2025</cite>
+            </blockquote>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section class="tab-section" data-section="about">
+      <div class="panel">
+        <div class="panel-heading">About this product</div>
+        <div class="panel-body prose">
+          <p>Jake Ruth is based in New York City and is getting married in April 2026. He co-founded Stock Unlock in 2022, went through Y Combinator (W22), raised a $1.335M seed, scaled to 8 employees and thousands of paying customers, and made the thing profitable as a side business. It runs without him now. He is not the full-time operator.</p>
+          <p>The next chapter is up for grabs. Ideal modes: co-founder, founding engineer, senior/staff at a team that&apos;s actually building something. Ideal domains: anything where software is currently over-priced relative to the value it delivers to regular humans.</p>
+          <p>Contact: <a href="mailto:jake@stockunlock.com">jake@stockunlock.com</a></p>
+        </div>
+      </div>
+      <div class="panel">
+        <div class="panel-heading">Scroll to the end &mdash; the cube should be solved</div>
+        <div class="panel-body prose small">
+          <p>The Cube.gadget on the sidebar is scrambled at the top of this window and interpolates toward solved as you scroll. Hit the bottom and it flourishes. That&apos;s the whole gag.</p>
+          <div class="spacer-big"></div>
+          <p style="text-align:center; color:#1e5593; font-weight:600;">&#x2193; you are at the bottom &#x2193;</p>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <div class="status-bar">
+    <span id="statusLeft">Ready</span>
+    <span class="sb-sep"></span>
+    <span id="statusMid">Scrambled 0% &mdash; scroll the window body to solve the cube</span>
+    <span class="sb-sep"></span>
+    <span>1 item, 13.95s avg</span>
+  </div>
+</div>
+
+<!-- SIDEBAR -->
+<aside class="sidebar" id="sidebar">
+  <!-- Cube Gadget -->
+  <div class="gadget gadget-cube">
+    <div class="gadget-title">Cube.gadget</div>
+    <div class="gadget-body">
+      <div class="cube-scene">
+        <div class="cube" id="cube">
+          <!-- 9 stickers per face -->
+          <div class="face face-front"></div>
+          <div class="face face-back"></div>
+          <div class="face face-right"></div>
+          <div class="face face-left"></div>
+          <div class="face face-top"></div>
+          <div class="face face-bottom"></div>
+        </div>
+        <div class="cube-shadow"></div>
+      </div>
+      <div class="cube-meta">
+        <div class="cube-pct" id="cubePct">0%</div>
+        <div class="cube-lbl">solved</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Career Feed -->
+  <div class="gadget gadget-feed">
+    <div class="gadget-title">Career.feed</div>
+    <div class="gadget-body">
+      <div class="feed-viewport">
+        <ul class="feed-list" id="feedList">
+          <li><b>Now</b> &mdash; Open for co-founder / staff / founding engineer roles. NYC.</li>
+          <li><b>2026</b> &mdash; Stepped back from day-to-day at Stock Unlock. Profitable side business.</li>
+          <li><b>2025</b> &mdash; Scaled Stock Unlock to thousands of paying customers.</li>
+          <li><b>2022</b> &mdash; Y Combinator W22. Raised $1.335M seed.</li>
+          <li><b>2021</b> &mdash; Left Oscar Health to go full-time on what became Stock Unlock.</li>
+          <li><b>2017</b> &mdash; Joined Oscar Health as Senior SWE.</li>
+          <li><b>2015</b> &mdash; Co-founded Youni as CTO out of undergrad.</li>
+          <li><b>2014</b> &mdash; 13.95s 3x3 cubing avg, Nationals.</li>
+          <li><b>2013</b> &mdash; First software job, CommerceHub.</li>
+          <li><b>Now</b> &mdash; Open for co-founder / staff / founding engineer roles. NYC.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Clock Gadget -->
+  <div class="gadget gadget-clock">
+    <div class="gadget-title">Clock.gadget</div>
+    <div class="gadget-body">
+      <div class="clock">
+        <div class="clock-face">
+          <div class="tick t12"></div>
+          <div class="tick t3"></div>
+          <div class="tick t6"></div>
+          <div class="tick t9"></div>
+          <div class="hand hand-hour" id="hHour"></div>
+          <div class="hand hand-min" id="hMin"></div>
+          <div class="hand hand-sec" id="hSec"></div>
+          <div class="clock-center"></div>
+        </div>
+      </div>
+      <div class="clock-label" id="clockLbl">--:--</div>
+    </div>
+  </div>
+
+  <!-- Weather Gadget -->
+  <div class="gadget gadget-weather">
+    <div class="gadget-title">Weather.gadget</div>
+    <div class="gadget-body weather-body">
+      <div class="w-left">
+        <div class="w-sun"><div class="w-sun-core"></div></div>
+      </div>
+      <div class="w-right">
+        <div class="w-temp">58&deg;F</div>
+        <div class="w-city">New York, NY</div>
+        <div class="w-cond">Partly caffeinated</div>
+      </div>
+    </div>
+  </div>
+</aside>
+
+<!-- TASKBAR -->
+<div class="taskbar">
+  <button class="start-orb" id="startOrb">
+    <span class="orb-flag">
+      <span class="q q1"></span>
+      <span class="q q2"></span>
+      <span class="q q3"></span>
+      <span class="q q4"></span>
+    </span>
+  </button>
+  <div class="quick-launch">
+    <div class="ql-btn" title="Show desktop">&#x25A1;</div>
+    <div class="ql-btn" title="Switch windows">&#x25A3;</div>
+    <div class="ql-divider"></div>
+  </div>
+  <div class="tb-tasks">
+    <div class="tb-task active" data-task="main">
+      <span class="tb-task-icon"></span>
+      <span class="tb-task-label">Jake Ruth — Professional Edition</span>
+    </div>
+  </div>
+  <div class="tray">
+    <div class="tray-icons">
+      <span class="tray-ico" title="Network">&#x25A1;</span>
+      <span class="tray-ico" title="Volume">&#x1F50A;</span>
+      <span class="tray-ico" title="Sidebar">&#x25EB;</span>
+    </div>
+    <div class="clock-box">
+      <div class="clock-time" id="taskTime">--:--</div>
+      <div class="clock-date" id="taskDate">---</div>
+    </div>
+    <div class="show-desk"></div>
+  </div>
+</div>
+
+<!-- Start Menu -->
+<div class="start-menu hidden" id="startMenu">
+  <div class="sm-top">
+    <div class="sm-user">
+      <div class="sm-avatar">J</div>
+      <div class="sm-username">Jake Ruth</div>
+    </div>
+    <div class="sm-columns">
+      <div class="sm-col sm-left">
+        <div class="sm-item" data-jump="overview"><span class="sm-ico">&#x1F4E6;</span><span>Overview</span></div>
+        <div class="sm-item" data-jump="features"><span class="sm-ico">&#x2728;</span><span>Features</span></div>
+        <div class="sm-item" data-jump="pricing"><span class="sm-ico">&#x1F4B3;</span><span>Pricing</span></div>
+        <div class="sm-item" data-jump="testimonials"><span class="sm-ico">&#x1F4AC;</span><span>Reviews</span></div>
+        <div class="sm-item" data-jump="about"><span class="sm-ico">&#x2139;</span><span>About</span></div>
+        <div class="sm-sep"></div>
+        <div class="sm-item" onclick="window.location.href='mailto:jake@stockunlock.com'"><span class="sm-ico">&#x2709;</span><span>Email Jake</span></div>
+        <a class="sm-item" href="https://www.linkedin.com/" target="_blank" rel="noopener"><span class="sm-ico">&#x1F517;</span><span>LinkedIn</span></a>
+        <div class="sm-item" id="scrambleBtn"><span class="sm-ico">&#x1F500;</span><span>Re-scramble Cube</span></div>
+      </div>
+      <div class="sm-col sm-right">
+        <div class="sm-label">Documents</div>
+        <div class="sm-item"><span class="sm-ico">&#x1F4C4;</span><span>Resume.docx</span></div>
+        <div class="sm-label">Recent</div>
+        <div class="sm-item"><span class="sm-ico">&#x1F4CA;</span><span>Stock Unlock (2022&ndash;2026)</span></div>
+        <div class="sm-item"><span class="sm-ico">&#x1F3E5;</span><span>Oscar Health (2017&ndash;21)</span></div>
+        <div class="sm-item"><span class="sm-ico">&#x1F4BB;</span><span>CommerceHub (2013&ndash;16)</span></div>
+      </div>
+    </div>
+    <div class="sm-search">
+      <input type="text" placeholder="Start Search" />
+    </div>
+  </div>
+  <div class="sm-bottom">
+    <span class="sm-power">&#x23FB; Shutdown</span>
+  </div>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>

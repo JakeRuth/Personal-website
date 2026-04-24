@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Jake Ruth — The engineer your team actually needs</title>
+<link rel="preconnect" href="https://rsms.me/" />
+<link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lucide-static@0.453.0/font/lucide.css" />
+<link rel="stylesheet" href="./styles.css" />
+<link rel="stylesheet" href="../shared/topnav.css" />
+<!-- Shared transition + topnav -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="../shared/cube-solver.js"></script>
+<script src="../shared/transition-cube.js"></script>
+<script src="../shared/transition.js"></script>
+<script src="../shared/topnav.js" defer></script>
+</head>
+<body>
+
+<!-- ===================== NAV ===================== -->
+<header class="nav">
+  <div class="container nav-row">
+    <a class="brand" href="#">
+      <span class="brand-mark"><i class="lucide lucide-hexagon"></i></span>
+      <span class="brand-name">ruth<span class="brand-dot">/</span>systems</span>
+    </a>
+
+    <nav class="nav-links">
+      <a href="#platform" class="nav-item">Platform</a>
+      <a href="#architecture" class="nav-item">Architecture</a>
+      <a href="#pricing" class="nav-item">Pricing</a>
+      <a href="#customers" class="nav-item">Customers</a>
+      <a href="#notes" class="nav-item">Notes</a>
+      <a href="#docs" class="nav-item">Docs</a>
+    </nav>
+
+    <div class="nav-cta">
+      <a href="https://github.com/JakeRuth" class="nav-icon" aria-label="GitHub"><i class="lucide lucide-github"></i></a>
+      <a href="mailto:jake@stockunlock.com" class="btn btn-primary">Email Jake <i class="lucide lucide-arrow-up-right"></i></a>
+    </div>
+  </div>
+</header>
+
+<!-- ===================== HERO ===================== -->
+<section class="hero">
+  <div class="container hero-row">
+    <div class="hero-left">
+      <div class="eyebrow"><span class="dot-blue"></span> v13.0 &middot; generally available</div>
+      <h1 class="hero-title">The engineer your team actually needs.</h1>
+      <p class="hero-sub">
+        Thirteen years shipping. Ex-Oscar. Ex-YC. Built a company, scaled it to eight employees and thousands of
+        paying customers, wound it down to a profitable side business. Now redefining my next chapter.
+      </p>
+      <div class="hero-ctas">
+        <a href="mailto:jake@stockunlock.com" class="btn btn-primary btn-lg">Hire Jake <i class="lucide lucide-arrow-right"></i></a>
+        <a href="#platform" class="btn btn-ghost btn-lg">Read the spec</a>
+      </div>
+      <div class="hero-meta">
+        <span><span class="dot-green"></span> Available for full-time, contract, or founding conversations</span>
+        <span class="hero-meta-sep">&middot;</span>
+        <span>Response latency: <span class="mono" id="hero-latency">18ms</span></span>
+      </div>
+    </div>
+
+    <!-- Live status card -->
+    <aside class="hero-right">
+      <div class="status-card">
+        <div class="status-card-head">
+          <div class="status-card-title">
+            <span class="live-dot"></span>
+            <span>status.ruth/systems</span>
+          </div>
+          <span class="status-pill status-pill-ok">Operational</span>
+        </div>
+        <div class="status-card-big">
+          <span class="status-big-dot"></span>
+          <div>
+            <div class="status-big-title">All systems operational</div>
+            <div class="status-big-sub">99.97% uptime &middot; 90-day rolling</div>
+          </div>
+        </div>
+        <ul class="status-list">
+          <li><span class="dot-green"></span>Backend &middot; Python / Go <span class="status-latency">12ms</span></li>
+          <li><span class="dot-green"></span>Frontend &middot; TS / React <span class="status-latency">9ms</span></li>
+          <li><span class="dot-green"></span>AI co-pilot &middot; Claude / Codex <span class="status-latency">18ms</span></li>
+          <li><span class="dot-green"></span>On-call response <span class="status-latency">&lt; 4min</span></li>
+          <li><span class="dot-amber"></span>Deploying <span class="status-deploying">next chapter v1.0</span></li>
+        </ul>
+        <div class="uptime-bars" id="uptime-bars" aria-hidden="true"></div>
+        <div class="status-card-foot">
+          <span>90 days &middot; 3 degraded &middot; 0 outages</span>
+          <a href="#architecture" class="status-link">Inspect <i class="lucide lucide-arrow-up-right"></i></a>
+        </div>
+      </div>
+    </aside>
+  </div>
+
+  <!-- Social proof -->
+  <div class="container logos-row">
+    <div class="logos-label">Shipped at</div>
+    <div class="logos">
+      <div class="logo">Oscar Health</div>
+      <div class="logo">Stock Unlock</div>
+      <div class="logo">CommerceHub</div>
+      <div class="logo">Y Combinator W22</div>
+      <div class="logo">SUNY Albany</div>
+      <div class="logo logo-muted">+ Youni, one failed startup</div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== PLATFORM (features) ===================== -->
+<section class="section" id="platform">
+  <div class="container">
+    <div class="section-head">
+      <div class="eyebrow"><span class="dot-blue"></span> Platform</div>
+      <h2 class="section-title">One engineer. Full surface area.</h2>
+      <p class="section-sub">
+        Backend. Frontend. Data. Deploys. Design docs. On-call. Written decisions.
+        No handoffs, no proposal PDFs, no deck. Just an operator who's done this before.
+      </p>
+    </div>
+
+    <div class="feat-grid">
+      <article class="feat-card">
+        <div class="feat-icon"><i class="lucide lucide-layers"></i></div>
+        <h3>Full-stack delivery</h3>
+        <p>Ticket to production without waiting on three Slack threads. Python, TypeScript, Go, Java, and whatever your stack has accumulated.</p>
+      </article>
+
+      <article class="feat-card feat-card-featured">
+        <div class="feat-badge">Most used</div>
+        <div class="feat-icon"><i class="lucide lucide-wand-sparkles"></i></div>
+        <h3>AI-native workflow</h3>
+        <p>Driver in the driver's seat, not driven by the car. Claude Code and Codex write more than half the first pass; I read every line before it ships.</p>
+      </article>
+
+      <article class="feat-card">
+        <div class="feat-icon"><i class="lucide lucide-git-pull-request"></i></div>
+        <h3>Boring migrations</h3>
+        <p>Dual-writes, shadow reads, feature flags, written cutover plans. Last one: Customer.io to self-hosted SES. Saved ~$6K/yr. Zero user-visible incidents.</p>
+      </article>
+
+      <article class="feat-card">
+        <div class="feat-icon"><i class="lucide lucide-activity"></i></div>
+        <h3>Observability, included</h3>
+        <p>Metrics, logs, dashboards, runbooks. Built by someone who's been paged at 3 AM and refuses to ship a service without a pager contract.</p>
+      </article>
+
+      <article class="feat-card">
+        <div class="feat-icon"><i class="lucide lucide-messages-square"></i></div>
+        <h3>Written decisions</h3>
+        <p>Design docs before code. Links, not legends. The kind of written trail an on-call engineer can read at 2 AM and not hate you.</p>
+      </article>
+
+      <article class="feat-card">
+        <div class="feat-icon"><i class="lucide lucide-rocket"></i></div>
+        <h3>Zero-to-one</h3>
+        <p>Led a YC interview. Raised $1.335M seed. Scaled to eight employees. Know how to take a sketch to a shipped product without burning a round.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== ARCHITECTURE DIAGRAM ===================== -->
+<section class="section section-alt" id="architecture">
+  <div class="container">
+    <div class="section-head">
+      <div class="eyebrow"><span class="dot-blue"></span> Architecture</div>
+      <h2 class="section-title">Reference architecture for one human engineer.</h2>
+      <p class="section-sub">
+        Nine loosely-coupled services connected through a stable interface. Hover any node to inspect its
+        neighborhood. Click to pin.
+      </p>
+    </div>
+
+    <div class="arch-wrap">
+      <div class="arch-sidebar">
+        <div class="arch-legend">
+          <div class="arch-legend-title">Service classes</div>
+          <ul>
+            <li><span class="swatch swatch-core"></span>Core engine</li>
+            <li><span class="swatch swatch-service"></span>Runtime</li>
+            <li><span class="swatch swatch-data"></span>Data / platform</li>
+            <li><span class="swatch swatch-edge"></span>Humans</li>
+            <li><span class="swatch swatch-ai"></span>AI co-pilot</li>
+          </ul>
+        </div>
+        <div class="arch-panel" id="arch-panel">
+          <div class="arch-panel-label">Selection</div>
+          <div class="arch-panel-title" id="arch-panel-title">Hover a node</div>
+          <div class="arch-panel-body" id="arch-panel-body">Click any node to pin its service specification, SLO, and upstream dependencies.</div>
+          <div class="arch-panel-kv">
+            <div><span>SLO</span><b id="arch-slo">&mdash;</b></div>
+            <div><span>Owner</span><b>jake@stockunlock.com</b></div>
+            <div><span>Since</span><b id="arch-since">&mdash;</b></div>
+          </div>
+        </div>
+      </div>
+      <div class="arch-canvas-wrap">
+        <svg id="arch-svg" aria-label="Architecture diagram"></svg>
+        <div class="arch-grid-overlay"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== PRICING ===================== -->
+<section class="section" id="pricing">
+  <div class="container">
+    <div class="section-head">
+      <div class="eyebrow"><span class="dot-blue"></span> Pricing</div>
+      <h2 class="section-title">Four ways to engage. No list prices.</h2>
+      <p class="section-sub">
+        Pricing software feels weird. So the numbers aren't here. The shape of the engagement is.
+        Email, we'll figure out the rest.
+      </p>
+    </div>
+
+    <div class="price-grid">
+      <article class="price-card">
+        <div class="price-tier">Starter conversation</div>
+        <div class="price-amount"><span class="price-amt">Free</span></div>
+        <div class="price-tag">For: "not sure yet, let's chat"</div>
+        <a class="btn btn-ghost btn-full" href="mailto:jake@stockunlock.com">Email Jake</a>
+        <ul class="price-list">
+          <li><i class="lucide lucide-check"></i> 30-min call</li>
+          <li><i class="lucide lucide-check"></i> No agenda required</li>
+          <li><i class="lucide lucide-check"></i> Camera optional</li>
+          <li><i class="lucide lucide-check"></i> Direct answer either way</li>
+        </ul>
+      </article>
+
+      <article class="price-card">
+        <div class="price-tier">Contract</div>
+        <div class="price-amount"><span class="price-amt">Let's talk</span></div>
+        <div class="price-tag">For: defined scope, defined timeline</div>
+        <a class="btn btn-ghost btn-full" href="mailto:jake@stockunlock.com">Start a scope</a>
+        <ul class="price-list">
+          <li><i class="lucide lucide-check"></i> Project-scoped work</li>
+          <li><i class="lucide lucide-check"></i> Written design doc per feature</li>
+          <li><i class="lucide lucide-check"></i> Shared Slack channel</li>
+          <li><i class="lucide lucide-check"></i> Selective &middot; by interest</li>
+        </ul>
+      </article>
+
+      <article class="price-card price-card-featured">
+        <div class="price-badge">Preferred</div>
+        <div class="price-tier">Full-time</div>
+        <div class="price-amount"><span class="price-amt">Market + equity</span></div>
+        <div class="price-tag">For: the main thing</div>
+        <a class="btn btn-primary btn-full" href="mailto:jake@stockunlock.com">Talk to Jake</a>
+        <ul class="price-list">
+          <li><i class="lucide lucide-check"></i> Senior IC / founding / early CTO</li>
+          <li><i class="lucide lucide-check"></i> NYC, remote, or hybrid</li>
+          <li><i class="lucide lucide-check"></i> Ships on day one</li>
+          <li><i class="lucide lucide-check"></i> Not looking to manage unless the team is right</li>
+        </ul>
+      </article>
+
+      <article class="price-card">
+        <div class="price-tier">Equity founding</div>
+        <div class="price-amount"><span class="price-amt">Let's build</span></div>
+        <div class="price-tag">For: zero-to-one conviction bets</div>
+        <a class="btn btn-ghost btn-full" href="mailto:jake@stockunlock.com">Pitch a problem</a>
+        <ul class="price-list">
+          <li><i class="lucide lucide-check"></i> Real equity, real ownership</li>
+          <li><i class="lucide lucide-check"></i> Pre-seed to small seed</li>
+          <li><i class="lucide lucide-check"></i> Problem has to matter</li>
+          <li><i class="lucide lucide-check"></i> Has led a YC interview before</li>
+        </ul>
+      </article>
+    </div>
+
+    <!-- Feature matrix -->
+    <div class="matrix-wrap">
+      <div class="matrix-head">
+        <div class="matrix-title">Engagement comparison</div>
+        <div class="matrix-sub">What actually differs across the four. No hidden limits, no "call for details" line items.</div>
+      </div>
+      <table class="matrix">
+        <thead>
+          <tr>
+            <th>Capability</th>
+            <th>Starter</th>
+            <th>Contract</th>
+            <th class="matrix-ent">Full-time</th>
+            <th>Founding</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Shipping production code</td><td class="td-no"><i class="lucide lucide-x"></i></td><td class="td-yes"><i class="lucide lucide-check"></i></td><td class="matrix-ent td-yes"><i class="lucide lucide-check"></i></td><td class="td-yes"><i class="lucide lucide-check"></i></td></tr>
+          <tr><td>Architecture ownership</td><td class="td-no"><i class="lucide lucide-x"></i></td><td>Scoped</td><td class="matrix-ent td-yes"><i class="lucide lucide-check"></i></td><td class="td-yes"><i class="lucide lucide-check"></i></td></tr>
+          <tr><td>On-call rotation</td><td class="td-no"><i class="lucide lucide-x"></i></td><td class="td-no"><i class="lucide lucide-x"></i></td><td class="matrix-ent td-yes"><i class="lucide lucide-check"></i></td><td class="td-yes"><i class="lucide lucide-check"></i></td></tr>
+          <tr><td>YC interview coaching</td><td>On request</td><td class="td-no"><i class="lucide lucide-x"></i></td><td class="matrix-ent">If relevant</td><td class="td-yes"><i class="lucide lucide-check"></i></td></tr>
+          <tr><td>Real equity</td><td class="td-no"><i class="lucide lucide-x"></i></td><td class="td-no"><i class="lucide lucide-x"></i></td><td class="matrix-ent td-yes"><i class="lucide lucide-check"></i></td><td class="td-yes"><i class="lucide lucide-check"></i></td></tr>
+          <tr><td>Unicycle &amp; cube talent-show routine</td><td class="td-no"><i class="lucide lucide-x"></i></td><td class="td-no"><i class="lucide lucide-x"></i></td><td class="matrix-ent">On request</td><td class="td-yes"><i class="lucide lucide-check"></i></td></tr>
+          <tr><td>Wedding invite (Q4 2026)</td><td class="td-no"><i class="lucide lucide-x"></i></td><td class="td-no"><i class="lucide lucide-x"></i></td><td class="matrix-ent td-yes"><i class="lucide lucide-check"></i></td><td class="td-yes"><i class="lucide lucide-check"></i></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== CASE STUDIES (inline) ===================== -->
+<section class="section section-alt" id="customers">
+  <div class="container">
+    <div class="section-head">
+      <div class="eyebrow"><span class="dot-blue"></span> Deployments</div>
+      <h2 class="section-title">Three companies. One operator.</h2>
+      <p class="section-sub">The receipts, without the case-study PDF.</p>
+    </div>
+
+    <div class="case-grid">
+
+      <article class="case-card">
+        <div class="case-head">
+          <div class="case-logo">SU</div>
+          <div class="case-tags"><span>Fintech</span><span>YC W22</span><span>Founder</span></div>
+        </div>
+        <h3>Stock Unlock</h3>
+        <p class="case-role">Co-founder, former CEO &middot; 2021&ndash;present (not full-time since late 2024)</p>
+        <p class="case-body">Built it. Scaled to eight employees and thousands of paying customers. Raised $1.335M seed (YC W22): $500K YC SAFE plus $835K from other investors. Led the YC interview. Runs today as a profitable side business with three FTEs. I'm not full-time there anymore.</p>
+        <div class="case-metrics">
+          <div><b>8</b><span>peak team</span></div>
+          <div><b>~$450K</b><span>ARR</span></div>
+          <div><b>$1.335M</b><span>seed raised</span></div>
+        </div>
+        <div class="case-foot">
+          <span class="case-proof"><i class="lucide lucide-quote"></i> "I ignored his emails for weeks. That was the mistake."</span>
+          <span class="case-attrib">&mdash; Daniel Pronk, co-founder</span>
+        </div>
+      </article>
+
+      <article class="case-card">
+        <div class="case-head">
+          <div class="case-logo case-logo-2">OH</div>
+          <div class="case-tags"><span>Health</span><span>Enterprise</span><span>IC</span></div>
+        </div>
+        <h3>Oscar Health</h3>
+        <p class="case-role">Senior Software Engineer &middot; March 2017&ndash;2021</p>
+        <p class="case-body">Joined at ~50 engineers under Alan Warren (formerly scaled Google Docs from 2-3 engineers to thousands), left at ~150+. Leveled Associate &rarr; Mid &rarr; Senior. Declined the manager track twice. Built an internal chatbot with Peter from hackathon scraps. Rode a unicycle while solving a Rubik's cube at the company talent show &mdash; Josh Kushner was in the audience.</p>
+        <div class="case-metrics">
+          <div><b>3&times;</b><span>team growth</span></div>
+          <div><b>4 yrs</b><span>tenure</span></div>
+          <div><b>Python / Go / React</b><span>stack</span></div>
+        </div>
+        <div class="case-foot">
+          <span class="case-proof"><i class="lucide lucide-quote"></i> "Pushed back publicly on Slack about post-IPO benefit cuts. Then kept shipping."</span>
+          <span class="case-attrib">&mdash; paraphrased, oral history</span>
+        </div>
+      </article>
+
+      <article class="case-card">
+        <div class="case-head">
+          <div class="case-logo case-logo-3">CH</div>
+          <div class="case-tags"><span>E-commerce</span><span>First job</span><span>Intern&rarr;FTE</span></div>
+        </div>
+        <h3>CommerceHub</h3>
+        <p class="case-role">Intern &rarr; Associate Software Engineer &middot; 2013&ndash;2016</p>
+        <p class="case-body">Part-time through senior year, full-time after. Agile team of ten. Micro-services before it was a r&eacute;sum&eacute; bullet. Took down production once as an intern. The button was the problem, not the intern.</p>
+        <div class="case-metrics">
+          <div><b>18 mo</b><span>intern &rarr; engineer</span></div>
+          <div><b>Groovy / Java</b><span>stack</span></div>
+          <div><b>F500</b><span>customers served</span></div>
+        </div>
+        <div class="case-foot">
+          <span class="case-proof"><i class="lucide lucide-quote"></i> "That wasn't your fault &mdash; you shouldn't have had access to that button."</span>
+          <span class="case-attrib">&mdash; Jake's first manager, post-outage</span>
+        </div>
+      </article>
+
+    </div>
+
+    <!-- Compact Youni mention for career-completeness -->
+    <div class="case-footnote">
+      <span class="case-footnote-label">Also in the ledger:</span>
+      <span class="case-footnote-body"><b>Youni</b> (2015&ndash;2016) &middot; Co-founder, CTO. College-focused social iOS app on React Native v0.13. Thousands of signups across two campuses. Couldn't crack cold-start. Shut down within six months. Tuition cheap, lesson expensive.</span>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== FIELD NOTES (stories as release-notes) ===================== -->
+<section class="section" id="notes">
+  <div class="container">
+    <div class="section-head">
+      <div class="eyebrow"><span class="dot-blue"></span> Field notes</div>
+      <h2 class="section-title">Five moments that shaped the engineer.</h2>
+      <p class="section-sub">
+        Release notes, not resume bullets. The stories that come up in real conversations.
+      </p>
+    </div>
+
+    <div class="notes-grid">
+      <article class="note-card">
+        <div class="note-head">
+          <span class="note-tag note-tag-origin">origin</span>
+          <span class="note-date mono">2010 &middot; senior year</span>
+        </div>
+        <h3>The AP CS switch</h3>
+        <p>Needed a math credit. Refused to take AP Calculus. Ms. Nalbandian mentioned she also taught AP Computer Science. Asked if it counted. She said yes. Took it purely to dodge Calc. Fell in love with code in the first week. Thirteen years later, still doing it.</p>
+      </article>
+
+      <article class="note-card">
+        <div class="note-head">
+          <span class="note-tag note-tag-story">founding</span>
+          <span class="note-date mono">2020&ndash;2021</span>
+        </div>
+        <h3>The Pronk emails</h3>
+        <p>Daniel Pronk spent five to ten hours every weekend on Excel sheets for his investing YouTube content. Wrote a Python automation in a weekend, emailed it to him for free. He ignored me for six weeks. Replied to make me stop. I didn't stop &mdash; hopped on a video call with a beer. YC reached out cold via LinkedIn before we'd even applied.</p>
+      </article>
+
+      <article class="note-card">
+        <div class="note-head">
+          <span class="note-tag note-tag-fun">personality</span>
+          <span class="note-date mono">Oscar talent show</span>
+        </div>
+        <h3>The unicycle cube</h3>
+        <p>Rode a unicycle while solving a Rubik's cube. Josh Kushner was in the audience. 3&times;3 competitive average: 13.95 seconds. Competed 2008&ndash;2014 at Northeast US events and Nationals. The cube does not care if you are tired.</p>
+      </article>
+
+      <article class="note-card">
+        <div class="note-head">
+          <span class="note-tag note-tag-ai">AI-era</span>
+          <span class="note-date mono">2026</span>
+        </div>
+        <h3>The Customer.io hack-off</h3>
+        <p>Migrated Stock Unlock off Customer.io onto self-hosted AWS SES with custom admin panels. Built largely with Claude Code, reviewed every line. One person, one weekend of focused work. Saved roughly $6K a year. Driver in the driver's seat, not driven by the car.</p>
+      </article>
+
+      <article class="note-card">
+        <div class="note-head">
+          <span class="note-tag note-tag-next">next</span>
+          <span class="note-date mono">April 2026</span>
+        </div>
+        <h3>Chapter II</h3>
+        <p>Re-entering the workforce. Getting married. Stock Unlock has been on autopilot for about fifteen months and will keep running. Looking for full-time roles, contract work, or equity-founding conversations. Redefining what comes next.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== INTEGRATIONS ===================== -->
+<section class="section" id="integrations">
+  <div class="container">
+    <div class="section-head">
+      <div class="eyebrow"><span class="dot-blue"></span> Integrations</div>
+      <h2 class="section-title">Drops in wherever you work.</h2>
+      <p class="section-sub">Eight integrations I've run in anger. No "adaptor available on request" line items.</p>
+    </div>
+
+    <div class="integ-grid">
+      <div class="integ-tile"><span class="integ-tile-status"></span><span class="integ-tile-icon"><i class="lucide lucide-cloud"></i></span><span class="integ-tile-name">AWS</span><span class="integ-tile-v">ECS &middot; SES &middot; RDS</span></div>
+      <div class="integ-tile"><span class="integ-tile-status"></span><span class="integ-tile-icon"><i class="lucide lucide-database"></i></span><span class="integ-tile-name">Postgres</span><span class="integ-tile-v">v16</span></div>
+      <div class="integ-tile"><span class="integ-tile-status"></span><span class="integ-tile-icon"><i class="lucide lucide-braces"></i></span><span class="integ-tile-name">Python</span><span class="integ-tile-v">daily driver</span></div>
+      <div class="integ-tile"><span class="integ-tile-status"></span><span class="integ-tile-icon"><i class="lucide lucide-code"></i></span><span class="integ-tile-name">TypeScript / Go</span><span class="integ-tile-v">runtime</span></div>
+      <div class="integ-tile"><span class="integ-tile-status"></span><span class="integ-tile-icon"><i class="lucide lucide-atom"></i></span><span class="integ-tile-name">React</span><span class="integ-tile-v">since pre-hooks</span></div>
+      <div class="integ-tile"><span class="integ-tile-status"></span><span class="integ-tile-icon"><i class="lucide lucide-sparkles"></i></span><span class="integ-tile-name">Claude Code</span><span class="integ-tile-v">Opus 4.x</span></div>
+      <div class="integ-tile"><span class="integ-tile-status"></span><span class="integ-tile-icon"><i class="lucide lucide-github"></i></span><span class="integ-tile-name">GitHub</span><span class="integ-tile-v">13 yrs of commits</span></div>
+      <div class="integ-tile"><span class="integ-tile-status"></span><span class="integ-tile-icon"><i class="lucide lucide-container"></i></span><span class="integ-tile-name">Docker</span><span class="integ-tile-v">Compose &rarr; ECS</span></div>
+    </div>
+
+    <div class="integ-foot">
+      <span class="mono">8 / 8 integrations healthy</span>
+      <span class="muted">Last checked: <span id="integ-time">just now</span></span>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== DEVELOPER DOCS ===================== -->
+<section class="section section-alt" id="docs">
+  <div class="container">
+    <div class="section-head section-head-left">
+      <div class="eyebrow"><span class="dot-blue"></span> Developers &middot; API v13</div>
+      <h2 class="section-title">API reference.</h2>
+      <p class="section-sub">One endpoint. The only one that matters.</p>
+    </div>
+
+    <div class="docs-wrap">
+      <aside class="docs-nav">
+        <div class="docs-nav-label">Endpoints</div>
+        <a href="#ep-hire" class="docs-link active">POST /api/hire</a>
+        <div class="docs-nav-label">Concepts</div>
+        <a href="#" class="docs-link muted">Authentication</a>
+        <a href="#" class="docs-link muted">Rate limits</a>
+        <a href="#" class="docs-link muted">Idempotency</a>
+        <div class="docs-nav-label">SDKs</div>
+        <a href="mailto:jake@stockunlock.com" class="docs-link muted">ruth-email <span class="pill-small">primary</span></a>
+      </aside>
+
+      <div class="docs-main">
+        <article class="endpoint" id="ep-hire">
+          <div class="endpoint-head">
+            <span class="method method-post">POST</span>
+            <span class="path mono">/api/hire</span>
+            <span class="endpoint-v mono">v13</span>
+          </div>
+          <p>Initiates a hiring flow for the <code>jake</code> resource. Idempotent on <code>email</code>. Returns <code>201 Created</code> on acceptance.</p>
+          <div class="endpoint-cols">
+            <div class="endpoint-prose">
+              <h4>Body parameters</h4>
+              <table class="param-table">
+                <tr><td><code>role</code></td><td class="type">string</td><td>One of <code>ic</code>, <code>tech-lead</code>, <code>founding</code>, <code>contract</code>.</td></tr>
+                <tr><td><code>stage</code></td><td class="type">string</td><td>Company stage. Best results at seed &rarr; Series B.</td></tr>
+                <tr><td><code>interesting</code></td><td class="type">boolean</td><td>Required. Must be <code>true</code>.</td></tr>
+                <tr><td><code>email</code></td><td class="type">string</td><td>Your email. Jake's will be returned.</td></tr>
+              </table>
+              <h4>Response fields</h4>
+              <table class="param-table">
+                <tr><td><code>jake</code></td><td class="type">string</td><td>Always <code>jake@stockunlock.com</code>.</td></tr>
+                <tr><td><code>response_time</code></td><td class="type">string</td><td>Fast during business hours ET.</td></tr>
+                <tr><td><code>availability</code></td><td class="type">string</td><td>Currently: <code>taking calls</code>.</td></tr>
+              </table>
+            </div>
+            <div class="endpoint-code">
+              <div class="code-head">
+                <span class="code-tab active" data-tab="curl">cURL</span>
+                <span class="code-tab" data-tab="node">Node</span>
+                <span class="code-tab" data-tab="py">Python</span>
+                <button class="copy-btn" id="copy-code"><i class="lucide lucide-copy"></i></button>
+              </div>
+<pre class="code-body code-body-curl"><code><span class="c-comment"># Contact Jake directly</span>
+<span class="c-kw">curl</span> <span class="c-str">mailto:jake@stockunlock.com</span> \
+  <span class="c-flag">-H</span> <span class="c-str">"Content-Type: application/json"</span> \
+  <span class="c-flag">-d</span> <span class="c-str">'{
+    "role": "founding",
+    "stage": "seed",
+    "interesting": true,
+    "email": "you@yourstartup.com"
+  }'</span></code></pre>
+<pre class="code-body code-body-node" hidden><code><span class="c-kw">import</span> { hire } <span class="c-kw">from</span> <span class="c-str">"ruth-node"</span>;
+
+<span class="c-kw">const</span> { jake, response_time } = <span class="c-kw">await</span> hire({
+  role: <span class="c-str">"founding"</span>,
+  stage: <span class="c-str">"seed"</span>,
+  interesting: <span class="c-kw">true</span>,
+  email: <span class="c-str">"you@yourstartup.com"</span>,
+});
+
+<span class="c-comment">// jake = "jake@stockunlock.com"</span></code></pre>
+<pre class="code-body code-body-py" hidden><code><span class="c-kw">from</span> ruth <span class="c-kw">import</span> hire
+
+response = hire(
+  role=<span class="c-str">"founding"</span>,
+  stage=<span class="c-str">"seed"</span>,
+  interesting=<span class="c-kw">True</span>,
+  email=<span class="c-str">"you@yourstartup.com"</span>,
+)
+
+<span class="c-kw">print</span>(response[<span class="c-str">"jake"</span>])
+<span class="c-comment"># -> jake@stockunlock.com</span></code></pre>
+              <div class="code-head code-resp-head"><span>Response</span><span class="mono muted">201 Created</span></div>
+<pre class="code-body"><code><span class="c-kw">{</span>
+  <span class="c-key">"jake"</span>: <span class="c-str">"jake@stockunlock.com"</span>,
+  <span class="c-key">"response_time"</span>: <span class="c-str">"&lt; 24h, ET business hours"</span>,
+  <span class="c-key">"status"</span>: <span class="c-str">"interested"</span>,
+  <span class="c-key">"availability"</span>: <span class="c-str">"taking calls"</span>,
+  <span class="c-key">"cube_pb"</span>: <span class="c-str">"13.95s avg, 3x3"</span>
+<span class="c-kw">}</span></code></pre>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== CTA BAND ===================== -->
+<section class="cta-band">
+  <div class="container cta-row">
+    <div>
+      <div class="eyebrow"><span class="dot-blue"></span> Ready when you are</div>
+      <h2>Stop evaluating. Start shipping.</h2>
+      <p>30-minute call. No sales pitch, no proposal PDF, no deck. Just a conversation about what you're building and whether I'm the right person to help ship it.</p>
+    </div>
+    <div class="cta-actions">
+      <a href="mailto:jake@stockunlock.com" class="btn btn-primary btn-lg">Email Jake <i class="lucide lucide-arrow-right"></i></a>
+      <a href="https://github.com/JakeRuth" class="btn btn-ghost btn-lg">View GitHub</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== FOOTER ===================== -->
+<footer class="footer">
+  <div class="container footer-row">
+    <div class="footer-left">
+      <a class="brand" href="#">
+        <span class="brand-mark"><i class="lucide lucide-hexagon"></i></span>
+        <span class="brand-name">ruth<span class="brand-dot">/</span>systems</span>
+      </a>
+      <p class="footer-tag">The engineer your team actually needs.<br/>Founded 2013. Built for the next chapter.</p>
+    </div>
+    <div class="footer-right">
+      <div class="footer-links">
+        <a href="mailto:jake@stockunlock.com">jake@stockunlock.com</a>
+        <span class="footer-sep">&middot;</span>
+        <a href="https://github.com/JakeRuth">github.com/JakeRuth</a>
+        <span class="footer-sep">&middot;</span>
+        <a href="#pricing">Pricing</a>
+        <span class="footer-sep">&middot;</span>
+        <a href="#docs">Docs</a>
+      </div>
+      <div class="footer-meta">
+        <span>&copy; 2026 ruth/systems</span>
+        <span class="footer-sep">&middot;</span>
+        <span class="footer-status"><span class="dot-green"></span> All systems operational</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="./app.js"></script>
+<!-- Arrival half of the cube transition. Plays phase 3 (cube shrinks,
+     page fades in) if sessionStorage.jrTransitionArrive is set by the
+     previous page; no-ops on a fresh visit. -->
+<script>
+  if (window.TransitionCubeV4 && typeof window.TransitionCubeV4.initArrival === "function") {
+    window.TransitionCubeV4.initArrival();
+  }
+</script>
+</body>
+</html>

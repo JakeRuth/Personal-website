@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Jake HD — Mac OS 9</title>
+<link rel="stylesheet" href="style.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+</head>
+<body>
+
+<!-- =================== MENU BAR =================== -->
+<div id="menubar">
+  <div class="menu apple" data-menu="apple">
+    <span class="apple-logo">&#63743;</span>
+  </div>
+  <div class="menu" data-menu="file">File</div>
+  <div class="menu" data-menu="edit">Edit</div>
+  <div class="menu" data-menu="view">View</div>
+  <div class="menu" data-menu="special">Special</div>
+  <div class="menu" data-menu="help">Help</div>
+
+  <div class="menu-right">
+    <div class="status-icon" id="cube-status" title="Rubik's Cube Control Panel">
+      <svg viewBox="0 0 20 20" width="14" height="14">
+        <rect x="2" y="2" width="5" height="5" fill="#D94B4B" stroke="#000" stroke-width=".5"/>
+        <rect x="8" y="2" width="5" height="5" fill="#F5E04A" stroke="#000" stroke-width=".5"/>
+        <rect x="14" y="2" width="5" height="5" fill="#3DA04F" stroke="#000" stroke-width=".5"/>
+        <rect x="2" y="8" width="5" height="5" fill="#F5E04A" stroke="#000" stroke-width=".5"/>
+        <rect x="8" y="8" width="5" height="5" fill="#FFFFFF" stroke="#000" stroke-width=".5"/>
+        <rect x="14" y="8" width="5" height="5" fill="#D94B4B" stroke="#000" stroke-width=".5"/>
+        <rect x="2" y="14" width="5" height="5" fill="#3465A4" stroke="#000" stroke-width=".5"/>
+        <rect x="8" y="14" width="5" height="5" fill="#E8891C" stroke="#000" stroke-width=".5"/>
+        <rect x="14" y="14" width="5" height="5" fill="#FFFFFF" stroke="#000" stroke-width=".5"/>
+      </svg>
+    </div>
+    <div class="status-icon" id="sherlock-status" title="Sherlock">
+      <svg viewBox="0 0 20 20" width="14" height="14">
+        <circle cx="8" cy="8" r="5" fill="none" stroke="#000" stroke-width="1.5"/>
+        <line x1="12" y1="12" x2="17" y2="17" stroke="#000" stroke-width="2"/>
+      </svg>
+    </div>
+    <div id="clock">Mon 10:42 AM</div>
+  </div>
+
+  <!-- DROPDOWNS -->
+  <div class="dropdown" id="dd-apple">
+    <div class="dd-item" data-action="about-jake">About This Jake&hellip;</div>
+    <div class="dd-sep"></div>
+    <div class="dd-item" data-action="control-panels">Control Panels &#9654;</div>
+    <div class="dd-item" data-action="sherlock">Sherlock 2&hellip;</div>
+    <div class="dd-sep"></div>
+    <div class="dd-item dd-dim">Recent Items &#9654;</div>
+    <div class="dd-sep"></div>
+    <div class="dd-item dd-dim">Chooser</div>
+    <div class="dd-item dd-dim">Key Caps</div>
+  </div>
+  <div class="dropdown" id="dd-file">
+    <div class="dd-item" data-action="new-finder">New Finder Window &nbsp;&#8984;N</div>
+    <div class="dd-item dd-dim">Open &nbsp;&#8984;O</div>
+    <div class="dd-item dd-dim">Print &nbsp;&#8984;P</div>
+    <div class="dd-sep"></div>
+    <div class="dd-item dd-dim">Close Window &nbsp;&#8984;W</div>
+  </div>
+  <div class="dropdown" id="dd-edit">
+    <div class="dd-item dd-dim">Undo &nbsp;&#8984;Z</div>
+    <div class="dd-sep"></div>
+    <div class="dd-item dd-dim">Cut &nbsp;&#8984;X</div>
+    <div class="dd-item dd-dim">Copy &nbsp;&#8984;C</div>
+    <div class="dd-item dd-dim">Paste &nbsp;&#8984;V</div>
+  </div>
+  <div class="dropdown" id="dd-view">
+    <div class="dd-item" data-action="view-icon">as Icons</div>
+    <div class="dd-item" data-action="view-list">as List</div>
+    <div class="dd-item" data-action="view-button">as Buttons</div>
+  </div>
+  <div class="dropdown" id="dd-special">
+    <div class="dd-item" data-action="empty-trash">Empty Trash&hellip;</div>
+    <div class="dd-item dd-dim">Eject &nbsp;&#8984;E</div>
+    <div class="dd-sep"></div>
+    <div class="dd-item" data-action="restart">Restart</div>
+    <div class="dd-item" data-action="shutdown">Shut Down</div>
+  </div>
+  <div class="dropdown" id="dd-help">
+    <div class="dd-item" data-action="help-about">About Balloon Help</div>
+    <div class="dd-item" data-action="help-email">Contact Jake&hellip;</div>
+  </div>
+</div>
+
+<!-- =================== DESKTOP =================== -->
+<div id="desktop">
+
+  <!-- Hard drive icon -->
+  <div class="desk-icon" id="jakehd" style="top:12px; right:20px;">
+    <div class="icon-img">
+      <svg viewBox="0 0 40 32" width="40" height="32">
+        <rect x="1" y="1" width="38" height="26" fill="#DADADA" stroke="#000" stroke-width="1"/>
+        <rect x="3" y="3" width="34" height="18" fill="#9FB4CC" stroke="#000" stroke-width=".5"/>
+        <rect x="6" y="23" width="4" height="2" fill="#333"/>
+        <rect x="12" y="23" width="4" height="2" fill="#333"/>
+      </svg>
+    </div>
+    <div class="icon-label">Jake HD</div>
+  </div>
+
+  <!-- Documents icon -->
+  <div class="desk-icon" id="docs-icon" style="top:110px; right:20px;">
+    <div class="icon-img">
+      <svg viewBox="0 0 36 40" width="36" height="40">
+        <path d="M4,2 L24,2 L32,10 L32,36 L4,36 Z" fill="#F2F2F2" stroke="#000" stroke-width="1"/>
+        <path d="M24,2 L24,10 L32,10" fill="#DADADA" stroke="#000" stroke-width="1"/>
+        <line x1="8" y1="16" x2="28" y2="16" stroke="#666" stroke-width=".5"/>
+        <line x1="8" y1="20" x2="28" y2="20" stroke="#666" stroke-width=".5"/>
+        <line x1="8" y1="24" x2="28" y2="24" stroke="#666" stroke-width=".5"/>
+        <line x1="8" y1="28" x2="20" y2="28" stroke="#666" stroke-width=".5"/>
+      </svg>
+    </div>
+    <div class="icon-label">Read Me</div>
+  </div>
+
+  <!-- Trash -->
+  <div class="desk-icon" id="trash-icon" style="bottom:20px; right:20px;">
+    <div class="icon-img">
+      <svg viewBox="0 0 32 40" width="32" height="40">
+        <rect x="4" y="8" width="24" height="28" fill="#DADADA" stroke="#000" stroke-width="1"/>
+        <rect x="2" y="4" width="28" height="5" fill="#DADADA" stroke="#000" stroke-width="1"/>
+        <rect x="12" y="2" width="8" height="3" fill="#DADADA" stroke="#000" stroke-width="1"/>
+        <line x1="10" y1="12" x2="10" y2="32" stroke="#666" stroke-width=".5"/>
+        <line x1="16" y1="12" x2="16" y2="32" stroke="#666" stroke-width=".5"/>
+        <line x1="22" y1="12" x2="22" y2="32" stroke="#666" stroke-width=".5"/>
+      </svg>
+    </div>
+    <div class="icon-label">Trash</div>
+  </div>
+
+  <!-- =================== FINDER WINDOW =================== -->
+  <div class="window" id="finder-window" style="top:80px; left:80px; width:560px;">
+    <div class="titlebar">
+      <div class="tb-close" data-close="finder-window"></div>
+      <div class="tb-stripes"></div>
+      <div class="tb-title">Jake HD</div>
+      <div class="tb-stripes"></div>
+      <div class="tb-zoom"></div>
+      <div class="tb-shade"></div>
+    </div>
+    <div class="window-body finder-body">
+      <div class="finder-toolbar">
+        <div class="fs-info"><span id="fs-count">6 items</span>, <span id="fs-space">3.1 GB in disk</span>, 7.2 GB available</div>
+      </div>
+      <div class="finder-columns">
+        <div class="fc-head">Name</div>
+        <div class="fc-head">Date Modified</div>
+        <div class="fc-head">Size</div>
+        <div class="fc-head">Kind</div>
+      </div>
+      <div class="finder-grid" id="finder-grid">
+        <!-- populated by JS -->
+      </div>
+      <div class="scroll-hint">&#9660; scroll for ambient cube solve &#9660;</div>
+    </div>
+  </div>
+
+  <!-- =================== FOLDER WINDOW (dynamic content) =================== -->
+  <div class="window hidden" id="folder-window" style="top:120px; left:200px; width:620px;">
+    <div class="titlebar">
+      <div class="tb-close" data-close="folder-window"></div>
+      <div class="tb-stripes"></div>
+      <div class="tb-title" id="folder-title">Folder</div>
+      <div class="tb-stripes"></div>
+      <div class="tb-zoom"></div>
+      <div class="tb-shade"></div>
+    </div>
+    <div class="window-body hypercard-body">
+      <div class="hc-card" id="hc-card">
+        <!-- populated by JS -->
+      </div>
+      <div class="hc-nav">
+        <button class="hc-arrow" id="hc-prev">&#9664;</button>
+        <span class="hc-count" id="hc-count">1 / 1</span>
+        <button class="hc-arrow" id="hc-next">&#9654;</button>
+        <span class="hc-title" id="hc-section">—</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- =================== RUBIK'S CONTROL PANEL =================== -->
+  <div class="window hidden" id="cube-window" style="top:90px; left:640px; width:320px;">
+    <div class="titlebar">
+      <div class="tb-close" data-close="cube-window"></div>
+      <div class="tb-stripes"></div>
+      <div class="tb-title">Rubik's Cube CP</div>
+      <div class="tb-stripes"></div>
+      <div class="tb-zoom"></div>
+      <div class="tb-shade"></div>
+    </div>
+    <div class="window-body">
+      <div class="cube-cp">
+        <div id="cube-canvas"></div>
+        <div class="cube-stats">
+          <div><b>PB:</b> 10.21s</div>
+          <div><b>Avg:</b> 13.95s</div>
+          <div><b>State:</b> <span id="cube-state">scrambled</span></div>
+          <div class="hint">Scroll the Finder window &rarr; the cube solves.</div>
+          <button class="os9-btn" id="scramble-btn">Scramble</button>
+          <button class="os9-btn" id="solve-btn">Solve</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- =================== SHERLOCK =================== -->
+  <div class="window hidden" id="sherlock-window" style="top:60px; left:120px; width:680px;">
+    <div class="titlebar">
+      <div class="tb-close" data-close="sherlock-window"></div>
+      <div class="tb-stripes"></div>
+      <div class="tb-title">Sherlock 2 — Jake's Network</div>
+      <div class="tb-stripes"></div>
+      <div class="tb-zoom"></div>
+      <div class="tb-shade"></div>
+    </div>
+    <div class="window-body sherlock-body">
+      <div class="sherlock-bar">
+        <input type="text" id="sherlock-input" value="jake ruth" class="os9-input"/>
+        <button class="os9-btn" id="sherlock-go">Search</button>
+        <div class="sherlock-channels">
+          <span class="chan active">Internet</span>
+          <span class="chan">People</span>
+          <span class="chan">Shopping</span>
+          <span class="chan">News</span>
+        </div>
+      </div>
+      <canvas id="sherlock-canvas" width="660" height="360"></canvas>
+      <div class="sherlock-status" id="sherlock-status-bar">Found 18 items matching "jake ruth"</div>
+    </div>
+  </div>
+
+  <!-- =================== ABOUT THIS JAKE =================== -->
+  <div class="window hidden" id="about-window" style="top:100px; left:300px; width:460px;">
+    <div class="titlebar">
+      <div class="tb-close" data-close="about-window"></div>
+      <div class="tb-stripes"></div>
+      <div class="tb-title">About This Jake</div>
+      <div class="tb-stripes"></div>
+      <div class="tb-zoom"></div>
+      <div class="tb-shade"></div>
+    </div>
+    <div class="window-body about-body">
+      <div class="about-grid">
+        <div class="about-logo">
+          <div class="mac-os-wordmark">Jake<span class="tm">&reg;</span></div>
+          <div class="mac-os-sub">Powered by 13 years of coding</div>
+        </div>
+        <div class="about-specs">
+          <div><b>Built-in Memory:</b> ~13 years</div>
+          <div><b>Virtual Memory:</b> Stock Unlock (YC W22)</div>
+          <div><b>Processor:</b> Caffeine G4 / 500 MHz</div>
+          <div><b>Startup Disk:</b> SUNY Albany, ACM Pres.</div>
+          <div><b>Extensions:</b> Rubik's cube, unicycle</div>
+          <div><b>Status:</b> Getting married, next chapter.</div>
+        </div>
+      </div>
+      <div class="about-footer">&copy; 1993&ndash;2026 Jake Ruth. All tricks reserved.</div>
+    </div>
+  </div>
+
+  <!-- =================== SHUTDOWN DIALOG =================== -->
+  <div class="dialog hidden" id="shutdown-dialog">
+    <div class="dialog-body">
+      <div class="dialog-icon">&#9432;</div>
+      <div class="dialog-text">
+        <b>Are you sure you want to shut down Jake?</b>
+        <p>If you do, there's really no way to get ahold of him except email: <i>jake@stockunlock.com</i></p>
+      </div>
+    </div>
+    <div class="dialog-buttons">
+      <button class="os9-btn" id="sd-cancel">Cancel</button>
+      <button class="os9-btn default" id="sd-ok">Shut Down</button>
+    </div>
+  </div>
+
+</div>
+
+<!-- =================== SHUT DOWN SCREEN =================== -->
+<div id="shutdown-screen" class="hidden">
+  <div class="sd-message">It is now safe to turn off<br/>your Jake.</div>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>

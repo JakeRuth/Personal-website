@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>jake@ruth ~ zsh</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <canvas id="trail"></canvas>
+  <div class="scanlines" aria-hidden="true"></div>
+  <div class="flicker" aria-hidden="true"></div>
+  <div class="vignette" aria-hidden="true"></div>
+
+  <main class="crt">
+    <div class="titlebar">
+      <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+      <span class="title">jake@ruth: ~ &mdash; zsh &mdash; 120x40</span>
+    </div>
+    <div class="screen" id="screen" tabindex="0">
+      <div class="output" id="output"></div>
+      <div class="prompt-line" id="prompt-line" style="display:none">
+        <span class="ps1"><span class="user">jake@ruth</span>:<span class="path">~</span>$&nbsp;</span><span class="input" id="input" contenteditable="true" spellcheck="false"></span><span class="caret" id="caret">&#9608;</span>
+      </div>
+    </div>
+  </main>
+
+  <script src="terminal.js"></script>
+</body>
+</html>

@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>transition-cube-v3 — demo</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <!--
+    transition-cube-v3 demo
+
+    Same origin-to-destination structure as v2. Same solver. The
+    difference is in the animation layer: quicker moves, fewer of
+    them, a soft constant y-drift on the whole cube, and a fade
+    in / fade out instead of a scale-in + shrink-out. The cube stays
+    at a constant size throughout — you see it appear, turn, solve,
+    and dissolve, all in under two and a half seconds.
+  -->
+  <div class="stage" id="stage" data-active="origin">
+
+    <!-- ===================== ORIGIN PANEL ===================== -->
+    <section class="panel origin" aria-label="origin panel">
+      <header class="panel-header">
+        <div class="brand"><strong>jake ruth</strong> / transition-cube-v3</div>
+        <div class="brand">origin</div>
+      </header>
+
+      <div class="hero">
+        <div class="eyebrow">Component demo</div>
+        <h1>A cube-shaped <span class="accent">transition</span>, tighter.</h1>
+        <p class="sub">
+          v2 read as a cube turning. It also took five seconds. v3 is
+          the same animation technique &mdash; same group.attach /
+          detach pattern &mdash; tuned shorter. Quicker moves, a light
+          constant spin, and a straight fade instead of scale-in /
+          shrink-out. The cube appears, solves, and dissolves in under
+          two and a half seconds.
+        </p>
+        <p class="sub">
+          Competed 2008&ndash;2014. 13.95-second 3x3 average. The
+          solver is still bidirectional BFS &mdash; fresh solution
+          every trigger. Only the animation layer moved.
+        </p>
+
+        <div class="cta-row">
+          <button class="btn primary" id="trigger">Trigger transition</button>
+          <span class="hint">fires <code>TransitionCubeV3.playTransition()</code></span>
+        </div>
+      </div>
+
+      <div class="meta">
+        <span><b>stack</b>vanilla JS + three.js</span>
+        <span><b>pattern</b>group.attach / scene.attach (from v2)</span>
+        <span><b>per move</b>125ms turn + 40ms pause</span>
+        <span><b>fades</b>200ms in / 250ms out</span>
+        <span><b>respects</b>prefers-reduced-motion</span>
+      </div>
+    </section>
+
+    <!-- ===================== DESTINATION PANEL ===================== -->
+    <section class="panel destination" aria-label="destination panel" aria-hidden="true">
+      <header class="panel-header">
+        <div class="brand"><strong>jake ruth</strong> / next experience</div>
+        <div class="brand">destination</div>
+      </header>
+
+      <div class="hero dest-body">
+        <div>
+          <div class="eyebrow">Arrived</div>
+          <h2>You're through the cube.</h2>
+          <p style="margin-top:16px">
+            Scrambled, solved, faded out of the way. v3's tuning
+            target was to keep v2's correctness and cut the runtime
+            roughly in half. The destination panel is always here
+            &mdash; it just waits its turn.
+          </p>
+          <div class="reset-row" style="margin-top:28px">
+            <button class="btn" id="reset">&larr; Reset demo</button>
+            <button class="btn primary" id="trigger2">Run it again</button>
+          </div>
+        </div>
+
+        <div class="cards">
+          <div class="card">
+            <h3>What v2 already got right</h3>
+            <p>
+              Each cubie is a Group with its stickers as children.
+              Layer rotations use <code>group.attach()</code> /
+              <code>cubeGroup.attach()</code>, which preserve world
+              transforms across reparents. v3 keeps all of it
+              unchanged &mdash; that's the load-bearing part.
+            </p>
+          </div>
+          <div class="card">
+            <h3>What v3 tuned</h3>
+            <p>
+              Moves shortened from 220ms to 125ms. Pauses from 90ms
+              to 40ms. Scramble from 8 to 6. Total move time dropped
+              from ~5000ms to ~1800ms. Ambient y-drift at ~0.2
+              rad/sec keeps the cube constantly in motion.
+            </p>
+          </div>
+          <div class="card">
+            <h3>Fade, not shrink</h3>
+            <p>
+              v2 scaled in from 0.55&times; and shrunk out to 0.28&times;.
+              v3 holds a constant size the whole time. Overlay and
+              cube fade in over 200ms, fade out over 250ms. No size
+              pumping.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="meta">
+        <span><b>component</b>transition-cube-v3.js</span>
+        <span><b>api</b>playTransition({ onComplete, destinationUrl, duration })</span>
+        <span><b>aliased as</b>window.TransitionCube</span>
+        <span><b>degrades to</b>fade if WebGL or three.js is unavailable</span>
+      </div>
+    </section>
+  </div>
+
+  <!-- ============== Scripts ============== -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="cube-solver.js"></script>
+  <script src="transition-cube-v3.js"></script>
+  <script>
+    (function () {
+      const stage = document.getElementById("stage");
+      const triggerBtn = document.getElementById("trigger");
+      const trigger2Btn = document.getElementById("trigger2");
+      const resetBtn = document.getElementById("reset");
+
+      function arrived() {
+        stage.setAttribute("data-active", "destination");
+        [triggerBtn, trigger2Btn, resetBtn].forEach(b => b && (b.disabled = false));
+      }
+      function back() {
+        stage.setAttribute("data-active", "origin");
+      }
+      function lockButtons() {
+        [triggerBtn, trigger2Btn, resetBtn].forEach(b => b && (b.disabled = true));
+      }
+
+      triggerBtn.addEventListener("click", () => {
+        lockButtons();
+        TransitionCubeV3.playTransition({ onComplete: arrived });
+      });
+
+      trigger2Btn.addEventListener("click", () => {
+        stage.setAttribute("data-active", "origin");
+        lockButtons();
+        setTimeout(() => {
+          TransitionCubeV3.playTransition({ onComplete: arrived });
+        }, 220);
+      });
+
+      resetBtn.addEventListener("click", back);
+    })();
+  </script>
+</body>
+</html>

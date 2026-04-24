@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>JAKE-RUTH-SSD-13YR :: C:\WINDOWS\</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=VT323&family=IBM+Plex+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<!-- ============ ACT 1: BIOS ============ -->
+<div id="bios" class="stage bios active" aria-hidden="false">
+  <pre id="bios-text" class="bios-text"></pre>
+  <div class="bios-hint">press any key to skip &bull; click anywhere</div>
+</div>
+
+<!-- ============ ACT 2: WIN95 SPLASH ============ -->
+<div id="splash" class="stage splash" aria-hidden="true">
+  <div class="splash-sky">
+    <div class="splash-logo">
+      <div class="splash-flag">
+        <span class="flag-q q1"></span><span class="flag-q q2"></span>
+        <span class="flag-q q3"></span><span class="flag-q q4"></span>
+      </div>
+      <div class="splash-words">
+        <div class="splash-microsoft">Microsoft&reg;</div>
+        <div class="splash-win">Windows<span class="sup">95</span></div>
+      </div>
+    </div>
+    <div class="splash-bar"><div class="splash-bar-fill"></div></div>
+    <div class="splash-copy">Copyright &copy; 1981-2026 Jake Ruth Corp.</div>
+  </div>
+</div>
+
+<!-- ============ ACT 3: DESKTOP ============ -->
+<div id="desktop" class="stage desktop" aria-hidden="true">
+
+  <!-- icons -->
+  <div class="icons" id="icons">
+    <button class="icon" data-open="mycomputer">
+      <div class="ico ico-mycomp"></div><span>My Computer</span>
+    </button>
+    <button class="icon" data-open="network">
+      <div class="ico ico-network"></div><span>Network Neighborhood</span>
+    </button>
+    <button class="icon" data-open="recycle">
+      <div class="ico ico-recycle"></div><span>Recycle Bin</span>
+    </button>
+    <button class="icon" data-open="cube">
+      <div class="ico ico-cube"></div><span>Cube.exe</span>
+    </button>
+    <button class="icon" data-open="readme">
+      <div class="ico ico-txt"></div><span>README.txt</span>
+    </button>
+    <button class="icon" data-open="resume">
+      <div class="ico ico-doc"></div><span>Resume.doc</span>
+    </button>
+    <button class="icon" data-open="contact">
+      <div class="ico ico-hlp"></div><span>Contact.hlp</span>
+    </button>
+    <button class="icon" data-open="stockunlock">
+      <div class="ico ico-lnk"></div><span>Stock Unlock.lnk</span>
+    </button>
+  </div>
+
+  <!-- windows container -->
+  <div class="windows" id="windows"></div>
+
+  <!-- taskbar -->
+  <div class="taskbar">
+    <button id="start-btn" class="start-btn">
+      <span class="start-flag">
+        <span class="flag-q q1"></span><span class="flag-q q2"></span>
+        <span class="flag-q q3"></span><span class="flag-q q4"></span>
+      </span>
+      <span class="start-label">Start</span>
+    </button>
+    <div class="task-divider"></div>
+    <div class="taskbar-pills" id="taskbar-pills"></div>
+    <div class="tray">
+      <span class="tray-ico" title="Volume">&#128266;</span>
+      <span class="tray-ico" title="Net">&#128187;</span>
+      <span class="tray-clock" id="tray-clock">--:-- --</span>
+    </div>
+  </div>
+
+  <!-- start menu -->
+  <div class="startmenu" id="startmenu" hidden>
+    <div class="startmenu-rail">
+      <div class="rail-text">Jake<span>95</span></div>
+    </div>
+    <ul class="startmenu-items">
+      <li data-submenu="programs"><span class="smi-ico">&#128193;</span>Programs<span class="smi-arrow">&#9658;</span></li>
+      <li data-open="readme"><span class="smi-ico">&#128196;</span>Documents<span class="smi-arrow">&#9658;</span></li>
+      <li data-open="settings"><span class="smi-ico">&#9881;</span>Settings</li>
+      <li data-open="find"><span class="smi-ico">&#128269;</span>Find</li>
+      <li data-open="help"><span class="smi-ico">&#10067;</span>Help</li>
+      <li data-open="run"><span class="smi-ico">&#9654;</span>Run...</li>
+      <li class="sep"></li>
+      <li data-open="shutdown"><span class="smi-ico">&#9211;</span>Shut Down...</li>
+    </ul>
+  </div>
+
+  <!-- submenu: Programs -->
+  <div class="startmenu sub" id="submenu-programs" hidden>
+    <ul class="startmenu-items">
+      <li data-open="cube"><span class="smi-ico">&#129526;</span>Cube.exe</li>
+      <li data-open="network"><span class="smi-ico">&#128279;</span>Network Neighborhood</li>
+      <li data-open="stockunlock"><span class="smi-ico">&#128200;</span>Stock Unlock</li>
+      <li data-open="readme"><span class="smi-ico">&#128196;</span>Notepad (README)</li>
+      <li data-open="resume"><span class="smi-ico">&#128221;</span>WordPad (Resume)</li>
+    </ul>
+  </div>
+
+</div>
+
+<!-- ===== Hidden window templates ===== -->
+<template id="tpl-window">
+  <div class="win95">
+    <div class="win95-title">
+      <span class="wt-ico"></span>
+      <span class="wt-name"></span>
+      <span class="wt-spacer"></span>
+      <button class="wt-btn wt-min" title="Minimize">_</button>
+      <button class="wt-btn wt-max" title="Maximize">&#9723;</button>
+      <button class="wt-btn wt-close" title="Close">&times;</button>
+    </div>
+    <div class="win95-menu">
+      <span>File</span><span>Edit</span><span>View</span><span>Help</span>
+    </div>
+    <div class="win95-body"></div>
+    <div class="win95-status"><span class="ws-left"></span><span class="ws-right"></span></div>
+  </div>
+</template>
+
+<script type="importmap">
+{
+  "imports": {
+    "three": "https://unpkg.com/three@0.160.0/build/three.module.js"
+  }
+}
+</script>
+<script type="module" src="cube.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

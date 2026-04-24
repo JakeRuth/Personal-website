@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>transition-cube-v2 — demo</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <!--
+    transition-cube-v2 demo
+
+    Two panels stacked. Hit "Trigger transition" and the cube takes
+    over, scrambles itself, solves itself, and the destination panel
+    is revealed behind it as the cube shrinks out.
+
+    v2 rewrite: fixes the v1 visual issues by using the proper
+    group-attach / detach pattern from Three.js, a per-move pause,
+    and one-at-a-time queued moves. See README.md for the diff.
+  -->
+  <div class="stage" id="stage" data-active="origin">
+
+    <!-- ===================== ORIGIN PANEL ===================== -->
+    <section class="panel origin" aria-label="origin panel">
+      <header class="panel-header">
+        <div class="brand"><strong>jake ruth</strong> / transition-cube-v2</div>
+        <div class="brand">origin</div>
+      </header>
+
+      <div class="hero">
+        <div class="eyebrow">Component demo</div>
+        <h1>A cube-shaped <span class="accent">transition</span>.</h1>
+        <p class="sub">
+          v1 barely looked like it was moving. v2 uses the group-attach
+          pattern every real Three.js cube uses: weld the nine cubies
+          of a face into a temporary group, rotate the group ninety
+          degrees, snap, detach. Each turn reads as a turn.
+        </p>
+        <p class="sub">
+          Competed 2008&ndash;2014. 13.95-second average on a 3x3. The
+          solver is still bidirectional BFS on the cubie state &mdash;
+          fresh solution every trigger. Only the animation changed.
+        </p>
+
+        <div class="cta-row">
+          <button class="btn primary" id="trigger">Trigger transition</button>
+          <span class="hint">fires <code>TransitionCubeV2.playTransition()</code></span>
+        </div>
+      </div>
+
+      <div class="meta">
+        <span><b>stack</b>vanilla JS + three.js</span>
+        <span><b>pattern</b>group.attach / scene.attach (world-preserving)</span>
+        <span><b>per move</b>220ms turn + 90ms pause</span>
+        <span><b>respects</b>prefers-reduced-motion</span>
+      </div>
+    </section>
+
+    <!-- ===================== DESTINATION PANEL ===================== -->
+    <section class="panel destination" aria-label="destination panel" aria-hidden="true">
+      <header class="panel-header">
+        <div class="brand"><strong>jake ruth</strong> / next experience</div>
+        <div class="brand">destination</div>
+      </header>
+
+      <div class="hero dest-body">
+        <div>
+          <div class="eyebrow">Arrived</div>
+          <h2>You're through the cube.</h2>
+          <p style="margin-top:16px">
+            The cube scrambled, solved, and shrunk out of the way.
+            This panel was always here &mdash; it just couldn't fade
+            in until the solve finished. In a real site this is the
+            next experience: terminal, blueprint, whatever's next.
+          </p>
+          <div class="reset-row" style="margin-top:28px">
+            <button class="btn" id="reset">&larr; Reset demo</button>
+            <button class="btn primary" id="trigger2">Run it again</button>
+          </div>
+        </div>
+
+        <div class="cards">
+          <div class="card">
+            <h3>What v1 got wrong</h3>
+            <p>
+              Stickers lived as separate meshes from the cubie bodies.
+              The commit step reset their rotation to (0,0,0), which
+              flattened them against their parent every turn. The cube
+              also had a constant spin compounding with each layer
+              rotation. The result: jittery mess.
+            </p>
+          </div>
+          <div class="card">
+            <h3>What v2 does instead</h3>
+            <p>
+              Each cubie is a Group with its stickers as children.
+              Layer rotations use <code>group.attach()</code> /
+              <code>scene.attach()</code>, which preserve world
+              transforms across reparents. Snap to exactly &plusmn;&pi;/2
+              before detaching. One move at a time.
+            </p>
+          </div>
+          <div class="card">
+            <h3>Console logs</h3>
+            <p>
+              Open DevTools on the demo page. Every move logs with
+              its index, axis, and angle. The 4&times;U identity
+              check runs once per page load. Drift, if any, shows up
+              in the "snap:" line.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="meta">
+        <span><b>component</b>transition-cube-v2.js</span>
+        <span><b>api</b>playTransition({ onComplete, destinationUrl, duration })</span>
+        <span><b>degrades to</b>fade if WebGL or three.js is unavailable</span>
+      </div>
+    </section>
+  </div>
+
+  <!-- ============== Scripts ============== -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="cube-solver.js"></script>
+  <script src="transition-cube-v2.js"></script>
+  <script>
+    (function () {
+      const stage = document.getElementById("stage");
+      const triggerBtn = document.getElementById("trigger");
+      const trigger2Btn = document.getElementById("trigger2");
+      const resetBtn = document.getElementById("reset");
+
+      function arrived() {
+        stage.setAttribute("data-active", "destination");
+        [triggerBtn, trigger2Btn, resetBtn].forEach(b => b && (b.disabled = false));
+      }
+      function back() {
+        stage.setAttribute("data-active", "origin");
+      }
+      function lockButtons() {
+        [triggerBtn, trigger2Btn, resetBtn].forEach(b => b && (b.disabled = true));
+      }
+
+      triggerBtn.addEventListener("click", () => {
+        lockButtons();
+        TransitionCubeV2.playTransition({ onComplete: arrived });
+      });
+
+      trigger2Btn.addEventListener("click", () => {
+        stage.setAttribute("data-active", "origin");
+        lockButtons();
+        setTimeout(() => {
+          TransitionCubeV2.playTransition({ onComplete: arrived });
+        }, 280);
+      });
+
+      resetBtn.addEventListener("click", back);
+    })();
+  </script>
+</body>
+</html>

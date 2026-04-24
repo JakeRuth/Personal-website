@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Jake Ruth — Network</title>
+<link rel="stylesheet" href="styles.css" />
+<script src="https://cdn.jsdelivr.net/npm/d3@7.9.0/dist/d3.min.js"></script>
+</head>
+<body>
+  <canvas id="starfield"></canvas>
+  <svg id="graph" role="img" aria-label="Force-directed graph of Jake Ruth's career, skills, projects, hobbies and people"></svg>
+
+  <header class="topbar">
+    <div class="brand">
+      <span class="brand-dot"></span>
+      <span class="brand-name">jake_ruth</span>
+      <span class="brand-sub">// network</span>
+    </div>
+    <div class="search">
+      <svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/><path d="M20 20l-3.5-3.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/></svg>
+      <input id="search" type="text" placeholder="search the graph (e.g. rugby, react, oscar)…" autocomplete="off" spellcheck="false" />
+      <kbd>/</kbd>
+    </div>
+  </header>
+
+  <aside class="legend">
+    <div class="legend-title">legend</div>
+    <ul>
+      <li><span class="dot" data-cat="career"></span>career</li>
+      <li><span class="dot" data-cat="skill"></span>skills</li>
+      <li><span class="dot" data-cat="project"></span>projects</li>
+      <li><span class="dot" data-cat="hobby"></span>hobbies</li>
+      <li><span class="dot" data-cat="person"></span>people</li>
+    </ul>
+    <div class="legend-hint">
+      drag · hover · click<br/>
+      cursor repels nodes
+    </div>
+  </aside>
+
+  <section id="panel" class="panel hidden" aria-live="polite">
+    <button id="panel-close" class="panel-close" aria-label="Close">×</button>
+    <div class="panel-kicker"><span id="panel-category">—</span></div>
+    <h2 id="panel-title">—</h2>
+    <p id="panel-body">Click a node to open its story.</p>
+    <div class="panel-related">
+      <div class="panel-related-title">connected</div>
+      <ul id="panel-related-list"></ul>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <span>concept 09 — network graph</span>
+    <span class="footer-sep">·</span>
+    <span>jake@stockunlock.com</span>
+  </footer>
+
+  <script src="data.js"></script>
+  <script src="graph.js"></script>
+</body>
+</html>

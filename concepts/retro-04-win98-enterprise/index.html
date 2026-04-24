@@ -1,0 +1,785 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jake Ruth Enterprise Suite '98</title>
+<link rel="stylesheet" href="styles.css">
+<link href="https://unpkg.com/98.css" rel="stylesheet">
+</head>
+<body>
+
+<!-- ============ BOOT / SPLASH ============ -->
+<div id="boot-screen">
+  <div class="boot-wrap">
+    <div class="boot-logo">
+      <div class="logo-square sq-red"></div>
+      <div class="logo-square sq-green"></div>
+      <div class="logo-square sq-blue"></div>
+      <div class="logo-square sq-yellow"></div>
+    </div>
+    <div class="boot-title">Jake Ruth Enterprise Suite&nbsp;&lsquo;98</div>
+    <div class="boot-sub">Copyright &copy; 1998&ndash;2026 Ruth Software Corporation. All Rights Reserved.</div>
+    <div class="boot-loading">
+      <div class="boot-progress"><div class="boot-bar" id="bootBar"></div></div>
+      <div class="boot-status" id="bootStatus">Setup is preparing the installation wizard&hellip;</div>
+    </div>
+    <div class="boot-footnote">
+      <small>
+        Pentium&reg; II optimized &bull; Year 2000 Compliant &bull; MMX&trade; Enhanced<br>
+        Requires 16MB RAM, Windows 95/98/NT 4.0, VGA 640&times;480
+      </small>
+    </div>
+  </div>
+</div>
+
+<!-- ============ DESKTOP ============ -->
+<div id="desktop">
+
+  <!-- Desktop icons -->
+  <div class="desktop-icons">
+    <div class="dt-icon" data-window="myComputer">
+      <div class="dt-icon-img icn-computer"></div>
+      <div class="dt-icon-label">My Computer</div>
+    </div>
+    <div class="dt-icon" data-window="networkNeighborhood">
+      <div class="dt-icon-img icn-network"></div>
+      <div class="dt-icon-label">Network<br>Neighborhood</div>
+    </div>
+    <div class="dt-icon" data-window="recycleBin">
+      <div class="dt-icon-img icn-recycle"></div>
+      <div class="dt-icon-label">Recycle Bin</div>
+    </div>
+    <div class="dt-icon" data-window="jakeRuthExe">
+      <div class="dt-icon-img icn-jakeapp"></div>
+      <div class="dt-icon-label">Jake Ruth '98.exe</div>
+    </div>
+    <div class="dt-icon" data-window="readme">
+      <div class="dt-icon-img icn-notepad"></div>
+      <div class="dt-icon-label">README.TXT</div>
+    </div>
+    <div class="dt-icon" data-window="plusPack">
+      <div class="dt-icon-img icn-plus"></div>
+      <div class="dt-icon-label">Plus! 98 Pack</div>
+    </div>
+    <div class="dt-icon" data-window="phoneExe">
+      <div class="dt-icon-img icn-phone"></div>
+      <div class="dt-icon-label">Phone.exe</div>
+    </div>
+    <div class="dt-icon" data-window="cvExe">
+      <div class="dt-icon-img icn-briefcase"></div>
+      <div class="dt-icon-label">Resume.doc</div>
+    </div>
+  </div>
+
+  <!-- Windows will be injected here by JS -->
+  <div id="windows-layer"></div>
+
+  <!-- EULA modal -->
+  <div id="eula-modal" class="modal hidden">
+    <div class="window modal-window" style="width:480px">
+      <div class="title-bar">
+        <div class="title-bar-text">
+          <span class="tb-icon icn-notepad tb-ico"></span>
+          License Agreement &mdash; Jake Ruth Enterprise Suite '98
+        </div>
+        <div class="title-bar-controls">
+          <button aria-label="Close" onclick="closeEULA()"></button>
+        </div>
+      </div>
+      <div class="window-body">
+        <p><strong>END USER LICENSE AGREEMENT (EULA)</strong></p>
+        <p>PLEASE READ CAREFULLY. This legally-binding agreement governs your use of
+        JAKE RUTH ENTERPRISE SUITE&trade; '98 ("the Software"), a product of
+        Ruth Software Corporation ("Ruth Corp.").</p>
+        <p>By clicking <em>I Agree</em>, you consent to be amazed by Jake's capabilities,
+        including but not limited to: solving a Rubik's cube in under 14 seconds,
+        riding a unicycle while solving a Rubik's cube, shipping a profitable SaaS
+        to thousands of customers, and building an 8-person team at a YC company
+        on a $1.335M seed.</p>
+        <p>You agree that Stock Unlock was "built, scaled, profitable, and is no longer
+        his full-time thing as of April 2026," and further agree to hire him,
+        introduce him, or at minimum star his repo.</p>
+        <p>Ruth Corp. disclaims all warranties EXCEPT that Jake <em>will</em>, to the best
+        of his ability, be the driver in the driver's seat &mdash; never overcharging
+        for shit software.</p>
+        <p class="eula-scroll"><em>&hellip; (scroll for 14 more pages of 8pt Times New Roman legalese you won't read) &hellip;</em></p>
+        <div class="eula-actions">
+          <label><input type="radio" name="eula" checked> I <u>a</u>ccept the agreement</label>
+          <label><input type="radio" name="eula"> I do <u>n</u>ot accept the agreement</label>
+        </div>
+        <div class="eula-buttons">
+          <button onclick="closeEULA()">&lt; Back</button>
+          <button class="default" onclick="closeEULA()">Next &gt;</button>
+          <button onclick="closeEULA()">Cancel</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- START MENU -->
+  <div id="start-menu" class="hidden">
+    <div class="start-sidebar">
+      <div class="start-sidebar-text">Jake Ruth <span>Suite&nbsp;'98</span></div>
+    </div>
+    <ul class="start-list">
+      <li data-window="jakeRuthExe"><span class="sm-icn icn-jakeapp"></span>Jake Ruth '98<small>&nbsp;</small></li>
+      <li data-window="plusPack"><span class="sm-icn icn-plus"></span>Plus! 98 Pack &#9654;</li>
+      <li data-window="networkNeighborhood"><span class="sm-icn icn-network"></span>Network Neighborhood</li>
+      <li data-window="cvExe"><span class="sm-icn icn-briefcase"></span>Resume.doc</li>
+      <li data-window="phoneExe"><span class="sm-icn icn-phone"></span>Hire Jake&hellip;</li>
+      <li class="sep"></li>
+      <li data-window="readme"><span class="sm-icn icn-notepad"></span>Documents &#9654;</li>
+      <li data-window="settings"><span class="sm-icn icn-gear"></span>Settings &#9654;</li>
+      <li class="sep"></li>
+      <li id="shutdown"><span class="sm-icn icn-shutdown"></span>Sh<u>u</u>t Down&hellip;</li>
+    </ul>
+  </div>
+
+  <!-- TASKBAR -->
+  <div id="taskbar">
+    <button id="start-button" class="start-btn">
+      <span class="win-flag"></span><strong>Start</strong>
+    </button>
+    <div class="quicklaunch">
+      <button class="ql-btn" title="Show Desktop" data-ql="desktop"><span class="ql-icn icn-desktop-tiny"></span></button>
+      <button class="ql-btn" title="Internet Explorer" data-window="readme"><span class="ql-icn icn-ie-tiny"></span></button>
+      <button class="ql-btn" title="Jake Ruth '98" data-window="jakeRuthExe"><span class="ql-icn icn-jakeapp-tiny"></span></button>
+    </div>
+    <div class="taskbar-sep"></div>
+    <div id="taskbar-apps"></div>
+    <div class="system-tray">
+      <span class="tray-icn" title="Volume">&#128266;</span>
+      <span class="tray-icn" title="Network">&#128187;</span>
+      <span class="tray-icn" title="Rubik's">&#129513;</span>
+      <span id="clock" class="tray-clock">--:--&nbsp;AM</span>
+    </div>
+  </div>
+
+</div> <!-- /desktop -->
+
+<!-- ============ WINDOW TEMPLATES ============ -->
+<template id="tpl-jakeRuthExe">
+<div class="window app-window" data-w="jakeRuthExe" style="width:760px">
+  <div class="title-bar">
+    <div class="title-bar-text"><span class="tb-icon icn-jakeapp tb-ico"></span>Jake Ruth Enterprise Suite '98</div>
+    <div class="title-bar-controls">
+      <button aria-label="Minimize"></button>
+      <button aria-label="Maximize"></button>
+      <button aria-label="Close"></button>
+    </div>
+  </div>
+  <div class="window-body app-body">
+    <!-- Menu bar -->
+    <div class="menu-bar">
+      <span><u>F</u>ile</span>
+      <span><u>E</u>dit</span>
+      <span><u>V</u>iew</span>
+      <span><u>H</u>ire</span>
+      <span><u>H</u>elp</span>
+    </div>
+    <!-- Toolbar -->
+    <div class="toolbar">
+      <button class="tb-btn" data-ed="home">&#127968; Home</button>
+      <button class="tb-btn" data-ed="pro">&#128188; Professional</button>
+      <button class="tb-btn" data-ed="ent">&#127970; Enterprise</button>
+      <div class="tb-sep"></div>
+      <button class="tb-btn" data-ed="about">&#8505; About</button>
+      <button class="tb-btn" data-ed="proof">&#128202; Receipts</button>
+      <div class="tb-sep"></div>
+      <button class="tb-btn" data-ed="eula">&#128196; EULA</button>
+    </div>
+    <!-- Address bar -->
+    <div class="address-bar">
+      <span class="ab-label">Address</span>
+      <input id="addressInput" value="C:\Jake\Suite98\Editions\Home" readonly>
+      <button class="ab-go">Go</button>
+    </div>
+
+    <!-- Content pane -->
+    <div class="app-content">
+      <!-- LEFT NAV (Outlook-bar style) -->
+      <aside class="ob-bar">
+        <div class="ob-item ob-active" data-ed="home">
+          <div class="ob-ico icn-home-big"></div><span>Home<br>Edition</span>
+        </div>
+        <div class="ob-item" data-ed="pro">
+          <div class="ob-ico icn-pro-big"></div><span>Professional<br>Edition</span>
+        </div>
+        <div class="ob-item" data-ed="ent">
+          <div class="ob-ico icn-ent-big"></div><span>Enterprise<br>Edition</span>
+        </div>
+        <div class="ob-item" data-ed="about">
+          <div class="ob-ico icn-about-big"></div><span>About<br>Jake</span>
+        </div>
+        <div class="ob-item" data-ed="proof">
+          <div class="ob-ico icn-proof-big"></div><span>Receipts</span>
+        </div>
+      </aside>
+
+      <!-- RIGHT PANES -->
+      <section class="ed-pane" id="ed-home">
+        <div class="ed-hero">
+          <h1>Jake Ruth &mdash; <span class="ed-badge">Home Edition</span></h1>
+          <p class="ed-tag">The contract engineer. Ship-first. Zero fluff. Small commitment, high signal.</p>
+        </div>
+        <div class="ed-grid">
+          <div class="ed-card">
+            <h3>&#10148; What You Get</h3>
+            <ul>
+              <li>Senior IC shipping production code week one</li>
+              <li>React / TypeScript / Node / Postgres / AWS</li>
+              <li>Pragmatic AI wiring &mdash; driver in the driver's seat</li>
+              <li>Async-friendly, US East timezone</li>
+            </ul>
+          </div>
+          <div class="ed-card">
+            <h3>&#10148; Best For</h3>
+            <ul>
+              <li>Seed-stage teams needing velocity</li>
+              <li>De-risking a technical question in 2&ndash;6 weeks</li>
+              <li>Feature you've been "about to build" since Q3</li>
+            </ul>
+          </div>
+          <div class="ed-card ed-card-price">
+            <div class="price-chrome">
+              <div class="price-lbl">SRP</div>
+              <div class="price-amt">$&mdash;&mdash;/hr</div>
+              <div class="price-sub">Introductory pricing available &mdash; contact sales</div>
+              <button class="btn-large" onclick="openWindow('phoneExe')">Order Now &#9742;</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="ed-pane hidden" id="ed-pro">
+        <div class="ed-hero">
+          <h1>Jake Ruth &mdash; <span class="ed-badge pro">Professional Edition</span></h1>
+          <p class="ed-tag">Full-time senior engineer. Ownership, mentorship, shipping in prod.</p>
+        </div>
+        <div class="ed-grid">
+          <div class="ed-card">
+            <h3>&#10148; Experience</h3>
+            <ul>
+              <li>Oscar Health &mdash; Senior SWE (2017&ndash;2021)</li>
+              <li>Youni (2015&ndash;2016) &bull; CommerceHub (2013&ndash;2016)</li>
+              <li>~13 years shipping, since high-school</li>
+              <li>ACM President, SUNY Albany &mdash; CS + Math, 2015</li>
+            </ul>
+          </div>
+          <div class="ed-card">
+            <h3>&#10148; What I Bring</h3>
+            <ul>
+              <li>Full-stack taste &mdash; from schema to pixel</li>
+              <li>Leadership without LinkedIn-speak</li>
+              <li>Built and managed an 8-person team at peak</li>
+              <li>Bias toward clarity, simplicity, reuse</li>
+            </ul>
+          </div>
+          <div class="ed-card ed-card-price">
+            <div class="price-chrome pro">
+              <div class="price-lbl">PROFESSIONAL</div>
+              <div class="price-amt">Salary + Equity</div>
+              <div class="price-sub">For product-focused teams that want a senior who cares.</div>
+              <button class="btn-large" onclick="openWindow('phoneExe')">Request a Quote</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="ed-pane hidden" id="ed-ent">
+        <div class="ed-hero">
+          <h1>Jake Ruth &mdash; <span class="ed-badge ent">Enterprise Edition</span></h1>
+          <p class="ed-tag">Founding equity. CTO / founding engineer. I'll bet my time on your thesis.</p>
+        </div>
+        <div class="ed-grid">
+          <div class="ed-card">
+            <h3>&#10148; Founder Credentials</h3>
+            <ul>
+              <li><strong>Stock Unlock</strong> &mdash; YC W22, $1.335M seed</li>
+              <li>Scaled to 8 employees at peak</li>
+              <li>Thousands of paying customers</li>
+              <li>Profitable &mdash; now a side business, not full-time</li>
+              <li>Looking for the next chapter</li>
+            </ul>
+          </div>
+          <div class="ed-card">
+            <h3>&#10148; Philosophy</h3>
+            <ul>
+              <li>Hates overcharging for shit software</li>
+              <li>"Driver in the driver's seat" AI approach</li>
+              <li>Earnest product taste &mdash; customers over vanity</li>
+              <li>Built things people paid real money for</li>
+            </ul>
+          </div>
+          <div class="ed-card ed-card-price">
+            <div class="price-chrome ent">
+              <div class="price-lbl">ENTERPRISE</div>
+              <div class="price-amt">Significant Equity</div>
+              <div class="price-sub">I'm picky. You should be too. Let's talk.</div>
+              <button class="btn-large" onclick="openWindow('phoneExe')">Enterprise Sales &#9742;</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="ed-pane hidden" id="ed-about">
+        <div class="ed-hero">
+          <h1>About Jake</h1>
+          <p class="ed-tag">Engineer, founder, cube-solver, unicyclist. Getting married. Interested in the next thing.</p>
+        </div>
+        <div class="ed-grid ed-grid-2">
+          <div class="ed-card">
+            <h3>The Short Version</h3>
+            <p>13-ish years writing code. Built Stock Unlock from zero to YC W22, to 8 employees,
+            to thousands of customers, to profitable. It's still running &mdash; as a side business.
+            I'm looking for what I do next.</p>
+            <p>Before that: senior engineer at Oscar Health, earlier gigs at Youni and CommerceHub,
+            ACM President at SUNY Albany, CS + Math '15.</p>
+          </div>
+          <div class="ed-card">
+            <h3>Also True</h3>
+            <ul>
+              <li>Competitive Rubik's cuber &mdash; <strong>13.95s average</strong></li>
+              <li>Did a unicycle-while-cubing bit at a talent show. It worked.</li>
+              <li>Engaged to be married &mdash; big year</li>
+              <li>Not interested in charging a lot for software that sucks</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="ed-pane hidden" id="ed-proof">
+        <div class="ed-hero">
+          <h1>Receipts</h1>
+          <p class="ed-tag">The numbers that matter, printed on the dot-matrix.</p>
+        </div>
+        <div class="receipts">
+<pre class="dot-matrix">
+ ==============================================
+  RUTH CORP &mdash; QUARTERLY RECEIPT &mdash; Q4 '25
+ ==============================================
+   Stock Unlock (YC W22)
+     Seed raised ........... $1,335,000
+     Peak headcount ........        8
+     Paying customers ...... THOUSANDS
+     Profitability ......... YES
+     Full-time as of 04/26 . NO  (next chapter)
+
+   Engineering Tenure
+     Oscar Health Sr SWE ..  2017 - 2021
+     Youni ................  2015 - 2016
+     CommerceHub ..........  2013 - 2016
+     Coding since ......... ~13 yrs
+
+   Academic
+     SUNY Albany CS+Math .. 2015
+     ACM President ........ YES
+
+   Cube Stats
+     Avg of 5 ............. 13.95s
+     Unicycle bit ......... CONFIRMED
+
+ ==============================================
+  Thank you for doing business with Ruth Corp.
+ ==============================================
+</pre>
+        </div>
+      </section>
+
+      <section class="ed-pane hidden" id="ed-eula">
+        <div class="ed-hero">
+          <h1>End User License Agreement</h1>
+          <p class="ed-tag">If you scroll to the bottom, there is a surprise.</p>
+        </div>
+        <div class="ed-card" style="font-family:'Times New Roman',serif; font-size:12px; line-height:1.35;">
+          <p>This software is licensed, not sold. You may install one (1) instance of Jake Ruth per
+          hiring manager, provided you do not attempt to decompile, sublicense, or clone him
+          (he is engaged to be married, and is, in any event, not a clonable asset).</p>
+          <p>Ruth Corp. warrants that Jake will (a) ship working software, (b) be honest about
+          tradeoffs, (c) avoid charging you a lot of money for software that sucks. Ruth Corp.
+          disclaims the implied warranty that he will also be the best cuber in the room;
+          that varies by room.</p>
+          <p>By continuing to read, you agree to email him at
+          <a href="mailto:jake@stockunlock.com">jake@stockunlock.com</a>.</p>
+          <div style="text-align:center; margin-top:18px">
+            <button class="btn-large" onclick="openWindow('phoneExe')">I Agree &mdash; Contact Jake</button>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- Status bar -->
+    <div class="statusbar">
+      <span class="sb-cell" id="sbPage">Home Edition</span>
+      <span class="sb-cell">Ready</span>
+      <span class="sb-cell">1 object(s)</span>
+      <span class="sb-cell">jake@stockunlock.com</span>
+    </div>
+  </div>
+</div>
+</template>
+
+<template id="tpl-myComputer">
+<div class="window" data-w="myComputer" style="width:500px">
+  <div class="title-bar">
+    <div class="title-bar-text"><span class="tb-icon icn-computer tb-ico"></span>My Computer</div>
+    <div class="title-bar-controls">
+      <button aria-label="Minimize"></button>
+      <button aria-label="Maximize"></button>
+      <button aria-label="Close"></button>
+    </div>
+  </div>
+  <div class="window-body">
+    <div class="menu-bar">
+      <span><u>F</u>ile</span><span><u>E</u>dit</span><span><u>V</u>iew</span><span><u>H</u>elp</span>
+    </div>
+    <div class="mc-grid">
+      <div class="mc-item" data-window="jakeRuthExe"><div class="mc-ico icn-jakeapp"></div><div>Jake Ruth (C:)</div></div>
+      <div class="mc-item" data-window="plusPack"><div class="mc-ico icn-cd"></div><div>Plus! 98 (D:)</div></div>
+      <div class="mc-item" data-window="cvExe"><div class="mc-ico icn-floppy"></div><div>Resume (A:)</div></div>
+      <div class="mc-item" data-window="readme"><div class="mc-ico icn-folder"></div><div>Documents</div></div>
+      <div class="mc-item" data-window="networkNeighborhood"><div class="mc-ico icn-printer"></div><div>Network</div></div>
+      <div class="mc-item" data-window="recycleBin"><div class="mc-ico icn-recycle"></div><div>Recycle Bin</div></div>
+    </div>
+    <div class="statusbar">
+      <span class="sb-cell">6 object(s)</span>
+      <span class="sb-cell">Free space: 2.04 GB</span>
+    </div>
+  </div>
+</div>
+</template>
+
+<template id="tpl-networkNeighborhood">
+<div class="window" data-w="networkNeighborhood" style="width:620px">
+  <div class="title-bar">
+    <div class="title-bar-text"><span class="tb-icon icn-network tb-ico"></span>Network Neighborhood &mdash; \\RUTHNET</div>
+    <div class="title-bar-controls">
+      <button aria-label="Minimize"></button>
+      <button aria-label="Maximize"></button>
+      <button aria-label="Close"></button>
+    </div>
+  </div>
+  <div class="window-body">
+    <div class="menu-bar">
+      <span><u>F</u>ile</span><span><u>E</u>dit</span><span><u>V</u>iew</span>
+      <span><u>C</u>onnect</span><span><u>H</u>elp</span>
+    </div>
+    <div class="explorer">
+      <div class="exp-tree">
+        <div class="tree-node root"><span class="tn-ico icn-network-tiny"></span>Entire Network</div>
+        <div class="tree-node">&nbsp;&nbsp;&#8735;<span class="tn-ico icn-dom-tiny"></span>RUTHNET</div>
+        <div class="tree-node node-leaf" data-node="stockunlock">&nbsp;&nbsp;&nbsp;&nbsp;&#8735;<span class="tn-ico icn-pc-tiny"></span>\\STOCK-UNLOCK</div>
+        <div class="tree-node node-leaf" data-node="yc">&nbsp;&nbsp;&nbsp;&nbsp;&#8735;<span class="tn-ico icn-pc-tiny"></span>\\YC-W22</div>
+        <div class="tree-node node-leaf" data-node="oscar">&nbsp;&nbsp;&nbsp;&nbsp;&#8735;<span class="tn-ico icn-pc-tiny"></span>\\OSCAR-HEALTH</div>
+        <div class="tree-node node-leaf" data-node="youni">&nbsp;&nbsp;&nbsp;&nbsp;&#8735;<span class="tn-ico icn-pc-tiny"></span>\\YOUNI</div>
+        <div class="tree-node node-leaf" data-node="commerce">&nbsp;&nbsp;&nbsp;&nbsp;&#8735;<span class="tn-ico icn-pc-tiny"></span>\\COMMERCEHUB</div>
+        <div class="tree-node node-leaf" data-node="acm">&nbsp;&nbsp;&nbsp;&nbsp;&#8735;<span class="tn-ico icn-pc-tiny"></span>\\ACM-SUNY-ALB</div>
+        <div class="tree-node node-leaf" data-node="cube">&nbsp;&nbsp;&nbsp;&nbsp;&#8735;<span class="tn-ico icn-pc-tiny"></span>\\CUBE-WCA</div>
+        <div class="tree-node node-leaf" data-node="marriage">&nbsp;&nbsp;&nbsp;&nbsp;&#8735;<span class="tn-ico icn-pc-tiny"></span>\\HOME-NETWORK</div>
+      </div>
+      <div class="exp-detail" id="netDetail">
+        <p><strong>Select a network computer</strong> on the left to connect.</p>
+        <p><small>Note: Some shares may require authentication. Jake is always reachable at
+        <a href="mailto:jake@stockunlock.com">jake@stockunlock.com</a>.</small></p>
+      </div>
+    </div>
+    <div class="statusbar">
+      <span class="sb-cell" id="netStatus">8 computer(s) on network</span>
+      <span class="sb-cell">Workgroup: RUTHNET</span>
+    </div>
+  </div>
+</div>
+</template>
+
+<template id="tpl-recycleBin">
+<div class="window" data-w="recycleBin" style="width:420px">
+  <div class="title-bar">
+    <div class="title-bar-text"><span class="tb-icon icn-recycle tb-ico"></span>Recycle Bin</div>
+    <div class="title-bar-controls">
+      <button aria-label="Minimize"></button><button aria-label="Maximize"></button><button aria-label="Close"></button>
+    </div>
+  </div>
+  <div class="window-body">
+    <ul class="recycle-list">
+      <li>&#128196; overpriced_enterprise_saas_pitch.doc</li>
+      <li>&#128196; prompt_engineering_gurus.ppt</li>
+      <li>&#128196; resume_buzzword_bingo.xls</li>
+      <li>&#128196; agents_that_drive_themselves.bat</li>
+      <li>&#128196; consultants_who_ship_figma.pdf</li>
+      <li>&#128196; six_month_quarterly_roadmap.doc</li>
+    </ul>
+    <div class="statusbar"><span class="sb-cell">6 object(s), 0 bytes</span></div>
+  </div>
+</div>
+</template>
+
+<template id="tpl-readme">
+<div class="window" data-w="readme" style="width:520px">
+  <div class="title-bar">
+    <div class="title-bar-text"><span class="tb-icon icn-notepad tb-ico"></span>README.TXT &mdash; Notepad</div>
+    <div class="title-bar-controls">
+      <button aria-label="Minimize"></button><button aria-label="Maximize"></button><button aria-label="Close"></button>
+    </div>
+  </div>
+  <div class="window-body">
+    <div class="menu-bar">
+      <span><u>F</u>ile</span><span><u>E</u>dit</span><span><u>S</u>earch</span><span><u>H</u>elp</span>
+    </div>
+    <textarea class="notepad" readonly>
+=====================================================
+  JAKE RUTH ENTERPRISE SUITE '98 -- README.TXT
+  (c) 1998-2026 Ruth Software Corporation
+=====================================================
+
+Thank you for installing Jake Ruth '98.
+
+WHO IS JAKE?
+------------
+Software engineer and founder. ~13 years of shipping
+production code. Built Stock Unlock (YC W22, $1.335M
+seed) from zero to 8 employees and thousands of
+paying customers. It's profitable. It's a side
+business now. He's looking for his next chapter.
+
+Previously senior SWE at Oscar Health (2017-2021).
+Earlier, Youni and CommerceHub. ACM President at
+SUNY Albany. CS + Math '15.
+
+QUIRKS (load-bearing)
+---------------------
+  * 13.95s Rubik's cube average
+  * Unicycle + cube talent show (confirmed)
+  * Getting married
+  * Allergic to overcharging for shit software
+  * "Driver in the driver's seat" AI philosophy
+
+KNOWN ISSUES
+------------
+  * The joke in this app is that it's pretending to
+    be 1998 while describing a 2026 operator. If the
+    joke ruined immersion, please close the window.
+
+SUPPORT
+-------
+  E-MAIL: jake@stockunlock.com
+  FAX:    (dial-up no longer supported)
+
+=====================================================
+    </textarea>
+  </div>
+</div>
+</template>
+
+<template id="tpl-plusPack">
+<div class="window" data-w="plusPack" style="width:440px">
+  <div class="title-bar">
+    <div class="title-bar-text"><span class="tb-icon icn-plus tb-ico"></span>Plus! 98 Pack &mdash; Jake Edition</div>
+    <div class="title-bar-controls">
+      <button aria-label="Minimize"></button><button aria-label="Maximize"></button><button aria-label="Close"></button>
+    </div>
+  </div>
+  <div class="window-body">
+    <p>Thank you for purchasing <strong>Plus! 98 Pack &mdash; Jake Edition</strong>, a
+    suite of premium add-ons that enhance the core experience.</p>
+    <div class="plus-grid">
+      <div class="plus-item" data-window="cubeApp">
+        <div class="plus-ico">&#129513;</div>
+        <div class="plus-name">3D Cube Screensaver</div>
+        <div class="plus-desc">Scroll to solve. 13.95s not guaranteed.</div>
+      </div>
+      <div class="plus-item" data-window="unicycleApp">
+        <div class="plus-ico">&#128692;</div>
+        <div class="plus-name">Unicycle Demo</div>
+        <div class="plus-desc">Talent show throwback.</div>
+      </div>
+      <div class="plus-item" data-window="themes98">
+        <div class="plus-ico">&#127912;</div>
+        <div class="plus-name">Desktop Themes</div>
+        <div class="plus-desc">Teal, Teal Classic, Enterprise Teal.</div>
+      </div>
+    </div>
+  </div>
+</div>
+</template>
+
+<template id="tpl-cubeApp">
+<div class="window" data-w="cubeApp" style="width:480px">
+  <div class="title-bar">
+    <div class="title-bar-text"><span class="tb-icon icn-cube-tiny tb-ico"></span>3D Cube &mdash; Scroll to Solve</div>
+    <div class="title-bar-controls">
+      <button aria-label="Minimize"></button><button aria-label="Maximize"></button><button aria-label="Close"></button>
+    </div>
+  </div>
+  <div class="window-body">
+    <div class="cube-stage" id="cubeStage">
+      <div class="cube3d" id="cube3d">
+        <div class="face f-front"></div>
+        <div class="face f-back"></div>
+        <div class="face f-left"></div>
+        <div class="face f-right"></div>
+        <div class="face f-top"></div>
+        <div class="face f-bottom"></div>
+      </div>
+    </div>
+    <div class="cube-stats">
+      <div><span>Solve progress:</span> <span id="cubeProg">0%</span></div>
+      <div><span>Best avg:</span> <span>13.95s</span></div>
+      <div><small>Tip: scroll over the cube. Faster scroll = more scramble.</small></div>
+    </div>
+  </div>
+</div>
+</template>
+
+<template id="tpl-unicycleApp">
+<div class="window" data-w="unicycleApp" style="width:380px">
+  <div class="title-bar">
+    <div class="title-bar-text">Unicycle Demo.exe</div>
+    <div class="title-bar-controls">
+      <button aria-label="Minimize"></button><button aria-label="Maximize"></button><button aria-label="Close"></button>
+    </div>
+  </div>
+  <div class="window-body" style="text-align:center">
+    <pre class="ascii-uni">
+          &#129513;
+           |
+         __|__
+        /     \
+       |   O   |
+        \_____/
+           |
+           O
+    </pre>
+    <p>Circa 2012, school talent show: Jake rode a unicycle while solving a Rubik's cube.
+    It worked. Eyewitnesses remain.</p>
+  </div>
+</div>
+</template>
+
+<template id="tpl-themes98">
+<div class="window" data-w="themes98" style="width:380px">
+  <div class="title-bar">
+    <div class="title-bar-text">Desktop Themes</div>
+    <div class="title-bar-controls">
+      <button aria-label="Minimize"></button><button aria-label="Maximize"></button><button aria-label="Close"></button>
+    </div>
+  </div>
+  <div class="window-body">
+    <p>Select a theme:</p>
+    <div class="theme-list">
+      <button class="theme-btn" data-theme="teal">Teal (Default)</button>
+      <button class="theme-btn" data-theme="purple">Hot Dog Stand</button>
+      <button class="theme-btn" data-theme="green">The Golden Era</button>
+      <button class="theme-btn" data-theme="bsod">Blue Screen</button>
+    </div>
+    <p><small>Note: this is a parody. Hot Dog Stand is not safe for the eyes.</small></p>
+  </div>
+</div>
+</template>
+
+<template id="tpl-phoneExe">
+<div class="window" data-w="phoneExe" style="width:460px">
+  <div class="title-bar">
+    <div class="title-bar-text"><span class="tb-icon icn-phone tb-ico"></span>Phone.exe &mdash; Dial-Up Networking</div>
+    <div class="title-bar-controls">
+      <button aria-label="Minimize"></button><button aria-label="Maximize"></button><button aria-label="Close"></button>
+    </div>
+  </div>
+  <div class="window-body">
+    <fieldset>
+      <legend>Connect to: Jake Ruth</legend>
+      <div class="form-row"><label>User name:</label><input value="you" readonly></div>
+      <div class="form-row"><label>Password:</label><input type="password" value="interesting-opportunity" readonly></div>
+      <div class="form-row"><label>Phone number:</label><input value="jake@stockunlock.com" readonly></div>
+      <div class="form-row"><label>Dialing from:</label><input value="Anywhere, Earth" readonly></div>
+    </fieldset>
+    <div class="phone-buttons">
+      <a class="btn-large" href="mailto:jake@stockunlock.com?subject=Hiring%20Jake%20%E2%80%94%20next%20chapter">&#9742; Connect</a>
+      <button class="btn-large" onclick="closeWindow('phoneExe')">Cancel</button>
+    </div>
+    <div class="modem-log" id="modemLog">
+ATDT jake@stockunlock.com...
+CONNECT 56000
+Welcome. Please state your opportunity.
+    </div>
+  </div>
+</div>
+</template>
+
+<template id="tpl-cvExe">
+<div class="window" data-w="cvExe" style="width:540px">
+  <div class="title-bar">
+    <div class="title-bar-text"><span class="tb-icon icn-briefcase tb-ico"></span>Resume.doc &mdash; Microsoft Word</div>
+    <div class="title-bar-controls">
+      <button aria-label="Minimize"></button><button aria-label="Maximize"></button><button aria-label="Close"></button>
+    </div>
+  </div>
+  <div class="window-body">
+    <div class="menu-bar">
+      <span><u>F</u>ile</span><span><u>E</u>dit</span><span><u>I</u>nsert</span><span><u>F</u>ormat</span>
+    </div>
+    <div class="doc-page">
+      <h2 style="margin:0">Jake Ruth</h2>
+      <p style="margin:2px 0">Software Engineer &bull; Founder &bull; jake@stockunlock.com</p>
+      <hr>
+      <h3>Experience</h3>
+      <p><strong>Stock Unlock</strong> &mdash; Co-Founder &bull; YC W22 &mdash; 2022&ndash;Present<br>
+      Built it, scaled to 8 employees and thousands of customers, profitable side business as of April 2026. Not full-time. Looking for the next chapter.</p>
+      <p><strong>Oscar Health</strong> &mdash; Senior Software Engineer &bull; 2017&ndash;2021</p>
+      <p><strong>Youni</strong> &mdash; Engineer &bull; 2015&ndash;2016</p>
+      <p><strong>CommerceHub</strong> &mdash; Engineer &bull; 2013&ndash;2016</p>
+      <h3>Education</h3>
+      <p><strong>SUNY Albany</strong> &mdash; BS Computer Science + Math, 2015. ACM President.</p>
+      <h3>Miscellaneous</h3>
+      <p>Competitive Rubik's cuber, 13.95s avg. Unicycle &amp; cube talent show alumnus. Getting married.</p>
+    </div>
+  </div>
+</div>
+</template>
+
+<template id="tpl-settings">
+<div class="window" data-w="settings" style="width:400px">
+  <div class="title-bar">
+    <div class="title-bar-text">Settings</div>
+    <div class="title-bar-controls">
+      <button aria-label="Minimize"></button><button aria-label="Maximize"></button><button aria-label="Close"></button>
+    </div>
+  </div>
+  <div class="window-body">
+    <p>Settings are read-only in this edition. Please contact Ruth Corp. technical support at
+    <a href="mailto:jake@stockunlock.com">jake@stockunlock.com</a> for advanced configuration.</p>
+  </div>
+</div>
+</template>
+
+<template id="tpl-shutdown">
+<div class="window" data-w="shutdown" style="width:420px">
+  <div class="title-bar">
+    <div class="title-bar-text">Shut Down Windows</div>
+    <div class="title-bar-controls">
+      <button aria-label="Close"></button>
+    </div>
+  </div>
+  <div class="window-body">
+    <div class="sd-row">
+      <div class="sd-ico">&#9940;</div>
+      <div>
+        <p>What do you want the computer to do?</p>
+        <label><input type="radio" name="sd" checked> Hire Jake</label><br>
+        <label><input type="radio" name="sd"> Introduce Jake to someone</label><br>
+        <label><input type="radio" name="sd"> Restart in MS-DOS mode</label><br>
+        <label><input type="radio" name="sd"> Stand by</label>
+      </div>
+    </div>
+    <div class="sd-buttons">
+      <button class="default" onclick="window.location.href='mailto:jake@stockunlock.com'">OK</button>
+      <button onclick="closeWindow('shutdown')">Cancel</button>
+      <button onclick="closeWindow('shutdown')">Help</button>
+    </div>
+  </div>
+</div>
+</template>
+
+<script src="app.js"></script>
+</body>
+</html>

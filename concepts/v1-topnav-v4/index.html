@@ -1,0 +1,341 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>v1 topnav v4 — JR brand left, Variant A tabs centered</title>
+
+  <link rel="stylesheet" href="./topnav.css" />
+
+  <style>
+    /* ---------- demo page scaffolding (not part of the nav) ---------- */
+    :root {
+      --bg:      #0b0d12;
+      --panel:   #11141b;
+      --panel-2: #161a23;
+      --text:    #e8ebf1;
+      --muted:   #9099a8;
+    }
+    * { box-sizing: border-box; }
+    html, body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Inter, Helvetica, Arial, sans-serif;
+      scroll-behavior: smooth;
+    }
+
+    /* The real dark-glass bar background lives on .v1-topnav-host.
+       In this demo we pin it to the top of the viewport so it feels
+       like the production nav. */
+    .demo-nav-host {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+    }
+
+    .demo-head {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 40px 24px 8px;
+    }
+    .demo-head .eyebrow {
+      display: block;
+      margin-bottom: 8px;
+      font-size: 12px;
+      letter-spacing: 0.4px;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .demo-head h1 {
+      margin: 0 0 10px;
+      font-size: 28px;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      line-height: 1.2;
+    }
+    .demo-head p {
+      margin: 0;
+      max-width: 62ch;
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.6;
+    }
+
+    .sim-switcher {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 18px 0 8px;
+    }
+    .sim-switcher button {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 7px 11px;
+      font: inherit;
+      font-size: 12.5px;
+      color: #cfd5e0;
+      background: var(--panel-2);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 140ms ease, border-color 140ms ease, color 140ms ease;
+    }
+    .sim-switcher button:hover {
+      background: rgba(255, 255, 255, 0.06);
+      border-color: rgba(255, 255, 255, 0.2);
+      color: #fff;
+    }
+    .sim-switcher button.is-active {
+      background: rgba(76, 141, 219, 0.15);
+      border-color: rgba(76, 141, 219, 0.5);
+      color: #ffffff;
+    }
+    .sim-switcher .sim-label {
+      font-size: 11px;
+      letter-spacing: 0.4px;
+      text-transform: uppercase;
+      color: var(--muted);
+      align-self: center;
+      margin-right: 4px;
+    }
+    .sim-switcher kbd {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 10.5px;
+      padding: 1px 5px;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      border-radius: 3px;
+      color: #e8ebf1;
+    }
+
+    .content-card {
+      max-width: 860px;
+      margin: 28px auto;
+      padding: 26px 28px;
+      background: var(--panel);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      border-radius: 14px;
+    }
+    .content-card h3 {
+      margin: 0 0 8px;
+      font-size: 17px;
+      font-weight: 600;
+    }
+    .content-card p {
+      margin: 0 0 12px;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.65;
+    }
+    .content-card p:last-child { margin-bottom: 0; }
+    .content-card code {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 12.5px;
+      color: #cfd5e0;
+      background: rgba(255, 255, 255, 0.05);
+      padding: 1px 6px;
+      border-radius: 4px;
+    }
+    .content-card .row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 14px;
+    }
+    .content-card .stat {
+      flex: 1 1 180px;
+      padding: 14px 16px;
+      background: var(--panel-2);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      border-radius: 10px;
+    }
+    .content-card .stat .n {
+      font-size: 22px;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      color: #fff;
+    }
+    .content-card .stat .l {
+      display: block;
+      margin-top: 4px;
+      font-size: 12px;
+      color: var(--muted);
+    }
+    .spacer { height: 30vh; }
+
+    .kbd-hint {
+      position: fixed;
+      right: 18px;
+      bottom: 18px;
+      z-index: 60;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 10px;
+      font-size: 11.5px;
+      color: var(--muted);
+      background: rgba(14, 16, 20, 0.82);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 8px;
+    }
+    .kbd-hint kbd {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 11px;
+      padding: 1px 5px;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      border-radius: 4px;
+      color: #e8ebf1;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Transition cube loader (graceful fallback if it can't resolve, e.g. file://) -->
+  <script>
+    (function () {
+      var s = document.createElement("script");
+      s.src = "../v1/shared/transition-cube.js";
+      s.async = true;
+      s.onerror = function () { /* silent fallback — nav hard-navigates */ };
+      document.head.appendChild(s);
+    })();
+  </script>
+
+  <!-- The nav, mounted at the very top with the dark-glass host -->
+  <div class="demo-nav-host v1-topnav-host" id="nav-host"></div>
+
+  <header class="demo-head">
+    <span class="eyebrow">v1 topnav · v4</span>
+    <h1>Variant C positioning, Variant A visuals, JR logo as a constant.</h1>
+    <p>
+      The brand lockup anchors the top-left and never moves. The tab group sits
+      dead-center in the bar as one visual unit. The right edge is empty on
+      purpose. Same tab chrome, same cube accents, same current-tab highlight
+      as Variant A — the positioning is the only thing that changed.
+    </p>
+
+    <div class="sim-switcher" role="group" aria-label="Simulate which experience is currently active">
+      <span class="sim-label">Simulate current page</span>
+      <button type="button" data-sim="none"   class="is-active"><kbd>0</kbd> none</button>
+      <button type="button" data-sim="xp"><kbd>1</kbd> Old-school OS</button>
+      <button type="button" data-sim="readme"><kbd>2</kbd> Code repo</button>
+      <button type="button" data-sim="saas"><kbd>3</kbd> SaaS product</button>
+    </div>
+  </header>
+
+  <div class="content-card">
+    <h3>What to look at</h3>
+    <p>
+      The JR mark plus "Jake Ruth" in the top-left is a <strong>constant</strong> —
+      it's the same in every simulated state below. Switch between "current
+      page" presets and watch only the centered tab group react. The brand
+      doesn't flinch.
+    </p>
+    <p>
+      Clicking the brand is the return-to-Setup affordance. It replaces the
+      <code>&larr; Setup</code> chip from earlier variants. One mark, one job,
+      always in the same place.
+    </p>
+    <div class="row">
+      <div class="stat"><div class="n">56px</div><span class="l">Bar height</span></div>
+      <div class="stat"><div class="n">1</div><span class="l">Constant brand mark</span></div>
+      <div class="stat"><div class="n">3</div><span class="l">Tabs, dead-center</span></div>
+    </div>
+  </div>
+
+  <div class="content-card">
+    <h3>Why the logo is a constant</h3>
+    <p>
+      A personal site has one author. The brand mark in the top-left answers
+      "whose site is this?" and that answer doesn't change when you move
+      between experiences. Putting it in a fixed spot that doesn't shift keeps
+      the three experiences feeling like chapters of one book instead of three
+      separate sites that happen to share a domain.
+    </p>
+    <p>
+      The tab group tells you <em>where you are</em>. The brand tells you
+      <em>whose space this is</em>. Keeping those two jobs in two different
+      parts of the bar is what makes this layout legible at a glance.
+    </p>
+  </div>
+
+  <div class="content-card">
+    <h3>Scroll test</h3>
+    <p>
+      Scroll. The bar stays pinned to the top. Notice how the centered tab
+      group never drifts toward either edge — the brand owns the left, the
+      tabs own the middle, and the right stays empty on purpose.
+    </p>
+  </div>
+
+  <div class="spacer"></div>
+
+  <div class="content-card">
+    <h3>Adoption note</h3>
+    <p>
+      This is a drop-in replacement for <code>v1/shared/topnav.js</code> and
+      <code>v1/shared/topnav.css</code>. The public API is
+      <code>V1TopNavV4.mount(host, { current, setupHref, logoSrc })</code>;
+      all three options are optional. Current experience auto-detects from
+      <code>window.location.pathname</code> matching <code>/xp/</code>,
+      <code>/readme/</code>, or <code>/saas/</code>.
+    </p>
+  </div>
+
+  <div class="spacer"></div>
+
+  <!-- Component -->
+  <script src="./topnav.js"></script>
+
+  <script>
+    (function () {
+      var host = document.getElementById("nav-host");
+
+      // Mount with whatever the current path would imply (probably "none"
+      // when this page is opened directly).
+      var state = { current: null };
+      V1TopNavV4.mount(host, { current: state.current });
+
+      function setSim(sim) {
+        state.current = (sim === "none") ? null : sim;
+        V1TopNavV4.mount(host, { current: state.current });
+
+        // Update the active switcher button
+        var btns = document.querySelectorAll(".sim-switcher button");
+        btns.forEach(function (b) {
+          b.classList.toggle("is-active", b.getAttribute("data-sim") === sim);
+        });
+      }
+
+      // Wire up the switcher buttons
+      document.querySelectorAll(".sim-switcher button").forEach(function (b) {
+        b.addEventListener("click", function () {
+          setSim(b.getAttribute("data-sim"));
+        });
+      });
+
+      // Keyboard: 0 = none, 1 = xp, 2 = readme, 3 = saas
+      document.addEventListener("keydown", function (ev) {
+        var t = ev.target;
+        if (t && (t.tagName === "INPUT" || t.tagName === "TEXTAREA" || t.isContentEditable)) return;
+        if (ev.metaKey || ev.ctrlKey || ev.altKey) return;
+
+        var map = { "0": "none", "1": "xp", "2": "readme", "3": "saas" };
+        var sim = map[ev.key];
+        if (!sim) return;
+        ev.preventDefault();
+        setSim(sim);
+      });
+    })();
+  </script>
+
+  <div class="kbd-hint" aria-hidden="true">
+    <kbd>0</kbd><kbd>1</kbd><kbd>2</kbd><kbd>3</kbd> simulate current page
+  </div>
+</body>
+</html>

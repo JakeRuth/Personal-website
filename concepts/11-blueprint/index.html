@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Jake Ruth — Blueprint No. 001</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;600&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div id="hud-top-left" class="hud">
+    <div class="titleblock">
+      <div class="tb-row"><span class="tb-k">PROJECT</span><span class="tb-v">RUTH, J. — Career Floorplan</span></div>
+      <div class="tb-row"><span class="tb-k">DRAWING</span><span class="tb-v">BP-001 / rev. 04.26</span></div>
+      <div class="tb-row"><span class="tb-k">SCALE</span><span class="tb-v" id="scaleReadout">1 : 1.00</span></div>
+      <div class="tb-row"><span class="tb-k">DRAFTED</span><span class="tb-v">NYC · 2026-04-20</span></div>
+    </div>
+  </div>
+
+  <div id="hud-top-right" class="hud">
+    <div class="legend">
+      <div class="legend-title">LEGEND</div>
+      <div class="legend-item"><svg width="28" height="10"><line x1="0" y1="5" x2="28" y2="5" stroke="#9ed7ff" stroke-width="1.2"/></svg><span>wall / boundary</span></div>
+      <div class="legend-item"><svg width="28" height="10"><line x1="0" y1="5" x2="28" y2="5" stroke="#9ed7ff" stroke-width="1.2" stroke-dasharray="4 3"/></svg><span>failed experiment</span></div>
+      <div class="legend-item"><svg width="28" height="10"><line x1="0" y1="5" x2="28" y2="5" stroke="#ffd166" stroke-width="1.2"/></svg><span>annotation</span></div>
+      <div class="legend-item"><svg width="28" height="10"><line x1="0" y1="5" x2="28" y2="5" stroke="#67e8d1" stroke-width="1.2"/></svg><span>dimension line</span></div>
+      <div class="legend-item"><svg width="28" height="10"><circle cx="14" cy="5" r="3" fill="none" stroke="#ffd166" stroke-width="1.2"/></svg><span>detail callout</span></div>
+    </div>
+  </div>
+
+  <div id="hud-bottom-left" class="hud">
+    <div class="controls">
+      <div class="ctrl-title">CTRL</div>
+      <div class="ctrl-row"><kbd>drag</kbd><span>pan</span></div>
+      <div class="ctrl-row"><kbd>scroll</kbd><span>zoom</span></div>
+      <div class="ctrl-row"><kbd>+ / -</kbd><span>zoom</span></div>
+      <div class="ctrl-row"><kbd>arrows</kbd><span>pan</span></div>
+      <div class="ctrl-row"><kbd>0</kbd><span>recenter</span></div>
+      <div class="ctrl-row"><kbd>1-6</kbd><span>focus room</span></div>
+    </div>
+  </div>
+
+  <div id="hud-bottom-right" class="hud">
+    <div class="minimap-wrap">
+      <div class="minimap-title">PLAN OVERVIEW</div>
+      <svg id="minimap" viewBox="0 0 240 160" preserveAspectRatio="xMidYMid meet"></svg>
+    </div>
+  </div>
+
+  <div id="readout" class="hud">
+    <span id="coords">x: 0 &nbsp; y: 0</span>
+  </div>
+
+  <div id="viewport">
+    <div id="canvas">
+      <svg id="plan" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 4000 2600"></svg>
+    </div>
+  </div>
+
+  <!-- Zoomed detail overlay -->
+  <div id="detail-overlay" class="hidden">
+    <div class="detail-card" id="detailCard"></div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

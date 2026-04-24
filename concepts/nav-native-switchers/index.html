@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Nav-Native-Switchers — Jake Ruth prototype</title>
+<style>
+  /* Bulletproof overlay visibility — wins over any cached stylesheet. */
+  .logoff-overlay { display: none !important; pointer-events: none !important; }
+  .logoff-overlay.is-visible { display: flex !important; pointer-events: auto !important; }
+</style>
+<link rel="stylesheet" href="styles.css?v=3" />
+</head>
+<body>
+
+<header class="pitch">
+  <div class="pitch-inner">
+    <div class="pitch-title">Nav-Native-Switchers</div>
+    <div class="pitch-sub">Each experience switches modes in its <em>own</em> idiom. No universal topbar. The switcher is part of the world.</div>
+    <div class="pitch-legend">
+      <span class="chip" data-m="xp">XP Luna</span>
+      <span class="chip" data-m="git">Git Log</span>
+      <span class="chip" data-m="saas">Enterprise SaaS</span>
+      <span class="chip" data-m="readme">README</span>
+    </div>
+  </div>
+</header>
+
+<main class="grid">
+
+  <!-- ================= XP PANE ================= -->
+  <section class="pane pane-xp" data-mode="xp">
+    <div class="pane-label">XP Luna &mdash; Start Menu</div>
+    <div class="xp-wallpaper">
+      <div class="xp-icon"><div class="xp-ic-img">📄</div><div class="xp-ic-lbl">resume.doc</div></div>
+      <div class="xp-icon"><div class="xp-ic-img">🗂️</div><div class="xp-ic-lbl">projects</div></div>
+
+      <!-- Start menu panel (hidden by default) -->
+      <div class="xp-startmenu" id="xp-startmenu" hidden>
+        <div class="xp-sm-top">
+          <div class="xp-sm-avatar">J</div>
+          <div class="xp-sm-user">Jake Ruth</div>
+        </div>
+        <div class="xp-sm-body">
+          <div class="xp-sm-col">
+            <div class="xp-sm-item"><span class="xp-sm-ic">📧</span><div><div class="xp-sm-t">Email Jake</div><div class="xp-sm-d">jake@stockunlock.com</div></div></div>
+            <div class="xp-sm-item"><span class="xp-sm-ic">📄</span><div><div class="xp-sm-t">Résumé.doc</div><div class="xp-sm-d">Open in Word</div></div></div>
+            <div class="xp-sm-sep"></div>
+            <div class="xp-sm-item xp-sm-submenu" id="xp-switch-trigger">
+              <span class="xp-sm-ic">🔀</span>
+              <div><div class="xp-sm-t">Switch Experience</div><div class="xp-sm-d">Where would you like to go today?</div></div>
+              <span class="xp-sm-arrow">▸</span>
+
+              <div class="xp-submenu" id="xp-submenu">
+                <div class="xp-sub-item" data-target="xp"><span class="xp-sm-ic">🪟</span><span>XP Luna <em class="xp-sub-note">(you are here)</em></span></div>
+                <div class="xp-sub-item" data-target="git"><span class="xp-sm-ic">⌨️</span><span>Git Log Terminal</span></div>
+                <div class="xp-sub-item" data-target="saas"><span class="xp-sm-ic">📊</span><span>Enterprise SaaS</span></div>
+                <div class="xp-sub-item" data-target="readme"><span class="xp-sm-ic">📘</span><span>README</span></div>
+                <div class="xp-sub-item" data-target="vista"><span class="xp-sm-ic">💎</span><span>Vista Aero</span></div>
+              </div>
+            </div>
+            <div class="xp-sm-sep"></div>
+            <div class="xp-sm-item xp-sm-dim"><span class="xp-sm-ic">🔒</span><div><div class="xp-sm-t">Log Off</div></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="xp-taskbar">
+      <button class="xp-start" id="xp-start-btn">
+        <span class="xp-start-flag"></span>
+        <span class="xp-start-txt">start</span>
+      </button>
+      <div class="xp-task-item">Jake Ruth — Home</div>
+      <div class="xp-tray">
+        <span>🔊</span><span>🛡️</span><span class="xp-clock">4:20 PM</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= GIT PANE ================= -->
+  <section class="pane pane-git" data-mode="git">
+    <div class="pane-label">Git Log &mdash; Terminal</div>
+    <div class="git-screen">
+      <div class="git-titlebar">
+        <span class="git-dot git-dot-r"></span>
+        <span class="git-dot git-dot-y"></span>
+        <span class="git-dot git-dot-g"></span>
+        <span class="git-title">jake@ruth:~/career</span>
+      </div>
+      <div class="git-body" id="git-body">
+<pre class="git-line muted">$ git log --oneline --decorate</pre>
+<pre class="git-line"><span class="git-hash">a4c1d9e</span> <span class="git-ref">(HEAD -> master)</span> Re-entering the workforce</pre>
+<pre class="git-line"><span class="git-hash">6f02b11</span> Wind Stock Unlock to profitable maintenance</pre>
+<pre class="git-line"><span class="git-hash">2b84aa0</span> Scale to 8 employees, thousands of customers</pre>
+<pre class="git-line"><span class="git-hash">c0ffee2</span> YC W22 demo day — 400 paying users in two weeks</pre>
+<pre class="git-line"><span class="git-hash">1a2b3c4</span> Oscar Health (2017-2021)</pre>
+<pre class="git-line muted">HEAD detached from main. Choose a branch to switch.</pre>
+<pre class="git-line muted">Hint: try <b>git checkout --experience=&lt;mode&gt;</b> or <b>git switch &lt;mode&gt;</b></pre>
+      </div>
+      <div class="git-prompt-row">
+        <span class="git-ps1">jake@ruth $</span>
+        <input id="git-input" class="git-input" autocomplete="off" spellcheck="false" placeholder="git switch <mode>" />
+      </div>
+      <div class="git-autocomplete" id="git-autocomplete" hidden></div>
+    </div>
+  </section>
+
+  <!-- ================= SAAS PANE ================= -->
+  <section class="pane pane-saas" data-mode="saas">
+    <div class="pane-label">Enterprise SaaS &mdash; Product Switcher</div>
+    <div class="saas-shell">
+      <div class="saas-topnav">
+        <div class="saas-logo">
+          <span class="saas-logo-mark">JR</span>
+          <span class="saas-logo-txt">Ruth<span class="saas-logo-accent">Cloud</span></span>
+        </div>
+        <nav class="saas-nav">
+          <a class="saas-nav-item">Dashboard</a>
+          <a class="saas-nav-item">Engineering</a>
+          <div class="saas-nav-item saas-nav-dd" id="saas-dd-trigger">
+            Product view
+            <span class="saas-caret">▾</span>
+            <div class="saas-dropdown" id="saas-dropdown" hidden>
+              <div class="saas-dd-header">
+                <div class="saas-dd-title">Switch product view</div>
+                <div class="saas-dd-sub">Switching product view requires session reload.</div>
+              </div>
+              <div class="saas-dd-list">
+                <button class="saas-dd-item" data-target="saas">
+                  <div class="saas-dd-name">Enterprise SaaS <span class="saas-badge saas-badge-current">CURRENT</span></div>
+                  <div class="saas-dd-desc">Current shipping version. Dashboards, pipelines, KPIs.</div>
+                </button>
+                <button class="saas-dd-item" data-target="xp">
+                  <div class="saas-dd-name">XP Luna Desktop <span class="saas-badge saas-badge-legacy">LEGACY</span></div>
+                  <div class="saas-dd-desc">Legacy support release. Best for users who remember Bliss.</div>
+                </button>
+                <button class="saas-dd-item" data-target="git">
+                  <div class="saas-dd-name">Git Log Terminal <span class="saas-badge saas-badge-dev">DEV</span></div>
+                  <div class="saas-dd-desc">Power-user SKU. CLI-first. Keyboard-driven navigation.</div>
+                </button>
+                <button class="saas-dd-item" data-target="readme">
+                  <div class="saas-dd-name">README <span class="saas-badge saas-badge-oss">OSS</span></div>
+                  <div class="saas-dd-desc">Open-source documentation surface. Markdown-rendered résumé.</div>
+                </button>
+                <button class="saas-dd-item" data-target="vista">
+                  <div class="saas-dd-name">Vista Aero <span class="saas-badge saas-badge-legacy">LEGACY</span></div>
+                  <div class="saas-dd-desc">Premium glass SKU. Translucent sidebar, gadget-enabled.</div>
+                </button>
+              </div>
+              <div class="saas-dd-footer">Contact sales for seat-based licensing.</div>
+            </div>
+          </div>
+          <a class="saas-nav-item">Billing</a>
+        </nav>
+        <div class="saas-top-right">
+          <span class="saas-search">⌕ Search</span>
+          <span class="saas-avatar">JR</span>
+        </div>
+      </div>
+      <div class="saas-content">
+        <div class="saas-kpi-row">
+          <div class="saas-kpi"><div class="saas-kpi-lbl">ARR</div><div class="saas-kpi-val">~$450K</div></div>
+          <div class="saas-kpi"><div class="saas-kpi-lbl">Team (peak)</div><div class="saas-kpi-val">8</div></div>
+          <div class="saas-kpi"><div class="saas-kpi-lbl">Seed raised</div><div class="saas-kpi-val">$1.335M</div></div>
+          <div class="saas-kpi"><div class="saas-kpi-lbl">Years shipping</div><div class="saas-kpi-val">13</div></div>
+        </div>
+        <div class="saas-note">Click <b>Product view ▾</b> above to switch experiences.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= README PANE ================= -->
+  <section class="pane pane-readme" data-mode="readme">
+    <div class="pane-label">README.md &mdash; Details Block</div>
+    <div class="md-shell">
+      <div class="md-filebar">
+        <span class="md-file">📄 README.md</span>
+        <span class="md-meta">master · preview</span>
+      </div>
+      <article class="md-article">
+        <h1># jake-ruth</h1>
+        <blockquote>Thirteen years shipping. One chapter ending, another beginning.</blockquote>
+        <p>Engineer. Founder. Occasional unicyclist on Rubik's cubes. Re-entering the workforce after winding Stock Unlock to a profitable side business.</p>
+
+        <details class="md-details" id="md-details">
+          <summary><span class="md-sum-mark">▸</span> ## Experience Mode</summary>
+          <div class="md-details-body">
+            <p class="md-hint">Check one. The page will switch.</p>
+            <ul class="md-checklist">
+              <li data-target="readme"><label><input type="checkbox" checked data-target="readme" /> <span>README <em>(current)</em></span></label></li>
+              <li data-target="xp"><label><input type="checkbox" data-target="xp" /> <span>XP Luna Desktop</span></label></li>
+              <li data-target="git"><label><input type="checkbox" data-target="git" /> <span>Git Log Terminal</span></label></li>
+              <li data-target="saas"><label><input type="checkbox" data-target="saas" /> <span>Enterprise SaaS</span></label></li>
+              <li data-target="vista"><label><input type="checkbox" data-target="vista" /> <span>Vista Aero</span></label></li>
+            </ul>
+          </div>
+        </details>
+
+        <h2>## Highlights</h2>
+        <ul class="md-bullets">
+          <li>Built Stock Unlock. Scaled to 8 employees + thousands of customers. Profitable today.</li>
+          <li>Oscar Health (2017–2021), CommerceHub (2013–2016), YC W22.</li>
+          <li>3x3 Rubik's cube average: 13.95s.</li>
+        </ul>
+      </article>
+    </div>
+  </section>
+
+</main>
+
+<!-- Toast area -->
+<div class="toast-stack" id="toast-stack" aria-live="polite"></div>
+
+<!-- Logoff overlay -->
+<div class="logoff-overlay" id="logoff-overlay" hidden>
+  <div class="logoff-card">
+    <div class="logoff-spinner"></div>
+    <div class="logoff-text" id="logoff-text">Logging off…</div>
+    <div class="logoff-sub" id="logoff-sub">Redirecting to experience.</div>
+  </div>
+</div>
+
+<footer class="foot">
+  <span>Prototype · Nav-Native-Switchers · Jake Ruth</span>
+  <span>jake@stockunlock.com</span>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>

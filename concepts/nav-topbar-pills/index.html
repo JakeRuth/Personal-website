@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Jake Ruth — Nav Topbar Pills (prototype)</title>
+  <link rel="preconnect" href="https://rsms.me/" />
+  <link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <!-- ========== TOP BAR (mount point) ========== -->
+  <!--
+    The top bar is injected here by topbar-nav.js.
+    It reads data-* attributes for configuration.
+    See README.md for the full option list.
+  -->
+  <div
+    id="topbar-mount"
+    data-topbar-nav
+    data-active="xp"
+    data-accent="teal"
+    data-scroll-collapse-px="80"
+  ></div>
+
+  <!-- ========== DEMO STAGE (what sits under the nav) ========== -->
+  <main class="stage">
+    <section class="stage__hero">
+      <p class="stage__kicker">Prototype · Nav-Topbar-Pills</p>
+      <h1 class="stage__title">
+        Jake Ruth.
+        <span class="stage__title-muted">Thirteen years shipping. One chapter ending, another beginning.</span>
+      </h1>
+      <p class="stage__sub">
+        This page is just staging for the real deliverable &mdash; the bar at the top.
+        Try clicking the pills, hovering for previews, and using keys
+        <kbd>1</kbd><kbd>2</kbd><kbd>3</kbd><kbd>4</kbd><kbd>5</kbd>.
+        <strong class="stage__nudge">Scroll down to see the bar collapse into a dock.</strong>
+      </p>
+      <div class="stage__meta">
+        <span>NYC area</span>
+        <span class="dot">&middot;</span>
+        <span>jake@stockunlock.com</span>
+        <span class="dot">&middot;</span>
+        <span>github.com/JakeRuth</span>
+      </div>
+    </section>
+
+    <section class="stage__block">
+      <h2>What this is</h2>
+      <p>
+        One of thirteen parallel prototypes for the personal-site rebuild. Each prototype
+        is a self-contained experience (XP Luna, Enterprise SaaS, Git Log, README, Vista, &hellip;).
+        The persistent top bar is the connective tissue between them &mdash; always visible,
+        always one click away from any other mode.
+      </p>
+    </section>
+
+    <section class="stage__block">
+      <h2>Jake, in brief</h2>
+      <ul class="stage__list">
+        <li>Ex-Oscar Health. Ex-YC. Co-founded Stock Unlock, scaled it to eight employees and thousands of paying customers. Profitable side business today. Not full-time there anymore.</li>
+        <li>Shipped on Python, Go, Java, React since pre-hooks. Currently heavy on Claude Code, Codex, CMUX.</li>
+        <li>Rubik's cube speed-solver &mdash; 13.95s average. Once rode a unicycle while solving one at an Oscar talent show.</li>
+      </ul>
+    </section>
+
+    <section class="stage__block">
+      <h2>Why a persistent top bar</h2>
+      <p>
+        Each experience is a world of its own. But a visitor who lands on the XP page
+        shouldn't have to backtrack to try the Git Log version. The top bar is the
+        lightest-weight way to offer that: five pills, always reachable, no modals,
+        no menus. Click, cross-fade, you're there.
+      </p>
+    </section>
+
+    <section class="stage__block">
+      <h2>Driver in the driver's seat</h2>
+      <p class="stage__quote">
+        &ldquo;Driver in the driver's seat, not driven by the car.&rdquo;
+      </p>
+      <p>
+        AI writes more code than I do &mdash; and I read every line before it ships. This
+        prototype itself was drafted with Claude Code, reviewed by hand, trimmed by hand.
+      </p>
+    </section>
+
+    <section class="stage__block">
+      <h2>Filler for scroll</h2>
+      <p>
+        The rest of this page exists so the collapse-on-scroll behavior has something to
+        happen against. The pill bar should compress into a thin dock as soon as you
+        push past the top, then expand back the moment you scroll up.
+      </p>
+      <p>
+        Real experiences will have real content. Think: a full XP desktop; a full
+        Enterprise SaaS dashboard; a full terminal git log. The top bar is content-agnostic.
+      </p>
+      <p>
+        The AP CS switch. The Daniel Pronk emails. The production takedown as a CommerceHub intern.
+        The Customer.io to SES migration in a weekend. Five stories you'll see more of inside the
+        real experiences, not on this scaffolding page.
+      </p>
+      <p>
+        Keep scrolling. Watch the bar shrink.
+      </p>
+    </section>
+
+    <section class="stage__block stage__block--tall">
+      <h2>Still scrolling</h2>
+      <p>
+        Now scroll back up and watch it expand. That's the whole trick.
+      </p>
+      <p>
+        Below, one more block so there's room to pass the threshold in both directions
+        on a tall monitor.
+      </p>
+    </section>
+
+    <section class="stage__block stage__block--tall">
+      <h2>End of the stage</h2>
+      <p>
+        The bar is the deliverable. The page under it is illustrative only. See
+        <code>topbar-nav.js</code> for the exportable component and <code>README.md</code>
+        for the reuse instructions.
+      </p>
+    </section>
+  </main>
+
+  <!-- ========== TRANSITION OVERLAY (for simulated mode-switch) ========== -->
+  <div id="transition-overlay" class="transition" aria-hidden="true">
+    <div class="transition__label">
+      <span class="transition__from"></span>
+      <span class="transition__arrow">&rarr;</span>
+      <span class="transition__to"></span>
+    </div>
+  </div>
+
+  <!-- ========== COMPONENT ========== -->
+  <script src="./topbar-nav.js"></script>
+  <script>
+    // Bootstrap the component. In a real experience, each page would do the same
+    // line &mdash; pointing at the same script, with its own data-active value.
+    window.TopbarNav.mount('#topbar-mount', {
+      onSelect: function (mode, ctx) {
+        // Simulate a mode switch: show overlay, pause, snap back.
+        ctx.simulateTransition(mode);
+      },
+    });
+  </script>
+</body>
+</html>
