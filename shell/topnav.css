@@ -271,19 +271,17 @@ body.has-topnav .desktop-icons      { top: 70px !important; }
 body.has-topnav .cube-window        { top: 116px !important; }
 body.has-topnav .search-window      { top: 156px !important; }
 
+/* README .gh-header + SaaS .nav: both sticky at top:0 — bump them under the topnav. */
+body.has-topnav .gh-header,
+body.has-topnav .nav { top: 56px !important; }
+
 @media (max-width: 640px) {
   body.has-topnav .xp-window.explorer { top: 92px !important; }
   body.has-topnav .desktop-icons      { top: 66px !important; }
   body.has-topnav .cube-window        { top: 112px !important; }
   body.has-topnav .search-window      { top: 152px !important; }
-}
-
-/* README .gh-header + SaaS .nav: both sticky at top:0 — bump them under the topnav. */
-body.has-topnav .gh-header,
-body.has-topnav .nav { top: 56px !important; }
-@media (max-width: 640px) {
   body.has-topnav .gh-header,
-  body.has-topnav .nav { top: 52px !important; }
+  body.has-topnav .nav                { top: 52px !important; }
 }
 
 /* =========================================================
