@@ -1,9 +1,6 @@
-/* =========================================================
-   Ambient background - Rubik's cubes drifting on tracks.
-   Three.js via CDN. Muted palette so it never competes with
-   the wizard. Honors prefers-reduced-motion.
-   Carried over from picker-wizard-v5 unchanged (Jake likes it).
-   ========================================================= */
+/* Ambient background for the wizard — Rubik's cubes drifting on
+   tracks. Muted palette so it never competes with the wizard chrome.
+   Three.js via CDN. Honors prefers-reduced-motion. */
 (function () {
   "use strict";
 

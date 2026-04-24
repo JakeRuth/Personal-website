@@ -1,7 +1,5 @@
-/* ================================================================
-   readme-git-fusion-v2 — polished README chrome with git-log folded in,
-   plus Issues and Pull-requests tabs. Terminal skin crossfades.
-   ================================================================ */
+/* README experience: GitHub-ish chrome with a git-log side view
+   plus Issues and Pull-requests tabs. Terminal skin crossfades. */
 
 /* ---------- theme tokens (GitHub-ish) ---------- */
 :root[data-theme="dark"] {

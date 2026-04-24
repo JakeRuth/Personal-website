@@ -1,9 +1,6 @@
-/* =========================================================
-   Jake Ruth Setup Wizard - v1 integrated
-   Variant A sidebar baked in. No demo toggle. No loading step
-   — the transition cube replaces the old step-3 "Booting…"
-   screen, so this stylesheet has no .loading rules.
-   ========================================================= */
+/* Jake Ruth Setup Wizard — InstallShield-style chrome, ambient
+   Rubik's cubes behind it, two picker steps followed by a brief
+   loading dwell that hands off to the cross-page cube transition. */
 
 * { box-sizing: border-box; }
 
@@ -233,10 +230,7 @@ body {
 
 .dim { color: #56595f; }
 
-/* =========================================================
-   Step 1 — Welcome
-   Two-column: sideart banner (Variant A) + main content.
-   ========================================================= */
+/* Step 1 — Welcome. Two-column: sideart banner + main content. */
 .welcome {
   position: absolute;
   inset: 0;
@@ -284,7 +278,6 @@ body {
   z-index: 2;
 }
 
-/* Variant A is the only sidebar; render it visible. */
 .sideart-variant {
   position: absolute;
   inset: 0;
@@ -293,7 +286,7 @@ body {
   z-index: 1;
 }
 
-/* ---- Variant A content column ---- */
+/* ---- Sideart content column ---- */
 .sideart-col {
   position: absolute;
   inset: 0;

@@ -1,26 +1,6 @@
-/* ================================================================
-   Jake Ruth XP v3 — app.js (polish pass toward alpha-final)
-   Inherits v2, fixes:
-     - Minimize used to close; now hides-but-keeps-taskbar-pill
-     - Start menu scroll-to-section: uses scrollIntoView with proper
-       waiting so the Explorer window is guaranteed rendered, and
-       respects a small scroll-margin on panels
-     - Clock ticks every second (v2 was 30s; felt broken)
-     - Task pane sections animate collapse smoothly
-     - Added a real drag-to-move implementation on titlebars, bounds
-       clipped so windows don't get dragged behind the taskbar
-     - Cube: scramble depth aligned with solver maxPerSide; solver's
-         "already solved" vs "timed out" logic fixed (v2 used truthy
-         check on [] which is always true); live timer overlaid on
-         the cube stage; reset button added
-     - Cube: z-index bumped when focused so CubeMaster doesn't hide
-         under Search Companion
-     - Cube: paused rAF while window hidden to avoid a WebGL leak
-     - Graph: active state on clicked node + highlighted incident
-         links; bubble animates in; clicking empty SVG space closes
-         the highlight
-     - Toast: slightly longer visible and cancelable
-   ================================================================ */
+/* XP experience: draggable windows, Start menu, taskbar, clock,
+   Bliss wallpaper chrome, CubeMaster 3D Rubik's Cube with live
+   timer, network graph, toast. */
 
 (function () {
   "use strict";

@@ -16,7 +16,7 @@
 (function () {
   "use strict";
 
-  // Paths are relative to an experience page at /v1/<exp>/index.html.
+  // Hrefs are relative to an experience page at /<exp>/index.html.
   const EXPERIENCES = [
     { id: "xp",     label: "Old-school OS", href: "../xp/" },
     { id: "readme", label: "Code repo",     href: "../readme/" },
@@ -71,38 +71,37 @@
   }
 
   function render() {
-    if (document.getElementById("v1-topnav")) return; // already injected
-    document.body.classList.add("v1-has-topnav");
+    if (document.getElementById("topnav")) return; // already injected
+    document.body.classList.add("has-topnav");
 
     const currentId = detectCurrent();
 
     // Outer host provides the dark-glass backdrop + the fixed bar layout.
     const host = document.createElement("div");
-    host.id = "v1-topnav";
-    host.className = "v1-topnav-host";
+    host.id = "topnav";
+    host.className = "topnav-host";
 
     const nav = document.createElement("nav");
-    nav.className = "v1-topnav";
-    nav.setAttribute("data-variant", "v4");
+    nav.className = "topnav";
     nav.setAttribute("aria-label", "Experience switcher");
 
     // -------- Left: JR logo + "Jake Ruth" (CONSTANT) --------
     const left = document.createElement("div");
-    left.className = "v1-topnav-left";
+    left.className = "topnav-left";
 
     const brand = document.createElement("a");
-    brand.className = "v1-topnav-brand";
+    brand.className = "topnav-brand";
     brand.href = DEFAULT_SETUP_HREF;
     brand.setAttribute("aria-label", "Jake Ruth — back to Setup");
 
     const logo = document.createElement("img");
-    logo.className = "v1-topnav-brand-logo";
+    logo.className = "topnav-brand-logo";
     logo.src = DEFAULT_LOGO_SRC;
     logo.alt = "JR";
     logo.setAttribute("draggable", "false");
 
     const name = document.createElement("span");
-    name.className = "v1-topnav-brand-name";
+    name.className = "topnav-brand-name";
     name.textContent = "Jake Ruth";
 
     brand.appendChild(logo);
@@ -116,25 +115,25 @@
     left.appendChild(brand);
     nav.appendChild(left);
 
-    // -------- Center: tab group (Variant A visuals) --------
+    // -------- Center: tab group --------
     const tabs = document.createElement("div");
-    tabs.className = "v1-topnav-tabs";
+    tabs.className = "topnav-tabs";
     tabs.setAttribute("role", "tablist");
 
     EXPERIENCES.forEach((exp) => {
       const btn = document.createElement("button");
       btn.type = "button";
-      btn.className = "v1-topnav-tab" + (exp.id === currentId ? " is-current" : "");
+      btn.className = "topnav-tab" + (exp.id === currentId ? " is-current" : "");
       btn.setAttribute("role", "tab");
       btn.setAttribute("aria-selected", exp.id === currentId ? "true" : "false");
       btn.setAttribute("data-exp", exp.id);
       if (exp.id === currentId) btn.setAttribute("aria-current", "page");
 
       btn.innerHTML =
-        '<span class="v1-topnav-mark" data-exp="' + exp.id + '" aria-hidden="true">' +
+        '<span class="topnav-mark" data-exp="' + exp.id + '" aria-hidden="true">' +
           makeCubeMark() +
         '</span>' +
-        '<span class="v1-topnav-label">' + exp.label + '</span>';
+        '<span class="topnav-label">' + exp.label + '</span>';
 
       btn.addEventListener("click", () => {
         if (exp.id === currentId) {
@@ -177,17 +176,17 @@
 
   function runOnboarding(nav, currentId) {
     // 1. Nav-wide glow + a traveling tab pulse so the whole bar feels
-    //    alive for a few seconds. Much more visible than the v1 cue.
+    //    alive for a few seconds.
     if (!reduceMotion) {
       nav.classList.add("is-onboarding-glow");
-      nav.querySelectorAll(".v1-topnav-tab").forEach((btn, i) => {
+      nav.querySelectorAll(".topnav-tab").forEach((btn, i) => {
         // Stagger the pulse so tabs ripple left → right.
         btn.style.setProperty("--onboard-delay", (i * 0.12) + "s");
         btn.classList.add("is-onboarding-pulse");
       });
       setTimeout(() => {
         nav.classList.remove("is-onboarding-glow");
-        nav.querySelectorAll(".v1-topnav-tab.is-onboarding-pulse").forEach((btn) => {
+        nav.querySelectorAll(".topnav-tab.is-onboarding-pulse").forEach((btn) => {
           btn.classList.remove("is-onboarding-pulse");
           btn.style.removeProperty("--onboard-delay");
         });
@@ -196,12 +195,12 @@
 
     // 2. Floating pill just below the nav — fades in, holds, fades out.
     const pill = document.createElement("div");
-    pill.className = "v1-topnav-onboarding-pill";
+    pill.className = "topnav-onboarding-pill";
     pill.setAttribute("role", "status");
     pill.setAttribute("aria-live", "polite");
     pill.innerHTML =
-      '<span class="v1-topnav-onboarding-arrow" aria-hidden="true">&uarr;</span>' +
-      '<span class="v1-topnav-onboarding-text">' +
+      '<span class="topnav-onboarding-arrow" aria-hidden="true">&uarr;</span>' +
+      '<span class="topnav-onboarding-text">' +
         escapeHtml(DEFAULT_ONBOARDING_TEXT) +
       '</span>';
 

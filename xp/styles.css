@@ -1,14 +1,5 @@
-/* ================================================================
-   Jake Ruth XP v3 — Windows XP Luna, alpha-final polish pass
-   Inherits v2, sharpens everything:
-     - Real draggable windows (v2 had none)
-     - Minimize now hides-but-keeps-taskbar-pill, not closes
-     - Bliss wallpaper gets a sun + third hill + grass shine
-     - Start button gloss tuned to match the real Luna radial
-     - Cube HUD with live timer overlayed on the stage
-     - Typography: consistent sizes, tightened rhythm
-     - New sections (AI philosophy, Stories) styled
-   ================================================================ */
+/* Windows XP Luna experience — Bliss wallpaper, draggable windows,
+   taskbar/start menu, CubeMaster HUD. */
 
 @import url('https://fonts.googleapis.com/css2?family=Asap:wght@400;500;700&family=Trebuchet+MS&display=swap');
 

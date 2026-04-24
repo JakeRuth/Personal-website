@@ -1,11 +1,6 @@
-/* ruth/systems — saas-v5
-   Vanilla JS, zero build. Powers:
-     - Hero latency ticker
-     - Uptime bars (90 days)
-     - Architecture graph (9 nodes, hand-rolled SVG)
-     - Docs code tab switching + copy
-     - Integrations "last checked" timer
-*/
+/* SaaS experience: hero latency ticker, 90-day uptime bars,
+   hand-rolled architecture SVG, docs tab switching + copy,
+   integrations "last checked" timer. */
 
 // ============================================================
 // HERO LATENCY TICKER

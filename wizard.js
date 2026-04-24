@@ -1,15 +1,9 @@
-/* =========================================================
-   Jake Ruth Setup Wizard - v1 integrated
-   Vanilla JS, no build step.
-
-   Three steps:
-     1. Welcome (Variant A sidebar baked in)
+/* Jake Ruth Setup Wizard. Three steps:
+     1. Welcome (InstallShield sideart + pitch copy)
      2. Pick an experience
-     3. Brief loading screen (spinner + "Booting...") then
-        the transition-cube plays as the entry animation —
-        it hands off to the destination page via sessionStorage
-        so the arrival half plays on the new page.
-   ========================================================= */
+     3. Brief "Booting…" dwell, then TransitionCube.playTransition
+        hands off to the destination page via sessionStorage so the
+        arrival half plays on the new page. */
 
 (function () {
   "use strict";
@@ -145,14 +139,11 @@
     return "";
   }
 
-  // =========================================================
-  // Side-banner (Variant A baked in)
-  // Static InstallShield-style bullet content:
-  //   "What's in the box" + "System requirements"
-  // =========================================================
-  function sideartVariantA() {
+  // Side-banner: InstallShield-style "What's in the box" +
+  // "System requirements" bullet content.
+  function renderSideart() {
     return (
-      '<div class="sideart-variant sideart-variant-a is-active" data-variant="A">' +
+      '<div class="sideart-variant">' +
         '<div class="sideart-col">' +
           '<div class="sideart-wordmark">JAKE RUTH <span class="wm-v">v13.0</span></div>' +
           '<div class="sideart-rule-h" aria-hidden="true"></div>' +
@@ -188,7 +179,7 @@
     return (
       '<div class="welcome">' +
         '<div class="sideart" aria-hidden="true">' +
-          sideartVariantA() +
+          renderSideart() +
         '</div>' +
         '<div class="welcome-main">' +
           '<div class="welcome-mark" aria-hidden="true">' +

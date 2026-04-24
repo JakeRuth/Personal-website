@@ -1,15 +1,6 @@
-/* ================================================================
-   readme-git-fusion-v2 — boot, render, interactions.
-   v2 additions over v1:
-     - Star/Fork buttons wired up (star toggles a persisted count;
-       fork opens a mailto).
-     - Issues tab renders FAQ-as-issues with a label rail.
-     - Pull requests tab renders career events as merged PRs.
-     - Smooth skin-toggle crossfade (no layout shift).
-     - More doc files: ABOUT, STOCK_UNLOCK, HOBBIES, FAQ.
-     - Tighter scroll-spy (no jitter), Esc-to-close modal,
-       mini toast for copy/star feedback.
-   ================================================================ */
+/* README experience: boot, markdown render, scroll-spy,
+   tab-switching (Code / Issues / Pull requests), skin toggle,
+   star/fork handlers, toast + modal plumbing. */
 
 (function () {
   'use strict';
