@@ -145,7 +145,7 @@ body {
   z-index: 10;
   overflow: hidden;
 }
-.xp-window.hidden { display: none; }
+.xp-window.hidden,
 .xp-window.minimized { display: none; }
 
 .explorer {

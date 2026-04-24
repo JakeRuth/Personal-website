@@ -82,7 +82,7 @@ h1, h2, h3, h4 { font-weight: 600; letter-spacing: -0.012em; margin: 0; }
 }
 
 /* Dots */
-.dot-green, .dot-amber, .dot-blue, .dot-red {
+.dot-green, .dot-amber, .dot-blue {
   display: inline-block;
   width: 8px; height: 8px;
   border-radius: 50%;
@@ -91,7 +91,6 @@ h1, h2, h3, h4 { font-weight: 600; letter-spacing: -0.012em; margin: 0; }
 .dot-green { background: var(--green); box-shadow: 0 0 0 2px rgba(39,198,120,0.12), 0 0 10px rgba(39,198,120,0.5); }
 .dot-amber { background: var(--amber); box-shadow: 0 0 0 2px rgba(240,179,60,0.15), 0 0 10px rgba(240,179,60,0.5); }
 .dot-blue  { background: var(--accent); box-shadow: 0 0 0 2px rgba(62,155,255,0.15), 0 0 10px rgba(62,155,255,0.5); }
-.dot-red   { background: var(--red); }
 
 /* Buttons */
 .btn {
@@ -1094,7 +1093,6 @@ h1, h2, h3, h4 { font-weight: 600; letter-spacing: -0.012em; margin: 0; }
 .c-kw { color: var(--violet); }
 .c-str { color: var(--green); }
 .c-key { color: var(--accent); }
-.c-num { color: var(--amber); }
 .c-flag { color: var(--accent-3); }
 
 /* ============================================================
