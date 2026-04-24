@@ -11,7 +11,6 @@
   --fg-muted:      #8d96a0;
   --fg-dim:        #6e7681;
   --accent:        #2f81f7;
-  --accent-fg:     #ffffff;
   --success:       #3fb950;
   --warn:          #d29922;
   --danger:        #f85149;
@@ -19,7 +18,6 @@
   --border:        #30363d;
   --border-muted:  #21262d;
   --code-bg:       #161b22;
-  --code-fg:       #e6edf3;
   --inline-code-bg:#262c36;
   --link:          #4493f8;
   --link-visited:  #a371f7;
@@ -30,17 +28,6 @@
   --kbd-bg:        #161b22;
   --selection:     rgba(56,139,253,.35);
   --serif:         'Source Serif 4', 'Source Serif Pro', 'Iowan Old Style', 'Georgia', serif;
-
-  /* branch colors */
-  --c-main:        #f0883e;
-  --c-commercehub: #58a6ff;
-  --c-youni:       #bc8cff;
-  --c-oscar:       #39c5cf;
-  --c-stockunlock: #3fb950;
-  --c-pronk:       #ffa657;
-  --c-rubiks:      #f778ba;
-  --c-married:     #e3b341;
-  --c-next:        #d2a8ff;
 }
 
 :root[data-theme="light"] {
@@ -52,7 +39,6 @@
   --fg-muted:      #59636e;
   --fg-dim:        #818b98;
   --accent:        #0969da;
-  --accent-fg:     #ffffff;
   --success:       #1a7f37;
   --warn:          #9a6700;
   --danger:        #cf222e;
@@ -60,7 +46,6 @@
   --border:        #d1d9e0;
   --border-muted:  #d8dee4;
   --code-bg:       #f6f8fa;
-  --code-fg:       #1f2328;
   --inline-code-bg:#eff1f3;
   --link:          #0969da;
   --link-visited:  #8250df;
@@ -71,16 +56,6 @@
   --kbd-bg:        #f6f8fa;
   --selection:     rgba(9,105,218,.2);
   --serif:         'Source Serif 4', 'Source Serif Pro', 'Iowan Old Style', 'Georgia', serif;
-
-  --c-main:        #bc4c00;
-  --c-commercehub: #0969da;
-  --c-youni:       #8250df;
-  --c-oscar:       #1b7c83;
-  --c-stockunlock: #1a7f37;
-  --c-pronk:       #9a6700;
-  --c-rubiks:      #bf3989;
-  --c-married:     #9a6700;
-  --c-next:        #6639ba;
 }
 
 /* ---------- terminal skin modulation (approachable, not VT100) ---------- */
