@@ -8,7 +8,9 @@
   const $  = (sel, root = document) => root.querySelector(sel);
   const $$ = (sel, root = document) => Array.from(root.querySelectorAll(sel));
 
-  /* ---------- marked configuration ---------- */
+  /* ========================================================== */
+  /* marked configuration                                       */
+  /* ========================================================== */
   const renderer = new marked.Renderer();
   const slug = (s) =>
     String(s)
@@ -53,7 +55,9 @@
     smartypants: false,
   });
 
-  /* ---------- GFM-style callouts ---------- */
+  /* ========================================================== */
+  /* GFM-style callouts                                         */
+  /* ========================================================== */
   function decorateCallouts(root) {
     $$('blockquote', root).forEach((bq) => {
       const firstP = bq.querySelector('p');
@@ -90,7 +94,9 @@
       .replace(/'/g, '&#39;');
   }
 
-  /* ---------- pane + file rendering ---------- */
+  /* ========================================================== */
+  /* pane + file rendering                                      */
+  /* ========================================================== */
   const VIEWS = {
     MARKDOWN: 'markdown',
     TIMELINE: 'timeline',
@@ -161,7 +167,9 @@
     window.scrollTo({ top: 0, behavior: 'instant' in window ? 'instant' : 'auto' });
   }
 
-  /* ---------- TOC ---------- */
+  /* ========================================================== */
+  /* TOC                                                        */
+  /* ========================================================== */
   let activeObserver = null;
   function buildTOC(root) {
     const tocList = $('#tocList');
@@ -257,7 +265,9 @@
     document.body.removeChild(ta);
   }
 
-  /* ---------- file tree + tabs ---------- */
+  /* ========================================================== */
+  /* file tree + tabs                                           */
+  /* ========================================================== */
   const OPEN_TABS = new Set(['README']);
   let ACTIVE = 'README';
 
@@ -301,7 +311,9 @@
     });
   }
 
-  /* ---------- top tabs (Code / Issues / PRs) ---------- */
+  /* ========================================================== */
+  /* top tabs (Code / Issues / PRs)                             */
+  /* ========================================================== */
   function wireTopTabs() {
     $$('.gh-tab').forEach((a) => {
       a.addEventListener('click', (e) => {
@@ -327,7 +339,9 @@
     });
   }
 
-  /* ---------- Issues rendering ---------- */
+  /* ========================================================== */
+  /* Issues rendering                                           */
+  /* ========================================================== */
   function renderIssues() {
     const list = $('#issueList');
     const items = window.CONTENT.ISSUES || [];
@@ -383,7 +397,9 @@
     }, { once: false });
   }
 
-  /* ---------- PRs rendering ---------- */
+  /* ========================================================== */
+  /* PRs rendering                                              */
+  /* ========================================================== */
   function renderPRs() {
     const list = $('#prList');
     const items = window.CONTENT.PRS || [];
@@ -420,7 +436,9 @@
     `).join('');
   }
 
-  /* ---------- theme toggle ---------- */
+  /* ========================================================== */
+  /* theme toggle                                               */
+  /* ========================================================== */
   function wireTheme() {
     const btn = $('#themeToggle');
     const label = $('#themeLabel');
@@ -444,7 +462,9 @@
     }
   }
 
-  /* ---------- terminal skin toggle (smooth crossfade, no layout shift) ---------- */
+  /* ========================================================== */
+  /* terminal skin toggle (smooth crossfade, no layout shift)   */
+  /* ========================================================== */
   function wireSkin() {
     const btn = $('#skinToggle');
     const label = $('#skinLabel');
@@ -469,7 +489,9 @@
     }
   }
 
-  /* ---------- raw source modal ---------- */
+  /* ========================================================== */
+  /* raw source modal                                           */
+  /* ========================================================== */
   function wireModal() {
     const modal = $('#modal');
     const openBtn = $('#viewSourceBtn');
@@ -519,7 +541,9 @@
     });
   }
 
-  /* ---------- star / fork ---------- */
+  /* ========================================================== */
+  /* star / fork                                                */
+  /* ========================================================== */
   function wireStarFork() {
     const starBtn = $('#starBtn');
     const starCountEl = $('#starCount');
@@ -557,7 +581,9 @@
     }
   }
 
-  /* ---------- in-content anchor nav + TIMELINE shield hop ---------- */
+  /* ========================================================== */
+  /* in-content anchor nav + TIMELINE shield hop                */
+  /* ========================================================== */
   function wireInContentAnchors() {
     document.addEventListener('click', (e) => {
       const a = e.target.closest('a');
@@ -580,7 +606,9 @@
     });
   }
 
-  /* ---------- toast ---------- */
+  /* ========================================================== */
+  /* toast                                                      */
+  /* ========================================================== */
   let toastTimer = null;
   function toast(msg) {
     const t = $('#toast');
@@ -595,7 +623,9 @@
     }, 1800);
   }
 
-  /* ---------- copy rendered markdown button ---------- */
+  /* ========================================================== */
+  /* copy rendered markdown button                              */
+  /* ========================================================== */
   function wireCopyAll() {
     $('#copyAllBtn').addEventListener('click', () => {
       let src = '';
@@ -610,7 +640,9 @@
     });
   }
 
-  /* ---------- boot ---------- */
+  /* ========================================================== */
+  /* boot                                                       */
+  /* ========================================================== */
   function boot() {
     wireTheme();
     wireSkin();
