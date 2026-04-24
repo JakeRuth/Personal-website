@@ -34,15 +34,6 @@
   const ONBOARDING_VISIBLE_MS = 5400; // pill visible duration
   const ONBOARDING_GLOW_MS = 3400;    // nav-wide glow + tab pulse duration
 
-  /* ==== ONBOARDING TEXT — pick your favorite, swap the DEFAULT_TEXT const
-     below. Alternatives kept as comments so it's one-line to swap.
-     1. "Three ways to read Jake. Switch up top anytime."   (the default below)
-     2. "Three takes on the same person. Switch from the top."
-     3. "Same Jake, three chromes. Pick another anytime."
-     4. "Switch experiences up top — same Jake, different chrome."
-     5. "Bounce between the three anytime from the top."
-     6. "Three interpretations up top. Jump between them anytime."
-  */
   const DEFAULT_ONBOARDING_TEXT = "Three ways to read Jake. Switch up top anytime.";
 
   const reduceMotion = window.matchMedia &&
