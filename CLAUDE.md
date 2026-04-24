@@ -12,12 +12,12 @@ Complete rebuild of jakeruth.com as a portfolio showcase piece. Jake is re-enter
 - **Code must be elegant.** Priority over speed of delivery. No deadline pressure.
 - **Tech stack is open.** Explicitly not carrying over the 2017-era no-build React/JSX setup. Chosen after discovery and concept, not before.
 
-## Current state (as of 2026-04-20)
+## Current state (as of 2026-04-24)
 
 - Hosted on **GitHub Pages** (free tier), repo: `github.com/JakeRuth/Personal-website`, branch: `master`, `/CNAME` binds `jakeruth.com`.
 - **DNS** managed via Squarespace UI (backed by Google Cloud DNS). Apex A records point at GitHub's 4 Pages IPs; `www` CNAMEs to `jakeruth.github.io`.
 - **HTTPS** enforced via Let's Encrypt cert auto-renewed by GitHub (R13 intermediate, issued 2026-04-21, ~90-day rolling).
-- **Content** is still the 2017-era site: `index.html` with in-browser Babel + unpkg React 16 + broken YUI stylesheets. This is the *temporary baseline*, not the target state.
+- **Content** is the alpha: Setup Wizard at `/`, three experiences at `/xp/`, `/readme/`, `/saas/`, stitched by a shared top-nav + cube transition. Vanilla HTML/CSS/JS, no build. Canonical content + voice rules in `/_shared/`. The 2017-era React site was deleted on 2026-04-24 (recoverable via git history pre-commit `08098a5`). The alpha is not yet pushed to `master` remote — jakeruth.com still serves the 2017 site until the next push.
 
 ## Workflow
 
