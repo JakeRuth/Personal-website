@@ -215,36 +215,20 @@ body.has-topnav {
 
 /* XP — mostly blue with a green/red/white hint (the WinXP vibe) */
 .topnav-mark[data-exp="xp"] i:nth-child(1) { background: #e8e8ea; }
-.topnav-mark[data-exp="xp"] i:nth-child(2) { background: #2f6fc0; }
-.topnav-mark[data-exp="xp"] i:nth-child(3) { background: #2f6fc0; }
-.topnav-mark[data-exp="xp"] i:nth-child(4) { background: #2f6fc0; }
-.topnav-mark[data-exp="xp"] i:nth-child(5) { background: #2f6fc0; }
 .topnav-mark[data-exp="xp"] i:nth-child(6) { background: #2f9a5a; }
-.topnav-mark[data-exp="xp"] i:nth-child(7) { background: #2f6fc0; }
 .topnav-mark[data-exp="xp"] i:nth-child(8) { background: #c84236; }
-.topnav-mark[data-exp="xp"] i:nth-child(9) { background: #2f6fc0; }
+.topnav-mark[data-exp="xp"] i { background: #2f6fc0; }
 
-/* README — terminal greens with a yellow prompt sticker */
-.topnav-mark[data-exp="readme"] i:nth-child(1) { background: #2f9a5a; }
-.topnav-mark[data-exp="readme"] i:nth-child(2) { background: #2f9a5a; }
+/* README — terminal greens with a white sticker + yellow prompt */
 .topnav-mark[data-exp="readme"] i:nth-child(3) { background: #e8e8ea; }
-.topnav-mark[data-exp="readme"] i:nth-child(4) { background: #2f9a5a; }
-.topnav-mark[data-exp="readme"] i:nth-child(5) { background: #2f9a5a; }
-.topnav-mark[data-exp="readme"] i:nth-child(6) { background: #2f9a5a; }
 .topnav-mark[data-exp="readme"] i:nth-child(7) { background: #e7c750; }
-.topnav-mark[data-exp="readme"] i:nth-child(8) { background: #2f9a5a; }
-.topnav-mark[data-exp="readme"] i:nth-child(9) { background: #2f9a5a; }
+.topnav-mark[data-exp="readme"] i { background: #2f9a5a; }
 
-/* SaaS — product-orange with red + yellow accents */
-.topnav-mark[data-exp="saas"] i:nth-child(1) { background: #d0792c; }
-.topnav-mark[data-exp="saas"] i:nth-child(2) { background: #d0792c; }
+/* SaaS — product-orange with red + white + yellow accents */
 .topnav-mark[data-exp="saas"] i:nth-child(3) { background: #c84236; }
-.topnav-mark[data-exp="saas"] i:nth-child(4) { background: #d0792c; }
-.topnav-mark[data-exp="saas"] i:nth-child(5) { background: #d0792c; }
-.topnav-mark[data-exp="saas"] i:nth-child(6) { background: #d0792c; }
 .topnav-mark[data-exp="saas"] i:nth-child(7) { background: #e8e8ea; }
-.topnav-mark[data-exp="saas"] i:nth-child(8) { background: #d0792c; }
 .topnav-mark[data-exp="saas"] i:nth-child(9) { background: #e7c750; }
+.topnav-mark[data-exp="saas"] i { background: #d0792c; }
 
 /* =========================================================
    Small screens
