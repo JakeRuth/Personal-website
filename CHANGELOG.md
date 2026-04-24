@@ -1,4 +1,22 @@
-# v1 — CHANGELOG
+# CHANGELOG
+
+Historical log. Paths in older entries may reference pre-flatten
+locations (`concepts/v1/...`, `picker-wizard-v5/...`, etc.) that no
+longer exist on disk — recover from git history if needed.
+
+## 2026-04-24 — flatten to repo root, drop 2017 site
+
+- Deleted all exploration concept folders under `concepts/` (retro-01
+  through 10, saas-a/b/c and v3-v5 precursors, picker-wizard v1-v5,
+  transition-cube v1-v4, nav-*, graph-a/b/c, etc.) and the design-canvas
+  `concepts/index.html`. ~70 folders, ~299 files.
+- Promoted `concepts/v1/` → repo root, `concepts/_shared/` → `_shared/`.
+- Deleted the 2017-era React site at root (`index.html`, `js/`, `css/`,
+  `portfolioExternal/`, `README.md`).
+- Rewrote root `README.md` for the flat layout; updated `CLAUDE.md`
+  "Current state"; fixed stale path in `readme/content.js`.
+- Everything deleted is recoverable via git history (see commits
+  `08098a5` and `a64ef2d`).
 
 ## 2026-04-20 — integration round (wizard v5 + topnav v4 + transition v4)
 
