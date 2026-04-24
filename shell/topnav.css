@@ -278,15 +278,11 @@ body.has-topnav .search-window      { top: 156px !important; }
   body.has-topnav .search-window      { top: 152px !important; }
 }
 
-/* README / Git Fusion: .gh-header is sticky at top:0 — bump it down too. */
-body.has-topnav .gh-header { top: 56px !important; }
-@media (max-width: 640px) {
-  body.has-topnav .gh-header { top: 52px !important; }
-}
-
-/* SaaS: .nav is sticky at top:0 — bump it under our topnav. */
+/* README .gh-header + SaaS .nav: both sticky at top:0 — bump them under the topnav. */
+body.has-topnav .gh-header,
 body.has-topnav .nav { top: 56px !important; }
 @media (max-width: 640px) {
+  body.has-topnav .gh-header,
   body.has-topnav .nav { top: 52px !important; }
 }
 
