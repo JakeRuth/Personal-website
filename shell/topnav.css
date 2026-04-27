@@ -332,7 +332,7 @@ body.has-topnav .nav { top: 56px !important; }
 
 .topnav-onboarding-pill {
   position: fixed;
-  top: 84px;               /* sits clear of the 56px nav + drop-shadow gap */
+  top: 64px;               /* 56px nav + 8px gap */
   left: 50%;
   transform: translateX(-50%) translateY(-8px);
   z-index: 2147482000;     /* below the cube overlay but above experience chrome */
@@ -403,10 +403,38 @@ body.has-topnav .nav { top: 56px !important; }
 .topnav-onboarding-text {
   line-height: 1.15;
 }
+.topnav-onboarding-close {
+  margin: 0;
+  padding: 0;
+  width: 22px;
+  height: 22px;
+  background: transparent;
+  border: 0;
+  border-radius: 50%;
+  color: rgba(58, 42, 6, 0.55);
+  font-family: inherit;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1;
+  cursor: pointer;
+  pointer-events: auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 140ms ease, color 140ms ease;
+}
+.topnav-onboarding-close:hover {
+  color: #3a2a06;
+  background: rgba(58, 42, 6, 0.1);
+}
+.topnav-onboarding-close:focus-visible {
+  outline: none;
+  background: rgba(58, 42, 6, 0.14);
+}
 
 @media (max-width: 720px) {
   .topnav-onboarding-pill {
-    top: 68px;
+    top: 60px;
     font-size: 12.5px;
     padding: 8px 14px 8px 12px;
   }

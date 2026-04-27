@@ -14,7 +14,7 @@ html, body {
   margin: 0;
   padding: 0;
   height: 100%;
-  font-family: "Segoe UI", "Inter", Tahoma, "Helvetica Neue", Arial, sans-serif;
+  font-family: Tahoma, "MS Sans Serif", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
   font-size: 12px;
   color: #1a1a1a;
 }
@@ -80,7 +80,7 @@ body {
   display: flex;
   align-items: center;
   gap: 8px;
-  font-family: "Segoe UI", Tahoma, sans-serif;
+  font-family: Tahoma, "MS Sans Serif", sans-serif;
   font-weight: 600;
   font-size: 12px;
   user-select: none;
@@ -112,7 +112,7 @@ body {
   line-height: 11px;
   padding: 0;
   cursor: default;
-  font-family: "Segoe UI", Tahoma, sans-serif;
+  font-family: Tahoma, "MS Sans Serif", sans-serif;
   color: #000;
 }
 .tb-btn.close { background: #e1a5a5; }
@@ -120,27 +120,84 @@ body {
   box-shadow: inset 1px 1px 0 #8c8f95, inset -1px -1px 0 #fff;
 }
 
-/* ---- Menu bar ---- */
+/* ---- Menu bar (Win9x flat-gray flavor) ---- */
 .menubar {
   display: flex;
   align-items: center;
-  gap: 14px;
-  padding: 3px 10px;
-  background: #ece9d8;
+  gap: 2px;
+  padding: 2px 6px;
+  background: #d4d0c8;
   border-bottom: 1px solid var(--w-border);
   box-shadow: inset 0 1px 0 #ffffff;
   color: #1a1a1a;
-  font-family: "Segoe UI", Tahoma, sans-serif;
+  font-family: Tahoma, "MS Sans Serif", sans-serif;
   font-size: 11.5px;
   height: 22px;
   user-select: none;
+  position: relative;
+  z-index: 5;
 }
+.menu-group { position: relative; }
 .menu-item {
-  padding: 1px 6px;
+  display: inline-block;
+  padding: 2px 8px;
   border: 1px solid transparent;
-  border-radius: 2px;
+  border-radius: 0;
+  background: transparent;
+  color: inherit;
+  font-family: inherit;
+  font-size: inherit;
+  cursor: default;
+  line-height: 14px;
+}
+.menu-item:hover { background: #e7e4d8; }
+.menu-item.is-open {
+  background: var(--w-blue);
+  color: #ffffff;
+  border-color: var(--w-blue);
 }
 .menu-item u { text-decoration: underline; }
+
+/* Dropdown panel — classic 9x: white bg, hard outset border, navy hover. */
+.menu-panel {
+  position: absolute;
+  top: 100%;
+  left: -1px;
+  margin: 0;
+  padding: 2px;
+  list-style: none;
+  background: #ffffff;
+  border: 1px solid #1f1f1f;
+  box-shadow:
+    inset -1px -1px 0 #8c8f95,
+    inset 1px 1px 0 #ffffff,
+    2px 2px 4px rgba(0, 0, 0, 0.32);
+  min-width: 200px;
+  z-index: 6;
+  font-family: Tahoma, "MS Sans Serif", sans-serif;
+  font-size: 11.5px;
+  color: #1a1a1a;
+}
+.menu-panel[hidden] { display: none; }
+.menu-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
+  padding: 4px 14px 4px 22px;
+  white-space: nowrap;
+  cursor: default;
+}
+.menu-row:hover { background: var(--w-blue); color: #ffffff; }
+.menu-row .row-accel { color: #5a5d64; font-size: 10.5px; }
+.menu-row:hover .row-accel { color: #cdd; }
+.menu-sep {
+  height: 0;
+  margin: 3px 2px;
+  border-top: 1px solid #c0c0c0;
+  border-bottom: 1px solid #ffffff;
+  list-style: none;
+}
 
 /* ---- Stage ---- */
 .stage {
@@ -155,20 +212,20 @@ body {
   min-width: 88px;
   height: 30px;
   padding: 0 14px;
-  background: #f3f4f6;
+  background: #d4d0c8;
   border: 1px solid #1f1f1f;
   box-shadow:
-    inset -1px -1px 0 #9ea1a7,
-    inset 1px 1px 0 #fff;
-  font-family: "Segoe UI", Tahoma, sans-serif;
+    inset -2px -2px 0 #808080,
+    inset 2px 2px 0 #ffffff;
+  font-family: Tahoma, "MS Sans Serif", sans-serif;
   font-size: 12px;
   color: #111;
   cursor: default;
-  border-radius: 2px;
+  border-radius: 0;
 }
-.btn:hover:not(:disabled) { background: #fbfcfe; }
+.btn:hover:not(:disabled) { background: #dcd9d2; }
 .btn:active:not(:disabled) {
-  box-shadow: inset 1px 1px 0 #9ea1a7, inset -1px -1px 0 #fff;
+  box-shadow: inset 2px 2px 0 #808080, inset -2px -2px 0 #ffffff;
 }
 .btn:disabled {
   color: #9a9da3;
@@ -307,7 +364,7 @@ body {
   letter-spacing: 0.15px;
 }
 .sideart-wordmark {
-  font-family: "Segoe UI", Tahoma, sans-serif;
+  font-family: Tahoma, "MS Sans Serif", sans-serif;
   font-weight: 700;
   font-size: 14px;
   letter-spacing: 0.6px;
@@ -333,7 +390,7 @@ body {
   margin: 2px 0 4px;
 }
 .sideart-heading {
-  font-family: "Segoe UI", Tahoma, sans-serif;
+  font-family: Tahoma, "MS Sans Serif", sans-serif;
   font-size: 11px;
   font-weight: 600;
   color: #F2D16B;
@@ -402,7 +459,7 @@ body {
 
 .welcome-main h1 {
   margin: 0;
-  font-family: "Segoe UI", Tahoma, sans-serif;
+  font-family: Tahoma, "MS Sans Serif", sans-serif;
   font-size: 26px;
   font-weight: 600;
   letter-spacing: -0.3px;
@@ -436,7 +493,7 @@ body {
 }
 .picker-head h2 {
   margin: 0 0 4px;
-  font-family: "Segoe UI", Tahoma, sans-serif;
+  font-family: Tahoma, "MS Sans Serif", sans-serif;
   font-size: 17px;
   font-weight: 600;
   letter-spacing: -0.1px;
@@ -523,7 +580,7 @@ body {
   border-radius: 2px;
 }
 .exp-label {
-  font-family: "Segoe UI", Tahoma, sans-serif;
+  font-family: Tahoma, "MS Sans Serif", sans-serif;
   font-size: 14px;
   font-weight: 600;
   color: #0d1020;
@@ -805,21 +862,6 @@ body {
 .modal-body { padding: 18px; }
 .modal-row { display: flex; gap: 12px; align-items: flex-start; }
 .modal-row p { margin: 0 0 6px; }
-.modal-icon.warn {
-  width: 36px; height: 36px; flex: 0 0 36px;
-  background: radial-gradient(circle at 35% 30%, #ffe270, #e2a700 70%);
-  border-radius: 50%;
-  border: 1px solid #7a5400;
-  position: relative;
-}
-.modal-icon.warn::after {
-  content: "!";
-  position: absolute; inset: 0;
-  display: grid; place-items: center;
-  color: #000; font-weight: bold; font-size: 22px;
-  font-family: "Segoe UI", Tahoma, sans-serif;
-}
-.modal-window .body { padding: 0; }
 
 /* =========================================================
    Mobile
@@ -864,7 +906,7 @@ body {
 }
 .loading-stack h2 {
   margin: 0;
-  font-family: "Segoe UI", Tahoma, sans-serif;
+  font-family: Tahoma, "MS Sans Serif", sans-serif;
   font-size: 18px;
   font-weight: 600;
   letter-spacing: -0.1px;
@@ -914,3 +956,144 @@ body {
     );
   transition: width 120ms linear;
 }
+
+/* =========================================================
+   Wizard toast (menubar feedback) + About-dialog mark
+   ========================================================= */
+.wiz-toast {
+  position: fixed;
+  bottom: 22px;
+  left: 50%;
+  transform: translateX(-50%) translateY(8px);
+  z-index: 12;
+  padding: 8px 14px;
+  background: #fffced;
+  border: 1px solid #c9a23a;
+  box-shadow: 0 6px 18px rgba(20, 30, 60, 0.22);
+  font-family: Tahoma, "MS Sans Serif", sans-serif;
+  font-size: 11.5px;
+  color: #3a2a06;
+  border-radius: 2px;
+  opacity: 0;
+  transition: opacity 160ms ease, transform 160ms ease;
+  pointer-events: none;
+  user-select: none;
+}
+.wiz-toast[hidden] { display: none; }
+.wiz-toast.is-visible { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+.about-mark {
+  position: relative;
+  width: 48px;
+  height: 48px;
+  flex: 0 0 48px;
+}
+.about-mark .wm-sq {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  border: 1.5px solid rgba(10, 36, 106, 0.85);
+  background: rgba(255, 255, 255, 0.55);
+  border-radius: 2px;
+}
+.about-mark .wm-a { top: 0; left: 0; transform: rotate(-6deg); background: rgba(10, 36, 106, 0.10); }
+.about-mark .wm-b { top: 9px; left: 12px; transform: rotate(4deg); background: rgba(45, 100, 180, 0.12); }
+.about-mark .wm-c { top: 18px; left: 20px; transform: rotate(-2deg); background: rgba(255, 255, 255, 0.85); }
+
+/* =========================================================
+   Wizard: centered + draggable. Modals reuse .window so we
+   only override #wizard so the cancel/about modals stay put.
+   ========================================================= */
+#wizard.window {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  margin: 0;
+}
+#wizard .titlebar { cursor: move; }
+#wizard .titlebar .tb-btn { cursor: default; }
+#wizard.is-dragging .titlebar { cursor: grabbing; }
+#wizard.is-quitting {
+  transition: opacity 220ms ease;
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* =========================================================
+   Quit gag: "hey, you can't quit starting me, i'll restart
+   you!" with a 3/2/1 countdown.
+   ========================================================= */
+.quit-banner {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  background: rgba(10, 36, 106, 0.55);
+  -webkit-backdrop-filter: blur(2px);
+  backdrop-filter: blur(2px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 280ms ease;
+}
+.quit-banner[hidden] { display: none; }
+.quit-banner.is-visible { opacity: 1; }
+
+.quit-card {
+  background: #f3f4f6;
+  border: 2px solid #1a1b1f;
+  box-shadow:
+    inset -2px -2px 0 #b9bcc2,
+    inset 2px 2px 0 #ffffff,
+    0 18px 48px rgba(0, 0, 0, 0.42);
+  padding: 28px 36px 24px;
+  font-family: Tahoma, "MS Sans Serif", sans-serif;
+  text-align: center;
+  width: 380px;
+  max-width: 90vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+.quit-icon {
+  position: relative;
+  width: 52px;
+  height: 52px;
+  margin-bottom: 4px;
+}
+.quit-icon .wm-sq {
+  position: absolute;
+  width: 32px; height: 32px;
+  border: 1.5px solid rgba(10, 36, 106, 0.85);
+  background: rgba(255, 255, 255, 0.6);
+  border-radius: 2px;
+}
+.quit-icon .wm-a { top: 0;  left: 0;  transform: rotate(-6deg); background: rgba(10, 36, 106, 0.10); }
+.quit-icon .wm-b { top: 10px; left: 12px; transform: rotate(4deg); background: rgba(45, 100, 180, 0.12); }
+.quit-icon .wm-c { top: 20px; left: 22px; transform: rotate(-2deg); background: rgba(255, 255, 255, 0.85); }
+
+.quit-msg {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 500;
+  color: #0d1020;
+  line-height: 1.45;
+  letter-spacing: 0.1px;
+}
+.quit-msg em { color: var(--w-blue); font-style: italic; }
+.quit-counter {
+  font-family: "SF Mono", "JetBrains Mono", "Consolas", monospace;
+  font-size: 56px;
+  font-weight: 700;
+  color: var(--w-blue);
+  line-height: 1;
+  margin: 6px 0 2px;
+  /* gentle one-shot pop on each tick — re-applied via JS class flick */
+  transition: transform 120ms ease;
+}
+.quit-counter.is-tick {
+  transform: scale(1.18);
+}
+.quit-sub { margin: 0; font-size: 11px; }

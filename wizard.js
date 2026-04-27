@@ -49,8 +49,6 @@
   const btnCancel = document.getElementById("btn-cancel");
   const tbClose = document.getElementById("tb-close");
   const stepIndicator = document.getElementById("step-indicator");
-  const modalCancel = document.getElementById("modal-cancel");
-  const cancelYes = document.getElementById("cancel-yes");
 
   // ---- Helpers ----
   function escapeHtml(s) {
@@ -307,6 +305,9 @@
   function triggerTransition() {
     if (state.selectedId === null) return;
     const destinationUrl = getExperience(state.selectedId).path;
+    // Wizard launch counts as a fresh arrival on the destination — clear
+    // the topnav-pill dismissal flag so the onboarding shows on landing.
+    try { sessionStorage.removeItem("jrPillDismissed"); } catch (_e) { /* ignore */ }
     try {
       window.TransitionCube.playTransition({ destinationUrl });
     } catch (_e) {
@@ -392,38 +393,240 @@
     }
   });
 
-  btnCancel.addEventListener("click", openCancel);
-  tbClose.addEventListener("click", openCancel);
+  // X-close and Cancel both fire the "you can't quit starting me" gag.
+  btnCancel.addEventListener("click", quitGag);
+  tbClose.addEventListener("click", quitGag);
 
-  cancelYes.addEventListener("click", () => {
-    hideModal("modal-cancel");
+  // ---- Quit gag: fade wizard, show centered card, count 3/2/1, reload. ----
+  let quitInFlight = false;
+  function quitGag() {
+    if (quitInFlight) return;
+    quitInFlight = true;
     abortLaunch();
-    state.step = 0;
-    state.selectedId = null;
-    state.focusedIdx = 0;
-    render();
-  });
+
+    const wizard = document.getElementById("wizard");
+    const banner = document.getElementById("quit-banner");
+    const counter = document.getElementById("quit-counter");
+
+    // Close any open menubar dropdowns / the about modal so the page
+    // is clean when the gag overlays.
+    closeMenus();
+    hideModal("modal-about");
+
+    if (wizard) wizard.classList.add("is-quitting");
+
+    // After the wizard fades out, bring up the gag and start the count.
+    setTimeout(() => {
+      if (banner) {
+        banner.hidden = false;
+        requestAnimationFrame(() => banner.classList.add("is-visible"));
+      }
+      let n = 3;
+      if (counter) {
+        counter.textContent = String(n);
+        counter.classList.add("is-tick");
+        setTimeout(() => counter.classList.remove("is-tick"), 140);
+      }
+      const tick = setInterval(() => {
+        n -= 1;
+        if (n <= 0) {
+          clearInterval(tick);
+          window.location.reload();
+          return;
+        }
+        if (counter) {
+          counter.textContent = String(n);
+          counter.classList.add("is-tick");
+          setTimeout(() => counter.classList.remove("is-tick"), 140);
+        }
+      }, 900);
+    }, 220);
+  }
+
+  // ---- Wizard drag (titlebar handle) ----
+  (function initWizardDrag() {
+    const wizard = document.getElementById("wizard");
+    if (!wizard) return;
+    const titlebar = wizard.querySelector(".titlebar");
+    if (!titlebar) return;
+
+    let drag = null;
+
+    titlebar.addEventListener("mousedown", (ev) => {
+      if (ev.target.closest(".tb-btn")) return; // titlebar buttons stay clickable
+      if (ev.button !== 0) return;
+
+      const rect = wizard.getBoundingClientRect();
+      // Lock to absolute pixel position; clear the centering transform so
+      // left/top take effect cleanly.
+      wizard.style.left = rect.left + "px";
+      wizard.style.top  = rect.top  + "px";
+      wizard.style.transform = "none";
+      wizard.classList.add("is-dragging");
+
+      drag = {
+        offsetX: ev.clientX - rect.left,
+        offsetY: ev.clientY - rect.top,
+      };
+      ev.preventDefault();
+    });
+
+    document.addEventListener("mousemove", (ev) => {
+      if (!drag) return;
+      const w = wizard.offsetWidth, h = wizard.offsetHeight;
+      const minX = -w + 80;                       // keep at least 80px on screen
+      const minY = 0;                             // top edge can't escape the viewport
+      const maxX = window.innerWidth - 80;
+      const maxY = window.innerHeight - 40;
+      const x = Math.max(minX, Math.min(maxX, ev.clientX - drag.offsetX));
+      const y = Math.max(minY, Math.min(maxY, ev.clientY - drag.offsetY));
+      wizard.style.left = x + "px";
+      wizard.style.top  = y + "px";
+    });
+
+    document.addEventListener("mouseup", () => {
+      if (!drag) return;
+      drag = null;
+      wizard.classList.remove("is-dragging");
+    });
+  })();
 
   document.querySelectorAll("[data-close-modal]").forEach((el) => {
     el.addEventListener("click", () => hideModal(el.getAttribute("data-close-modal")));
   });
 
-  function openCancel() { showModal("modal-cancel"); }
   function showModal(id) { document.getElementById(id).hidden = false; }
   function hideModal(id) { document.getElementById(id).hidden = true; }
 
+  // ---- Menubar dropdowns ----
+  // Click a top-level item to open its panel; hover-rolls between
+  // panels while one is open; click outside or Esc closes.
+  const menubar = document.getElementById("menubar");
+  let toastTimer = null;
+  const toastEl = document.getElementById("wiz-toast");
+
+  function toast(msg) {
+    if (!toastEl) return;
+    toastEl.textContent = msg;
+    toastEl.hidden = false;
+    requestAnimationFrame(() => toastEl.classList.add("is-visible"));
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => {
+      toastEl.classList.remove("is-visible");
+      setTimeout(() => { toastEl.hidden = true; }, 220);
+    }, 1800);
+  }
+
+  function closeMenus() {
+    menubar.querySelectorAll(".menu-item.is-open").forEach((b) => b.classList.remove("is-open"));
+    menubar.querySelectorAll(".menu-panel").forEach((p) => p.hidden = true);
+  }
+  function openMenu(id) {
+    closeMenus();
+    const trigger = menubar.querySelector('[data-menu="' + id + '"]');
+    const panel = menubar.querySelector('[data-menu-for="' + id + '"]');
+    if (trigger) trigger.classList.add("is-open");
+    if (panel) panel.hidden = false;
+  }
+
+  function copyText(text, label) {
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(
+        () => toast("Copied " + label + " to clipboard"),
+        () => toast(label + ": " + text)
+      );
+    } else {
+      toast(label + ": " + text);
+    }
+  }
+
+  function handleMenuAction(action) {
+    switch (action) {
+      case "restart":
+        abortLaunch();
+        state.step = 0;
+        state.selectedId = null;
+        state.focusedIdx = 0;
+        render();
+        return;
+      case "exit":
+        quitGag();
+        return;
+      case "copy-email":
+        copyText("jake2ruth@gmail.com", "email");
+        return;
+      case "copy-github":
+        copyText("https://github.com/JakeRuth", "GitHub URL");
+        return;
+      case "go-welcome":
+        abortLaunch();
+        state.step = 0;
+        render();
+        return;
+      case "go-picker":
+        abortLaunch();
+        state.step = 1;
+        render();
+        return;
+      case "about":
+        showModal("modal-about");
+        return;
+      case "github":
+        window.open("https://github.com/JakeRuth", "_blank", "noopener");
+        return;
+      case "mail":
+        window.location.href = "mailto:jake2ruth@gmail.com?subject=Saw%20your%20site";
+        return;
+    }
+  }
+
+  if (menubar) {
+    menubar.querySelectorAll("[data-menu]").forEach((btn) => {
+      btn.addEventListener("click", (ev) => {
+        ev.stopPropagation();
+        const id = btn.getAttribute("data-menu");
+        if (btn.classList.contains("is-open")) closeMenus();
+        else openMenu(id);
+      });
+      btn.addEventListener("mouseenter", () => {
+        // Roll over to a sibling menu only if some menu is already open.
+        if (!menubar.querySelector(".menu-item.is-open")) return;
+        if (btn.classList.contains("is-open")) return;
+        openMenu(btn.getAttribute("data-menu"));
+      });
+    });
+    menubar.querySelectorAll("[data-action]").forEach((row) => {
+      row.addEventListener("click", (ev) => {
+        ev.stopPropagation();
+        handleMenuAction(row.getAttribute("data-action"));
+        closeMenus();
+      });
+    });
+    document.addEventListener("click", (ev) => {
+      if (!ev.target.closest("#menubar")) closeMenus();
+    });
+  }
+
   // ---- Keyboard nav ----
   document.addEventListener("keydown", (ev) => {
-    if (!modalCancel.hidden) {
+    const aboutModal = document.getElementById("modal-about");
+    if (aboutModal && !aboutModal.hidden) {
       if (ev.key === "Escape") {
-        hideModal("modal-cancel");
+        hideModal("modal-about");
         ev.preventDefault();
       }
       return;
     }
 
+    // Close any open menubar dropdown before falling through to the gag.
+    if (ev.key === "Escape" && menubar && menubar.querySelector(".menu-item.is-open")) {
+      closeMenus();
+      ev.preventDefault();
+      return;
+    }
+
     if (ev.key === "Escape") {
-      openCancel();
+      quitGag();
       ev.preventDefault();
       return;
     }

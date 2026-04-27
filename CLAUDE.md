@@ -1,40 +1,61 @@
 # jakeruth.com — Personal Website Rebuild
 
-This file is the project's durable context. Any Claude session starting in this repo should read this first, then check `DISCOVERY.md` and the memory system before acting.
+This file is the project's durable context. New Claude sessions starting here should read this first, then `DISCOVERY.md` (Jake's interview notes), then the auto-memory at `~/.claude/projects/-Users-hippofluff-code-Personal-website/memory/`.
 
 ## Mission
 
-Complete rebuild of jakeruth.com as a portfolio showcase piece. Jake is re-entering the workforce (as of April 2026) after running his own company for ~4 years. The site must be genuinely unique — not a template — and must communicate who he is quickly while also impressing visitors with build quality and creativity.
+Complete rebuild of jakeruth.com as a portfolio showcase. Jake is re-entering the workforce (April 2026) after running his own company for ~4 years. The site must be genuinely unique — not a template — and must communicate who he is quickly while impressing visitors with build quality and creativity.
 
 ## Hard constraints
 
-- **100% built with AI (Claude Code), reviewed by Jake.** This is an intentional design choice, declared openly in the repo README once we re-push. Exact wording TBD (candidates: "100% AI-built", "99% AI-built", etc.). Do not hide or downplay this.
-- **Code must be elegant.** Priority over speed of delivery. No deadline pressure.
-- **Tech stack is open.** Explicitly not carrying over the 2017-era no-build React/JSX setup. Chosen after discovery and concept, not before.
+- **100% built with AI (Claude Code), reviewed by Jake.** Intentional design choice, declared openly in the README on push. Exact framing wording TBD.
+- **Code must be elegant.** Priority over speed of delivery. No deadline pressure. No over-engineering. (See memory `feedback_no_overengineering`.)
+- **Tech stack settled:** vanilla HTML/CSS/JS, no build, GitHub Pages.
 
-## Current state (as of 2026-04-24)
+## Current shape
 
-- Hosted on **GitHub Pages** (free tier), repo: `github.com/JakeRuth/Personal-website`, branch: `master`, `/CNAME` binds `jakeruth.com`.
-- **DNS** managed via Squarespace UI (backed by Google Cloud DNS). Apex A records point at GitHub's 4 Pages IPs; `www` CNAMEs to `jakeruth.github.io`.
-- **HTTPS** enforced via Let's Encrypt cert auto-renewed by GitHub (R13 intermediate, issued 2026-04-21, ~90-day rolling).
-- **Content** is the alpha: Setup Wizard at `/`, three experiences at `/xp/`, `/readme/`, `/saas/`, stitched by a shared top-nav + cube transition (both in `/shell/`). Vanilla HTML/CSS/JS, no build. Canonical content + voice rules in `/content/`. The 2017-era React site was deleted on 2026-04-24 (recoverable via git history pre-commit `08098a5`). The alpha is not yet pushed to `master` remote — jakeruth.com still serves the 2017 site until the next push.
+```
+/                  Setup wizard (InstallShield-style)
+/xp/               Windows XP experience
+/readme/           GitHub repo experience
+/saas/             Marketing-site experience
+/shell/            Shared chrome (top-nav, cube transition, BFS solver)
+/content/          Canonical content + voice + parity audit
+```
 
-## Workflow
+Visitors flow: wizard → pick experience → cube transition → land on experience → top-nav lets them switch experiences (cube transition between). The three experiences surface the same Jake, different chromes.
 
-1. **Discovery** — open-ended interviews captured in `DISCOVERY.md`. No code.
-2. **Brief** — synthesize discovery into a short design/voice/audience brief.
-3. **Concepts** — propose 3-5 *very different* directions. Jake picks/mixes.
-4. **Tech stack decision** — chosen to serve the concept.
-5. **Build** — iterative, with PRs and review loops.
+**Live site (`jakeruth.com`)** still serves the 2017-era React build. The local alpha is many commits ahead and unpushed.
+
+**Personal email throughout the site:** `jake2ruth@gmail.com`. Not `jake@stockunlock.com`.
+
+**Dev server gotcha:** Speculation Rules / Chrome prerender requires the server NOT send `Cache-Control: no-store`. Use `no-cache, must-revalidate` instead if you need fresh files in dev.
+
+## What's next
+
+The alpha is at clean checkpoint. Next focus is **content depth + per-experience design polish**, both informed by first-principles thinking:
+
+1. **Content / vibes / themes.** Re-read `DISCOVERY.md` and `content/content.json`. What are we actually communicating? What groups together? What's the right narrative arc per experience? `VOICE.md` rules still apply (Stock Unlock framing, no buzzwords, no listed dollar prices, etc.).
+2. **Per-experience design + interaction depth.** Each chrome should be a complete, native-feeling artifact. Polish information architecture, micro-interactions, density. Cross-experience parity tracked in `content/PARITY_AUDIT.md`.
+
+See memory `project_active_workstreams` for fuller framing.
 
 ## Collaboration norms
 
-- Be truth-seeking. Verify with tools before stating a cause. Don't guess or vibe-code.
-- When a real tradeoff exists, surface it as labeled options (Option 1 / Option 2 / I lean X because Y) — don't silently pick.
-- See memory system (`~/.claude/projects/-Users-hippofluff-code-Personal-website/memory/`) for more on how Jake works.
+Memory files cover these in detail. The short version:
+
+- **Truth-seeking.** Verify with tools before stating a cause. (`feedback_work_style`)
+- **No over-engineering.** Smallest implementation that works. Delete dead code fully — git is the safety net. (`feedback_no_overengineering`)
+- **Test it yourself.** UI changes verified via `mcp__chrome-devtools__*` before reporting done. "No console errors" ≠ "feature works." (`feedback_test_before_reporting`)
+- **Surface tradeoffs as labeled options** when a real decision exists. Don't silently pick.
+- **Don't ask Jake to wrap.** No "keep going or stop" framings. (`feedback_dont_ask_to_wrap`)
 
 ## Pointers
 
-- `DISCOVERY.md` — interview notes and raw thinking about the rebuild
-- `README.md` — will eventually declare the "built by AI" framing (TBD)
-- Memory: user profile, work style feedback, project context
+- `DISCOVERY.md` — interview notes, raw thinking. Primary source for Jake's voice/life.
+- `README.md` — short repo overview.
+- `content/content.json` — canonical structured facts (every experience reads from this).
+- `content/VOICE.md` — tone rules.
+- `content/PARITY_AUDIT.md` — cross-experience parity tracking.
+- `official_resume.pdf` — authoritative résumé.
+- Memory directory — user profile, work-style feedback, current workstreams.

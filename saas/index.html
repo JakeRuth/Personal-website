@@ -5,6 +5,16 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Jake Ruth — The engineer your team actually needs</title>
 <link rel="icon" type="image/gif" href="/images/logo.gif" />
+<!-- Speculation Rules: prerender the OTHER two experiences so topnav
+     transitions to them are essentially instant. See /index.html for
+     the full explanation. -->
+<script type="speculationrules">
+{
+  "prerender": [
+    { "source": "list", "urls": ["/xp/", "/readme/"], "eagerness": "immediate" }
+  ]
+}
+</script>
 <link rel="preconnect" href="https://rsms.me/" />
 <link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lucide-static@0.453.0/font/lucide.css" />
@@ -36,7 +46,7 @@
 
     <div class="nav-cta">
       <a href="https://github.com/JakeRuth" class="nav-icon" aria-label="GitHub"><i class="lucide lucide-github"></i></a>
-      <a href="mailto:jake@stockunlock.com" class="btn btn-primary">Email Jake <i class="lucide lucide-arrow-up-right"></i></a>
+      <a href="mailto:jake2ruth@gmail.com" class="btn btn-primary">Email Jake <i class="lucide lucide-arrow-up-right"></i></a>
     </div>
   </div>
 </header>
@@ -52,7 +62,7 @@
         paying customers, wound it down to a profitable side business. Now redefining my next chapter.
       </p>
       <div class="hero-ctas">
-        <a href="mailto:jake@stockunlock.com" class="btn btn-primary btn-lg">Hire Jake <i class="lucide lucide-arrow-right"></i></a>
+        <a href="mailto:jake2ruth@gmail.com" class="btn btn-primary btn-lg">Hire Jake <i class="lucide lucide-arrow-right"></i></a>
         <a href="#platform" class="btn btn-ghost btn-lg">Read the spec</a>
       </div>
       <div class="hero-meta">
@@ -192,7 +202,7 @@
           <div class="arch-panel-body" id="arch-panel-body">Click any node to pin its service specification, SLO, and upstream dependencies.</div>
           <div class="arch-panel-kv">
             <div><span>SLO</span><b id="arch-slo">&mdash;</b></div>
-            <div><span>Owner</span><b>jake@stockunlock.com</b></div>
+            <div><span>Owner</span><b>jake2ruth@gmail.com</b></div>
             <div><span>Since</span><b id="arch-since">&mdash;</b></div>
           </div>
         </div>
@@ -222,7 +232,7 @@
         <div class="price-tier">Starter conversation</div>
         <div class="price-amount"><span class="price-amt">Free</span></div>
         <div class="price-tag">For: "not sure yet, let's chat"</div>
-        <a class="btn btn-ghost btn-full" href="mailto:jake@stockunlock.com">Email Jake</a>
+        <a class="btn btn-ghost btn-full" href="mailto:jake2ruth@gmail.com">Email Jake</a>
         <ul class="price-list">
           <li><i class="lucide lucide-check"></i> 30-min call</li>
           <li><i class="lucide lucide-check"></i> No agenda required</li>
@@ -235,7 +245,7 @@
         <div class="price-tier">Contract</div>
         <div class="price-amount"><span class="price-amt">Let's talk</span></div>
         <div class="price-tag">For: defined scope, defined timeline</div>
-        <a class="btn btn-ghost btn-full" href="mailto:jake@stockunlock.com">Start a scope</a>
+        <a class="btn btn-ghost btn-full" href="mailto:jake2ruth@gmail.com">Start a scope</a>
         <ul class="price-list">
           <li><i class="lucide lucide-check"></i> Project-scoped work</li>
           <li><i class="lucide lucide-check"></i> Written design doc per feature</li>
@@ -249,7 +259,7 @@
         <div class="price-tier">Full-time</div>
         <div class="price-amount"><span class="price-amt">Market + equity</span></div>
         <div class="price-tag">For: the main thing</div>
-        <a class="btn btn-primary btn-full" href="mailto:jake@stockunlock.com">Talk to Jake</a>
+        <a class="btn btn-primary btn-full" href="mailto:jake2ruth@gmail.com">Talk to Jake</a>
         <ul class="price-list">
           <li><i class="lucide lucide-check"></i> Senior IC / founding / early CTO</li>
           <li><i class="lucide lucide-check"></i> NYC, remote, or hybrid</li>
@@ -262,7 +272,7 @@
         <div class="price-tier">Equity founding</div>
         <div class="price-amount"><span class="price-amt">Let's build</span></div>
         <div class="price-tag">For: zero-to-one conviction bets</div>
-        <a class="btn btn-ghost btn-full" href="mailto:jake@stockunlock.com">Pitch a problem</a>
+        <a class="btn btn-ghost btn-full" href="mailto:jake2ruth@gmail.com">Pitch a problem</a>
         <ul class="price-list">
           <li><i class="lucide lucide-check"></i> Real equity, real ownership</li>
           <li><i class="lucide lucide-check"></i> Pre-seed to small seed</li>
@@ -485,7 +495,7 @@
         <a href="#" class="docs-link muted">Rate limits</a>
         <a href="#" class="docs-link muted">Idempotency</a>
         <div class="docs-nav-label">SDKs</div>
-        <a href="mailto:jake@stockunlock.com" class="docs-link muted">ruth-email <span class="pill-small">primary</span></a>
+        <a href="mailto:jake2ruth@gmail.com" class="docs-link muted">ruth-email <span class="pill-small">primary</span></a>
       </aside>
 
       <div class="docs-main">
@@ -507,7 +517,7 @@
               </table>
               <h4>Response fields</h4>
               <table class="param-table">
-                <tr><td><code>jake</code></td><td class="type">string</td><td>Always <code>jake@stockunlock.com</code>.</td></tr>
+                <tr><td><code>jake</code></td><td class="type">string</td><td>Always <code>jake2ruth@gmail.com</code>.</td></tr>
                 <tr><td><code>response_time</code></td><td class="type">string</td><td>Fast during business hours ET.</td></tr>
                 <tr><td><code>availability</code></td><td class="type">string</td><td>Currently: <code>taking calls</code>.</td></tr>
               </table>
@@ -520,7 +530,7 @@
                 <button class="copy-btn" id="copy-code"><i class="lucide lucide-copy"></i></button>
               </div>
 <pre class="code-body code-body-curl"><code><span class="c-comment"># Contact Jake directly</span>
-<span class="c-kw">curl</span> <span class="c-str">mailto:jake@stockunlock.com</span> \
+<span class="c-kw">curl</span> <span class="c-str">mailto:jake2ruth@gmail.com</span> \
   <span class="c-flag">-H</span> <span class="c-str">"Content-Type: application/json"</span> \
   <span class="c-flag">-d</span> <span class="c-str">'{
     "role": "founding",
@@ -537,7 +547,7 @@
   email: <span class="c-str">"you@yourstartup.com"</span>,
 });
 
-<span class="c-comment">// jake = "jake@stockunlock.com"</span></code></pre>
+<span class="c-comment">// jake = "jake2ruth@gmail.com"</span></code></pre>
 <pre class="code-body code-body-py" hidden><code><span class="c-kw">from</span> ruth <span class="c-kw">import</span> hire
 
 response = hire(
@@ -548,10 +558,10 @@ response = hire(
 )
 
 <span class="c-kw">print</span>(response[<span class="c-str">"jake"</span>])
-<span class="c-comment"># -> jake@stockunlock.com</span></code></pre>
+<span class="c-comment"># -> jake2ruth@gmail.com</span></code></pre>
               <div class="code-head code-resp-head"><span>Response</span><span class="mono muted">201 Created</span></div>
 <pre class="code-body"><code><span class="c-kw">{</span>
-  <span class="c-key">"jake"</span>: <span class="c-str">"jake@stockunlock.com"</span>,
+  <span class="c-key">"jake"</span>: <span class="c-str">"jake2ruth@gmail.com"</span>,
   <span class="c-key">"response_time"</span>: <span class="c-str">"&lt; 24h, ET business hours"</span>,
   <span class="c-key">"status"</span>: <span class="c-str">"interested"</span>,
   <span class="c-key">"availability"</span>: <span class="c-str">"taking calls"</span>,
@@ -574,7 +584,7 @@ response = hire(
       <p>30-minute call. No sales pitch, no proposal PDF, no deck. Just a conversation about what you're building and whether I'm the right person to help ship it.</p>
     </div>
     <div class="cta-actions">
-      <a href="mailto:jake@stockunlock.com" class="btn btn-primary btn-lg">Email Jake <i class="lucide lucide-arrow-right"></i></a>
+      <a href="mailto:jake2ruth@gmail.com" class="btn btn-primary btn-lg">Email Jake <i class="lucide lucide-arrow-right"></i></a>
       <a href="https://github.com/JakeRuth" class="btn btn-ghost btn-lg">View GitHub</a>
     </div>
   </div>
@@ -592,7 +602,7 @@ response = hire(
     </div>
     <div class="footer-right">
       <div class="footer-links">
-        <a href="mailto:jake@stockunlock.com">jake@stockunlock.com</a>
+        <a href="mailto:jake2ruth@gmail.com">jake2ruth@gmail.com</a>
         <span class="footer-sep">&middot;</span>
         <a href="https://github.com/JakeRuth">github.com/JakeRuth</a>
         <span class="footer-sep">&middot;</span>

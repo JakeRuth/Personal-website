@@ -5,6 +5,16 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Jake Ruth (C:) — Windows XP</title>
 <link rel="icon" type="image/gif" href="/images/logo.gif" />
+<!-- Speculation Rules: prerender the OTHER two experiences so topnav
+     transitions to them are essentially instant. See /index.html for
+     the full explanation. -->
+<script type="speculationrules">
+{
+  "prerender": [
+    { "source": "list", "urls": ["/readme/", "/saas/"], "eagerness": "immediate" }
+  ]
+}
+</script>
 <link rel="stylesheet" href="styles.css" />
 <link rel="stylesheet" href="../shell/topnav.css" />
 <!-- three.js powers the in-page Rubik's Cube widget + the cross-page cube transition -->
@@ -66,7 +76,7 @@
     <div class="icon-label">Search Companion</div>
   </li>
 
-  <li class="icon" data-copy="jake@stockunlock.com" tabindex="0">
+  <li class="icon" data-copy="jake2ruth@gmail.com" tabindex="0">
     <div class="icon-img">
       <svg viewBox="0 0 48 48" width="36" height="36" aria-hidden="true">
         <rect x="4" y="12" width="40" height="26" rx="2" fill="#f6f3df" stroke="#6a604a"/>
@@ -130,7 +140,7 @@
         </header>
         <ul class="tp-links">
           <li><a href="#" data-scroll="hero"><span class="tp-ico">&#128196;</span>View this resume</a></li>
-          <li><a href="#" data-copy="jake@stockunlock.com"><span class="tp-ico">&#9993;</span>E-mail Jake</a></li>
+          <li><a href="#" data-copy="jake2ruth@gmail.com"><span class="tp-ico">&#9993;</span>E-mail Jake</a></li>
           <li><a href="#" data-scroll="hire" class="strong"><span class="tp-ico">&#128640;</span>Hire Jake Ruth</a></li>
           <li><a href="#" data-open="cubemaster"><span class="tp-ico">&#129482;</span>Launch CubeMaster</a></li>
         </ul>
@@ -188,7 +198,7 @@
             </p>
             <div class="hero-cta">
               <button class="xp-button primary" data-action="hire">Hire Jake</button>
-              <button class="xp-button" data-copy="jake@stockunlock.com">Copy e-mail</button>
+              <button class="xp-button" data-copy="jake2ruth@gmail.com">Copy e-mail</button>
               <button class="xp-button" data-open="cubemaster">Watch the cube</button>
             </div>
           </div>
@@ -269,7 +279,7 @@
               <li>Has to be a problem I care about</li>
               <li>I've done it once profitably already</li>
             </ul>
-            <button class="xp-button" data-copy="jake@stockunlock.com">Email Jake</button>
+            <button class="xp-button" data-copy="jake2ruth@gmail.com">Email Jake</button>
           </div>
 
           <div class="tier">
@@ -281,7 +291,7 @@
               <li>Not a resume gap filler</li>
               <li>Greenfield and refactor both welcome</li>
             </ul>
-            <button class="xp-button" data-copy="jake@stockunlock.com">Inquire</button>
+            <button class="xp-button" data-copy="jake2ruth@gmail.com">Inquire</button>
           </div>
         </div>
       </section>
@@ -447,7 +457,7 @@
       <section class="panel" id="contact">
         <h2>Contact &mdash; <span class="soft">Send To</span></h2>
         <div class="contact-card">
-          <div class="contact-line"><span>E-mail</span><a href="mailto:jake@stockunlock.com">jake@stockunlock.com</a></div>
+          <div class="contact-line"><span>E-mail</span><a href="mailto:jake2ruth@gmail.com">jake2ruth@gmail.com</a></div>
           <div class="contact-line"><span>GitHub</span><a href="https://github.com/JakeRuth" target="_blank" rel="noopener">github.com/JakeRuth</a></div>
           <div class="contact-line"><span>Location</span><b>NYC area</b></div>
           <div class="contact-line"><span>Reply time</span><b>Fast during business hours ET</b></div>
@@ -582,11 +592,11 @@
             <em>Explorer</em>
           </span>
         </button>
-        <button class="sm-item" data-copy="jake@stockunlock.com">
+        <button class="sm-item" data-copy="jake2ruth@gmail.com">
           <span class="sm-ico">&#9993;</span>
           <span class="sm-text">
             <b>E-mail</b>
-            <em>jake@stockunlock.com</em>
+            <em>jake2ruth@gmail.com</em>
           </span>
         </button>
       </div>
@@ -616,7 +626,7 @@
         <span class="sm-ico">&#128025;</span>
         <span class="sm-text"><b>GitHub</b><em>github.com/JakeRuth</em></span>
       </a>
-      <a class="sm-item" href="mailto:jake@stockunlock.com">
+      <a class="sm-item" href="mailto:jake2ruth@gmail.com">
         <span class="sm-ico">&#9993;</span>
         <span class="sm-text"><b>Send mail</b><em>Fast during ET hours</em></span>
       </a>

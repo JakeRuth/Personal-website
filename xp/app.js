@@ -310,7 +310,7 @@
       if (action === "hire") {
         toast("Opening default mail client…");
         setTimeout(() => {
-          window.location.href = "mailto:jake@stockunlock.com?subject=Saw%20your%20site";
+          window.location.href = "mailto:jake2ruth@gmail.com?subject=Saw%20your%20site";
         }, 250);
         return;
       }

@@ -79,14 +79,84 @@
 
   function makeRubiksCube() {
     const group = new THREE.Group();
+    const cubies = [];
     for (let x = -1; x <= 1; x++) {
       for (let y = -1; y <= 1; y++) {
         for (let z = -1; z <= 1; z++) {
-          group.add(makeCubie(x, y, z));
+          const cubie = makeCubie(x, y, z);
+          group.add(cubie);
+          cubies.push(cubie);
         }
       }
     }
-    return group;
+    return { group, cubies };
+  }
+
+  // Face-turn metadata. Predicates run against cubies' current local
+  // positions inside the cube group, so they remain valid after past turns.
+  const FACE_INFO = {
+    U: { axis: "y", sign: +1, predicate: (p) => p.y >  0.4 },
+    D: { axis: "y", sign: -1, predicate: (p) => p.y < -0.4 },
+    R: { axis: "x", sign: +1, predicate: (p) => p.x >  0.4 },
+    L: { axis: "x", sign: -1, predicate: (p) => p.x < -0.4 },
+    F: { axis: "z", sign: +1, predicate: (p) => p.z >  0.4 },
+    B: { axis: "z", sign: -1, predicate: (p) => p.z < -0.4 },
+  };
+  const FACE_KEYS = ["U", "D", "R", "L", "F", "B"];
+
+  function startFaceTurn(c, t) {
+    const face = FACE_KEYS[(Math.random() * FACE_KEYS.length) | 0];
+    const dir  = Math.random() < 0.5 ? +1 : -1;
+    const info = FACE_INFO[face];
+
+    const layer = new THREE.Group();
+    c.mesh.add(layer);
+    // layer is at identity transform, so just reparenting cubies preserves
+    // their visual position (they continue to render where they were).
+    const movers = c.cubies.filter((cu) => info.predicate(cu.position));
+    movers.forEach((cu) => layer.add(cu));
+
+    c.move = {
+      layer: layer,
+      cubies: movers,
+      axis: info.axis,
+      target: dir * info.sign * Math.PI / 2,
+      startT: t,
+      // 120–300ms per turn — snappy so cubes can twist near-continuously.
+      durMs: 120 + Math.random() * 180
+    };
+  }
+
+  function tickFaceTurn(c, t) {
+    if (c.move) {
+      const dt = (t - c.move.startT) * 1000;
+      const u = Math.min(1, dt / c.move.durMs);
+      // smoothstep
+      const eased = u * u * (3 - 2 * u);
+      c.move.layer.rotation[c.move.axis] = c.move.target * eased;
+      if (u >= 1) finishFaceTurn(c, t);
+      return;
+    }
+    if (t >= c.nextMoveAt) startFaceTurn(c, t);
+  }
+
+  function finishFaceTurn(c, t) {
+    const { layer, cubies } = c.move;
+    layer.updateMatrix();
+    const tmp = new THREE.Matrix4();
+    cubies.forEach((cu) => {
+      cu.updateMatrix();
+      tmp.multiplyMatrices(layer.matrix, cu.matrix);
+      tmp.decompose(cu.position, cu.quaternion, cu.scale);
+      // Reparent back to the cube group; cu's local transform now bakes
+      // in the layer's rotation, so visual position is unchanged.
+      c.mesh.add(cu);
+    });
+    c.mesh.remove(layer);
+    c.move = null;
+    // Idle window before the next move: 0–80ms. With 120-300ms turns,
+    // this gives ~3-4 turns/sec per cube — visibly twisting constantly.
+    c.nextMoveAt = t + Math.random() * 0.08;
   }
 
   // Tracks: lissajous-ish slow parametric curves. Different phases/scales
@@ -103,7 +173,7 @@
     const fy = 0.07 + rnd() * 0.06;
     const fz = 0.09 + rnd() * 0.07;
     const zOffset = -6 - rnd() * 18;
-    const speed = 0.28 + rnd() * 0.25;
+    const speed = 0.186 + rnd() * 0.166;
     return function (t) {
       const tt = t * speed;
       return {
@@ -129,12 +199,14 @@
   const N_CUBES = 9;
   const cubes = [];
   for (let i = 0; i < N_CUBES; i++) {
-    const mesh = makeRubiksCube();
+    const { group: mesh, cubies } = makeRubiksCube();
     const rnd = mulberry32(1000 + i * 17);
+    // Wider spin range than v1; combined with the higher per-frame
+    // multiplier in tick(), cubes now visibly tumble.
     const spin = new THREE.Vector3(
-      (rnd() - 0.5) * 0.25,
-      (rnd() - 0.5) * 0.25,
-      (rnd() - 0.5) * 0.18
+      (rnd() - 0.5) * 0.9,
+      (rnd() - 0.5) * 0.9,
+      (rnd() - 0.5) * 0.7
     );
     mesh.rotation.set(rnd() * Math.PI, rnd() * Math.PI, rnd() * Math.PI);
     const scale = 0.55 + rnd() * 0.55;
@@ -142,9 +214,13 @@
     scene.add(mesh);
     cubes.push({
       mesh: mesh,
+      cubies: cubies,
       track: makeTrack(42 + i * 31),
       spin: spin,
-      scale: scale
+      scale: scale,
+      move: null,
+      // Tiny stagger on first move so the 9 cubes don't all turn in lockstep.
+      nextMoveAt: rnd() * 0.4
     });
   }
 
@@ -171,9 +247,12 @@
       const p = c.track(t);
       c.mesh.position.set(p.x, p.y, p.z);
       if (!reduceMotion) {
-        c.mesh.rotation.x += c.spin.x * 0.006;
-        c.mesh.rotation.y += c.spin.y * 0.006;
-        c.mesh.rotation.z += c.spin.z * 0.006;
+        // tumbleMult 0.015 — very slight drift-rotation; slice turns dominate.
+        c.mesh.rotation.x += c.spin.x * 0.015;
+        c.mesh.rotation.y += c.spin.y * 0.015;
+        c.mesh.rotation.z += c.spin.z * 0.015;
+        // Rubik's-style face turns layered on top of the tumble.
+        tickFaceTurn(c, t);
       }
     }
 

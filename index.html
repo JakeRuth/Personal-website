@@ -6,15 +6,28 @@
 <title>Jake Ruth Setup</title>
 <link rel="icon" type="image/gif" href="/images/logo.gif" />
 <link rel="stylesheet" href="styles.css" />
+<!-- Speculation Rules API (Chrome 109+). Tells the browser to
+     prerender the three experience destinations in the background so
+     that when the user picks one and we navigate, the dest is already
+     fully loaded + JS-running + WebGL-initialized. The cube transition
+     handoff becomes essentially instant. Falls through to normal
+     navigation in browsers that don't support it. -->
+<script type="speculationrules">
+{
+  "prerender": [
+    { "source": "list", "urls": ["/xp/", "/readme/", "/saas/"], "eagerness": "immediate" }
+  ]
+}
+</script>
 </head>
 <body>
 
 <!-- Ambient WebGL background: drifting Rubik's cubes on invisible tracks -->
 <canvas id="ambient" aria-hidden="true"></canvas>
 
-<!-- Thin stamp strip top-right, like build markers on an install disc -->
+<!-- Thin stamp strip top-right, InstallShield-style "Licensed to:" wink -->
 <div class="stamp" aria-hidden="true">
-  <span>jakeruth.setup &middot; build 2026.04 &middot; integrated</span>
+  <span>jakeruth.setup &middot; v13.0 &middot; single-user license</span>
 </div>
 
 <!-- The wizard window -->
@@ -31,12 +44,40 @@
     </div>
   </div>
 
-  <!-- Thin menu bar underneath -->
-  <div class="menubar" aria-hidden="true">
-    <span class="menu-item"><u>F</u>ile</span>
-    <span class="menu-item"><u>E</u>dit</span>
-    <span class="menu-item"><u>V</u>iew</span>
-    <span class="menu-item"><u>H</u>elp</span>
+  <!-- Thin menu bar underneath. Each item opens a 9x-style dropdown.
+       Wired in wizard.js. -->
+  <div class="menubar" id="menubar">
+    <div class="menu-group">
+      <button class="menu-item" data-menu="file" type="button"><u>F</u>ile</button>
+      <ul class="menu-panel" data-menu-for="file" role="menu" hidden>
+        <li class="menu-row" data-action="restart"><span class="row-label">Restart wizard</span><span class="row-accel">Ctrl+R</span></li>
+        <li class="menu-sep" role="separator"></li>
+        <li class="menu-row" data-action="exit"><span class="row-label">Exit setup</span><span class="row-accel">Esc</span></li>
+      </ul>
+    </div>
+    <div class="menu-group">
+      <button class="menu-item" data-menu="edit" type="button"><u>E</u>dit</button>
+      <ul class="menu-panel" data-menu-for="edit" role="menu" hidden>
+        <li class="menu-row" data-action="copy-email"><span class="row-label">Copy email address</span></li>
+        <li class="menu-row" data-action="copy-github"><span class="row-label">Copy GitHub URL</span></li>
+      </ul>
+    </div>
+    <div class="menu-group">
+      <button class="menu-item" data-menu="view" type="button"><u>V</u>iew</button>
+      <ul class="menu-panel" data-menu-for="view" role="menu" hidden>
+        <li class="menu-row" data-action="go-welcome"><span class="row-label">Step 1 &middot; Welcome</span></li>
+        <li class="menu-row" data-action="go-picker"><span class="row-label">Step 2 &middot; Pick experience</span></li>
+      </ul>
+    </div>
+    <div class="menu-group">
+      <button class="menu-item" data-menu="help" type="button"><u>H</u>elp</button>
+      <ul class="menu-panel" data-menu-for="help" role="menu" hidden>
+        <li class="menu-row" data-action="about"><span class="row-label">About Jake Ruth Setup&hellip;</span></li>
+        <li class="menu-sep" role="separator"></li>
+        <li class="menu-row" data-action="github"><span class="row-label">Visit GitHub</span></li>
+        <li class="menu-row" data-action="mail"><span class="row-label">Send Jake an email</span></li>
+      </ul>
+    </div>
   </div>
 
   <!-- Main layout: left side-banner + right content area -->
@@ -51,7 +92,7 @@
     </div>
     <div class="footer-center">
       <span class="footer-dots" aria-hidden="true"></span>
-      <span class="step-indicator" id="step-indicator">1 / 2</span>
+      <span class="step-indicator" id="step-indicator">1 / 3</span>
       <span class="footer-dots" aria-hidden="true"></span>
     </div>
     <div class="footer-right" id="footer-right">
@@ -62,29 +103,51 @@
   </div>
 </div>
 
-<!-- Cancel confirmation dialog -->
-<div class="modal" id="modal-cancel" hidden>
+<!-- Tiny ephemeral toast for menubar feedback (copy email, etc.) -->
+<div class="wiz-toast" id="wiz-toast" role="status" aria-live="polite" hidden></div>
+
+<!-- "You can't quit starting me" gag — fades in over the page after the
+     wizard window closes, counts 3/2/1, then reloads. -->
+<div class="quit-banner" id="quit-banner" hidden role="alertdialog" aria-live="assertive">
+  <div class="quit-card">
+    <div class="quit-icon" aria-hidden="true">
+      <span class="wm-sq wm-a"></span>
+      <span class="wm-sq wm-b"></span>
+      <span class="wm-sq wm-c"></span>
+    </div>
+    <p class="quit-msg">hey, you can't quit <em>starting</em> me. i'll restart you!</p>
+    <div class="quit-counter" id="quit-counter">3</div>
+    <p class="quit-sub dim">restarting setup&hellip;</p>
+  </div>
+</div>
+
+<!-- Help → About Jake Ruth Setup -->
+<div class="modal" id="modal-about" hidden>
   <div class="window modal-window">
     <div class="titlebar plain">
-      <span class="title-text">Jake Ruth Setup</span>
+      <span class="title-text">About Jake Ruth Setup</span>
       <div class="title-buttons">
-        <button class="tb-btn close" data-close-modal="modal-cancel" aria-label="Close">&times;</button>
+        <button class="tb-btn close" data-close-modal="modal-about" aria-label="Close">&times;</button>
       </div>
     </div>
     <div class="body modal-body">
       <div class="modal-row">
-        <div class="modal-icon warn"></div>
+        <div class="about-mark" aria-hidden="true">
+          <span class="wm-sq wm-a"></span>
+          <span class="wm-sq wm-b"></span>
+          <span class="wm-sq wm-c"></span>
+        </div>
         <div>
-          <p><strong>Cancel Jake Ruth Setup?</strong></p>
-          <p class="dim">No Jake gets installed. You can still reach him at <a href="mailto:jake@stockunlock.com">jake@stockunlock.com</a>.</p>
+          <p><strong>Jake Ruth Setup</strong> &middot; v13.0</p>
+          <p class="dim">Built with Claude Code &middot; reviewed by Jake.</p>
+          <p class="dim">Licensed to: you. <a href="mailto:jake2ruth@gmail.com">jake2ruth@gmail.com</a></p>
         </div>
       </div>
     </div>
     <div class="footer">
       <div class="footer-left"></div>
       <div class="footer-right">
-        <button class="btn" id="cancel-yes">Yes</button>
-        <button class="btn primary" data-close-modal="modal-cancel">No</button>
+        <button class="btn primary" data-close-modal="modal-about">OK</button>
       </div>
     </div>
   </div>

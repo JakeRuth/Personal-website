@@ -35,22 +35,34 @@
   const PEAK_BACKDROP = "rgba(8, 10, 14, 0.82)";
 
   // Phase durations.
+  // GROW_MS sized so the scramble queue (SCRAMBLE_LEN moves at
+  // MOVE_DURATION_MS+MOVE_PAUSE_MS each) finishes just as grow ends,
+  // keeping the cube continuously turning the whole time.
   const GROW_MS = 1000;
-  // SHRINK duration tracks the solve move queue — the cube should
-  // end solved at the instant it vanishes.
-  const SHRINK_MS_MIN = 800;
-  const SHRINK_MS_MAX = 1400;
+  // Hold at full size before navigating cross-page. Masks the
+  // unload/reload glitch when the dest page rebuilds the WebGL ctx.
+  const PEAK_HOLD_MS = 100;
+  // SHRINK floor — shortest possible shrink.
+  const SHRINK_MS_FLOOR = 1200;
+  // The "click" moment: solve's last move commits when cube opacity
+  // hits this value. Lower = more fade before solve ends.
+  const SOLVE_FINISH_OPACITY = 0.4;
+  // Per-move timing. 80+10 = 90ms; with 10 moves the queue runs ~900ms,
+  // fits inside GROW_MS=1000 with a small buffer.
+  const MOVE_DURATION_MS = 80;
+  const MOVE_PAUSE_MS    = 10;
+  const SCRAMBLE_LEN     = 10;
 
-  // Per-move timing.
-  const MOVE_DURATION_MS = 125;
-  const MOVE_PAUSE_MS    = 40;
-  const SCRAMBLE_LEN     = 6;
+  // Solve-completion glow flash — drop-shadow + brightness pulse the
+  // moment the last face turn commits. Adds the "click" feel.
+  const SOLVE_FLASH_MS   = 420;
 
   // Ambient spin during the entire animation.
-  const AMBIENT_SPIN_RATE = 0.2;   // rad/sec
+  const AMBIENT_SPIN_RATE = 0.5;   // rad/sec
   const SNAP_SLOWDOWN_MS  = 50;
 
-  // Cross-page session key. Payload: {timestamp, scrambledFacelets, solveMoves}.
+  // Cross-page session key. Payload:
+  //   {timestamp, scrambleMoves, solveMoves, cubeRotX, cubeRotY}.
   const SS_KEY = "jrTransitionArrive";
   const SS_MAX_AGE_MS = 3000;
 
@@ -59,6 +71,37 @@
   const STAGE_FULL    = "100vmax";
 
   let inFlight = false;
+
+  // EARLY DEST COVER: when the script loads on a destination page that
+  // has a fresh transition payload waiting, inject a CSS rule that hides
+  // body content before it can paint. Without this, there's a visible
+  // flash of the destination experience between page-load and when
+  // initArrival() runs on DOMContentLoaded. The rule is removed inside
+  // runArrival() once the proper cube overlay is mounted.
+  (function injectEarlyDestCover() {
+    try {
+      if (!global.sessionStorage) return;
+      const raw = sessionStorage.getItem(SS_KEY);
+      if (!raw) return;
+      const payload = JSON.parse(raw);
+      if (!payload || !payload.timestamp) return;
+      if (Date.now() - payload.timestamp > SS_MAX_AGE_MS) return;
+      const style = document.createElement("style");
+      style.id = "tc-early-cover";
+      // Paint html dark so a body=hidden state doesn't expose the
+      // browser's white default. Hide everything in body except our
+      // own overlay (which we'll mount shortly).
+      style.textContent =
+        "html { background: " + PEAK_BACKDROP.replace(/[\d.]+\)$/, "1)") + " !important; }" +
+        "body > *:not(.transition-cube-overlay) { opacity: 0 !important; }";
+      (document.head || document.documentElement).appendChild(style);
+    } catch (e) { /* graceful */ }
+  })();
+
+  function removeEarlyDestCover() {
+    const s = document.getElementById("tc-early-cover");
+    if (s && s.parentNode) s.parentNode.removeChild(s);
+  }
 
   // --- Public API --------------------------------------------------
 
@@ -100,17 +143,27 @@
     } catch (e) {
       payload = null;
     }
-    if (!payload) return;
+    if (!payload) { removeEarlyDestCover(); return; }
+    // Mark this page-load as an in-app arrival before consuming the
+    // payload. Other listeners on the same prerenderingchange/DCL event
+    // (e.g. topnav's onboarding gate) that fire AFTER this one would
+    // otherwise see an empty sessionStorage and misclassify the
+    // navigation as a fresh URL load.
+    global.__jrInAppArrival = true;
     try { sessionStorage.removeItem(SS_KEY); } catch (e) { /* ignore */ }
 
     const now = Date.now();
-    if (!payload.timestamp || now - payload.timestamp > SS_MAX_AGE_MS) return;
-    if (prefersReducedMotion()) return;
+    if (!payload.timestamp || now - payload.timestamp > SS_MAX_AGE_MS) {
+      removeEarlyDestCover();
+      return;
+    }
+    if (prefersReducedMotion()) { removeEarlyDestCover(); return; }
 
     ensureDeps().then(() => {
       runArrival(payload);
     }).catch((err) => {
       console.error("[transition-cube] arrival dependency load failed:", err);
+      removeEarlyDestCover();
     });
   }
 
@@ -236,16 +289,12 @@
 
     const ctx = createCubeContext(stage);
 
-    // Precompute scramble + solve. Apply scramble silently — just
-    // mutate the facelet state + repaint. No move animation: the
-    // cube appears already-scrambled when it grows in.
+    // Precompute scramble + solve. Cube starts in solved state; the
+    // move player will animate the scramble during grow, so the cube
+    // is continuously turning the whole way in. The "solve" is the
+    // scramble played in reverse (zero solver compute, always correct).
     const scrambleMoves = Solver.randomScramble(SCRAMBLE_LEN);
-    Solver.applyFaceletMoves(ctx.facelets, scrambleMoves);
-    paintStickers(ctx.cubies, ctx.facelets);
-    const scrambledFaceletsSnapshot = Solver.cloneFacelets(ctx.facelets);
-    const solveMoves = Solver.solveFromFacelets(
-      Solver.cloneFacelets(ctx.facelets)
-    ) || [];
+    const solveMoves = reverseMoves(scrambleMoves);
 
     const state = {
       running: true,
@@ -261,14 +310,18 @@
       opts,
       onDone,
       navigating: false,
-      // Carried into SHRINK (single-page mode):
-      scrambledFacelets: scrambledFaceletsSnapshot,
-      solveMoves: solveMoves.slice(),
-      // Move-player scratch (used in SHRINK):
-      queue: [],
+      // Move player runs every tick. During GROW it plays scramble.
+      // At grow→peak handoff we hand the dest page the scramble move
+      // list (so it can replay it silently and physically match this
+      // cube's geometry) plus the cube-group's Y rotation (so ambient
+      // spin doesn't pop at the navigation boundary).
+      queue: scrambleMoves.slice(),
       queueIdx: 0,
       currentMove: null,
-      pauseUntil: 0,
+      pauseUntil: performance.now(),
+      // Carried across the navigation:
+      scrambleMoves: scrambleMoves.slice(),
+      solveMoves: solveMoves.slice(),
       shrinkMs: computeShrinkMs(solveMoves.length),
     };
 
@@ -288,6 +341,11 @@
     overlay.style.backgroundColor = PEAK_BACKDROP;
     document.body.appendChild(overlay);
 
+    // Now that our own overlay is mounted with the dark backdrop, drop
+    // the early CSS cover. setElsOpacity above keeps body children at 0
+    // explicitly so removing the !important rule is safe.
+    removeEarlyDestCover();
+
     const stage = makeStage();
     // Start at full size, full opacity — we're continuing from the
     // source page's END-OF-GROW state.
@@ -299,21 +357,24 @@
 
     const ctx = createCubeContext(stage);
 
-    // Rehydrate scrambled state from the source page so the cube's
-    // face colors match what the user was looking at an instant ago.
-    if (payload.scrambledFacelets &&
-        Array.isArray(payload.scrambledFacelets) &&
-        payload.scrambledFacelets.length === 6) {
-      ctx.facelets = payload.scrambledFacelets;
+    // Rotation handoff: pick up source's accumulated ambient Y-spin (and
+    // X tilt for safety) so the cube doesn't snap orientation at the
+    // navigation boundary.
+    if (typeof payload.cubeRotX === "number") ctx.cubeGroup.rotation.x = payload.cubeRotX;
+    if (typeof payload.cubeRotY === "number") ctx.cubeGroup.rotation.y = payload.cubeRotY;
+
+    // Geometry handoff: replay the source's scramble silently — each
+    // move snaps cubies into their final rotated positions and updates
+    // facelets. After this loop, the cube on this page is geometrically
+    // and color-wise identical to the source's apex state.
+    if (Array.isArray(payload.scrambleMoves) && payload.scrambleMoves.length) {
+      for (const mv of payload.scrambleMoves) snapApplyMove(ctx, mv);
       paintStickers(ctx.cubies, ctx.facelets);
     }
 
-    // Solve moves come from the source too (already computed there —
-    // save dest the work). Fall back to recomputing if missing.
-    let solveMoves = Array.isArray(payload.solveMoves) ? payload.solveMoves.slice() : null;
-    if (!solveMoves) {
-      solveMoves = Solver.solveFromFacelets(Solver.cloneFacelets(ctx.facelets)) || [];
-    }
+    // Solve queue is the inverse of the scramble; source page wrote it
+    // into the payload alongside the scramble moves themselves.
+    const solveMoves = payload.solveMoves.slice();
 
     const onDone = () => {
       clearElsOpacity(destFade);
@@ -336,7 +397,6 @@
       onDone,
       navigating: false,
       arrival: true,
-      scrambledFacelets: null,
       solveMoves: solveMoves,
       queue: solveMoves.slice(),
       queueIdx: 0,
@@ -349,8 +409,16 @@
   }
 
   function computeShrinkMs(solveMoveCount) {
-    const raw = solveMoveCount * (MOVE_DURATION_MS + MOVE_PAUSE_MS);
-    return Math.max(SHRINK_MS_MIN, Math.min(SHRINK_MS_MAX, raw));
+    // Opacity is linear in tickShrink (1 → 0 over shrinkMs). We want
+    // the last solve move to commit at opacity = SOLVE_FINISH_OPACITY.
+    //   opacity_at_solve_end = 1 - effectiveSolveTime / shrinkMs
+    // FRAME_SLIP accounts for one-frame overhang on each move's commit
+    // (commit happens on the tick AFTER endT). At ~60fps this adds
+    // ~16ms per move; measured ~160ms overhead at 10 moves.
+    const FRAME_SLIP = 16;
+    const solveTime = solveMoveCount * (MOVE_DURATION_MS + MOVE_PAUSE_MS + FRAME_SLIP);
+    const aligned = solveTime / (1 - SOLVE_FINISH_OPACITY);
+    return Math.max(SHRINK_MS_FLOOR, aligned);
   }
 
   // --- Render loop -------------------------------------------------
@@ -370,12 +438,17 @@
     state.ctx.cubeGroup.rotation.y += dt * AMBIENT_SPIN_RATE * spinFactor;
 
     if (state.phase === "grow") tickGrow(state, now);
+    else if (state.phase === "peak") tickPeak(state, now);
     else if (state.phase === "shrink") tickShrink(state, now);
 
     state.ctx.renderer.render(state.ctx.scene, state.ctx.camera);
 
-    // End condition.
-    if (state.phase === "shrink" && now - state.phaseStartT >= state.shrinkMs) {
+    // End condition. Wait for the move queue to drain even if the
+    // shrink time has elapsed — guarantees the cube is solved at the
+    // exact instant it disappears (no "vanish mid-twist").
+    const shrinkElapsed = state.phase === "shrink" && now - state.phaseStartT >= state.shrinkMs;
+    const solveDone = !state.currentMove && state.queueIdx >= state.queue.length;
+    if (shrinkElapsed && solveDone) {
       state.running = false;
       if (!state.arrival) {
         try {
@@ -393,65 +466,10 @@
     requestAnimationFrame(() => renderLoop(state));
   }
 
-  // GROW: cube scale 0→1, cube opacity 0→1, source opacity 1→0.
-  function tickGrow(state, now) {
-    const p = clamp((now - state.phaseStartT) / GROW_MS, 0, 1);
-    const eased = easeOutCubic(p);
-
-    const scale = lerp(STAGE_TINY_PX / getIntrinsicPx(state.stage), 1, eased);
-    state.stage.style.transform = "translate(-50%, -50%) scale(" + scale.toFixed(4) + ")";
-    state.stage.style.opacity = eased.toFixed(4);
-    setElsOpacity(state.sourceFade, 1 - eased);
-
-    // Seam backdrop fades in with the cube so it's already nearly
-    // opaque by the time we hit full size and nav happens.
-    state.overlay.style.backgroundColor = mixAlpha(PEAK_BACKDROP, eased);
-
-    if (p >= 1) {
-      // Lock terminal state so the next frame (and nav) reads it.
-      state.overlay.style.backgroundColor = PEAK_BACKDROP;
-      setElsOpacity(state.sourceFade, 0);
-      state.stage.style.transform = "translate(-50%, -50%) scale(1)";
-      state.stage.style.opacity = "1";
-      beginShrink(state, now);
-    }
-  }
-
-  function beginShrink(state, now) {
-    // Cross-page handoff. Navigate immediately (no peak hold).
-    // Destination page's initArrival() picks up the shrink.
-    if (state.opts.destinationUrl && !state.navigating) {
-      state.navigating = true;
-      try {
-        sessionStorage.setItem(SS_KEY, JSON.stringify({
-          timestamp: Date.now(),
-          scrambledFacelets: state.scrambledFacelets,
-          solveMoves: state.solveMoves,
-        }));
-      } catch (e) { /* graceful degrade */ }
-      state.running = false;
-      window.location.href = state.opts.destinationUrl;
-      return;
-    }
-
-    // Single-page mode: fire caller's hook before panel swap.
-    if (typeof state.opts.onPhase2End === "function") {
-      try { state.opts.onPhase2End(); } catch (e) { console.error(e); }
-    }
-
-    // Prime shrink state: queue is solve moves.
-    state.queue = state.solveMoves.slice();
-    state.queueIdx = 0;
-    state.currentMove = null;
-    state.pauseUntil = now;
-    state.phase = "shrink";
-    state.phaseStartT = now;
-  }
-
-  // SHRINK: cube scale 1→tiny, cube opacity 1→0, dest opacity 0→1.
-  // Solve moves play concurrently.
-  function tickShrink(state, now) {
-    // Move player.
+  // Shared move-player. Runs every tick during GROW (scramble queue)
+  // and SHRINK (solve queue). When the queue drains, the cube sits in
+  // its terminal state and the loop continues without doing more moves.
+  function tickMovePlayer(state, now) {
     if (state.currentMove) {
       const mv = state.currentMove;
       const p = clamp((now - mv.startT) / (mv.endT - mv.startT), 0, 1);
@@ -464,19 +482,142 @@
         state.queueIdx++;
       }
     }
+  }
 
-    // Scale + opacity interpolation.
-    const p = clamp((now - state.phaseStartT) / state.shrinkMs, 0, 1);
-    const eased = easeInCubic(p);
+  // Force-finish whatever's left in the queue, applying moves
+  // instantaneously to facelets and snapping cubie positions. Used at
+  // GROW end so that any unanimated leftover scramble moves still take
+  // effect before we capture the scrambled-facelets snapshot.
+  function drainQueue(state) {
+    const Solver = global.CubeSolver;
+    if (state.currentMove) {
+      const mv = state.currentMove;
+      mv.group.rotation[mv.axis] = mv.targetAngle;
+      commitMove(state, mv);
+    }
+    while (state.queueIdx < state.queue.length) {
+      Solver.faceletTurn(state.ctx.facelets, state.queue[state.queueIdx]);
+      state.queueIdx++;
+    }
+    paintStickers(state.ctx.cubies, state.ctx.facelets);
+  }
 
-    const scale = lerp(1, STAGE_TINY_PX / getIntrinsicPx(state.stage), eased);
+  // GROW: cube scale 0→1 LINEAR, cube opacity 0→1 LINEAR, source
+  // page opacity 1→0 LINEAR. Move player animates scramble queue
+  // continuously throughout, so the cube is always turning.
+  function tickGrow(state, now) {
+    tickMovePlayer(state, now);
+
+    const p = clamp((now - state.phaseStartT) / GROW_MS, 0, 1);
+
+    const scale = lerp(STAGE_TINY_PX / getIntrinsicPx(state.stage), 1, p);
     state.stage.style.transform = "translate(-50%, -50%) scale(" + scale.toFixed(4) + ")";
-    state.stage.style.opacity = (1 - eased).toFixed(4);
+    state.stage.style.opacity = p.toFixed(4);
+    setElsOpacity(state.sourceFade, 1 - p);
+
+    // Backdrop tracks cube opacity so the seam is fully tinted at peak.
+    state.overlay.style.backgroundColor = mixAlpha(PEAK_BACKDROP, p);
+
+    if (p >= 1) {
+      // Lock terminal state and force-finish any remaining scramble
+      // moves so the facelets we hand to the dest page reflect the
+      // fully-scrambled cube.
+      drainQueue(state);
+      state.overlay.style.backgroundColor = PEAK_BACKDROP;
+      setElsOpacity(state.sourceFade, 0);
+      state.stage.style.transform = "translate(-50%, -50%) scale(1)";
+      state.stage.style.opacity = "1";
+      beginPeakOrShrink(state, now);
+    }
+  }
+
+  function beginPeakOrShrink(state, now) {
+    // Cross-page handoff: hold at full size for PEAK_HOLD_MS so the
+    // user clearly registers the cube before navigation tears it down,
+    // then fire the navigation. The dest page picks up the shrink.
+    if (state.opts.destinationUrl && !state.navigating) {
+      state.navigating = true;
+      try {
+        sessionStorage.setItem(SS_KEY, JSON.stringify({
+          timestamp: Date.now(),
+          // Hand off the scramble move list so the dest page can
+          // replay it silently — that gets the cubies into the same
+          // physical scrambled positions/orientations as this page.
+          scrambleMoves: state.scrambleMoves,
+          solveMoves: state.solveMoves,
+          // Cube-group rotation so ambient spin doesn't snap.
+          cubeRotX: state.ctx.cubeGroup.rotation.x,
+          cubeRotY: state.ctx.cubeGroup.rotation.y,
+        }));
+      } catch (e) { /* graceful degrade */ }
+      state.phase = "peak";
+      state.phaseStartT = now;
+      setTimeout(() => {
+        state.running = false;
+        window.location.href = state.opts.destinationUrl;
+      }, PEAK_HOLD_MS);
+      return;
+    }
+
+    // Single-page mode: fire caller's hook before panel swap.
+    if (typeof state.opts.onPhase2End === "function") {
+      try { state.opts.onPhase2End(); } catch (e) { console.error(e); }
+    }
+
+    // Prime shrink state: queue is now solve moves.
+    state.queue = state.solveMoves.slice();
+    state.queueIdx = 0;
+    state.currentMove = null;
+    state.pauseUntil = now;
+    state.phase = "shrink";
+    state.phaseStartT = now;
+  }
+
+  // PEAK: cube held at full size + opacity. Ambient spin in the loop
+  // keeps it alive. Used cross-page only — covers the navigation gap.
+  function tickPeak(state, _now) {
+    state.stage.style.transform = "translate(-50%, -50%) scale(1)";
+    state.stage.style.opacity = "1";
+    state.overlay.style.backgroundColor = PEAK_BACKDROP;
+    setElsOpacity(state.sourceFade, 0);
+  }
+
+  // SHRINK: cube scale 1→tiny LINEAR, cube opacity 1→0 LINEAR,
+  // dest page opacity 0→1 LINEAR. Move player drives the solve queue
+  // throughout, and the last solve move commits at opacity =
+  // SOLVE_FINISH_OPACITY (the "click" moment).
+  function tickShrink(state, now) {
+    tickMovePlayer(state, now);
+
+    const p = clamp((now - state.phaseStartT) / state.shrinkMs, 0, 1);
+
+    const scale = lerp(1, STAGE_TINY_PX / getIntrinsicPx(state.stage), p);
+    state.stage.style.transform = "translate(-50%, -50%) scale(" + scale.toFixed(4) + ")";
+    state.stage.style.opacity = (1 - p).toFixed(4);
+
+    // Solve-completion glow: brightness pulse + white drop-shadow that
+    // peaks ~80ms after the last move commits, fades over SOLVE_FLASH_MS.
+    if (state.flashStartT) {
+      const fe = now - state.flashStartT;
+      if (fe < SOLVE_FLASH_MS) {
+        const fp = fe / SOLVE_FLASH_MS;
+        const k = fp < 0.2 ? fp / 0.2 : 1 - (fp - 0.2) / 0.8;
+        const bright = (1 + 0.45 * k).toFixed(3);
+        const blur   = (36 * k).toFixed(1);
+        const alpha  = (0.85 * k).toFixed(3);
+        state.stage.style.filter =
+          "brightness(" + bright + ") " +
+          "drop-shadow(0 0 " + blur + "px rgba(255,255,255," + alpha + "))";
+      } else {
+        state.stage.style.filter = "";
+        state.flashStartT = null;
+      }
+    }
 
     const fadeInTargets = state.destFade || state.sourceFade;
-    setElsOpacity(fadeInTargets, eased);
+    setElsOpacity(fadeInTargets, p);
 
-    state.overlay.style.backgroundColor = mixAlpha(PEAK_BACKDROP, 1 - eased);
+    state.overlay.style.backgroundColor = mixAlpha(PEAK_BACKDROP, 1 - p);
   }
 
   // --- Cube context (scene graph, renderer, cubies) ---------------
@@ -571,6 +712,44 @@
     };
   }
 
+  // Apply a face turn instantly (no animation) — snaps cubie geometry
+  // to the post-move state and mutates facelets. Used by runArrival to
+  // replay the source page's scramble on this page's fresh cube so the
+  // two are geometrically identical at the navigation boundary.
+  function snapApplyMove(ctx, moveStr) {
+    const THREE = global.THREE;
+    const Solver = global.CubeSolver;
+    const face = moveStr[0];
+    const prime = moveStr.endsWith("'");
+    const spec = FACE_SPEC[face];
+
+    const layerGroup = new THREE.Group();
+    ctx.cubeGroup.add(layerGroup);
+
+    const affected = [];
+    for (const c of ctx.cubies) {
+      if (spec.pick(c.group.position)) affected.push(c);
+    }
+    affected.forEach(c => layerGroup.attach(c.group));
+
+    const targetAngle = (prime ? -1 : +1) * spec.sign * (Math.PI / 2);
+    layerGroup.rotation[spec.axis] = targetAngle;
+
+    affected.forEach(c => {
+      ctx.cubeGroup.attach(c.group);
+      c.group.position.set(
+        Math.round(c.group.position.x),
+        Math.round(c.group.position.y),
+        Math.round(c.group.position.z)
+      );
+      snapQuaternion(c.group.quaternion);
+      c.group.updateMatrix();
+    });
+    ctx.cubeGroup.remove(layerGroup);
+
+    Solver.faceletTurn(ctx.facelets, moveStr);
+  }
+
   function commitMove(state, mv) {
     const Solver = global.CubeSolver;
     mv.group.rotation[mv.axis] = mv.targetAngle;
@@ -593,6 +772,11 @@
     state.currentMove = null;
     state.pauseUntil = performance.now() + MOVE_PAUSE_MS;
     state.lastSnapT = performance.now();
+
+    // Last move just landed — fire the solve-click glow flash.
+    if (state.queueIdx >= state.queue.length) {
+      state.flashStartT = performance.now();
+    }
   }
 
   // --- Cubie + sticker construction -------------------------------
@@ -722,10 +906,20 @@
   function easeInOutQuad(t) {
     return t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2;
   }
-  function easeOutCubic(t) { return 1 - Math.pow(1 - t, 3); }
-  function easeInCubic(t) { return t * t * t; }
 
   function snapQuaternion(q) { q.normalize(); }
+
+  // Reverse a scramble into its inverse sequence — used as the "solve"
+  // queue so the cube ends in the solved state without paying the
+  // bidirectional-BFS cost on the click thread.
+  function reverseMoves(moves) {
+    const out = [];
+    for (let i = moves.length - 1; i >= 0; i--) {
+      const m = moves[i];
+      out.push(m.endsWith("'") ? m[0] : m + "'");
+    }
+    return out;
+  }
 
   function mixAlpha(rgba, k) {
     const m = /^rgba\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)\s*,\s*([\d.]+)\s*\)$/.exec(rgba);
@@ -737,11 +931,41 @@
 
   global.TransitionCube = { playTransition, initArrival };
 
-  // Auto-fire the arrival animation if a cross-page transition payload
-  // is fresh in sessionStorage. No-ops otherwise.
-  if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", initArrival);
-  } else {
-    initArrival();
-  }
+  // ----------------------------------------------------------------
+  // Boot: auto-fire initArrival, but defer if the page is prerendering.
+  //
+  // Speculation Rules background:
+  //   Each experience HTML carries a <script type="speculationrules">
+  //   block listing the OTHER experience URLs. When the user lands on
+  //   any page, Chrome (109+) silently fetches AND fully executes those
+  //   pages in a hidden context. By the time the user clicks a topnav
+  //   tab, the destination is already a fully running JS context with
+  //   WebGL initialized — the navigation just "swaps in" the
+  //   prerendered page instead of doing a cold load.
+  //
+  //   But on a prerendered page, our initArrival can't run yet: the
+  //   sessionStorage payload doesn't exist (the source page hasn't
+  //   even been clicked). So we listen for the 'prerenderingchange'
+  //   event, which fires synchronously the moment the user activates
+  //   this page via navigation. At that exact moment, the source's
+  //   sessionStorage write IS visible, so initArrival picks it up.
+  //
+  //   Browsers without prerender support: document.prerendering is
+  //   undefined → falsy → falls through to the normal DOMContentLoaded
+  //   path. No breakage.
+  // ----------------------------------------------------------------
+  (function bootArrival() {
+    if (document.prerendering === true) {
+      // Prerendered page: defer until the user activates this URL via a
+      // real navigation. At that moment the source's sessionStorage
+      // payload becomes visible to us, so we can run initArrival.
+      document.addEventListener("prerenderingchange", initArrival, { once: true });
+      return;
+    }
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", initArrival);
+    } else {
+      initArrival();
+    }
+  })();
 })(typeof window !== "undefined" ? window : globalThis);

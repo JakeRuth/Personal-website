@@ -5,6 +5,16 @@
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <title>JakeRuth / jake-ruth — README.md</title>
 <link rel="icon" type="image/gif" href="/images/logo.gif" />
+<!-- Speculation Rules: prerender the OTHER two experiences so topnav
+     transitions to them are essentially instant. See /index.html for
+     the full explanation. -->
+<script type="speculationrules">
+{
+  "prerender": [
+    { "source": "list", "urls": ["/xp/", "/saas/"], "eagerness": "immediate" }
+  ]
+}
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Source+Serif+4:wght@400;500;600;700&display=swap" rel="stylesheet" />
@@ -60,7 +70,7 @@
         <span class="theme-dot"></span>
         <span id="themeLabel">Dark</span>
       </button>
-      <a class="gh-btn gh-btn-primary" href="mailto:jake@stockunlock.com?subject=Hire%20Jake">
+      <a class="gh-btn gh-btn-primary" href="mailto:jake2ruth@gmail.com?subject=Hire%20Jake">
         <svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path fill="currentColor" d="M1.75 2h12.5c.966 0 1.75.784 1.75 1.75v8.5A1.75 1.75 0 0 1 14.25 14H1.75A1.75 1.75 0 0 1 0 12.25v-8.5C0 2.784.784 2 1.75 2ZM1.5 12.251c0 .138.112.25.25.25h12.5a.25.25 0 0 0 .25-.25V5.809L8.38 9.397a.75.75 0 0 1-.76 0L1.5 5.809v6.442Zm13-8.181v-.32a.25.25 0 0 0-.25-.25H1.75a.25.25 0 0 0-.25.25v.32L8 7.88Z"/></svg>
         <span>Hire</span>
       </a>
@@ -172,7 +182,7 @@
         </header>
         <ul class="issue-list" id="issueList"></ul>
         <footer class="issues-foot muted">
-          <span>Filing a new one is easy — <a href="mailto:jake@stockunlock.com?subject=New%20issue">open it over email</a>.</span>
+          <span>Filing a new one is easy — <a href="mailto:jake2ruth@gmail.com?subject=New%20issue">open it over email</a>.</span>
         </footer>
       </section>
 

@@ -7,11 +7,10 @@
    - Clicking a non-current tab plays the cube transition + navigates.
    - Clicking the current tab smooth-scrolls to top.
 
-   First-arrival onboarding (once per browser, gated by localStorage):
+   Onboarding cue (fires on every page load):
    - Non-current tabs pulse and a small pill appears under the nav
      reading "Three ways to read Jake. Switch up top anytime."
-   - prefers-reduced-motion: pill renders statically, pulse suppressed.
-   - Append ?reonboard to re-trigger. */
+   - prefers-reduced-motion: pill renders statically, pulse suppressed. */
 
 (function () {
   "use strict";
@@ -26,13 +25,12 @@
   const DEFAULT_LOGO_SRC = "/images/logo.gif";
   const DEFAULT_SETUP_HREF = "../";
 
-  const ONBOARDING_FLAG = "jrNavOnboardingShown";
   // Arrival-half cube animation runs ~700ms. Wait past that plus a
   // short settle window before we cue the user toward the nav.
   const ONBOARDING_DELAY_MS = 900;
   const ONBOARDING_FADE_IN_MS = 300;  // pill fade-in offset after cue begins
-  const ONBOARDING_VISIBLE_MS = 5400; // pill visible duration
   const ONBOARDING_GLOW_MS = 3400;    // nav-wide glow + tab pulse duration
+  const ONBOARDING_FLAG = "jrPillDismissed"; // sessionStorage gate
 
   const DEFAULT_ONBOARDING_TEXT = "Three ways to read Jake. Switch up top anytime.";
 
@@ -147,31 +145,52 @@
   }
 
   function scheduleOnboarding(nav, currentId) {
-    // localStorage gate so the cue runs ONCE per browser. Override with ?reonboard.
-    let already = false;
-    const forceOnboarding =
-      (new URLSearchParams(window.location.search)).has("reonboard");
-    if (!forceOnboarding) {
-      try {
-        already = localStorage.getItem(ONBOARDING_FLAG) === "1";
-      } catch (_e) { /* ignore */ }
-    }
-    if (already) return;
     if (!currentId) return;
 
-    setTimeout(() => {
-      runOnboarding(nav, currentId);
-      try { localStorage.setItem(ONBOARDING_FLAG, "1"); } catch (_e) { /* ignore */ }
-    }, ONBOARDING_DELAY_MS);
+    // Speculation Rules / prerender: the page may be running invisibly
+    // in the background before the user activates it. At that point
+    // sessionStorage doesn't yet have a transition payload, which
+    // would falsely look like a "direct URL load" and reset the gate.
+    // Defer until the page is actually activated.
+    if (document.prerendering === true) {
+      document.addEventListener("prerenderingchange", function onActivate() {
+        scheduleOnboarding(nav, currentId);
+      }, { once: true });
+      return;
+    }
+
+    // Show the pill on every fresh arrival. A "fresh arrival" is:
+    //   - hard reload of this medium (navType === "reload"), OR
+    //   - direct URL load with no transition payload (== user typed
+    //     the URL or used a deep link).
+    // Wizard arrivals are also fresh — wizard.js clears the flag
+    // explicitly before navigating. In-app topnav clicks DO have a
+    // payload and aren't reloads, so they preserve the flag.
+    try {
+      const navType = performance.getEntriesByType("navigation")[0]?.type;
+      // In-app arrival = either the transition payload is still in
+      // sessionStorage (we ran before initArrival) OR initArrival
+      // already ran and set the window-level marker (we ran after).
+      // Either signal alone misses one race; together they cover both.
+      const isInAppArrival =
+        !!sessionStorage.getItem("jrTransitionArrive") ||
+        window.__jrInAppArrival === true;
+      if (navType === "reload" || !isInAppArrival) {
+        sessionStorage.removeItem(ONBOARDING_FLAG);
+      }
+      if (sessionStorage.getItem(ONBOARDING_FLAG) === "1") return;
+      sessionStorage.setItem(ONBOARDING_FLAG, "1");
+    } catch (_e) { /* ignore */ }
+
+    setTimeout(() => runOnboarding(nav, currentId), ONBOARDING_DELAY_MS);
   }
 
   function runOnboarding(nav, currentId) {
     // 1. Nav-wide glow + a traveling tab pulse so the whole bar feels
-    //    alive for a few seconds.
+    //    alive for a few seconds. (Auto-fades, doesn't need dismissal.)
     if (!reduceMotion) {
       nav.classList.add("is-onboarding-glow");
       nav.querySelectorAll(".topnav-tab").forEach((btn, i) => {
-        // Stagger the pulse so tabs ripple left → right.
         btn.style.setProperty("--onboard-delay", (i * 0.12) + "s");
         btn.classList.add("is-onboarding-pulse");
       });
@@ -184,7 +203,11 @@
       }, ONBOARDING_GLOW_MS);
     }
 
-    // 2. Floating pill just below the nav — fades in, holds, fades out.
+    // 2. Floating pill just below the nav. Stays until the user dismisses
+    //    it — either via the X button or by clicking anywhere in the nav
+    //    (brand or any tab). No auto-fade: the cube transition occludes
+    //    the pill for ~1.5s, so any auto-timer could race and the user
+    //    might miss the message entirely.
     const pill = document.createElement("div");
     pill.className = "topnav-onboarding-pill";
     pill.setAttribute("role", "status");
@@ -193,26 +216,27 @@
       '<span class="topnav-onboarding-arrow" aria-hidden="true">&uarr;</span>' +
       '<span class="topnav-onboarding-text">' +
         escapeHtml(DEFAULT_ONBOARDING_TEXT) +
-      '</span>';
+      '</span>' +
+      '<button class="topnav-onboarding-close" type="button" aria-label="Dismiss">&times;</button>';
 
     document.body.appendChild(pill);
 
-    if (reduceMotion) {
-      pill.classList.add("is-visible", "is-static");
-      setTimeout(() => {
-        try { pill.remove(); } catch (_e) { /* ignore */ }
-      }, ONBOARDING_VISIBLE_MS + 400);
-      return;
-    }
-
-    setTimeout(() => pill.classList.add("is-visible"), ONBOARDING_FADE_IN_MS);
-    setTimeout(() => {
+    function dismiss() {
+      if (!pill.parentNode) return;
       pill.classList.remove("is-visible");
       pill.classList.add("is-leaving");
-    }, ONBOARDING_FADE_IN_MS + ONBOARDING_VISIBLE_MS);
-    setTimeout(() => {
-      try { pill.remove(); } catch (_e) { /* ignore */ }
-    }, ONBOARDING_FADE_IN_MS + ONBOARDING_VISIBLE_MS + 600);
+      setTimeout(() => { try { pill.remove(); } catch (_e) { /* ignore */ } }, 600);
+    }
+
+    pill.querySelector(".topnav-onboarding-close").addEventListener("click", dismiss);
+    // Any click anywhere in the nav (brand or any tab) dismisses too.
+    nav.addEventListener("click", dismiss, { once: true });
+
+    if (reduceMotion) {
+      pill.classList.add("is-visible", "is-static");
+    } else {
+      setTimeout(() => pill.classList.add("is-visible"), ONBOARDING_FADE_IN_MS);
+    }
   }
 
   function escapeHtml(s) {

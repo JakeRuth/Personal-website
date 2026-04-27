@@ -25,7 +25,7 @@ window.TIMELINE = (function () {
     { year: '2026' },
     {
       sha: 'c0d3baf', fullSha: 'c0d3baf8e27a1d33f9b0c5e7e1a9a2b4f7c8d99e',
-      branch: 'next', author: 'Jake Ruth <jake@stockunlock.com>',
+      branch: 'next', author: 'Jake Ruth <jake2ruth@gmail.com>',
       date: '2026-04-20',
       decoration: [{ kind: 'head', text: 'HEAD -> next-chapter' }],
       subject: "the driver's seat, chapter II",
@@ -45,7 +45,7 @@ window.TIMELINE = (function () {
     },
     {
       sha: '5741a8c', fullSha: '5741a8c0b2e1f3d49a8b76c2d5e7f01122334455',
-      branch: 'stockunlock', author: 'Jake Ruth <jake@stockunlock.com>',
+      branch: 'stockunlock', author: 'Jake Ruth <jake2ruth@gmail.com>',
       date: '2026-02-11',
       decoration: [{ kind: 'remote', text: 'origin/stock-unlock' }],
       subject: 'refactor SU into a profitable side business',
@@ -65,7 +65,7 @@ window.TIMELINE = (function () {
     },
     {
       sha: '8b3a7ef', fullSha: '8b3a7ef12d99cc04a51be3d2f2340987a6e5f3c1',
-      branch: 'married', author: 'Jake Ruth <jake@stockunlock.com>',
+      branch: 'married', author: 'Jake Ruth <jake2ruth@gmail.com>',
       date: '2026-01-04',
       subject: 'wedding: ship v1.0',
       tags: ['life', 'merged'],
@@ -84,7 +84,7 @@ window.TIMELINE = (function () {
     { year: '2025' },
     {
       sha: 'e1c4d22', fullSha: 'e1c4d22aa9fc10b7d3a64e8b8a8a8a8a8a8a8a8a',
-      branch: 'married', author: 'Jake Ruth <jake@stockunlock.com>',
+      branch: 'married', author: 'Jake Ruth <jake2ruth@gmail.com>',
       date: '2025-10-02',
       subject: 'engaged: open PR -> main',
       tags: ['life'],
@@ -100,7 +100,7 @@ window.TIMELINE = (function () {
     },
     {
       sha: 'a1c0de0', fullSha: 'a1c0de0beefcafe1234567890abcdef012345678',
-      branch: 'stockunlock', author: 'Jake Ruth <jake@stockunlock.com>',
+      branch: 'stockunlock', author: 'Jake Ruth <jake2ruth@gmail.com>',
       date: '2025-06-14',
       subject: 'AI-driven personal renaissance',
       tags: ['Opus 4.5 tipping point', 'Claude Code', 'Codex'],
@@ -121,7 +121,7 @@ window.TIMELINE = (function () {
     { year: '2024' },
     {
       sha: '9234f1a', fullSha: '9234f1abe77c1180cafe4d2b101f012bdeadbeef',
-      branch: 'stockunlock', author: 'Jake Ruth <jake@stockunlock.com>',
+      branch: 'stockunlock', author: 'Jake Ruth <jake2ruth@gmail.com>',
       date: '2024-12-01',
       subject: 'stepped back to key-decisions-only',
       tags: ['maintenance mode', '3 FTE remain', 'profitable'],
@@ -158,7 +158,7 @@ window.TIMELINE = (function () {
     { year: '2023' },
     {
       sha: 'abc1234', fullSha: 'abc12349d1aa0f4c78ef5b2113a0b4f5c6d7e8f9',
-      branch: 'stockunlock', author: 'Jake Ruth <jake@stockunlock.com>',
+      branch: 'stockunlock', author: 'Jake Ruth <jake2ruth@gmail.com>',
       date: '2023-05-19',
       subject: 'scale peak: 8 employees, thousands of customers',
       tags: ['8 FTE', '~$450K ARR', 'thousands of customers'],
@@ -178,7 +178,7 @@ window.TIMELINE = (function () {
     { year: '2022' },
     {
       sha: '0f8d1cc', fullSha: '0f8d1cc7b2a9e034f58cd27e39a11cf482a7c91e',
-      branch: 'stockunlock', author: 'Jake Ruth <jake@stockunlock.com>',
+      branch: 'stockunlock', author: 'Jake Ruth <jake2ruth@gmail.com>',
       date: '2022-02-28',
       subject: 'YC W22 demo day',
       tags: ['YC W22', '400 users in 2 weeks', '800-900 at close'],
@@ -195,7 +195,7 @@ window.TIMELINE = (function () {
     },
     {
       sha: '3e5b192', fullSha: '3e5b192a11c3d55f67ab9921dd04e6faabbccdd1',
-      branch: 'stockunlock', author: 'Jake Ruth <jake@stockunlock.com>',
+      branch: 'stockunlock', author: 'Jake Ruth <jake2ruth@gmail.com>',
       date: '2022-01-10',
       subject: 'raised $1.335M seed',
       tags: ['$500K YC SAFE', '$835K other', 'CEO + lead interviewer'],
@@ -228,7 +228,7 @@ window.TIMELINE = (function () {
     },
     {
       sha: '2b4c887', fullSha: '2b4c8874a8b1f201a998c2b3e4d5f60711223344',
-      branch: 'stockunlock', author: 'Jake Ruth <jake@stockunlock.com>',
+      branch: 'stockunlock', author: 'Jake Ruth <jake2ruth@gmail.com>',
       date: '2021-09-14',
       subject: 'stock-unlock: public launch',
       tags: ['first paying customer before dinner'],
@@ -245,7 +245,7 @@ window.TIMELINE = (function () {
     },
     {
       sha: 'd5a9e42', fullSha: 'd5a9e42f0123456789abcdef0123456789abcdef',
-      branch: 'oscar', author: 'Jake Ruth <jake@stockunlock.com>',
+      branch: 'oscar', author: 'Jake Ruth <jake2ruth@gmail.com>',
       date: '2021-06-30',
       decoration: [{ kind: 'branch', text: 'oscar-health' }],
       subject: 'oscar-health: final commit',
@@ -260,7 +260,7 @@ window.TIMELINE = (function () {
     },
     {
       sha: '22f0a91', fullSha: '22f0a918d2c3b4a5f6e7d8c9b0a1f2e3d4c5b6a7',
-      branch: 'stockunlock', author: 'Jake Ruth <jake@stockunlock.com>',
+      branch: 'stockunlock', author: 'Jake Ruth <jake2ruth@gmail.com>',
       date: '2021-06-21',
       merge: true,
       subject: "Merge branch 'pronk' into stock-unlock",
@@ -293,7 +293,7 @@ window.TIMELINE = (function () {
     },
     {
       sha: '1a2b3c4', fullSha: '1a2b3c4d5e6f708192a3b4c5d6e7f8091a2b3c4d',
-      branch: 'stockunlock', author: 'Jake Ruth <jake@stockunlock.com>',
+      branch: 'stockunlock', author: 'Jake Ruth <jake2ruth@gmail.com>',
       date: '2021-02-11',
       subject: 'wrote the python screener, shipped it free',
       tags: ['free', 'weekend project'],
@@ -312,7 +312,7 @@ window.TIMELINE = (function () {
     { year: '2020' },
     {
       sha: 'c0ffee1', fullSha: 'c0ffee1deadbeefcafebabef00dbaadf00df00df',
-      branch: 'oscar', author: 'Jake Ruth <jake@stockunlock.com>',
+      branch: 'oscar', author: 'Jake Ruth <jake2ruth@gmail.com>',
       date: '2020-05-12',
       subject: 'senior engineer: own systems end-to-end',
       tags: ['Senior', 'pandemic pivots'],
@@ -328,7 +328,7 @@ window.TIMELINE = (function () {
     { year: '2019' },
     {
       sha: '9badc0d', fullSha: '9badc0de112233445566778899aabbccddeeff00',
-      branch: 'oscar', author: 'Jake Ruth <jake@stockunlock.com>',
+      branch: 'oscar', author: 'Jake Ruth <jake2ruth@gmail.com>',
       date: '2019-03-18',
       subject: 'mid-level: assigned problems, not tickets',
       tags: ['Associate -> Mid'],
@@ -347,7 +347,7 @@ window.TIMELINE = (function () {
     { year: '2018' },
     {
       sha: 'un1cy13', fullSha: 'un1cy13abcde1234567890abcdef1234567890ab',
-      branch: 'rubiks', author: 'Jake Ruth <jake@stockunlock.com>',
+      branch: 'rubiks', author: 'Jake Ruth <jake2ruth@gmail.com>',
       date: '2018-06-22',
       subject: 'talent show: unicycle + rubiks cube',
       tags: ['Josh Kushner was there'],
@@ -363,7 +363,7 @@ window.TIMELINE = (function () {
     { year: '2017' },
     {
       sha: '4e7a1b0', fullSha: '4e7a1b0aa55bb66cc77dd88ee99ff001122334455',
-      branch: 'oscar', author: 'Jake Ruth <jake@stockunlock.com>',
+      branch: 'oscar', author: 'Jake Ruth <jake2ruth@gmail.com>',
       date: '2017-03-06',
       decoration: [{ kind: 'branch', text: 'oscar-health' }],
       subject: 'start oscar-health (under Alan Warren)',
@@ -380,7 +380,7 @@ window.TIMELINE = (function () {
     { year: '2016' },
     {
       sha: 'f00d721', fullSha: 'f00d72198af1cc003feedbeef0a0b0c0d0e0f010',
-      branch: 'commercehub', author: 'Jake Ruth <jake@stockunlock.com>',
+      branch: 'commercehub', author: 'Jake Ruth <jake2ruth@gmail.com>',
       date: '2016-12-22',
       decoration: [{ kind: 'branch', text: 'commercehub' }],
       subject: "commercehub: final commit, off to NYC",
@@ -396,7 +396,7 @@ window.TIMELINE = (function () {
     },
     {
       sha: '7ce99da', fullSha: '7ce99da991122334455667788aabbccddeeff001',
-      branch: 'youni', author: 'Jake Ruth <jake@stockunlock.com>',
+      branch: 'youni', author: 'Jake Ruth <jake2ruth@gmail.com>',
       date: '2016-04-10',
       merge: true,
       subject: "Merge branch 'youni' (project ended)",
@@ -413,7 +413,7 @@ window.TIMELINE = (function () {
     { year: '2015' },
     {
       sha: 'b1e7a03', fullSha: 'b1e7a031a2b3c4d5e6f708192a3b4c5d6e7f8090',
-      branch: 'youni', author: 'Jake Ruth <jake@stockunlock.com>',
+      branch: 'youni', author: 'Jake Ruth <jake2ruth@gmail.com>',
       date: '2015-09-02',
       decoration: [{ kind: 'branch', text: 'youni' }],
       subject: 'youni: co-building a campus social thing',
@@ -428,7 +428,7 @@ window.TIMELINE = (function () {
     },
     {
       sha: 'a1b2c3d', fullSha: 'a1b2c3d4e5f6071829aabbccddeeff001122334',
-      branch: 'main', author: 'Jake Ruth <jake@stockunlock.com>',
+      branch: 'main', author: 'Jake Ruth <jake2ruth@gmail.com>',
       date: '2015-05-17',
       subject: 'B.S. CS + Applied Math, SUNY Albany',
       tags: ['3.88 GPA', "Dean's List every semester"],
@@ -444,7 +444,7 @@ window.TIMELINE = (function () {
     { year: '2014' },
     {
       sha: '5u1ff1e', fullSha: '5u1ff1ea1b2c3d4e5f6789abcdeffedcba987654',
-      branch: 'main', author: 'Jake Ruth <jake@stockunlock.com>',
+      branch: 'main', author: 'Jake Ruth <jake2ruth@gmail.com>',
       date: '2014-04-01',
       subject: 'ACM @ SUNY Albany — elected president',
       tags: ['took over a failing club', 'recruited 20+'],
@@ -458,7 +458,7 @@ window.TIMELINE = (function () {
     },
     {
       sha: 'cube0fe', fullSha: 'cube0fe111222333444555666777888999aaabbb',
-      branch: 'rubiks', author: 'Jake Ruth <jake@stockunlock.com>',
+      branch: 'rubiks', author: 'Jake Ruth <jake2ruth@gmail.com>',
       date: '2014-02-14',
       subject: 'peak: 13.95s avg, 3x3',
       tags: ['Northeast US', 'Nationals'],
@@ -474,7 +474,7 @@ window.TIMELINE = (function () {
     { year: '2013' },
     {
       sha: 'c0de013', fullSha: 'c0de013abcdef1234567890fedcba0987654321f',
-      branch: 'commercehub', author: 'Jake Ruth <jake@stockunlock.com>',
+      branch: 'commercehub', author: 'Jake Ruth <jake2ruth@gmail.com>',
       date: '2013-11-04',
       decoration: [{ kind: 'branch', text: 'commercehub' }],
       subject: 'first day: commercehub intern (became FT)',
@@ -489,7 +489,7 @@ window.TIMELINE = (function () {
     },
     {
       sha: 'b1rthff', fullSha: 'b1rthff0000000000000000000000000000000000',
-      branch: 'main', author: 'Jake Ruth <jake@stockunlock.com>',
+      branch: 'main', author: 'Jake Ruth <jake2ruth@gmail.com>',
       date: '2013-01-01',
       subject: 'git init — start learning to code',
       tags: ['empty repo, curious brain'],
@@ -505,7 +505,7 @@ window.TIMELINE = (function () {
     { year: '2011' },
     {
       sha: 'apcs011', fullSha: 'apcs0111111222223333344444555556666677777',
-      branch: 'main', author: 'Jake Ruth <jake@stockunlock.com>',
+      branch: 'main', author: 'Jake Ruth <jake2ruth@gmail.com>',
       date: '2011-09-06',
       subject: 'AP CS instead of AP Calc — fell in love week 1',
       tags: ['pivotal'],
@@ -521,7 +521,7 @@ window.TIMELINE = (function () {
     { year: '2008' },
     {
       sha: '2008cub', fullSha: '2008cub1111222233334444555566667777888899',
-      branch: 'rubiks', author: 'Jake Ruth <jake@stockunlock.com>',
+      branch: 'rubiks', author: 'Jake Ruth <jake2ruth@gmail.com>',
       date: '2008-09-01',
       decoration: [{ kind: 'branch', text: 'rubiks-cube' }],
       subject: 'rubiks-cube: branch created',
