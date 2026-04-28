@@ -1,7 +1,6 @@
-# Private working notes — raw conversations, personal stories, financials, voice
-# rules, fact spines. Working artifacts only. NEVER commit.
-DISCOVERY.md
-content/
+# Private working notes — raw voice-to-text conversations + personal context.
+# NEVER commit. Lives locally only.
+rambles-personal-bio-conversations.md
 
 # macOS
 .DS_Store

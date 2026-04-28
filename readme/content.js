@@ -1,7 +1,6 @@
-/* All the rendered content lives here.
+/* All the rendered content for the readme medium.
    Markdown strings for the README chrome + sibling docs.
-   Issues + PR data for the Issues/PRs tabs.
-   Facts sourced from /content/content.json. Voice per /content/VOICE.md. */
+   Issues + PR data for the Issues/PRs tabs. */
 
 window.CONTENT = {};
 
