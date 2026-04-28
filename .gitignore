@@ -1,6 +1,7 @@
-# Private discovery notes — raw unedited conversations, personal stories, names,
-# financials, opinions. NEVER commit. Lives locally only.
+# Private working notes — raw conversations, personal stories, financials, voice
+# rules, fact spines. Working artifacts only. NEVER commit.
 DISCOVERY.md
+content/
 
 # macOS
 .DS_Store
