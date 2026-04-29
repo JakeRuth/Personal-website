@@ -79,7 +79,7 @@ I find a thing, get weirdly good at it, and move on. Then a senior-year math cre
 - Including this site you're reading.
 
 **Now (April 2026).**
-- Engaged. Working on what's next. Open to full-time, contract, or equity-founding conversations — quietly, not as a banner.
+- Working on what's next. Open to full-time, contract, or equity-founding conversations — quietly, not as a banner.
 
 ---
 
@@ -132,7 +132,7 @@ I find a thing, get weirdly good at it, and move on. Then a senior-year math cre
 - Scaled to a team of eight and thousands of paying customers.
 - Hit a ~3,900-paying-subscriber wall in 2024 — new sign-ups roughly equaled churn. Tried partial pivots, including B2B sales attempts. Eventually bet on a set of big feature launches in late 2025; they took too long to build, burned the team, and didn't land.
 - Right-sized in early 2026. Now three full-time: two engineers and an executive assistant. I worked it full-tilt up to that point.
-- Runs profitably today. I'm on key-decisions-only and weekend pokes; my co-founder Daniel handles day-to-day. Daniel is full-time on his YouTube channel now.
+- Runs profitably today. Three full-time (two engineers + an exec assistant) handle day-to-day; I'm on key decisions and weekend pokes. My co-founder Daniel stays close to the work alongside me.
 - The real Stock Unlock brag isn't a unicorn outcome — it's that the company is alive, profitable, and has thousands of customers who love it. That alone outperforms most YC W22 cohort companies.
 - Core conviction underneath the company: overcharging for bad software is theft from people who can't afford to be robbed.
 
@@ -337,7 +337,7 @@ A high school classmate told me once that I was good at everything that didn't m
 ### The AI thesis
 Driver in the seat, not driven by the car. AI writes more code than I do; human-reviewed where it matters (business logic, security, system architecture); let loose on cosmetic frontend. Opus 4.5 in early 2026 was the inflection point.
 
-I'm leaning all the way in. AI for coding is just the start — I use it for deep business strategy conversations, drafting emails and PDFs, planning my wedding and bachelor party and honeymoon, even building hardware projects on the side. There's a self-improving social-AI agent with a human-in-the-loop in active development too. The shift from feeling like a 10x engineer to a 100x engineer is real and recent — and I'm fully in it.
+I'm leaning all the way in. AI for coding is just the start — I use it for deep business strategy conversations, drafting emails and PDFs, even building hardware projects on the side. There's a self-improving social-AI agent with a human-in-the-loop in active development too. The shift from feeling like a 10x engineer to a 100x engineer is real and recent — and I'm fully in it.
 
 ### Serendipity as a working principle
 Most of what's worked for me looks lucky in retrospect. AP CS to dodge AP Calc. The Tekkapalooza resume drop. The Oscar interview question. Daniel replying out of exhaustion. YC reaching out via LinkedIn. The pattern is that luck only finds people who keep running at it.

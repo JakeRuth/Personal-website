@@ -818,12 +818,11 @@
     { id: "commerce",     label: "CommerceHub",     group: "co" },
     { id: "youni",        label: "Youni",           group: "co" },
     { id: "ai",           label: "AI discipline",   group: "skill" },
-    { id: "founding",     label: "0→1 Founding",     group: "skill" },
+    { id: "founding",     label: "0→1 Founding",    group: "skill" },
     { id: "python",       label: "Python / Go",     group: "skill" },
     { id: "yc",           label: "YC W22",          group: "skill" },
     { id: "cube",         label: "Rubik's 13.95s",  group: "fun" },
     { id: "unicycle",     label: "Unicycle",        group: "fun" },
-    { id: "wedding",      label: "Getting married", group: "fun" },
   ];
   const LINKS = [
     ["jake", "stock-unlock"],
@@ -835,7 +834,6 @@
     ["jake", "python"],
     ["jake", "cube"],
     ["jake", "unicycle"],
-    ["jake", "wedding"],
     ["stock-unlock", "founding"],
     ["stock-unlock", "ai"],
     ["stock-unlock", "yc"],
@@ -932,9 +930,12 @@
       const lines = [
         "Want to know something? Click a node.",
         "That cube node is worth a click.",
-        "Rubik's 13.95 is real, by the way.",
-        "Stock Unlock. Eight at peak. Profitable today.",
+        "Rubik's 13.95s average is real, by the way.",
+        "Stock Unlock. YC W22. Runs profitably. Thousands of customers.",
         "Ask me about the Pronk emails.",
+        "AP CS to dodge AP Calc. Loop closed in five minutes.",
+        "Tekkapalooza resume drop. One non-recruiting event, three years of CommerceHub.",
+        "Driver in the seat, not driven by the car.",
       ];
       setBubble(lines[(Math.random() * lines.length) | 0]);
     });
@@ -965,18 +966,17 @@
 
   function nodeBlurb(id) {
     switch (id) {
-      case "jake":         return "Jake. Engineer and founder. Re-entering the workforce. Getting married.";
-      case "stock-unlock": return "Built it. Eight employees at peak. Thousands of paying customers. Profitable. Not full-time there anymore.";
-      case "oscar":        return "Senior SWE, 2017 to 2021. Grew with the team from about 50 engineers to over 150.";
-      case "commerce":     return "First real job. Took down prod as an intern. Learned what code-review culture actually feels like.";
-      case "youni":        return "Co-founded a React Native college social app in 2015. Couldn't crack cold-start. Shut down within six months.";
-      case "ai":           return "Driver in the driver's seat, not driven by the car. Reviews every line before it ships.";
-      case "founding":     return "Raised $1.335M seed. Led the YC interview. Scaled a team to eight. Ran profitably.";
-      case "python":       return "Python, Golang, TypeScript, React. React since pre-hooks era.";
-      case "yc":           return "YC Winter 2022. Went in before the product was launched; launched during the batch. 400 paying users in two weeks.";
-      case "cube":         return "3x3 average 13.95 seconds. Competed 2008 to 2014 at Northeast US and Nationals.";
-      case "unicycle":     return "Solved a cube on a unicycle at an Oscar Health talent show. Josh Kushner was in the audience.";
-      case "wedding":      return "Getting married this year. Pretty happy about it.";
+      case "jake":         return "Jake. Engineer and founder. NYC area. Working on what's next.";
+      case "stock-unlock": return "Built it. YC W22. Scaled to eight and thousands of paying customers. Right-sized in early 2026 to three full-time. Runs profitably; I'm on key decisions only.";
+      case "oscar":        return "Associate to Mid to Senior, March 2017 to 2021. Joined at ~50 engineers under Alan Warren; left at 150+. Declined the team-lead path twice.";
+      case "commerce":     return "First real engineering job, 2013-2016, Albany. Took down prod as an intern with a button I shouldn't have had access to. Manager said the system was the problem, not the intern.";
+      case "youni":        return "Co-founded with Anthony and Jordan. College-localized social iOS app, React Native v0.13/0.14. Launched at SUNY Albany and Binghamton; 20,000+ posts at peak. No business model, unsolved cold-start. Folded after ~4-5 months full-time.";
+      case "ai":           return "Driver in the seat, not driven by the car. AI writes more code than I do. Human-reviewed where it matters: business logic, security, architecture.";
+      case "founding":     return "Raised $1.335M seed ($500K YC + $835K). Led the YC interview. 400 paying users in launch week, 800-900 by seed close. Scaled to a team of eight.";
+      case "python":       return "Python, Golang, TypeScript, React. React since the pre-hooks era at CommerceHub.";
+      case "yc":           return "YC Winter 2022. YC reached out cold via LinkedIn before we'd even applied. Outperforms most of the cohort by being alive, profitable, and loved.";
+      case "cube":         return "3x3 average 13.95s. Competed 2008-2014 at WCA-sanctioned Northeast US events and Nationals. Top-20 in the US at Pyraminx at peak.";
+      case "unicycle":     return "Trick-grade. Started junior year of high school. Mountain unicycle, one-footed, forward and backward. Solved a cube on it on stage at an Oscar talent show. Twice.";
       default: return "Related to Jake.";
     }
   }

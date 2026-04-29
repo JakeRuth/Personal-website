@@ -4,3 +4,6 @@ rambles-personal-bio-conversations.md
 
 # macOS
 .DS_Store
+
+# Local Claude Code settings (per-machine preferences, not project rules)
+.claude/settings.local.json

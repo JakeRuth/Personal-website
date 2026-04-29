@@ -143,15 +143,15 @@
     return (
       '<div class="sideart-variant">' +
         '<div class="sideart-col">' +
-          '<div class="sideart-wordmark">JAKE RUTH <span class="wm-v">v13.0</span></div>' +
+          '<div class="sideart-wordmark">JAKE RUTH</div>' +
           '<div class="sideart-rule-h" aria-hidden="true"></div>' +
 
           '<div class="sideart-heading">What&rsquo;s in the box</div>' +
           '<ul class="sideart-list">' +
-            '<li>13 years shipping</li>' +
+            '<li>15 years shipping</li>' +
             '<li>1 YC-backed company (W22)</li>' +
             '<li>1 Rubik&rsquo;s cube (13.95s avg)</li>' +
-            '<li>8 former employees</li>' +
+            '<li>4 companies (2 co-founded)</li>' +
             '<li>0 tolerance for bad software</li>' +
           '</ul>' +
 
@@ -181,13 +181,10 @@
         '</div>' +
         '<div class="welcome-main">' +
           '<div class="welcome-mark" aria-hidden="true">' +
-            '<span class="wm-sq wm-a"></span>' +
-            '<span class="wm-sq wm-b"></span>' +
-            '<span class="wm-sq wm-c"></span>' +
+            '<img src="./images/logo.gif" alt="" />' +
           '</div>' +
           '<h1>Jake Ruth Setup</h1>' +
-          '<p class="welcome-sub">Takes about two seconds. Pick your flow through.</p>' +
-          '<p class="welcome-body">All three ship the same Jake. Just different chrome.</p>' +
+          '<p class="welcome-sub">Takes about two seconds. Click Next to continue.</p>' +
         '</div>' +
       '</div>'
     );
@@ -217,7 +214,7 @@
       '<div class="picker">' +
         '<div class="picker-head">' +
           '<h2>Choose your experience</h2>' +
-          '<p class="dim">Pick one, then hit Next. Same voice, different chrome.</p>' +
+          '<p class="dim">All three ship the same content, just through different coding art.</p>' +
         '</div>' +
         '<div class="exp-grid" id="exp-grid" role="radiogroup" aria-label="Experience">' +
           cards +
@@ -576,6 +573,9 @@
         return;
       case "mail":
         window.location.href = "mailto:jake2ruth@gmail.com?subject=Saw%20your%20site";
+        return;
+      case "resume":
+        window.open("./official_resume.pdf", "_blank", "noopener");
         return;
     }
   }

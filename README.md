@@ -19,6 +19,6 @@ Open `http://localhost:8000/`.
 ## Pointers
 
 - `CLAUDE.md` — durable project context for AI sessions
-- `DISCOVERY.md` — Jake's interview notes (the source for voice/content)
-- `content/` — canonical structured content + voice rules + parity tracking
+- `BACKBONE.md` — canonical content source (every fact on the site lives here first)
+- `rambles-personal-bio-conversations.md` — Jake's voice-to-text bio transcripts (gitignored)
 - `shell/` — cross-experience chrome (top-nav, cube transition, solver)

@@ -9,15 +9,14 @@ window.TIMELINE = (function () {
 
   /* ---------- branches ---------- */
   const BRANCHES = [
-    { id: 'next',        name: 'next-chapter', colorVar: '--c-next',        years: '2026 → now' },
-    { id: 'main',        name: 'main',         colorVar: '--c-main',        years: '2013 → now' },
+    { id: 'main',        name: 'main',         colorVar: '--c-main',        years: '2011 → now' },
+    { id: 'ai',          name: 'ai-era',       colorVar: '--c-next',        years: '2022 → now' },
     { id: 'stockunlock', name: 'stock-unlock', colorVar: '--c-stockunlock', years: '2021 → now' },
     { id: 'pronk',       name: 'pronk',        colorVar: '--c-pronk',       years: '2021' },
     { id: 'oscar',       name: 'oscar-health', colorVar: '--c-oscar',       years: '2017–2021' },
-    { id: 'youni',       name: 'youni',        colorVar: '--c-youni',       years: '2015–2016' },
+    { id: 'youni',       name: 'youni',        colorVar: '--c-youni',       years: '2015–2017' },
     { id: 'commercehub', name: 'commercehub',  colorVar: '--c-commercehub', years: '2013–2016' },
     { id: 'rubiks',      name: 'rubiks-cube',  colorVar: '--c-rubiks',      years: '2008–2014' },
-    { id: 'married',     name: 'married',      colorVar: '--c-married',     years: '2025–2026' },
   ];
 
   /* ---------- commits (newest first, year headers, strict chrono within year) ---------- */
@@ -25,133 +24,106 @@ window.TIMELINE = (function () {
     { year: '2026' },
     {
       sha: 'c0d3baf', fullSha: 'c0d3baf8e27a1d33f9b0c5e7e1a9a2b4f7c8d99e',
-      branch: 'next', author: 'Jake Ruth <jake2ruth@gmail.com>',
-      date: '2026-04-20',
-      decoration: [{ kind: 'head', text: 'HEAD -> next-chapter' }],
-      subject: "the driver's seat, chapter II",
-      tags: ['available', 'NYC', 'open-to-work'],
+      branch: 'main', author: 'Jake Ruth <jake2ruth@gmail.com>',
+      date: '2026-04',
+      decoration: [{ kind: 'head', text: 'HEAD -> main' }],
+      subject: 'working on what is up next; quietly open',
+      tags: ['available', 'NYC', 'open to talk'],
       body:
-        "Stock Unlock is humming as a profitable side business. Not the day job anymore. " +
-        "Opening a new branch. Undecided on upstream — could be agents, could be tools for builders, " +
-        "could be something dumber and more fun. What I do know: the driver stays in the driver's seat. " +
-        "AI is the car, not the chauffeur.",
+        "Stock Unlock runs profitably without me in the seat day-to-day. Open to full-time, contract, or equity-founding " +
+        "conversations — quietly, not as a banner. Has to be a problem I'd care about. " +
+        "Driver in the seat, not driven by the car.",
       diffstat: {
         items: [
-          { file: 'status.md',  added: 1, removed: 1, note: 'available: true' },
-          { file: 'inbox/',     added: 0, removed: 0, note: 'accepting applications' },
+          { file: 'status.md',  added: 1, removed: 1, note: 'available' },
+          { file: 'inbox/',     added: 0, removed: 0, note: 'open' },
         ],
-        summary: '1 chapter changed, +1 fresh start, -1 job title',
+        summary: '1 status updated, 0 banners raised',
+      },
+    },
+    {
+      sha: 'op4dot5', fullSha: 'op4dot5beefcafe1234567890abcdef0123456789',
+      branch: 'ai', author: 'Jake Ruth <jake2ruth@gmail.com>',
+      date: '2026-03',
+      decoration: [{ kind: 'branch', text: 'ai-era' }],
+      subject: 'Opus 4.5: 10x → 100x inflection',
+      tags: ['Opus 4.5', 'tidal-wave inflection'],
+      body:
+        "Tool progression: Copilot ('cool, not life-changing') → Cursor (~1-2 years heavy) → Claude Code dabble through 2025 → " +
+        "Opus 4.5 in early 2026 was the tidal-wave inflection. Now on Opus 4.7. " +
+        "Heavy Claude Code + Codex + CMUX. Built my own harness via Open Hands. " +
+        "Driver in the seat, not driven by the car.",
+      diffstat: {
+        items: [
+          { file: 'tools/claude-code', added: 1200, removed: 0, note: 'heavy' },
+          { file: 'tools/codex',       added:  400, removed: 0, note: 'heavy' },
+          { file: 'tools/cmux',        added:  150, removed: 0, note: 'multi-instance' },
+          { file: 'tools/open-hands',  added:  300, removed: 0, note: 'own harness' },
+        ],
+        summary: '4 tools adopted, 1 mindset shifted',
       },
     },
     {
       sha: '5741a8c', fullSha: '5741a8c0b2e1f3d49a8b76c2d5e7f01122334455',
       branch: 'stockunlock', author: 'Jake Ruth <jake2ruth@gmail.com>',
-      date: '2026-02-11',
+      date: '2026-02',
       decoration: [{ kind: 'remote', text: 'origin/stock-unlock' }],
-      subject: 'refactor SU into a profitable side business',
-      tags: ['$5-6K/yr saved', 'AWS SES', 'Webflow'],
+      subject: 'right-size SU to three FT; move to key decisions only',
+      tags: ['~3,900 wall in 2024', '3 FT remain', 'profitable'],
       body:
-        "Migrated off Customer.io to self-hosted AWS SES with custom admin panels. " +
-        "Rewrote the marketing site in Webflow. Overhauled SEO and GEO. " +
-        "Trimmed what did not compound. Kept the parts customers hug.",
+        "Hit a ~3,900-paying-subscriber wall in 2024 — sign-ups roughly equaled churn. " +
+        "Tried partial pivots, including B2B sales attempts. Bet on big late-2025 feature launches; " +
+        "they took too long, burned the team, didn't land. Right-sized in early 2026. " +
+        "Three full-time (two engineers + an exec assistant) handle day-to-day. Worked it full-tilt up to that point.",
       diffstat: {
         items: [
-          { file: 'infra/customer.io',    added: 0,    removed: 2100, note: 'removed' },
-          { file: 'infra/aws-ses/*',      added: 1840, removed: 0,    note: 'self-hosted' },
-          { file: 'marketing/webflow/*',  added: 2500, removed: 800,  note: 'rewrite' },
+          { file: 'ops/payroll', added: 0,   removed: 5, note: 'right-sized' },
+          { file: 'ops/oncall',  added: 0,   removed: 1, note: 'jake removed' },
+          { file: 'finance/',    added: 400, removed: 0, note: 'profitability held' },
         ],
-        summary: '3 systems changed, +$5-6K/yr saved, -1 vendor',
-      },
-    },
-    {
-      sha: '8b3a7ef', fullSha: '8b3a7ef12d99cc04a51be3d2f2340987a6e5f3c1',
-      branch: 'married', author: 'Jake Ruth <jake2ruth@gmail.com>',
-      date: '2026-01-04',
-      subject: 'wedding: ship v1.0',
-      tags: ['life', 'merged'],
-      body:
-        "Years of pair programming, now under a legal contract. Vows compiled cleanly. " +
-        "No rollback plan needed. Receipts: a small photo album, a bigger group chat, and a stupidly good playlist.",
-      diffstat: {
-        items: [
-          { file: 'personal/wedding.md', added: 1, removed: 0, note: 'married' },
-          { file: '.gitignore',          added: 1, removed: 0, note: 'cold feet' },
-        ],
-        summary: '1 person added, 0 removed',
+        summary: 'team right-sized respectfully, profitability held',
       },
     },
 
     { year: '2025' },
     {
-      sha: 'e1c4d22', fullSha: 'e1c4d22aa9fc10b7d3a64e8b8a8a8a8a8a8a8a8a',
-      branch: 'married', author: 'Jake Ruth <jake2ruth@gmail.com>',
-      date: '2025-10-02',
-      subject: 'engaged: open PR -> main',
-      tags: ['life'],
-      body:
-        "Asked, got a yes. Probably the only merge I have ever been nervous about. " +
-        "Rings fit. Parents cried. Schema migration forthcoming.",
-      diffstat: {
-        items: [
-          { file: 'personal/wedding.md', added: 64, removed: 4, note: 'drafting vows' },
-        ],
-        summary: '1 relationship upgraded, zero regressions',
-      },
-    },
-    {
       sha: 'a1c0de0', fullSha: 'a1c0de0beefcafe1234567890abcdef012345678',
-      branch: 'stockunlock', author: 'Jake Ruth <jake2ruth@gmail.com>',
-      date: '2025-06-14',
-      subject: 'AI-driven personal renaissance',
-      tags: ['Opus 4.5 tipping point', 'Claude Code', 'Codex'],
+      branch: 'ai', author: 'Jake Ruth <jake2ruth@gmail.com>',
+      date: '2025-12',
+      subject: 'ship X poster, marketing rewrite, ops bot, SEO',
+      tags: ['LangChain', 'Playwright', 'self-improving'],
       body:
-        "Opus 4.5 was the inflection point. Driver in the driver's seat, not driven by the car. " +
-        "AI now writes more code than I do — and I read every line before it ships. " +
-        "Rebuilt half of SU this way without hiring.",
+        "Migrated off Customer.io to self-hosted AWS SES (~$5-6K/yr saved, one weekend). " +
+        "Migrated marketing site off Webflow to a self-hosted codebase (~$1K/yr saved, 20x content footprint, no more contractors). " +
+        "Built the X poster — a self-improving social-AI agent with a human-in-the-loop. Bootstrap-trained on thousands of tagged posts; " +
+        "Playwright for in-product screenshots; LangChain pipeline rewrites its own prompt from human feedback + live engagement. " +
+        "Built a permissioned Discord ops bot on EC2 + Docker Compose for non-technical teammates. Programmatic SEO + GEO pages. " +
+        "Code review automation across the team.",
       diffstat: {
         items: [
-          { file: 'tools/claude-code', added: 1200, removed: 0, note: 'adopted' },
-          { file: 'tools/codex',       added:  400, removed: 0, note: 'adopted' },
-          { file: 'tools/cmux',        added:  150, removed: 0, note: 'adopted' },
+          { file: 'infra/aws-ses/*',     added: 1840, removed: 0,    note: 'self-hosted' },
+          { file: 'marketing/site/*',    added: 2500, removed: 800,  note: '20x pages' },
+          { file: 'agents/x-poster/*',   added: 1200, removed: 0,    note: 'self-improving' },
+          { file: 'agents/ops-bot/*',    added: 600,  removed: 0,    note: 'permissioned' },
         ],
-        summary: '3 tools added, 1 mindset shifted',
+        summary: '4 systems shipped, $6-7K/yr saved, 20x marketing footprint',
       },
     },
-
     { year: '2024' },
     {
       sha: '9234f1a', fullSha: '9234f1abe77c1180cafe4d2b101f012bdeadbeef',
       branch: 'stockunlock', author: 'Jake Ruth <jake2ruth@gmail.com>',
-      date: '2024-12-01',
-      subject: 'stepped back to key-decisions-only',
-      tags: ['maintenance mode', '3 FTE remain', 'profitable'],
+      date: '2024-09',
+      subject: 'hit ~3,900-paying-subscriber wall',
+      tags: ['plateau', 'churn ≈ signups'],
       body:
-        "Stall point. Hard numbers, hard conversations, right-sized the team. " +
-        "Company continues with three full-time employees. Focus switched from " +
-        "\"grow at all costs\" to \"operate profitably.\" Both goals now hit.",
+        "Growth flattened — new sign-ups roughly equaled churn. Tried partial pivots, including B2B sales attempts. " +
+        "Began betting on a set of big feature launches for late 2025.",
       diffstat: {
         items: [
-          { file: 'ops/payroll', added: 0,   removed: 5, note: '5 employees off' },
-          { file: 'ops/oncall',  added: 0,   removed: 1, note: 'jake removed' },
-          { file: 'finance/',    added: 400, removed: 0, note: 'profitability' },
+          { file: 'metrics/subs.csv', added: 0, removed: 0, note: 'flat' },
         ],
-        summary: '5 employees removed (respectfully), profitability added',
-      },
-    },
-    {
-      sha: 'a17d3ca', fullSha: 'a17d3caf0b0c1d2e3f4a5b6c7d8e9f0011223344',
-      branch: 'stockunlock', author: 'Daniel Pronk <daniel@stockunlock.com>',
-      date: '2024-08-12',
-      subject: 'daniel -> youtube full-time',
-      tags: ['division of labor'],
-      body:
-        "Daniel goes all-in on the channel and the education side. We keep the product tight. " +
-        "Division of labor that actually labors.",
-      diffstat: {
-        items: [
-          { file: 'content/youtube/*', added: 220, removed: 80, note: 'daniel' },
-        ],
-        summary: '1 co-founder re-routed, 0 burned bridges',
+        summary: 'plateau identified',
       },
     },
 
@@ -159,19 +131,17 @@ window.TIMELINE = (function () {
     {
       sha: 'abc1234', fullSha: 'abc12349d1aa0f4c78ef5b2113a0b4f5c6d7e8f9',
       branch: 'stockunlock', author: 'Jake Ruth <jake2ruth@gmail.com>',
-      date: '2023-05-19',
-      subject: 'scale peak: 8 employees, thousands of customers',
-      tags: ['8 FTE', '~$450K ARR', 'thousands of customers'],
+      date: '2023-05',
+      subject: 'scale: 8 employees, thousands of paying customers',
+      tags: ['8 FTE', 'thousands of customers'],
       body:
-        "Peak team of eight. Thousands of paying customers. ARR around $450K. " +
-        "The market caught a cold — we caught a fever. Every decision felt like merging into prod.",
+        "Team of eight. Thousands of paying subscribers. Worked it full-tilt.",
       diffstat: {
         items: [
-          { file: 'ops/payroll',    added: 8,    removed: 0,  note: 'peak headcount' },
+          { file: 'ops/payroll',    added: 8,    removed: 0,  note: 'team of 8' },
           { file: 'customers/',     added: 2800, removed: 40, note: 'net growth' },
-          { file: 'ops/burn-rate',  added: 1,    removed: 0,  note: 'climbing' },
         ],
-        summary: '8 employees added, 0 removed — for now',
+        summary: '8 employees, thousands of customers',
       },
     },
 
@@ -179,35 +149,33 @@ window.TIMELINE = (function () {
     {
       sha: '0f8d1cc', fullSha: '0f8d1cc7b2a9e034f58cd27e39a11cf482a7c91e',
       branch: 'stockunlock', author: 'Jake Ruth <jake2ruth@gmail.com>',
-      date: '2022-02-28',
-      subject: 'YC W22 demo day',
-      tags: ['YC W22', '400 users in 2 weeks', '800-900 at close'],
+      date: '2022-03',
+      subject: 'YC W22: launched before raising',
+      tags: ['YC W22', '400 users in launch week', '800-900 at seed close'],
       body:
-        "Three minutes to explain why retail investors deserve pro tools. Slides tight, voice steady. " +
-        "YC pushed us to launch before raising. 400 paying users in two weeks. 800-900 at seed close.",
+        "YC pushed us to launch before raising. We did. 400 paying users in launch week. 800-900 by seed close.",
       diffstat: {
         items: [
-          { file: 'deck/demo-day.key', added: 1,   removed: 0, note: 'presented' },
-          { file: 'users/paying',      added: 400, removed: 0, note: 'in 2 weeks' },
+          { file: 'product/v1',   added: 1,   removed: 0, note: 'launched' },
+          { file: 'users/paying', added: 400, removed: 0, note: 'launch week' },
         ],
-        summary: '1 pitch delivered, 400 users acquired',
+        summary: '1 product launched, 400 users acquired in week 1',
       },
     },
     {
       sha: '3e5b192', fullSha: '3e5b192a11c3d55f67ab9921dd04e6faabbccdd1',
       branch: 'stockunlock', author: 'Jake Ruth <jake2ruth@gmail.com>',
-      date: '2022-01-10',
+      date: '2022-01',
       subject: 'raised $1.335M seed',
-      tags: ['$500K YC SAFE', '$835K other', 'CEO + lead interviewer'],
+      tags: ['$500K YC', '$835K other investors', 'led the YC interview'],
       body:
-        "SAFEs signed. Fund counter ticked. Felt less like winning and more like someone handing you a bigger backpack before a longer hike. " +
-        "I led the YC interview myself. Nick was mostly there for the beer.",
+        "Closed $1.335M: $500K from YC, $835K from other investors. I led the YC interview.",
       diffstat: {
         items: [
-          { file: 'balance.json', added: 1335000, removed: 0, note: 'seed round' },
+          { file: 'balance.json', added: 1335000, removed: 0, note: 'seed' },
           { file: 'cap-table.md', added: 14,      removed: 0, note: 'investors' },
         ],
-        summary: '$1.335M deposited, 0 walked away',
+        summary: '$1.335M deposited',
       },
     },
 
@@ -215,9 +183,9 @@ window.TIMELINE = (function () {
     {
       sha: '7d9e041', fullSha: '7d9e041c882a4bdde1fa43b2109876543210fedc',
       branch: 'stockunlock', author: 'Y Combinator <bot@yc>',
-      date: '2021-12-05',
+      date: '2021-12',
       subject: 'YC reaches out cold via LinkedIn',
-      tags: ['cold outreach', 'before we even applied'],
+      tags: ['cold inbound', 'before we applied'],
       body:
         "An email. A calendar invite. A group chat melt-down in a two-person company. " +
         "They found us before we found them.",
@@ -227,32 +195,16 @@ window.TIMELINE = (function () {
       },
     },
     {
-      sha: '2b4c887', fullSha: '2b4c8874a8b1f201a998c2b3e4d5f60711223344',
-      branch: 'stockunlock', author: 'Jake Ruth <jake2ruth@gmail.com>',
-      date: '2021-09-14',
-      subject: 'stock-unlock: public launch',
-      tags: ['first paying customer before dinner'],
-      body:
-        "v1 out the door. Screens, ratios, watchlists, a scary login button. " +
-        "First paying customer before dinner. I ate dinner twice.",
-      diffstat: {
-        items: [
-          { file: 'src/**/*',   added: 18420, removed: 0, note: 'initial ship' },
-          { file: 'customers/', added: 1,     removed: 0, note: 'first paying' },
-        ],
-        summary: '211 files changed, +18,420 insertions, 1 customer',
-      },
-    },
-    {
       sha: 'd5a9e42', fullSha: 'd5a9e42f0123456789abcdef0123456789abcdef',
       branch: 'oscar', author: 'Jake Ruth <jake2ruth@gmail.com>',
-      date: '2021-06-30',
+      date: '2021-08',
       decoration: [{ kind: 'branch', text: 'oscar-health' }],
-      subject: 'oscar-health: final commit',
-      tags: ['left Oscar', 'brought Nick'],
+      subject: 'oscar-health: final commit; brought Nick Puljik with me',
+      tags: ['~150+ engineers at exit', 'declined team-lead twice'],
       body:
-        "Four years in health insurance. Learned how real systems get built and broken. " +
-        "Thanked the team, shipped the last PR, closed the laptop on a Friday. Brought Nick with me.",
+        "Four+ years at Oscar. Joined at ~50 engineers under Alan Warren, left at ~150+. " +
+        "Associate → Mid → Senior. Declined the team-lead path twice. " +
+        "Brought Nick over to Stock Unlock.",
       diffstat: {
         items: [{ file: 'offboarding.md', added: 1, removed: 0, note: 'exit' }],
         summary: '1 exit, 1 co-founder recruited',
@@ -261,51 +213,52 @@ window.TIMELINE = (function () {
     {
       sha: '22f0a91', fullSha: '22f0a918d2c3b4a5f6e7d8c9b0a1f2e3d4c5b6a7',
       branch: 'stockunlock', author: 'Jake Ruth <jake2ruth@gmail.com>',
-      date: '2021-06-21',
+      date: '2021-06',
       merge: true,
       subject: "Merge branch 'pronk' into stock-unlock",
-      tags: ['merge', 'cofounders'],
+      tags: ['cofounders', 'merge'],
       body:
-        "Fast-forward not possible. Daniel and I had been drifting on two repos of the same idea. " +
-        "Combined them. He brought the voice, I brought the backend. Conflicts resolved in favor of shipping.",
+        "Daniel and I joined forces. He brought voice and audience; I brought the backend.",
       diffstat: {
         items: [
           { file: 'src/**/*',  added: 3120, removed: 200, note: 'merged' },
-          { file: 'content/*', added: 900,  removed: 0,   note: 'daniel' },
         ],
-        summary: '2 repos merged, 1 co-founder acquired',
+        summary: '2 efforts merged, 1 co-founder acquired',
+      },
+    },
+    {
+      sha: 'discpop', fullSha: 'discpop12d99cc04a51be3d2f2340987a6e5f3c1c',
+      branch: 'pronk', author: 'Jake Ruth <jake2ruth@gmail.com>',
+      date: '2021-05',
+      subject: 'Discord drop: PMF moment',
+      tags: ['"I would pay for this"'],
+      body:
+        "Daniel let me into his paid Discord (~1,000 members behind a ~100K-subscriber YouTube channel). " +
+        "Dropped an early Excel-generator alpha that worked for a handful of stocks. Replies came fast: " +
+        "'are you selling this?' / 'could you add this stock?' / 'I would pay for this.' " +
+        "That's the moment I knew there was a business in it.",
+      diffstat: {
+        items: [
+          { file: 'discord/replies.txt', added: 47, removed: 0, note: 'PMF signal' },
+        ],
+        summary: '1 alpha dropped, 1 thesis confirmed',
       },
     },
     {
       sha: '8fea115', fullSha: '8fea115c1d0b0f9e8d7c6b5a4f3e2d1c0b9a8877',
       branch: 'pronk', author: 'Daniel Pronk <daniel@pronk.yt>',
-      date: '2021-04-02',
+      date: '2021-04',
       decoration: [{ kind: 'branch', text: 'pronk' }],
-      subject: 'finally replies to the cold DM',
-      tags: ['persistence'],
+      subject: 'finally replies after ~6 weeks of cold emails',
+      tags: ['persistence', "'how can I help you?'"],
       body:
-        "I had built a Python screener and shipped it free on his forum. Kept emailing him weekly. " +
-        "He replied after about six weeks to make me stop. We got on a call. I cracked a beer. He got it anyway.",
+        "I'd built a Python automation in a weekend that hit cheap financial APIs and exported the same Excel format he was making by hand. " +
+        "Emailed him weekly. Commented on his content. Tried to give him the tool for free. " +
+        "Six weeks in, he replied — to make me stop. Hopped on a video call, cracked a beer, instantly hit it off. " +
+        "He let me into his paid Discord. Asked if I could build web apps. I'd been doing it professionally for six years.",
       diffstat: {
         items: [{ file: 'inbox/daniel.eml', added: 2, removed: 0, note: 'first reply' }],
         summary: '6 weeks of silence resolved',
-      },
-    },
-    {
-      sha: '1a2b3c4', fullSha: '1a2b3c4d5e6f708192a3b4c5d6e7f8091a2b3c4d',
-      branch: 'stockunlock', author: 'Jake Ruth <jake2ruth@gmail.com>',
-      date: '2021-02-11',
-      subject: 'wrote the python screener, shipped it free',
-      tags: ['free', 'weekend project'],
-      body:
-        "Open-sourced weekend project for retail investors on Daniel's forum. " +
-        "Free. No ask. Just \"does this help?\" The answer came back loud.",
-      diffstat: {
-        items: [
-          { file: 'screener.py', added: 480, removed: 10, note: 'core logic' },
-          { file: 'README.md',   added: 60,  removed: 0,  note: 'instructions' },
-        ],
-        summary: '480 lines given away, 1 cofounder earned',
       },
     },
 
@@ -313,34 +266,78 @@ window.TIMELINE = (function () {
     {
       sha: 'c0ffee1', fullSha: 'c0ffee1deadbeefcafebabef00dbaadf00df00df',
       branch: 'oscar', author: 'Jake Ruth <jake2ruth@gmail.com>',
-      date: '2020-05-12',
-      subject: 'senior engineer: own systems end-to-end',
-      tags: ['Senior', 'pandemic pivots'],
+      date: '2020-09',
+      subject: 'senior at Oscar; declined team-lead path twice',
+      tags: ['Senior', 'go-to across two teams'],
       body:
-        "Pandemic rewrote every roadmap. We rewrote ours twice. Became the person whose name lands " +
-        "in the on-call rotation for the weird bugs. Declined the manager track — twice.",
+        "Owned services across Python and Golang back-ends and a React front-end, including the internal site for hundreds of " +
+        "Tempe care-ops staff. SRE-adjacent on a custom-hosted analytics integration. By senior year, go-to across two teams " +
+        "for full-stack questions. Declined team-lead twice — already writing the early Stock Unlock code on the side.",
       diffstat: {
-        items: [{ file: 'services/**/*', added: 3400, removed: 1100, note: 'rewrite' }],
-        summary: '54 files changed, 2 pivots absorbed',
+        items: [{ file: 'services/**/*', added: 3400, removed: 1100, note: 'ownership' }],
+        summary: '54 files changed, 2 manager offers declined',
+      },
+    },
+    {
+      sha: 'tshow02', fullSha: 'tshow02abcde1234567890abcdef0123456789ab',
+      branch: 'rubiks', author: 'Jake Ruth <jake2ruth@gmail.com>',
+      date: '2020-08',
+      subject: 'talent show #2 (encore)',
+      tags: ['retraining', 'mastery decays'],
+      body:
+        "Two years later, mid-20s. Slightly less elaborate — kept the cube-on-unicycle finale, dropped most of the obstacle course. " +
+        "The funny part: I had to retrain. Spent a couple of days outside my apartment before the show re-grinding the basics — " +
+        "riding backwards, the cube-on-wheels combo. Mastery decays fast if you don't tend it.",
+      diffstat: {
+        items: [{ file: 'hobbies/talent-show-2.md', added: 8, removed: 0, note: 'encore' }],
+        summary: '1 encore shipped, 2 days retraining',
       },
     },
 
     { year: '2019' },
     {
+      sha: 'climb20', fullSha: 'climb20cafebabe0011223344556677889900aabb',
+      branch: 'oscar', author: 'Jake Ruth <jake2ruth@gmail.com>',
+      date: '2019-08',
+      subject: 'picked up indoor rock climbing',
+      tags: ['hobby', 'with the team'],
+      body:
+        "Indoor, with friends from the Oscar team. Two-ish years of steady climbing. " +
+        "Problem-solving with your body, plus the social side. Would pick it up again in a heartbeat.",
+      diffstat: {
+        items: [{ file: 'hobbies/climbing.md', added: 14, removed: 0, note: 'new' }],
+        summary: '1 hobby acquired',
+      },
+    },
+    {
+      sha: 'em0t1qu', fullSha: 'em0t1qu112233445566778899aabbccddeeff001',
+      branch: 'oscar', author: 'Jake Ruth <jake2ruth@gmail.com>',
+      date: '2019-05',
+      subject: 'Emotiqueue: hackathon → real internal tool',
+      tags: ['Peter', '3,000+ emoticons', '50+ commands'],
+      body:
+        "Built with my coworker Peter. Started as a custom-emoticon flood (HipChat → Slack). " +
+        "Hackathon project that routed messages through queues-into-queues + a ticketing system back into chat. " +
+        "By the time I left: 3,000+ custom emoticons, 50+ silly entertainment-focused commands, " +
+        "and a codebase other engineers across the company committed to. Half goof, half real internal tool.",
+      diffstat: {
+        items: [{ file: 'fun/emotiqueue/*', added: 2400, removed: 60, note: 'real users' }],
+        summary: '1 chatbot shipped, 1 culture moment seeded',
+      },
+    },
+    {
       sha: '9badc0d', fullSha: '9badc0de112233445566778899aabbccddeeff00',
       branch: 'oscar', author: 'Jake Ruth <jake2ruth@gmail.com>',
-      date: '2019-03-18',
-      subject: 'mid-level: assigned problems, not tickets',
-      tags: ['Associate -> Mid'],
+      date: '2019-03',
+      subject: 'Mid level at Oscar',
+      tags: ['Associate → Mid'],
       body:
-        "Went from \"assigned tickets\" to \"assigned problems.\" Much better. Also: built an over-engineered " +
-        "internal chatbot from hackathon scraps with Peter. Started as a HipChat emoji pipeline. Got out of hand.",
+        "Promoted to Mid within ~1 year of leveling.",
       diffstat: {
         items: [
           { file: 'services/**/*', added: 980, removed: 310, note: 'real work' },
-          { file: 'fun/chatbot',   added: 420, removed: 10,  note: 'with Peter' },
         ],
-        summary: '1 level up, 1 friendship compiled',
+        summary: '1 level up',
       },
     },
 
@@ -348,14 +345,16 @@ window.TIMELINE = (function () {
     {
       sha: 'un1cy13', fullSha: 'un1cy13abcde1234567890abcdef1234567890ab',
       branch: 'rubiks', author: 'Jake Ruth <jake2ruth@gmail.com>',
-      date: '2018-06-22',
-      subject: 'talent show: unicycle + rubiks cube',
-      tags: ['Josh Kushner was there'],
+      date: '2018-06',
+      subject: 'talent show #1: cube on a unicycle',
+      tags: ['legendary', "'All the Small Things'"],
       body:
-        "Rode a unicycle while solving a Rubik's cube at the Oscar Health talent show. " +
-        "Josh Kushner was in the audience. No regrets. Branch remains on disk — you never really close that one.",
+        "The plan: hand a cube to someone in the audience to scramble. Ride out on the unicycle. " +
+        "Switch to riding backwards. Stack chairs and a table from the all-hands room into an obstacle course. " +
+        "Jump across them. Take the cube back. Solve it on the unicycle, as the finale. " +
+        "'All the Small Things' by Blink-182 in the background. People talked about it for weeks.",
       diffstat: {
-        items: [{ file: 'hobbies/unicycle.md', added: 14, removed: 0, note: 'field test' }],
+        items: [{ file: 'hobbies/talent-show-1.md', added: 14, removed: 0, note: 'shipped' }],
         summary: '1 cube solved, 0 dignity lost',
       },
     },
@@ -364,16 +363,18 @@ window.TIMELINE = (function () {
     {
       sha: '4e7a1b0', fullSha: '4e7a1b0aa55bb66cc77dd88ee99ff001122334455',
       branch: 'oscar', author: 'Jake Ruth <jake2ruth@gmail.com>',
-      date: '2017-03-06',
+      date: '2017-03',
       decoration: [{ kind: 'branch', text: 'oscar-health' }],
       subject: 'start oscar-health (under Alan Warren)',
-      tags: ['~50 engineers at join', '~150+ at exit'],
+      tags: ['~50 engineers at join', 'serendipity question'],
       body:
-        "NYC. Joined under Alan Warren, who had previously scaled Google Docs from two-three people to thousands. " +
-        "New stack, new scale, new problems. First time touching systems where a bad deploy had downstream consequences measured in humans.",
+        "NYC. Joined under Alan Warren — formerly the Google leader who scaled Google Docs from 2-3 people to thousands. " +
+        "Got the offer partly via an interview question that just happened to match my last project (a social-media architecture question). " +
+        "Found out years later it was random luck — they hadn't read my resume at all. " +
+        "First time touching systems where a bad deploy had downstream consequences measured in humans.",
       diffstat: {
         items: [{ file: 'onboarding.md', added: 1, removed: 0, note: 'day one' }],
-        summary: '1 engineer added, 0 onboarding curve',
+        summary: '1 engineer added, 1 lucky question landed',
       },
     },
 
@@ -381,14 +382,17 @@ window.TIMELINE = (function () {
     {
       sha: 'f00d721', fullSha: 'f00d72198af1cc003feedbeef0a0b0c0d0e0f010',
       branch: 'commercehub', author: 'Jake Ruth <jake2ruth@gmail.com>',
-      date: '2016-12-22',
+      date: '2016-12',
       decoration: [{ kind: 'branch', text: 'commercehub' }],
       subject: "commercehub: final commit, off to NYC",
-      tags: ['interview squad', 'micro-services'],
+      tags: ['"the system was the problem, not you"'],
       body:
-        "Three years of e-commerce plumbing. Learned what production actually means. " +
-        "Learned to read stack traces like poetry. Took down production once as an intern — manager stood up and said " +
-        "\"that was not your fault, you should not have had access to that button.\" That sentence shaped how I think about systems.",
+        "Three years of e-commerce plumbing. Groovy/Grails on the back, early-pre-hooks React on the front. " +
+        "Took down production once with a button I shouldn't have had access to as an intern. " +
+        "Manager stood up before I finished apologizing: 'That wasn't your fault — you shouldn't have had access to that tool. " +
+        "We're not celebrating that this happened, but the system was the problem, not you.' " +
+        "That sentence rewired how I think about systems, access, and blameless culture. " +
+        "Left exactly one year and seven days into FT to go full-time on Youni.",
       diffstat: {
         items: [{ file: 'offboarding.md', added: 1, removed: 0, note: 'exit' }],
         summary: '3 years banked, 1 prod takedown survived',
@@ -397,13 +401,15 @@ window.TIMELINE = (function () {
     {
       sha: '7ce99da', fullSha: '7ce99da991122334455667788aabbccddeeff001',
       branch: 'youni', author: 'Jake Ruth <jake2ruth@gmail.com>',
-      date: '2016-04-10',
+      date: '2016-09',
       merge: true,
       subject: "Merge branch 'youni' (project ended)",
-      tags: ['React Native v0.13', 'thousands of signups', 'shut down'],
+      tags: ['React Native v0.13/0.14', '20,000+ posts', 'shut down'],
       body:
-        "Youni wound down. Great people, hard market. Could not solve cold-start. " +
-        "Dragged the lessons back into main — you cannot un-learn \"ship weekly or perish.\"",
+        "Co-founded with Anthony (CEO) and Jordan, both UAlbany D1 soccer. Launched at SUNY Albany and Binghamton. " +
+        "70-person paid-in-credits brand-ambassador program. 20,000+ posts at peak. " +
+        "Anthony and Jordan won ~$25K in equity-free business grants while still students. " +
+        "No business model and an unsolved cold-start. Folded after ~4-5 months full-time. Eyes definitely bigger than my stomach.",
       diffstat: {
         items: [{ file: 'projects/youni/**', added: 120, removed: 2300, note: 'retired' }],
         summary: '1 startup retired, 1 founder matured',
@@ -414,57 +420,76 @@ window.TIMELINE = (function () {
     {
       sha: 'b1e7a03', fullSha: 'b1e7a031a2b3c4d5e6f708192a3b4c5d6e7f8090',
       branch: 'youni', author: 'Jake Ruth <jake2ruth@gmail.com>',
-      date: '2015-09-02',
+      date: '2015-09',
       decoration: [{ kind: 'branch', text: 'youni' }],
-      subject: 'youni: co-building a campus social thing',
-      tags: ['CTO', 'iOS', 'React Native'],
+      subject: 'youni: co-founded with Anthony and Jordan',
+      tags: ['React Native', "Anthony's brand-ambassador design"],
       body:
-        "Side hustle that felt like a main hustle. React Native v0.13, late nights, group chats that never slept. " +
-        "Did not win the market. Won the reps.",
+        "Worked it nights and weekends through CommerceHub at first, then went full-time. " +
+        "iOS social-media app on React Native v0.13/0.14, plus a simple companion site. Free office space at an accelerator near Troy. " +
+        "School-localized Instagram with Greek-life and sports-team features.",
       diffstat: {
         items: [{ file: 'app/**/*', added: 4800, removed: 120, note: 'initial build' }],
-        summary: '1 startup started, zero excuses later',
+        summary: '1 startup started',
       },
     },
     {
       sha: 'a1b2c3d', fullSha: 'a1b2c3d4e5f6071829aabbccddeeff001122334',
       branch: 'main', author: 'Jake Ruth <jake2ruth@gmail.com>',
-      date: '2015-05-17',
-      subject: 'B.S. CS + Applied Math, SUNY Albany',
+      date: '2015-05',
+      subject: 'BS CS + Applied Math, SUNY Albany',
       tags: ['3.88 GPA', "Dean's List every semester"],
       body:
-        "Double major shipped. 3.88 GPA, Dean's List every semester. ACM chapter: president. " +
-        "Most useful class: the one that taught me I could teach myself the rest.",
+        "Double major shipped. 3.88 GPA, Dean's List every semester. Freshman year: 99/100 on the standardized Calc 1 exam, " +
+        "best score among the ~500 students who took it that semester (the cohort included grad students). " +
+        "ACM chapter: president for two years. The club survived past me.",
       diffstat: {
         items: [{ file: 'education/diploma.pdf', added: 120, removed: 0, note: 'earned' }],
-        summary: '2 majors completed, 1 career compiled',
+        summary: '2 majors completed',
       },
     },
 
     { year: '2014' },
     {
+      sha: 'ie7el1p', fullSha: 'ie7el1pdeadbeefcafebabef00dbaadf00df00df',
+      branch: 'commercehub', author: 'Jake Ruth <jake2ruth@gmail.com>',
+      date: '2014-09',
+      subject: 'IE7 ellipsis bug for QVC, fixed via Windows VM',
+      tags: ['QVC', 'Internet Explorer 7', '2014'],
+      body:
+        "Fixed a string-truncation bug where the ellipsis didn't render properly in IE7. " +
+        "QVC was pinned to IE7. To test the fix I had to spin up a virtual machine running an old version of Windows just to load the browser. In 2014. " +
+        "Engineering history is preserved in QVC's procurement contracts.",
+      diffstat: {
+        items: [{ file: 'fix/ellipsis.js', added: 6, removed: 2, note: 'IE7 quirk' }],
+        summary: '1 bug fixed, 1 era visited',
+      },
+    },
+    {
       sha: '5u1ff1e', fullSha: '5u1ff1ea1b2c3d4e5f6789abcdeffedcba987654',
       branch: 'main', author: 'Jake Ruth <jake2ruth@gmail.com>',
-      date: '2014-04-01',
-      subject: 'ACM @ SUNY Albany — elected president',
-      tags: ['took over a failing club', 'recruited 20+'],
+      date: '2014-04',
+      subject: 'ACM @ SUNY Albany — president (year two)',
+      tags: ['~50-100 students at interest meeting', 'survived past me'],
       body:
-        "Took over a failing club. Recruited 20+ members. Ran hackathons, pizza nights, resume clinics. " +
-        "Organized the Tekkapalooza field trip where I handed my resume to CommerceHub. Learned more engineering from organizing engineers than from most coursework.",
+        "Took over a dying CS club junior year. Outgoing seniors handed me the presidency. " +
+        "Got professors to let me announce an interest meeting at the end of their classes. Booked a lecture hall, ~7pm on a weeknight. " +
+        "~50-100 students showed; few dozen joined. Ran weekly meetings, LAN parties, and workshops on what I was learning at CommerceHub. " +
+        "Organized the Tekkapalooza field trip that became my CommerceHub on-ramp. The club survived past me.",
       diffstat: {
         items: [{ file: 'clubs/acm/*', added: 80, removed: 0, note: 'rebuilt' }],
-        summary: '20+ members recruited, 1 career launched',
+        summary: 'few dozen members recruited, 1 career launched',
       },
     },
     {
       sha: 'cube0fe', fullSha: 'cube0fe111222333444555666777888999aaabbb',
       branch: 'rubiks', author: 'Jake Ruth <jake2ruth@gmail.com>',
-      date: '2014-02-14',
-      subject: 'peak: 13.95s avg, 3x3',
-      tags: ['Northeast US', 'Nationals'],
+      date: '2014-02',
+      subject: 'speed-cubing peak: 13.95s avg, top-20 US Pyraminx',
+      tags: ['Northeast US', 'Nationals', 'WCA-sanctioned'],
       body:
-        "Competed 2008-2014 at Northeast US and Nationals. 3x3 average: 13.95 seconds. " +
-        "The patience tax this cost still pays dividends.",
+        "Competed 2008-2014 at Northeast US events and Nationals (WCA-sanctioned). " +
+        "3×3 average: 13.95 seconds. Top-20 in the US at the Pyraminx at peak.",
       diffstat: {
         items: [{ file: 'hobbies/rubiks.md', added: 14, removed: 0, note: 'peak avg' }],
         summary: '~14 seconds per cube, 6 years per reflex',
@@ -473,32 +498,33 @@ window.TIMELINE = (function () {
 
     { year: '2013' },
     {
-      sha: 'c0de013', fullSha: 'c0de013abcdef1234567890fedcba0987654321f',
-      branch: 'commercehub', author: 'Jake Ruth <jake2ruth@gmail.com>',
-      date: '2013-11-04',
-      decoration: [{ kind: 'branch', text: 'commercehub' }],
-      subject: 'first day: commercehub intern (became FT)',
-      tags: ['Groovy/Grails', 'React pre-hooks', 'Java'],
+      sha: 'mpb2013', fullSha: 'mpb20130000000000000000000000000000000000',
+      branch: 'main', author: 'Jake Ruth <jake2ruth@gmail.com>',
+      date: '2013-09',
+      subject: 'My Plastic Brain contracting (parallel)',
+      tags: ['KineticJS', 'brain-injury rehab'],
       body:
-        "First real codebase. First real deploy. First real \"do not do that in prod\" talk. " +
-        "Agile team of ten, micro-service architecture, interview squad participant. Career clock starts ticking now.",
+        "Several hundred hours of paid contract work in college, parallel to the CH internship. " +
+        "Built KineticJS card games — digital adaptations of physical card games that brain-injury rehab patients used in real life. " +
+        "Self-directed end-to-end. Now-defunct company.",
       diffstat: {
-        items: [{ file: 'onboarding.md', added: 1, removed: 0, note: 'day one' }],
-        summary: '1 engineer added, career started',
+        items: [{ file: 'contract/mpb/*', added: 1200, removed: 50, note: 'card games' }],
+        summary: '1 contract delivered',
       },
     },
     {
-      sha: 'b1rthff', fullSha: 'b1rthff0000000000000000000000000000000000',
-      branch: 'main', author: 'Jake Ruth <jake2ruth@gmail.com>',
-      date: '2013-01-01',
-      subject: 'git init — start learning to code',
-      tags: ['empty repo, curious brain'],
+      sha: 'c0de013', fullSha: 'c0de013abcdef1234567890fedcba0987654321f',
+      branch: 'commercehub', author: 'Jake Ruth <jake2ruth@gmail.com>',
+      date: '2013-06',
+      decoration: [{ kind: 'branch', text: 'commercehub' }],
+      subject: 'first day: commercehub intern (became FT)',
+      tags: ['Groovy/Grails', 'React pre-hooks', 'Tekkapalooza drop'],
       body:
-        "Genesis commit. Thirteen years later the repo has branches for a fintech, a health insurer, a degree, " +
-        "a wedding, and a Rubik's cube.",
+        "First real codebase. First real deploy. Agile team, Groovy/Grails on the back, early-pre-hooks React on the front, code-review culture. " +
+        "Got here via the Tekkapalooza resume drop while running ACM. Career clock starts ticking now.",
       diffstat: {
-        items: [{ file: 'README.md', added: 1, removed: 0, note: 'hello world' }],
-        summary: '1 file added, 1 life started',
+        items: [{ file: 'onboarding.md', added: 1, removed: 0, note: 'day one' }],
+        summary: '1 engineer added, career started',
       },
     },
 
@@ -506,15 +532,18 @@ window.TIMELINE = (function () {
     {
       sha: 'apcs011', fullSha: 'apcs0111111222223333344444555556666677777',
       branch: 'main', author: 'Jake Ruth <jake2ruth@gmail.com>',
-      date: '2011-09-06',
-      subject: 'AP CS instead of AP Calc — fell in love week 1',
-      tags: ['pivotal'],
+      date: '2011-09',
+      subject: 'AP CS instead of AP Calc — loop closed in week one',
+      tags: ['pivotal', 'Mrs. Nalbandian'],
       body:
-        "Needed a math credit senior year. Refused to take AP Calculus. Ms. Nalbandian mentioned she taught AP Computer Science. " +
-        "Asked if it counted. She said yes. Took it to avoid Calc. Fell in love with code in the first week. That sideways pivot became my career.",
+        "Senior year of high school. Catch-22: required to take a math credit, but I'd burned through every math class except AP Calc. " +
+        "I refused AP Calc. Mrs. Nalbandian mentioned in passing she taught AP Computer Science. " +
+        "I asked: 'Does that count as a math credit?' She said yes. I signed up to avoid Calc. " +
+        "She ran a function on the board in the first five minutes of the first class. I knew right there. " +
+        "Fifteen years later, that sideways pivot is still the main road.",
       diffstat: {
         items: [{ file: 'school/schedule.txt', added: 1, removed: 1, note: 'AP CS in, AP Calc out' }],
-        summary: '1 sideways pivot, 13 years of consequences',
+        summary: '1 sideways pivot, 15 years of consequences',
       },
     },
 
@@ -522,12 +551,12 @@ window.TIMELINE = (function () {
     {
       sha: '2008cub', fullSha: '2008cub1111222233334444555566667777888899',
       branch: 'rubiks', author: 'Jake Ruth <jake2ruth@gmail.com>',
-      date: '2008-09-01',
+      date: '2008-09',
       decoration: [{ kind: 'branch', text: 'rubiks-cube' }],
-      subject: 'rubiks-cube: branch created',
+      subject: 'started speed-cubing',
       tags: ['first cube'],
       body:
-        "A cube, a stopwatch, a stubborn streak. Competitive speedcubing for years.",
+        "Competed through 2014. 3×3 average peaked at 13.95 seconds. Top-20 in the US at the Pyraminx.",
       diffstat: {
         items: [{ file: 'hobbies/rubiks.md', added: 1, removed: 0, note: 'new hobby' }],
         summary: '1 obsession started',
@@ -537,16 +566,20 @@ window.TIMELINE = (function () {
 
   /* ---------- jump points (synced with year dividers) ---------- */
   const JUMPS = [
-    { year: '2026', label: 'next-chapter' },
-    { year: '2025', label: 'married, renaissance' },
-    { year: '2024', label: 'SU maintenance' },
+    { year: '2026', label: 'SU on key decisions only · quietly open' },
+    { year: '2025', label: 'AI era ships' },
+    { year: '2024', label: 'SU plateau' },
     { year: '2023', label: 'scale peak' },
     { year: '2022', label: 'YC + seed' },
     { year: '2021', label: 'SU starts' },
+    { year: '2020', label: 'senior at Oscar' },
+    { year: '2019', label: 'Emotiqueue + Mid' },
+    { year: '2018', label: 'talent show' },
     { year: '2017', label: 'Oscar starts' },
     { year: '2016', label: 'Youni ends' },
     { year: '2015', label: 'graduated' },
-    { year: '2013', label: 'career starts' },
+    { year: '2014', label: 'cube peak · ACM' },
+    { year: '2013', label: 'CommerceHub starts' },
     { year: '2011', label: 'AP CS' },
     { year: '2008', label: 'first cube' },
   ];
@@ -557,7 +590,7 @@ window.TIMELINE = (function () {
   }[c]));
 
   const relativeDate = (iso) => {
-    const d = new Date(iso);
+    const d = new Date(iso.length <= 7 ? iso + '-01' : iso);
     const now = new Date('2026-04-20');
     const yrs = (now - d) / (1000 * 60 * 60 * 24 * 365);
     if (yrs < 0.08) return 'days ago';

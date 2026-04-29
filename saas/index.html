@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Jake Ruth — The engineer your team actually needs</title>
+<title>Jake Ruth — Find a thing. Get weirdly good. Move on.</title>
 <link rel="icon" type="image/gif" href="/images/logo.gif" />
 <!-- Speculation Rules: prerender the OTHER two experiences so topnav
      transitions to them are essentially instant. See /index.html for
@@ -38,9 +38,10 @@
     <nav class="nav-links">
       <a href="#platform" class="nav-item">Platform</a>
       <a href="#architecture" class="nav-item">Architecture</a>
-      <a href="#pricing" class="nav-item">Pricing</a>
       <a href="#customers" class="nav-item">Customers</a>
       <a href="#notes" class="nav-item">Notes</a>
+      <a href="#principles" class="nav-item">Principles</a>
+      <a href="#pricing" class="nav-item">Pricing</a>
       <a href="#docs" class="nav-item">Docs</a>
     </nav>
 
@@ -55,18 +56,18 @@
 <section class="hero">
   <div class="container hero-row">
     <div>
-      <div class="eyebrow"><span class="dot-blue"></span> v13.0 &middot; generally available</div>
-      <h1 class="hero-title">The engineer your team actually needs.</h1>
+      <div class="eyebrow"><span class="dot-blue"></span> generally available</div>
+      <h1 class="hero-title">Find a thing. Get weirdly good. Move on.</h1>
       <p class="hero-sub">
-        Thirteen years shipping. Ex-Oscar. Ex-YC. Built a company, scaled it to eight employees and thousands of
-        paying customers, wound it down to a profitable side business. Now redefining my next chapter.
+        Jake Ruth. Fifteen years of shipping, four companies in (two I worked at, two I started). A senior-year math credit
+        dropped me into AP Computer Science instead of AP Calc, and the loop closed. Code is the one that stuck. Cubes too.
       </p>
       <div class="hero-ctas">
-        <a href="mailto:jake2ruth@gmail.com" class="btn btn-primary btn-lg">Hire Jake <i class="lucide lucide-arrow-right"></i></a>
+        <a href="mailto:jake2ruth@gmail.com" class="btn btn-primary btn-lg">Email Jake <i class="lucide lucide-arrow-right"></i></a>
         <a href="#platform" class="btn btn-ghost btn-lg">Read the spec</a>
       </div>
       <div class="hero-meta">
-        <span><span class="dot-green"></span> Available for full-time, contract, or founding conversations</span>
+        <span><span class="dot-green"></span> Quietly open to full-time, contract, or equity-founding conversations</span>
         <span class="hero-meta-sep">&middot;</span>
         <span>Response latency: <span class="mono" id="hero-latency">18ms</span></span>
       </div>
@@ -92,9 +93,8 @@
         <ul class="status-list">
           <li><span class="dot-green"></span>Backend &middot; Python / Go <span class="status-latency">12ms</span></li>
           <li><span class="dot-green"></span>Frontend &middot; TS / React <span class="status-latency">9ms</span></li>
-          <li><span class="dot-green"></span>AI co-pilot &middot; Claude / Codex <span class="status-latency">18ms</span></li>
-          <li><span class="dot-green"></span>On-call response <span class="status-latency">&lt; 4min</span></li>
-          <li><span class="dot-amber"></span>Deploying <span class="status-deploying">next chapter v1.0</span></li>
+          <li><span class="dot-green"></span>AI co-pilot &middot; Claude Code / Codex / CMUX <span class="status-latency">18ms</span></li>
+          <li><span class="dot-green"></span>Region &middot; NYC area <span class="status-latency">ET</span></li>
         </ul>
         <div class="uptime-bars" id="uptime-bars" aria-hidden="true"></div>
         <div class="status-card-foot">
@@ -109,12 +109,12 @@
   <div class="container logos-row">
     <div class="logos-label">Shipped at</div>
     <div class="logos">
+      <div class="logo">Stock Unlock &middot; YC W22</div>
       <div class="logo">Oscar Health</div>
-      <div class="logo">Stock Unlock</div>
       <div class="logo">CommerceHub</div>
-      <div class="logo">Y Combinator W22</div>
-      <div class="logo">SUNY Albany</div>
-      <div class="logo logo-muted">+ Youni, one failed startup</div>
+      <div class="logo">Youni</div>
+      <div class="logo">SUNY Albany ACM</div>
+      <div class="logo logo-muted">+ My Plastic Brain (contract)</div>
     </div>
   </div>
 </section>
@@ -126,7 +126,7 @@
       <div class="eyebrow"><span class="dot-blue"></span> Platform</div>
       <h2 class="section-title">One engineer. Full surface area.</h2>
       <p class="section-sub">
-        Backend. Frontend. Data. Deploys. Design docs. On-call. Written decisions.
+        Python, Go, TypeScript, React. Design docs. On-call. AI co-pilot in the driver's seat.
         No handoffs, no proposal PDFs, no deck. Just an operator who's done this before.
       </p>
     </div>
@@ -135,38 +135,38 @@
       <article class="feat-card">
         <div class="feat-icon"><i class="lucide lucide-layers"></i></div>
         <h3>Full-stack delivery</h3>
-        <p>Ticket to production without waiting on three Slack threads. Python, TypeScript, Go, Java, and whatever your stack has accumulated.</p>
+        <p>Owned services across Python and Go back-ends and a React front-end at Oscar. Groovy/Grails before that at CommerceHub. React Native at Youni back when it was v0.13. Whatever your stack has accumulated.</p>
       </article>
 
       <article class="feat-card feat-card-featured">
         <div class="feat-badge">Most used</div>
         <div class="feat-icon"><i class="lucide lucide-wand-sparkles"></i></div>
         <h3>AI-native workflow</h3>
-        <p>Driver in the driver's seat, not driven by the car. Claude Code and Codex write more than half the first pass; I read every line before it ships.</p>
+        <p>Driver in the seat, not driven by the car. AI writes more code than I do; human-reviewed where it matters (business logic, security, architecture); let loose on cosmetic frontend. Opus 4.5 was the inflection. Now on 4.7.</p>
       </article>
 
       <article class="feat-card">
         <div class="feat-icon"><i class="lucide lucide-git-pull-request"></i></div>
         <h3>Boring migrations</h3>
-        <p>Dual-writes, shadow reads, feature flags, written cutover plans. Last one: Customer.io to self-hosted SES. Saved ~$6K/yr. Zero user-visible incidents.</p>
-      </article>
-
-      <article class="feat-card">
-        <div class="feat-icon"><i class="lucide lucide-activity"></i></div>
-        <h3>Observability, included</h3>
-        <p>Metrics, logs, dashboards, runbooks. Built by someone who's been paged at 3 AM and refuses to ship a service without a pager contract.</p>
-      </article>
-
-      <article class="feat-card">
-        <div class="feat-icon"><i class="lucide lucide-messages-square"></i></div>
-        <h3>Written decisions</h3>
-        <p>Design docs before code. Links, not legends. The kind of written trail an on-call engineer can read at 2 AM and not hate you.</p>
+        <p>Customer.io to self-hosted AWS SES — focused weekend, ~$5&ndash;6K/yr saved. Webflow to a self-hosted marketing codebase — ~$1K/yr saved, 20x more content pages, no contractor dependency. Permissioned internal Discord ops bot on EC2 + Docker Compose so non-technical teammates can run things.</p>
       </article>
 
       <article class="feat-card">
         <div class="feat-icon"><i class="lucide lucide-rocket"></i></div>
         <h3>Zero-to-one</h3>
-        <p>Led a YC interview. Raised $1.335M seed. Scaled to eight employees. Know how to take a sketch to a shipped product without burning a round.</p>
+        <p>Co-founded Stock Unlock. Led the YC interview. Raised $1.335M seed ($500K YC, $835K others). Scaled to a team of eight and thousands of paying customers. Runs profitably today.</p>
+      </article>
+
+      <article class="feat-card">
+        <div class="feat-icon"><i class="lucide lucide-users"></i></div>
+        <h3>Culture carrier</h3>
+        <p>Brutally honest teammates who disagree directly, with reason. No compliment-sandwiches. Mentored newer engineers unofficially throughout Oscar &mdash; getting people up to speed is one of my strengths. Emotiqueue is the same energy on the goof axis.</p>
+      </article>
+
+      <article class="feat-card">
+        <div class="feat-icon"><i class="lucide lucide-shield"></i></div>
+        <h3>Conviction layer</h3>
+        <p>Overcharging for software that ships people short, especially people who can't afford to be robbed, is theft. That conviction is load-bearing under everything I build. Vibe-coding sold as engineering is a different thing. There's a real difference.</p>
       </article>
     </div>
   </div>
@@ -179,8 +179,7 @@
       <div class="eyebrow"><span class="dot-blue"></span> Architecture</div>
       <h2 class="section-title">Reference architecture for one human engineer.</h2>
       <p class="section-sub">
-        Nine loosely-coupled services connected through a stable interface. Hover any node to inspect its
-        neighborhood. Click to pin.
+        Nine loosely-coupled services. Hover any node to inspect it. Click to pin.
       </p>
     </div>
 
@@ -222,7 +221,7 @@
       <div class="eyebrow"><span class="dot-blue"></span> Pricing</div>
       <h2 class="section-title">Four ways to engage. No list prices.</h2>
       <p class="section-sub">
-        Pricing software feels weird. So the numbers aren't here. The shape of the engagement is.
+        Pricing a person feels weird. So the numbers aren't here. The shape of the engagement is.
         Email, we'll figure out the rest.
       </p>
     </div>
@@ -234,50 +233,50 @@
         <div class="price-tag">For: "not sure yet, let's chat"</div>
         <a class="btn btn-ghost btn-full" href="mailto:jake2ruth@gmail.com">Email Jake</a>
         <ul class="price-list">
-          <li><i class="lucide lucide-check"></i> 30-min call</li>
+          <li><i class="lucide lucide-check"></i> Email is the channel</li>
+          <li><i class="lucide lucide-check"></i> Fast in ET business hours</li>
           <li><i class="lucide lucide-check"></i> No agenda required</li>
-          <li><i class="lucide lucide-check"></i> Camera optional</li>
           <li><i class="lucide lucide-check"></i> Direct answer either way</li>
         </ul>
       </article>
 
       <article class="price-card">
         <div class="price-tier">Contract</div>
-        <div class="price-amount"><span class="price-amt">Let's talk</span></div>
+        <div class="price-amount"><span class="price-amt">Talk to Jake</span></div>
         <div class="price-tag">For: defined scope, defined timeline</div>
         <a class="btn btn-ghost btn-full" href="mailto:jake2ruth@gmail.com">Start a scope</a>
         <ul class="price-list">
           <li><i class="lucide lucide-check"></i> Project-scoped work</li>
-          <li><i class="lucide lucide-check"></i> Written design doc per feature</li>
-          <li><i class="lucide lucide-check"></i> Shared Slack channel</li>
+          <li><i class="lucide lucide-check"></i> Written design before code</li>
           <li><i class="lucide lucide-check"></i> Selective &middot; by interest</li>
+          <li><i class="lucide lucide-check"></i> Problem has to matter</li>
         </ul>
       </article>
 
       <article class="price-card price-card-featured">
         <div class="price-badge">Preferred</div>
         <div class="price-tier">Full-time</div>
-        <div class="price-amount"><span class="price-amt">Market + equity</span></div>
+        <div class="price-amount"><span class="price-amt">Market rate + equity</span></div>
         <div class="price-tag">For: the main thing</div>
         <a class="btn btn-primary btn-full" href="mailto:jake2ruth@gmail.com">Talk to Jake</a>
         <ul class="price-list">
-          <li><i class="lucide lucide-check"></i> Senior IC / founding / early CTO</li>
-          <li><i class="lucide lucide-check"></i> NYC, remote, or hybrid</li>
-          <li><i class="lucide lucide-check"></i> Ships on day one</li>
-          <li><i class="lucide lucide-check"></i> Not looking to manage unless the team is right</li>
+          <li><i class="lucide lucide-check"></i> Senior IC, founding, or early-stage CTO</li>
+          <li><i class="lucide lucide-check"></i> NYC area, remote, or hybrid</li>
+          <li><i class="lucide lucide-check"></i> Won't manage unless the team is right</li>
+          <li><i class="lucide lucide-check"></i> Stays close to the code either way</li>
         </ul>
       </article>
 
       <article class="price-card">
         <div class="price-tier">Equity founding</div>
-        <div class="price-amount"><span class="price-amt">Let's build</span></div>
+        <div class="price-amount"><span class="price-amt">Pitch a problem</span></div>
         <div class="price-tag">For: zero-to-one conviction bets</div>
         <a class="btn btn-ghost btn-full" href="mailto:jake2ruth@gmail.com">Pitch a problem</a>
         <ul class="price-list">
           <li><i class="lucide lucide-check"></i> Real equity, real ownership</li>
-          <li><i class="lucide lucide-check"></i> Pre-seed to small seed</li>
-          <li><i class="lucide lucide-check"></i> Problem has to matter</li>
           <li><i class="lucide lucide-check"></i> Has led a YC interview before</li>
+          <li><i class="lucide lucide-check"></i> Would rather build something that matters than chase a logo</li>
+          <li><i class="lucide lucide-check"></i> If unsure, email anyway</li>
         </ul>
       </article>
     </div>
@@ -301,11 +300,11 @@
         <tbody>
           <tr><td>Shipping production code</td><td class="td-no"><i class="lucide lucide-x"></i></td><td class="td-yes"><i class="lucide lucide-check"></i></td><td class="matrix-ent td-yes"><i class="lucide lucide-check"></i></td><td class="td-yes"><i class="lucide lucide-check"></i></td></tr>
           <tr><td>Architecture ownership</td><td class="td-no"><i class="lucide lucide-x"></i></td><td>Scoped</td><td class="matrix-ent td-yes"><i class="lucide lucide-check"></i></td><td class="td-yes"><i class="lucide lucide-check"></i></td></tr>
-          <tr><td>On-call rotation</td><td class="td-no"><i class="lucide lucide-x"></i></td><td class="td-no"><i class="lucide lucide-x"></i></td><td class="matrix-ent td-yes"><i class="lucide lucide-check"></i></td><td class="td-yes"><i class="lucide lucide-check"></i></td></tr>
+          <tr><td>Mentoring newer engineers</td><td class="td-no"><i class="lucide lucide-x"></i></td><td>If asked</td><td class="matrix-ent td-yes"><i class="lucide lucide-check"></i></td><td class="td-yes"><i class="lucide lucide-check"></i></td></tr>
           <tr><td>YC interview coaching</td><td>On request</td><td class="td-no"><i class="lucide lucide-x"></i></td><td class="matrix-ent">If relevant</td><td class="td-yes"><i class="lucide lucide-check"></i></td></tr>
           <tr><td>Real equity</td><td class="td-no"><i class="lucide lucide-x"></i></td><td class="td-no"><i class="lucide lucide-x"></i></td><td class="matrix-ent td-yes"><i class="lucide lucide-check"></i></td><td class="td-yes"><i class="lucide lucide-check"></i></td></tr>
           <tr><td>Unicycle &amp; cube talent-show routine</td><td class="td-no"><i class="lucide lucide-x"></i></td><td class="td-no"><i class="lucide lucide-x"></i></td><td class="matrix-ent">On request</td><td class="td-yes"><i class="lucide lucide-check"></i></td></tr>
-          <tr><td>Wedding invite (Q4 2026)</td><td class="td-no"><i class="lucide lucide-x"></i></td><td class="td-no"><i class="lucide lucide-x"></i></td><td class="matrix-ent td-yes"><i class="lucide lucide-check"></i></td><td class="td-yes"><i class="lucide lucide-check"></i></td></tr>
+          <tr><td>Compliment-sandwich feedback</td><td class="td-no"><i class="lucide lucide-x"></i></td><td class="td-no"><i class="lucide lucide-x"></i></td><td class="matrix-ent td-no"><i class="lucide lucide-x"></i></td><td class="td-no"><i class="lucide lucide-x"></i></td></tr>
         </tbody>
       </table>
     </div>
@@ -326,19 +325,19 @@
       <article class="case-card">
         <div class="case-head">
           <div class="case-logo">SU</div>
-          <div class="case-tags"><span>Fintech</span><span>YC W22</span><span>Founder</span></div>
+          <div class="case-tags"><span>Fintech</span><span>YC W22</span><span>Co-founder</span></div>
         </div>
         <h3>Stock Unlock</h3>
-        <p class="case-role">Co-founder, former CEO &middot; 2021&ndash;present (not full-time since late 2024)</p>
-        <p class="case-body">Built it. Scaled to eight employees and thousands of paying customers. Raised $1.335M seed (YC W22): $500K YC SAFE plus $835K from other investors. Led the YC interview. Runs today as a profitable side business with three FTEs. I'm not full-time there anymore.</p>
+        <p class="case-role">Co-founder &middot; 2021&ndash;present (key-decisions-only since early 2026)</p>
+        <p class="case-body">Built it. Brought Nick Puljik over from Oscar. YC reached out cold via LinkedIn before we'd applied; I led the YC interview. Raised $1.335M seed: $500K from YC, $835K from other investors. 400 paying users in launch week, 800&ndash;900 by seed close. Scaled to a team of eight and thousands of paying customers. Hit a ~3,900-paying-subscriber wall in 2024; tried partial pivots; bet on big late-2025 launches that didn't land. Right-sized in early 2026 to three full-time (two engineers + an executive assistant) who handle day-to-day. I'm on key decisions and weekend pokes. Runs profitably today.</p>
         <div class="case-metrics">
           <div><b>8</b><span>peak team</span></div>
-          <div><b>~$450K</b><span>ARR</span></div>
           <div><b>$1.335M</b><span>seed raised</span></div>
+          <div><b>Profitable</b><span>today</span></div>
         </div>
         <div class="case-foot">
-          <span class="case-proof"><i class="lucide lucide-quote"></i> "I ignored his emails for weeks. That was the mistake."</span>
-          <span class="case-attrib">&mdash; Daniel Pronk, co-founder</span>
+          <span class="case-proof"><i class="lucide lucide-quote"></i> "Overcharging for software that ships people short, especially when the people getting shorted can't afford it."</span>
+          <span class="case-attrib">&mdash; the conviction underneath the company</span>
         </div>
       </article>
 
@@ -349,15 +348,15 @@
         </div>
         <h3>Oscar Health</h3>
         <p class="case-role">Senior Software Engineer &middot; March 2017&ndash;2021</p>
-        <p class="case-body">Joined at ~50 engineers under Alan Warren (formerly scaled Google Docs from 2-3 engineers to thousands), left at ~150+. Leveled Associate &rarr; Mid &rarr; Senior. Declined the manager track twice. Built an internal chatbot with Peter from hackathon scraps. Rode a unicycle while solving a Rubik's cube at the company talent show &mdash; Josh Kushner was in the audience.</p>
+        <p class="case-body">Joined at ~50 engineers under Alan Warren (formerly scaled Google Docs from 2&ndash;3 people to thousands). Left at ~150+. Associate &rarr; Mid &rarr; Senior; declined the team-lead path twice. Owned services across Python and Go back-ends and a React front-end, including the entire internal site for hundreds of Tempe care-ops staff. Built <b>Emotiqueue</b>, an internal Slack chatbot, with Peter &mdash; 3,000+ custom emoticons and 50+ commands by the time I left, with engineers across the company committing. Solved a Rubik's cube on a unicycle at the company talent show. Twice.</p>
         <div class="case-metrics">
           <div><b>3&times;</b><span>team growth</span></div>
-          <div><b>4 yrs</b><span>tenure</span></div>
+          <div><b>~4 yrs</b><span>tenure</span></div>
           <div><b>Python / Go / React</b><span>stack</span></div>
         </div>
         <div class="case-foot">
-          <span class="case-proof"><i class="lucide lucide-quote"></i> "Pushed back publicly on Slack about post-IPO benefit cuts. Then kept shipping."</span>
-          <span class="case-attrib">&mdash; paraphrased, oral history</span>
+          <span class="case-proof"><i class="lucide lucide-quote"></i> "I'd honestly still question how I got hired in the first place."</span>
+          <span class="case-attrib">&mdash; on the Oscar interview luck (see Field notes)</span>
         </div>
       </article>
 
@@ -367,25 +366,25 @@
           <div class="case-tags"><span>E-commerce</span><span>First job</span><span>Intern&rarr;FTE</span></div>
         </div>
         <h3>CommerceHub</h3>
-        <p class="case-role">Intern &rarr; Associate Software Engineer &middot; 2013&ndash;2016</p>
-        <p class="case-body">Part-time through senior year, full-time after. Agile team of ten. Micro-services before it was a r&eacute;sum&eacute; bullet. Took down production once as an intern. The button was the problem, not the intern.</p>
+        <p class="case-role">Intern &rarr; Junior Software Engineer &middot; 2013&ndash;2016</p>
+        <p class="case-body">Internship through senior year of college plus a full-time summer (didn't go home), then full-time after graduation. Left exactly one year and seven days into FT to go full-time on Youni. Groovy/Grails on the back, early-pre-hooks React on the front, code-review culture. The "first real engineering" job. Fixed an ellipsis bug for QVC, who were pinned to Internet Explorer 7 in 2014 &mdash; required spinning up an old-Windows VM just to test it. Took down production once with a button I shouldn't have had access to.</p>
         <div class="case-metrics">
-          <div><b>18 mo</b><span>intern &rarr; engineer</span></div>
-          <div><b>Groovy / Java</b><span>stack</span></div>
-          <div><b>F500</b><span>customers served</span></div>
+          <div><b>3 yrs</b><span>intern &rarr; FTE</span></div>
+          <div><b>Groovy / Grails</b><span>stack</span></div>
+          <div><b>Pre-hooks React</b><span>frontend</span></div>
         </div>
         <div class="case-foot">
-          <span class="case-proof"><i class="lucide lucide-quote"></i> "That wasn't your fault &mdash; you shouldn't have had access to that button."</span>
-          <span class="case-attrib">&mdash; Jake's first manager, post-outage</span>
+          <span class="case-proof"><i class="lucide lucide-quote"></i> "That wasn't your fault &mdash; you shouldn't have had access to that tool. The system was the problem, not you."</span>
+          <span class="case-attrib">&mdash; the manager, post-outage</span>
         </div>
       </article>
 
     </div>
 
-    <!-- Compact Youni mention for career-completeness -->
+    <!-- Compact additional engagements for career-completeness -->
     <div class="case-footnote">
       <span class="case-footnote-label">Also in the ledger:</span>
-      <span class="case-footnote-body"><b>Youni</b> (2015&ndash;2016) &middot; Co-founder, CTO. College-focused social iOS app on React Native v0.13. Thousands of signups across two campuses. Couldn't crack cold-start. Shut down within six months. Tuition cheap, lesson expensive.</span>
+      <span class="case-footnote-body"><b>Youni</b> (2015&ndash;2017) &middot; Co-founded with Anthony (CEO) and Jordan, both UAlbany D1 soccer, met via the ACE entrepreneurship club. College-localized social-media iOS app on React Native v0.13/0.14. Worked nights and weekends through CommerceHub, then full-time. Anthony and Jordan won ~$25K in equity-free business grants while still in school. Launched at SUNY Albany and Binghamton; 70-person paid-in-credits brand-ambassador program; 20,000+ posts. Eyes bigger than my stomach &mdash; no business model, unsolved cold-start, folded after ~4&ndash;5 months full-time. &nbsp;|&nbsp; <b>SUNY Albany ACM</b> (2013&ndash;2015) &middot; Took over a dying CS club as president. Recruited dozens at a lecture-hall pitch, ran weekly meetings, LAN parties, workshops. Organized the Tekkapalooza field trip that landed me the CommerceHub internship via direct resume drop. The club survived past me. &nbsp;|&nbsp; <b>My Plastic Brain</b> (contract, parallel to CH internship) &middot; Several hundred hours of paid contract work building KineticJS card-game web adaptations for a brain-injury rehab startup. Solo, billed hourly, end-to-end.</span>
     </div>
   </div>
 </section>
@@ -395,7 +394,7 @@
   <div class="container">
     <div class="section-head">
       <div class="eyebrow"><span class="dot-blue"></span> Field notes</div>
-      <h2 class="section-title">Five moments that shaped the engineer.</h2>
+      <h2 class="section-title">Moments that shaped the engineer.</h2>
       <p class="section-sub">
         Release notes, not resume bullets. The stories that come up in real conversations.
       </p>
@@ -408,16 +407,52 @@
           <span class="note-date mono">2010 &middot; senior year</span>
         </div>
         <h3>The AP CS switch</h3>
-        <p>Needed a math credit. Refused to take AP Calculus. Ms. Nalbandian mentioned she also taught AP Computer Science. Asked if it counted. She said yes. Took it purely to dodge Calc. Fell in love with code in the first week. Thirteen years later, still doing it.</p>
+        <p>Needed a math credit. Refused AP Calc. Mrs. Nalbandian mentioned she taught AP Computer Science. I asked if it counted. She said, begrudgingly, yes. She ran a function on the board in the first five minutes of the first class. I knew right there. Fifteen years later, that sideways pivot is still the main road.</p>
+      </article>
+
+      <article class="note-card">
+        <div class="note-head">
+          <span class="note-tag note-tag-story">trench</span>
+          <span class="note-date mono">CommerceHub &middot; intern era</span>
+        </div>
+        <h3>The production takedown</h3>
+        <p>I had access to a tool that could take a system in production down with a single button press. I pressed it. Walked into the meeting nervous, started apologizing before anyone spoke. The manager stood up: <i>"That wasn't your fault &mdash; you shouldn't have had access to that tool."</i> Rewired how I think about systems, access, and blameless culture.</p>
+      </article>
+
+      <article class="note-card">
+        <div class="note-head">
+          <span class="note-tag note-tag-story">college</span>
+          <span class="note-date mono">2013&ndash;2015 &middot; UAlbany</span>
+        </div>
+        <h3>ACM revival &amp; Tekkapalooza</h3>
+        <p>Outgoing seniors handed me a dying CS club. I got professors to let me announce an interest meeting at the end of class, booked a lecture hall, ~50&ndash;100 students showed, a few dozen joined. Ran weekly meetings, LAN parties, workshops. Organized a field trip to Tekkapalooza. Told members to bring resumes. Handed mine to CommerceHub directly. Three years of internship + a full-time role grew out of one resume drop at a non-recruiting event.</p>
+      </article>
+
+      <article class="note-card">
+        <div class="note-head">
+          <span class="note-tag note-tag-story">interview</span>
+          <span class="note-date mono">Oscar &middot; late 2016</span>
+        </div>
+        <h3>The Oscar interview luck</h3>
+        <p>The design question: <i>"if you were going to build a social-media app where people could follow each other, how would you architect it?"</i> I'd just spent eighteen months building Youni. I crushed it. Years later my manager told me it was a standard rotation question, asked at random, by people who hadn't read my resume. The single most architecturally similar question they could have asked, asked by chance, on the day that mattered most. The moment I think about when I try to explain why I believe in serendipity.</p>
       </article>
 
       <article class="note-card">
         <div class="note-head">
           <span class="note-tag note-tag-story">founding</span>
-          <span class="note-date mono">2020&ndash;2021</span>
+          <span class="note-date mono">COVID era</span>
         </div>
         <h3>The Pronk emails</h3>
-        <p>Daniel Pronk spent five to ten hours every weekend on Excel sheets for his investing YouTube content. Wrote a Python automation in a weekend, emailed it to him for free. He ignored me for six weeks. Replied to make me stop. I didn't stop &mdash; hopped on a video call with a beer. YC reached out cold via LinkedIn before we'd even applied.</p>
+        <p>Daniel Pronk spent 5&ndash;10 hours every weekend building Excel sheets for his investing YouTube content. I built a Python automation in a weekend that hit cheap financial APIs and exported the same format. Started emailing him. Commenting. Trying to give it away free. Daniel ignored me for ~6 weeks; eventually replied to get me to go away. I jumped on a video call, cracked a beer, and we hit it off. He let me into his paid Discord for free.</p>
+      </article>
+
+      <article class="note-card">
+        <div class="note-head">
+          <span class="note-tag note-tag-story">PMF</span>
+          <span class="note-date mono">Discord drop</span>
+        </div>
+        <h3>The Discord drop</h3>
+        <p>Daniel's paid Discord, ~1,000 members behind a YouTube channel of ~100K subscribers at the time. I dropped an early Excel-generator alpha that worked for a handful of stocks. The replies came fast: <i>"are you selling this?"</i> / <i>"could you add this stock?"</i> / <i>"I would pay for this."</i> That's the moment I knew there was a business in it.</p>
       </article>
 
       <article class="note-card">
@@ -426,48 +461,197 @@
           <span class="note-date mono">Oscar talent show</span>
         </div>
         <h3>The unicycle cube</h3>
-        <p>Rode a unicycle while solving a Rubik's cube. Josh Kushner was in the audience. 3&times;3 competitive average: 13.95 seconds. Competed 2008&ndash;2014 at Northeast US events and Nationals. The cube does not care if you are tired.</p>
+        <p>Old Oscar office, culture at peak, crowd half-drunk. I'd been a competitive cuber since 2008 and a trick-grade unicyclist since junior year of high school. Hand a Rubik's cube to someone, ride out on the unicycle, switch to riding backwards, jump an obstacle course of stacked chairs and a bench, take the now-scrambled cube back, solve it on the unicycle as the finale. "All the Small Things" in the background. Did it twice (re-trained for the encore &mdash; mastery decays fast).</p>
+      </article>
+
+      <article class="note-card">
+        <div class="note-head">
+          <span class="note-tag note-tag-fun">culture</span>
+          <span class="note-date mono">Oscar &middot; with Peter</span>
+        </div>
+        <h3>Emotiqueue</h3>
+        <p>Started as a custom-emoticon flood (HipChat, then Slack). Became a hackathon project where messages got routed through a deliberately ridiculous pipeline (queues into queues, into a ticketing system, back into chat) ending in a chatbot. By the time I left it had 3,000+ custom emoticons, 50+ silly commands, and a codebase other engineers across the company committed to. Half goof, half real internal tool. The kind of culture moment that's missing from most engineering orgs.</p>
       </article>
 
       <article class="note-card">
         <div class="note-head">
           <span class="note-tag note-tag-ai">AI-era</span>
-          <span class="note-date mono">2026</span>
+          <span class="note-date mono">Stock Unlock</span>
         </div>
-        <h3>The Customer.io hack-off</h3>
-        <p>Migrated Stock Unlock off Customer.io onto self-hosted AWS SES with custom admin panels. Built largely with Claude Code, reviewed every line. One person, one weekend of focused work. Saved roughly $6K a year. Driver in the driver's seat, not driven by the car.</p>
+        <h3>The Customer.io migration</h3>
+        <p>Migrated us off Customer.io onto self-hosted AWS SES in roughly a focused weekend &mdash; SES integration, admin panels for broadcasts and campaign config, AWS scaffolding. Most of the code came out of Claude Code; I read the parts that mattered (security, deliverability, business logic) and shipped. Saved ~$5&ndash;6K/year. One person, one weekend. That's what AI-era engineering actually looks like when you know what you're doing.</p>
       </article>
 
       <article class="note-card">
         <div class="note-head">
-          <span class="note-tag note-tag-next">next</span>
-          <span class="note-date mono">April 2026</span>
+          <span class="note-tag note-tag-ai">AI-era</span>
+          <span class="note-date mono">post-Opus 4.5</span>
         </div>
-        <h3>Chapter II</h3>
-        <p>Re-entering the workforce. Getting married. Stock Unlock has been on autopilot for about fifteen months and will keep running. Looking for full-time roles, contract work, or equity-founding conversations. Redefining what comes next.</p>
+        <h3>The Webflow migration</h3>
+        <p>Migrated the marketing site off Webflow into a self-hosted custom codebase, written almost entirely with Claude Code. Direct savings were modest (~$1K/year). The wins: no contractors needed for copy changes, full UX control, the marketing surface is now 20x bigger in content pages, programmatic SEO + GEO pages on top &mdash; all AI-generated and human-reviewed.</p>
+      </article>
+
+      <article class="note-card">
+        <div class="note-head">
+          <span class="note-tag note-tag-ai">AI-era</span>
+          <span class="note-date mono">Stock Unlock &middot; internal</span>
+        </div>
+        <h3>The X poster</h3>
+        <p>Self-improving AI agent that drafts X posts with a human-in-the-loop. Bootstrap-trained on thousands of posts (ours plus competitors), each tagged with real engagement metrics. Aware of every product feature. Spins up a Playwright browser, authenticates as a real user via custom test-IDs, takes in-product screenshots, error-checks them, queues drafts in an admin UI. A LangChain pipeline iteratively rewrites the drafter's own prompt from human feedback; a separate cron feeds back live engagement signals. Probably the most ambitious thing I've built that isn't a company.</p>
+      </article>
+
+      <article class="note-card">
+        <div class="note-head">
+          <span class="note-tag note-tag-ai">AI-era</span>
+          <span class="note-date mono">spare hours</span>
+        </div>
+        <h3>The blinds motor</h3>
+        <p>First hardware project I've ever attempted. A wirelessly-controlled motor for the blinds in my apartment &mdash; Adafruit Feather, a small motor, more circuitry than I fully understood when I started, all uploaded via the Arduino IDE. Codex writes most of the embedded code; I learn enough hardware to stay in the driver's seat. Pulling off a domain I've never touched in spare hours is part of why I'm convinced the 10x &rarr; 100x shift in engineer output is real and recent.</p>
+      </article>
+
+      <article class="note-card">
+        <div class="note-head">
+          <span class="note-tag note-tag-story">trench</span>
+          <span class="note-date mono">CommerceHub &middot; 2014</span>
+        </div>
+        <h3>The IE7 ellipsis</h3>
+        <p>String-truncation bug in a company-name display where the ellipsis didn't render in Internet Explorer 7. QVC was pinned to IE7. To test the fix I had to spin up a virtual machine running an old version of Windows just to load the browser. In 2014. Engineering history is preserved in QVC's procurement contracts.</p>
       </article>
     </div>
   </div>
 </section>
 
+<!-- ===================== PRINCIPLES ===================== -->
+<section class="section section-alt" id="principles">
+  <div class="container">
+    <div class="section-head">
+      <div class="eyebrow"><span class="dot-blue"></span> Principles</div>
+      <h2 class="section-title">What I'm for. What I'm against.</h2>
+      <p class="section-sub">No deck. No buzzwords. The convictions actually load-bearing under the work.</p>
+    </div>
+
+    <div class="notes-grid">
+      <article class="note-card">
+        <div class="note-head">
+          <span class="note-tag note-tag-origin">for</span>
+          <span class="note-date mono">teammates</span>
+        </div>
+        <h3>Brutally honest, no sandwiches</h3>
+        <p>Brutally honest teammates who disagree directly, with reason. No compliment-sandwiches. Autonomy and real ownership. Things that matter and don't sound like bullshit. High-bar teams. Get-shit-done culture.</p>
+      </article>
+
+      <article class="note-card">
+        <div class="note-head">
+          <span class="note-tag note-tag-ai">for</span>
+          <span class="note-date mono">AI thesis</span>
+        </div>
+        <h3>Driver in the seat</h3>
+        <p>AI as a first-class tool, with the human in the driver's seat. AI writes more code than I do; human-reviewed where it matters (business logic, security, system architecture); let loose on cosmetic frontend. Opus 4.5 in early 2026 was the inflection point. Leaning all the way in &mdash; coding, deep business strategy, drafting emails and PDFs, even hardware projects on the side. The 10x &rarr; 100x shift is real and recent.</p>
+      </article>
+
+      <article class="note-card">
+        <div class="note-head">
+          <span class="note-tag note-tag-fun">for</span>
+          <span class="note-date mono">culture</span>
+        </div>
+        <h3>Culture carrier by default</h3>
+        <p>The people, the interactions, the personality of a team &mdash; I'm conscious of being a positive force in those wherever I'm working. Emotiqueue is one example of that energy in action.</p>
+      </article>
+
+      <article class="note-card">
+        <div class="note-head">
+          <span class="note-tag note-tag-story">against</span>
+          <span class="note-date mono">bureaucracy</span>
+        </div>
+        <h3>Bureaucracy and PIP theater</h3>
+        <p>Politics over shipping, PIP-driven theater, buzzword resumes ("passionate," "results-oriented," "dynamic team player"). "Fisher-Price" software &mdash; looks polished, breaks under real use.</p>
+      </article>
+
+      <article class="note-card">
+        <div class="note-head">
+          <span class="note-tag note-tag-story">against</span>
+          <span class="note-date mono">Stock Unlock origin</span>
+        </div>
+        <h3>Overcharging is theft</h3>
+        <p>Overcharging for software that ships people short, especially when the people getting shorted can't afford it. One concrete example I stewed on while building Stock Unlock: a competing platform's "margin of safety score," calculated as <code>current_price / all_time_high</code>. That's not analysis. One of hundreds of small dumb things competing tools did, and load-bearing for the conviction that there was room for software that didn't.</p>
+      </article>
+
+      <article class="note-card">
+        <div class="note-head">
+          <span class="note-tag note-tag-story">against</span>
+          <span class="note-date mono">vibes</span>
+        </div>
+        <h3>Vibe coding sold as engineering</h3>
+        <p>There's a real difference. Driver in the seat means the human still owns business logic, security, and architecture. Cosmetic frontend can run loose. The two get conflated; they shouldn't.</p>
+      </article>
+
+      <article class="note-card">
+        <div class="note-head">
+          <span class="note-tag note-tag-fun">worldview</span>
+          <span class="note-date mono">serendipity</span>
+        </div>
+        <h3>Luck only finds people who keep running</h3>
+        <p>Most of what's worked for me looks lucky in retrospect. AP CS to dodge AP Calc. The Tekkapalooza resume drop. The Oscar interview question. Daniel replying out of exhaustion. YC reaching out via LinkedIn. The pattern is that luck only finds people who keep running at it.</p>
+      </article>
+
+      <article class="note-card">
+        <div class="note-head">
+          <span class="note-tag note-tag-origin">pattern</span>
+          <span class="note-date mono">since age 11</span>
+        </div>
+        <h3>Find a thing. Get weirdly good. Move on.</h3>
+        <p>Lemonade stands. Skateboarding. DDR. Guitar Hero. RuneScape. Tetris and Minesweeper on the family Windows 95 box. Speed-cubing. Unicycle. Rugby. Climbing. Code. Cubes and code are the two that stuck &mdash; both have feedback loops and infinite depth. Self-improvement as a core operating-system part of me. The flip side: without a feedback loop, I tune out. A high school classmate told me I was good at everything that didn't matter. He wasn't wrong.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== MASTERY ===================== -->
+<section class="section" id="mastery">
+  <div class="container">
+    <div class="section-head">
+      <div class="eyebrow"><span class="dot-blue"></span> Mastery</div>
+      <h2 class="section-title">The list of things I got weirdly good at.</h2>
+      <p class="section-sub">Cubes and code stuck. The rest are receipts that the pattern is real.</p>
+    </div>
+
+    <div class="integ-grid">
+      <div class="integ-tile"><span class="integ-tile-status"></span><span class="integ-tile-icon"><i class="lucide lucide-box"></i></span><span class="integ-tile-name">Speed-cubing</span><span class="integ-tile-v">3x3 avg 13.95s &middot; top-20 US Pyraminx</span></div>
+      <div class="integ-tile"><span class="integ-tile-status"></span><span class="integ-tile-icon"><i class="lucide lucide-circle"></i></span><span class="integ-tile-name">Unicycle</span><span class="integ-tile-v">mountain &middot; one-footed &middot; trick-grade</span></div>
+      <div class="integ-tile"><span class="integ-tile-status"></span><span class="integ-tile-icon"><i class="lucide lucide-trophy"></i></span><span class="integ-tile-name">Track &amp; field</span><span class="integ-tile-v">captain + MVP, sr year &middot; jumps + 400m</span></div>
+      <div class="integ-tile"><span class="integ-tile-status"></span><span class="integ-tile-icon"><i class="lucide lucide-goal"></i></span><span class="integ-tile-name">Soccer / Rugby</span><span class="integ-tile-v">JV captain &middot; UAlbany B&rarr;A squad</span></div>
+      <div class="integ-tile"><span class="integ-tile-status"></span><span class="integ-tile-icon"><i class="lucide lucide-mountain"></i></span><span class="integ-tile-name">Rock climbing</span><span class="integ-tile-v">Oscar era &middot; ~2 yrs indoor</span></div>
+      <div class="integ-tile"><span class="integ-tile-status"></span><span class="integ-tile-icon"><i class="lucide lucide-sigma"></i></span><span class="integ-tile-name">Math</span><span class="integ-tile-v">99/100 Calc 1 &middot; 3.88 GPA &middot; CS + Applied Math</span></div>
+      <div class="integ-tile"><span class="integ-tile-status"></span><span class="integ-tile-icon"><i class="lucide lucide-music"></i></span><span class="integ-tile-name">Guitar Hero / DDR</span><span class="integ-tile-v">obsessively good &middot; teen era</span></div>
+      <div class="integ-tile"><span class="integ-tile-status"></span><span class="integ-tile-icon"><i class="lucide lucide-palette"></i></span><span class="integ-tile-name">Art</span><span class="integ-tile-v">held attention as a kid &middot; alongside math/science</span></div>
+      <div class="integ-tile"><span class="integ-tile-status"></span><span class="integ-tile-icon"><i class="lucide lucide-flower"></i></span><span class="integ-tile-name">Meditation</span><span class="integ-tile-v">regular &middot; tied to the serendipity thread</span></div>
+    </div>
+
+    <div class="integ-foot">
+      <span class="mono">WCA: 2008RUTH01</span>
+      <span class="muted"><a href="https://www.worldcubeassociation.org/persons/2008RUTH01">worldcubeassociation.org/persons/2008RUTH01</a></span>
+    </div>
+  </div>
+</section>
+
 <!-- ===================== INTEGRATIONS ===================== -->
-<section class="section" id="integrations">
+<section class="section section-alt" id="integrations">
   <div class="container">
     <div class="section-head">
       <div class="eyebrow"><span class="dot-blue"></span> Integrations</div>
       <h2 class="section-title">Drops in wherever you work.</h2>
-      <p class="section-sub">Eight integrations I've run in anger. No "adaptor available on request" line items.</p>
+      <p class="section-sub">The stack I've run in anger, plus the AI tooling that lives next to it.</p>
     </div>
 
     <div class="integ-grid">
-      <div class="integ-tile"><span class="integ-tile-status"></span><span class="integ-tile-icon"><i class="lucide lucide-cloud"></i></span><span class="integ-tile-name">AWS</span><span class="integ-tile-v">ECS &middot; SES &middot; RDS</span></div>
-      <div class="integ-tile"><span class="integ-tile-status"></span><span class="integ-tile-icon"><i class="lucide lucide-database"></i></span><span class="integ-tile-name">Postgres</span><span class="integ-tile-v">v16</span></div>
       <div class="integ-tile"><span class="integ-tile-status"></span><span class="integ-tile-icon"><i class="lucide lucide-braces"></i></span><span class="integ-tile-name">Python</span><span class="integ-tile-v">daily driver</span></div>
-      <div class="integ-tile"><span class="integ-tile-status"></span><span class="integ-tile-icon"><i class="lucide lucide-code"></i></span><span class="integ-tile-name">TypeScript / Go</span><span class="integ-tile-v">runtime</span></div>
+      <div class="integ-tile"><span class="integ-tile-status"></span><span class="integ-tile-icon"><i class="lucide lucide-code"></i></span><span class="integ-tile-name">Go &middot; TypeScript</span><span class="integ-tile-v">runtime</span></div>
       <div class="integ-tile"><span class="integ-tile-status"></span><span class="integ-tile-icon"><i class="lucide lucide-atom"></i></span><span class="integ-tile-name">React</span><span class="integ-tile-v">since pre-hooks</span></div>
-      <div class="integ-tile"><span class="integ-tile-status"></span><span class="integ-tile-icon"><i class="lucide lucide-sparkles"></i></span><span class="integ-tile-name">Claude Code</span><span class="integ-tile-v">Opus 4.x</span></div>
-      <div class="integ-tile"><span class="integ-tile-status"></span><span class="integ-tile-icon"><i class="lucide lucide-github"></i></span><span class="integ-tile-name">GitHub</span><span class="integ-tile-v">13 yrs of commits</span></div>
-      <div class="integ-tile"><span class="integ-tile-status"></span><span class="integ-tile-icon"><i class="lucide lucide-container"></i></span><span class="integ-tile-name">Docker</span><span class="integ-tile-v">Compose &rarr; ECS</span></div>
+      <div class="integ-tile"><span class="integ-tile-status"></span><span class="integ-tile-icon"><i class="lucide lucide-cloud"></i></span><span class="integ-tile-name">AWS</span><span class="integ-tile-v">EC2 &middot; SES &middot; Docker Compose</span></div>
+      <div class="integ-tile"><span class="integ-tile-status"></span><span class="integ-tile-icon"><i class="lucide lucide-sparkles"></i></span><span class="integ-tile-name">Claude Code</span><span class="integ-tile-v">Opus 4.7</span></div>
+      <div class="integ-tile"><span class="integ-tile-status"></span><span class="integ-tile-icon"><i class="lucide lucide-terminal"></i></span><span class="integ-tile-name">Codex &middot; CMUX</span><span class="integ-tile-v">multi-instance</span></div>
+      <div class="integ-tile"><span class="integ-tile-status"></span><span class="integ-tile-icon"><i class="lucide lucide-wrench"></i></span><span class="integ-tile-name">Open Hands</span><span class="integ-tile-v">custom harness</span></div>
+      <div class="integ-tile"><span class="integ-tile-status"></span><span class="integ-tile-icon"><i class="lucide lucide-github"></i></span><span class="integ-tile-name">GitHub</span><span class="integ-tile-v">15 yrs of commits</span></div>
     </div>
 
     <div class="integ-foot">
@@ -478,10 +662,10 @@
 </section>
 
 <!-- ===================== DEVELOPER DOCS ===================== -->
-<section class="section section-alt" id="docs">
+<section class="section" id="docs">
   <div class="container">
     <div class="section-head section-head-left">
-      <div class="eyebrow"><span class="dot-blue"></span> Developers &middot; API v13</div>
+      <div class="eyebrow"><span class="dot-blue"></span> Developers</div>
       <h2 class="section-title">API reference.</h2>
       <p class="section-sub">One endpoint. The only one that matters.</p>
     </div>
@@ -503,23 +687,22 @@
           <div class="endpoint-head">
             <span class="method method-post">POST</span>
             <span class="path mono">/api/hire</span>
-            <span class="endpoint-v mono">v13</span>
           </div>
           <p>Initiates a hiring flow for the <code>jake</code> resource. Idempotent on <code>email</code>. Returns <code>201 Created</code> on acceptance.</p>
           <div class="endpoint-cols">
             <div class="endpoint-prose">
               <h4>Body parameters</h4>
               <table class="param-table">
-                <tr><td><code>role</code></td><td class="type">string</td><td>One of <code>ic</code>, <code>tech-lead</code>, <code>founding</code>, <code>contract</code>.</td></tr>
-                <tr><td><code>stage</code></td><td class="type">string</td><td>Company stage. Best results at seed &rarr; Series B.</td></tr>
-                <tr><td><code>interesting</code></td><td class="type">boolean</td><td>Required. Must be <code>true</code>.</td></tr>
+                <tr><td><code>role</code></td><td class="type">string</td><td>One of <code>senior-ic</code>, <code>founding</code>, <code>early-cto</code>, <code>contract</code>.</td></tr>
+                <tr><td><code>problem</code></td><td class="type">string</td><td>Has to be a problem Jake would care about. Logo-chasing returns <code>422</code>.</td></tr>
+                <tr><td><code>comp</code></td><td class="type">string</td><td>Market rate plus equity. No specific dollar prices.</td></tr>
                 <tr><td><code>email</code></td><td class="type">string</td><td>Your email. Jake's will be returned.</td></tr>
               </table>
               <h4>Response fields</h4>
               <table class="param-table">
                 <tr><td><code>jake</code></td><td class="type">string</td><td>Always <code>jake2ruth@gmail.com</code>.</td></tr>
-                <tr><td><code>response_time</code></td><td class="type">string</td><td>Fast during business hours ET.</td></tr>
-                <tr><td><code>availability</code></td><td class="type">string</td><td>Currently: <code>taking calls</code>.</td></tr>
+                <tr><td><code>response_time</code></td><td class="type">string</td><td>Fast during ET business hours. Email preferred to DMs.</td></tr>
+                <tr><td><code>availability</code></td><td class="type">string</td><td>Currently: <code>quietly open</code>.</td></tr>
               </table>
             </div>
             <div class="endpoint-code">
@@ -534,16 +717,16 @@
   <span class="c-flag">-H</span> <span class="c-str">"Content-Type: application/json"</span> \
   <span class="c-flag">-d</span> <span class="c-str">'{
     "role": "founding",
-    "stage": "seed",
-    "interesting": true,
+    "problem": "something that matters",
+    "comp": "market + equity",
     "email": "you@yourstartup.com"
   }'</span></code></pre>
 <pre class="code-body code-body-node" hidden><code><span class="c-kw">import</span> { hire } <span class="c-kw">from</span> <span class="c-str">"ruth-node"</span>;
 
 <span class="c-kw">const</span> { jake, response_time } = <span class="c-kw">await</span> hire({
   role: <span class="c-str">"founding"</span>,
-  stage: <span class="c-str">"seed"</span>,
-  interesting: <span class="c-kw">true</span>,
+  problem: <span class="c-str">"something that matters"</span>,
+  comp: <span class="c-str">"market + equity"</span>,
   email: <span class="c-str">"you@yourstartup.com"</span>,
 });
 
@@ -552,8 +735,8 @@
 
 response = hire(
   role=<span class="c-str">"founding"</span>,
-  stage=<span class="c-str">"seed"</span>,
-  interesting=<span class="c-kw">True</span>,
+  problem=<span class="c-str">"something that matters"</span>,
+  comp=<span class="c-str">"market + equity"</span>,
   email=<span class="c-str">"you@yourstartup.com"</span>,
 )
 
@@ -562,10 +745,10 @@ response = hire(
               <div class="code-head code-resp-head"><span>Response</span><span class="mono muted">201 Created</span></div>
 <pre class="code-body"><code><span class="c-kw">{</span>
   <span class="c-key">"jake"</span>: <span class="c-str">"jake2ruth@gmail.com"</span>,
-  <span class="c-key">"response_time"</span>: <span class="c-str">"&lt; 24h, ET business hours"</span>,
-  <span class="c-key">"status"</span>: <span class="c-str">"interested"</span>,
-  <span class="c-key">"availability"</span>: <span class="c-str">"taking calls"</span>,
-  <span class="c-key">"cube_pb"</span>: <span class="c-str">"13.95s avg, 3x3"</span>
+  <span class="c-key">"response_time"</span>: <span class="c-str">"fast, ET business hours"</span>,
+  <span class="c-key">"availability"</span>: <span class="c-str">"quietly open"</span>,
+  <span class="c-key">"cube_pb"</span>: <span class="c-str">"13.95s avg 3x3, top-20 US Pyraminx at peak"</span>,
+  <span class="c-key">"wca"</span>: <span class="c-str">"2008RUTH01"</span>
 <span class="c-kw">}</span></code></pre>
             </div>
           </div>
@@ -579,9 +762,9 @@ response = hire(
 <section class="cta-band">
   <div class="container cta-row">
     <div>
-      <div class="eyebrow"><span class="dot-blue"></span> Ready when you are</div>
-      <h2>Stop evaluating. Start shipping.</h2>
-      <p>30-minute call. No sales pitch, no proposal PDF, no deck. Just a conversation about what you're building and whether I'm the right person to help ship it.</p>
+      <div class="eyebrow"><span class="dot-blue"></span> Hire</div>
+      <h2>If you're not sure, email anyway.</h2>
+      <p>Open to full-time, contract, or equity-founding conversations. Email is the channel &mdash; fast during ET business hours, prefer it to DMs. We'll figure out whether it's a fit.</p>
     </div>
     <div class="cta-actions">
       <a href="mailto:jake2ruth@gmail.com" class="btn btn-primary btn-lg">Email Jake <i class="lucide lucide-arrow-right"></i></a>
@@ -598,7 +781,7 @@ response = hire(
         <span class="brand-mark"><i class="lucide lucide-hexagon"></i></span>
         <span class="brand-name">ruth<span class="brand-dot">/</span>systems</span>
       </a>
-      <p class="footer-tag">The engineer your team actually needs.<br/>Founded 2013. Built for the next chapter.</p>
+      <p class="footer-tag">Find a thing. Get weirdly good. Move on.<br/>Code is the one that stuck. Cubes too.</p>
     </div>
     <div class="footer-right">
       <div class="footer-links">
@@ -606,11 +789,13 @@ response = hire(
         <span class="footer-sep">&middot;</span>
         <a href="https://github.com/JakeRuth">github.com/JakeRuth</a>
         <span class="footer-sep">&middot;</span>
-        <a href="#pricing">Pricing</a>
+        <a href="https://www.worldcubeassociation.org/persons/2008RUTH01">WCA: 2008RUTH01</a>
         <span class="footer-sep">&middot;</span>
-        <a href="#docs">Docs</a>
+        <a href="../official_resume.pdf">Resume</a>
       </div>
       <div class="footer-meta">
+        <span>NYC area</span>
+        <span class="footer-sep">&middot;</span>
         <span>&copy; 2026 ruth/systems</span>
         <span class="footer-sep">&middot;</span>
         <span class="footer-status"><span class="dot-green"></span> All systems operational</span>

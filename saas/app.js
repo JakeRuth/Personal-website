@@ -48,15 +48,15 @@
   if (!svg) return;
 
   const NODES = [
-    { id: "core",     label: "Core Engine",     class: "core",    slo: "99.99%", since: "2013", blurb: "Thirteen years of shipped production code. The deterministic center; everything else composes on top." },
-    { id: "sysdesign",label: "System Design",   class: "core",    slo: "99.97%", since: "2016", blurb: "Drawing boxes and making them true. Written design docs before code. The part of the job I like most." },
-    { id: "runtime",  label: "Runtime",         class: "service", slo: "99.95%", since: "2013", blurb: "Python daily driver. TypeScript for product surfaces. Go for services that should be fast, small, and boring." },
+    { id: "core",     label: "Core Engine",     class: "core",    slo: "99.99%", since: "2010", blurb: "Senior-year math credit dropped me into AP CS instead of AP Calc. Mrs. Nalbandian ran a function on the board in the first five minutes; I knew right there. Fifteen years of shipping later, code is the one that stuck." },
+    { id: "sysdesign",label: "System Design",   class: "core",    slo: "99.97%", since: "2016", blurb: "Drawing boxes and making them true. Written design docs before code. Design before code is the part of the job I like most." },
+    { id: "runtime",  label: "Runtime",         class: "service", slo: "99.95%", since: "2013", blurb: "Python daily driver. Go for backends that should be fast, small, and boring. TypeScript and React (since pre-hooks) on the front. Groovy/Grails earlier at CommerceHub." },
     { id: "data",     label: "Data Layer",      class: "data",    slo: "99.99%", since: "2013", blurb: "Postgres first, everything else second. Schema discipline. Migrations are boring on purpose." },
-    { id: "platform", label: "AWS Platform",    class: "data",    slo: "99.95%", since: "2017", blurb: "Run in anger: ECS, RDS, SES, Route53. Prefers primitives to magical platforms. Saved Stock Unlock ~$6K/yr migrating to self-hosted SES." },
-    { id: "delivery", label: "Delivery",        class: "service", slo: "99.95%", since: "2013", blurb: "Ticket → design doc → code → review → deploy. Feature flags, dual-writes, shadow reads. No handoffs." },
-    { id: "obs",      label: "Observability",   class: "service", slo: "99.97%", since: "2017", blurb: "Metrics, logs, dashboards, runbooks. Built by someone who's been paged at 3 AM. Datadog-literate." },
-    { id: "ai",       label: "AI Co-pilot",     class: "ai",      slo: "99.50%", since: "2024", blurb: "Driver in the driver's seat, not driven by the car. Claude Code and Codex. Reviewed for business logic, security, architecture." },
-    { id: "humans",   label: "Humans API",      class: "edge",    slo: "99.90%", since: "2013", blurb: "Async-first, meeting-competent, brutally honest when it matters. Led a YC interview. Scaled a team to eight." },
+    { id: "platform", label: "AWS Platform",    class: "data",    slo: "99.95%", since: "2017", blurb: "Run in anger: EC2, ECS, RDS, SES, Docker Compose. Migrated Stock Unlock off Customer.io to self-hosted AWS SES (saved ~$5–6K/yr) and off Webflow to a self-hosted marketing codebase (saved ~$1K/yr, 20x more content pages)." },
+    { id: "delivery", label: "Delivery",        class: "service", slo: "99.95%", since: "2013", blurb: "Ticket → design doc → code → review → deploy. Took down production once at CommerceHub with a button I shouldn't have had access to. The system was the problem, not the intern. Blameless culture has been load-bearing ever since." },
+    { id: "obs",      label: "Observability",   class: "service", slo: "99.97%", since: "2017", blurb: "Metrics, logs, dashboards, runbooks. SRE-adjacent at Oscar on a custom-hosted analytics integration." },
+    { id: "ai",       label: "AI Co-pilot",     class: "ai",      slo: "99.50%", since: "2022", blurb: "Driver in the seat, not driven by the car. Tool progression: Copilot (cool, not life-changing) → Cursor (~1–2 years heavy) → Claude Code dabble through 2025 → Opus 4.5 in early 2026 was the tidal-wave inflection. Now on Opus 4.7. Heavy Claude Code + Codex + CMUX. Built my own harness via Open Hands." },
+    { id: "humans",   label: "Humans API",      class: "edge",    slo: "99.90%", since: "2013", blurb: "Brutally honest teammates who disagree directly, with reason. No compliment-sandwiches. Mentored newer engineers unofficially throughout Oscar. Led a YC interview. Scaled a team to eight. Culture carrier by default." },
   ];
 
   const EDGES = [
