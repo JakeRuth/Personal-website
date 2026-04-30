@@ -563,7 +563,7 @@
     });
 
     forkBtn.addEventListener('click', () => {
-      window.location.href = 'mailto:jake2ruth@gmail.com?subject=Fork%20request&body=Hi%20Jake%2C%0A%0AI%27d%20like%20to%20fork%20your%20career.%20Could%20we%20talk%3F%0A%0A';
+      if (typeof window.copyJakeEmail === 'function') window.copyJakeEmail();
     });
 
     function applyStar(on, initial) {

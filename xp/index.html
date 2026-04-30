@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Jake Ruth (C:) — Windows XP</title>
+<title>Jake Ruth (C:), Windows XP</title>
 <link rel="icon" type="image/gif" href="/images/logo.gif" />
 <!-- Speculation Rules: prerender the OTHER two experiences so topnav
      transitions to them are essentially instant. See /index.html for
@@ -22,6 +22,7 @@
 <script src="../shell/cube-solver.js"></script>
 <script src="../shell/transition-cube.js"></script>
 <script src="../shell/topnav.js" defer></script>
+<script src="../shell/email-copy.js" defer></script>
 </head>
 <body>
 
@@ -61,19 +62,19 @@
         <rect x="6" y="22" width="12" height="12" fill="#009b48" stroke="#222"/>
         <rect x="18" y="22" width="12" height="12" fill="#ffd500" stroke="#222"/>
         <rect x="30" y="22" width="12" height="12" fill="#ff5800" stroke="#222"/>
-        <rect x="6" y="34" width="12" height="6" fill="#ffffff" stroke="#222"/>
-        <rect x="18" y="34" width="12" height="6" fill="#c40000" stroke="#222"/>
-        <rect x="30" y="34" width="12" height="6" fill="#0051ba" stroke="#222"/>
+        <rect x="6" y="34" width="12" height="12" fill="#ffffff" stroke="#222"/>
+        <rect x="18" y="34" width="12" height="12" fill="#c40000" stroke="#222"/>
+        <rect x="30" y="34" width="12" height="12" fill="#0051ba" stroke="#222"/>
       </svg>
     </div>
     <div class="icon-label">CubeMaster XP.exe</div>
   </li>
 
-  <li class="icon" data-open="search-companion" tabindex="0">
+  <li class="icon" data-action="open-stock-unlock" tabindex="0">
     <div class="icon-img">
-      <div class="dog-icon">&#128021;</div>
+      <img src="/images/stock-unlock-logo.png" width="36" height="36" alt="" />
     </div>
-    <div class="icon-label">Search Companion</div>
+    <div class="icon-label">Stock Unlock</div>
   </li>
 
   <li class="icon" data-copy="jake2ruth@gmail.com" tabindex="0">
@@ -91,7 +92,7 @@
 <section class="xp-window explorer" id="win-my-computer" data-title="Jake Ruth (C:)">
   <header class="titlebar" data-drag-handle>
     <div class="tb-icon">
-      <svg viewBox="0 0 16 16" width="14" height="14"><rect x="1" y="3" width="14" height="9" fill="#cfd7e6" stroke="#4b5a72"/><rect x="2" y="4" width="12" height="7" fill="#1e60d6"/></svg>
+      <img src="/images/logo.gif" alt="" width="14" height="14" />
     </div>
     <div class="tb-title">Jake Ruth (C:)</div>
     <div class="tb-buttons">
@@ -101,8 +102,59 @@
     </div>
   </header>
 
-  <nav class="menubar">
-    <span>File</span><span>Edit</span><span>View</span><span>Favorites</span><span>Tools</span><span>Help</span>
+  <nav class="menubar" id="xp-menubar">
+    <div class="menu-group">
+      <button class="menu-item" data-menu="file" type="button"><u>F</u>ile</button>
+      <ul class="menu-panel" data-menu-for="file" role="menu" hidden>
+        <li class="menu-row" data-action="email"><span class="row-label">New Mail Message</span><span class="row-accel">Ctrl+M</span></li>
+        <li class="menu-row" data-action="resume"><span class="row-label">Open Resume</span></li>
+        <li class="menu-sep" role="separator"></li>
+        <li class="menu-row" data-action="close"><span class="row-label">Close</span></li>
+      </ul>
+    </div>
+    <div class="menu-group">
+      <button class="menu-item" data-menu="edit" type="button"><u>E</u>dit</button>
+      <ul class="menu-panel" data-menu-for="edit" role="menu" hidden>
+        <li class="menu-row" data-action="copy-email"><span class="row-label">Copy E-mail address</span></li>
+        <li class="menu-row" data-action="copy-github"><span class="row-label">Copy GitHub URL</span></li>
+      </ul>
+    </div>
+    <div class="menu-group">
+      <button class="menu-item" data-menu="view" type="button"><u>V</u>iew</button>
+      <ul class="menu-panel" data-menu-for="view" role="menu" hidden>
+        <li class="menu-row" data-action="refresh"><span class="row-label">Refresh</span><span class="row-accel">F5</span></li>
+        <li class="menu-sep" role="separator"></li>
+        <li class="menu-row" data-scroll="about"><span class="row-label">Go to About</span></li>
+        <li class="menu-row" data-scroll="work"><span class="row-label">Go to Work history</span></li>
+        <li class="menu-row" data-scroll="stock-unlock"><span class="row-label">Go to Stock Unlock</span></li>
+        <li class="menu-row" data-scroll="ai"><span class="row-label">Go to AI philosophy</span></li>
+        <li class="menu-row" data-scroll="stories"><span class="row-label">Go to Stories timeline</span></li>
+        <li class="menu-row" data-scroll="cube"><span class="row-label">Go to Mastery / Hobbies</span></li>
+      </ul>
+    </div>
+    <div class="menu-group">
+      <button class="menu-item" data-menu="favorites" type="button">F<u>a</u>vorites</button>
+      <ul class="menu-panel" data-menu-for="favorites" role="menu" hidden>
+        <li class="menu-row" data-action="open-github"><span class="row-label">GitHub profile</span></li>
+        <li class="menu-row" data-action="open-wca"><span class="row-label">WCA profile</span></li>
+      </ul>
+    </div>
+    <div class="menu-group">
+      <button class="menu-item" data-menu="tools" type="button"><u>T</u>ools</button>
+      <ul class="menu-panel" data-menu-for="tools" role="menu" hidden>
+        <li class="menu-row" data-open="cubemaster"><span class="row-label">CubeMaster XP</span></li>
+        <li class="menu-row" data-action="open-stock-unlock"><span class="row-label">Stock Unlock website</span></li>
+      </ul>
+    </div>
+    <div class="menu-group">
+      <button class="menu-item" data-menu="help" type="button"><u>H</u>elp</button>
+      <ul class="menu-panel" data-menu-for="help" role="menu" hidden>
+        <li class="menu-row" data-scroll="about"><span class="row-label">About Jake Ruth (C:)</span></li>
+        <li class="menu-row" data-action="open-source"><span class="row-label">View source on GitHub</span></li>
+        <li class="menu-sep" role="separator"></li>
+        <li class="menu-row" data-action="restart"><span class="row-label">Restart Setup Wizard</span></li>
+      </ul>
+    </div>
   </nav>
 
   <div class="toolbar">
@@ -110,23 +162,25 @@
       <svg viewBox="0 0 16 16" width="14" height="14"><path d="M10 3 L4 8 L10 13 Z" fill="#1e60d6"/></svg>
       <span>Back</span>
     </button>
-    <button class="tool-btn" disabled title="Forward">
-      <svg viewBox="0 0 16 16" width="14" height="14"><path d="M6 3 L12 8 L6 13 Z" fill="#8aa2c9"/></svg>
-    </button>
-    <button class="tool-btn" title="Up" data-scroll="hero">
-      <svg viewBox="0 0 16 16" width="14" height="14"><path d="M8 3 L3 9 L13 9 Z" fill="#1e60d6"/></svg>
-    </button>
-    <span class="tool-divider"></span>
-    <button class="tool-btn" title="Search" data-open="search-companion">&#128269; <span>Search</span></button>
     <span class="tool-divider"></span>
     <div class="address">
       <label>Address</label>
-      <div class="address-field">
+      <div class="address-field" id="address-field">
         <svg viewBox="0 0 16 16" width="14" height="14"><rect x="2" y="4" width="12" height="8" fill="#cfd7e6" stroke="#4b5a72"/></svg>
-        <span>C:\Jake\</span>
+        <span id="address-path">C:\Jake\</span>
         <span class="combo-arrow">&#9662;</span>
       </div>
-      <button class="go-btn">&rarr; Go</button>
+      <button class="go-btn" id="address-go">Go</button>
+      <ul class="address-dropdown" id="address-dropdown" hidden>
+        <li data-section="hero" data-label="">C:\Jake\</li>
+        <li data-section="about" data-label="About">C:\Jake\About\</li>
+        <li data-section="work" data-label="Work">C:\Jake\Work\</li>
+        <li data-section="stock-unlock" data-label="Stock Unlock">C:\Jake\Work\Stock Unlock\</li>
+        <li data-section="ai" data-label="AI">C:\Jake\AI\</li>
+        <li data-section="stories" data-label="Stories">C:\Jake\Stories\</li>
+        <li data-section="cube" data-label="Mastery">C:\Jake\Mastery\</li>
+        <li data-section="convictions" data-label="Convictions">C:\Jake\Convictions\</li>
+      </ul>
     </div>
   </div>
 
@@ -136,52 +190,30 @@
       <div class="tp-section">
         <header class="tp-header" data-toggle>
           <span class="tp-chev">&#9662;</span>
-          <span>File and Folder Tasks</span>
+          <span>Quick actions</span>
         </header>
         <ul class="tp-links">
-          <li><a href="#" data-scroll="hero"><span class="tp-ico">&#128196;</span>View this resume</a></li>
-          <li><a href="#" data-copy="jake2ruth@gmail.com"><span class="tp-ico">&#9993;</span>E-mail Jake</a></li>
-          <li><a href="#" data-scroll="hire" class="strong"><span class="tp-ico">&#128640;</span>Talk to Jake</a></li>
+          <li><a href="#" data-action="email" class="strong"><span class="tp-ico">&#9993;</span>E-mail Jake</a></li>
+          <li><a href="#" data-action="resume"><span class="tp-ico">&#128196;</span>View this resume</a></li>
           <li><a href="#" data-open="cubemaster"><span class="tp-ico">&#129482;</span>Launch CubeMaster</a></li>
+          <li><a href="#" data-action="open-stock-unlock"><span class="tp-ico">&#128202;</span>Stock Unlock website</a></li>
         </ul>
       </div>
 
       <div class="tp-section">
         <header class="tp-header" data-toggle>
           <span class="tp-chev">&#9662;</span>
-          <span>Other Places</span>
+          <span>Quick navigation</span>
         </header>
         <ul class="tp-links">
           <li><a href="#" data-scroll="about"><span class="tp-ico">&#127968;</span>About</a></li>
-          <li><a href="#" data-scroll="stock-unlock"><span class="tp-ico">&#128202;</span>Stock Unlock</a></li>
           <li><a href="#" data-scroll="work"><span class="tp-ico">&#128193;</span>Work history</a></li>
-          <li><a href="#" data-scroll="stories"><span class="tp-ico">&#128220;</span>Stories</a></li>
+          <li><a href="#" data-scroll="stock-unlock"><span class="tp-ico">&#128202;</span>Stock Unlock</a></li>
           <li><a href="#" data-scroll="ai"><span class="tp-ico">&#129302;</span>AI philosophy</a></li>
-          <li><a href="#" data-scroll="convictions"><span class="tp-ico">&#9881;</span>Convictions</a></li>
+          <li><a href="#" data-scroll="stories"><span class="tp-ico">&#128220;</span>Stories timeline</a></li>
           <li><a href="#" data-scroll="cube"><span class="tp-ico">&#129482;</span>Mastery / hobbies</a></li>
-          <li><a href="#" data-open="search-companion"><span class="tp-ico">&#128021;</span>The network</a></li>
+          <li><a href="#" data-scroll="convictions"><span class="tp-ico">&#9881;</span>Convictions</a></li>
         </ul>
-      </div>
-
-      <div class="tp-section">
-        <header class="tp-header" data-toggle>
-          <span class="tp-chev">&#9662;</span>
-          <span>Details</span>
-        </header>
-        <div class="tp-details">
-          <div><b>Jake Ruth</b></div>
-          <div>Type: Engineer / Founder</div>
-          <div>Location: NYC area</div>
-          <div>Date modified: 2026-04-28</div>
-          <div>Status: <em>working on what's next</em></div>
-          <div class="tp-attrs">
-            <div><b>Attributes:</b></div>
-            <div><label><input type="checkbox" checked disabled> Ships production code day one</label></div>
-            <div><label><input type="checkbox" checked disabled> Driver in the seat, not driven by the car</label></div>
-            <div><label><input type="checkbox" checked disabled> Won't manage unless the team is right</label></div>
-            <div><label><input type="checkbox" disabled> Tolerates compliment-sandwiches</label></div>
-          </div>
-        </div>
       </div>
     </aside>
 
@@ -191,67 +223,166 @@
       <section class="panel hero" id="hero">
         <div class="hero-banner">
           <div class="hero-text">
-            <div class="eyebrow">Welcome &middot; Jake Ruth (C:)</div>
+            <div class="eyebrow">Welcome &middot; C:\Jake\</div>
             <h1>Jake Ruth.</h1>
             <p class="tagline">
-              I find a thing, get weirdly good at it, and move on.
-            </p>
-            <p class="subtagline">
-              Then a senior-year math credit dropped me into AP Computer Science instead of AP Calc, and the
-              loop closed. Fifteen years of shipping later, four companies in (two I worked at, two I started),
-              code is the one that stuck. Cubes too.
+              Software engineer for fifteen years. Built Stock Unlock (<a href="https://www.ycombinator.com/companies/stock-unlock" target="_blank" rel="noopener">YC W22</a>). Obsessive hobbyist.
             </p>
             <div class="hero-cta">
-              <button class="xp-button primary" data-action="hire">Talk to Jake</button>
-              <button class="xp-button" data-copy="jake2ruth@gmail.com">Copy e-mail</button>
-              <button class="xp-button" data-open="cubemaster">Watch the cube</button>
+              <button class="xp-button primary" data-action="email">Email Jake</button>
+              <button class="xp-button" data-action="resume">Get resume</button>
             </div>
-          </div>
-          <div class="hero-chip">
-            <div class="chip-lines">
-              <div class="chip-line"><b>Founded</b> Stock Unlock (YC W22)</div>
-              <div class="chip-line"><b>Senior SWE</b> at Oscar Health (2017&ndash;2021)</div>
-              <div class="chip-line"><b>CS + Math</b> from SUNY Albany, 3.88 GPA</div>
-              <div class="chip-line"><b>Rubik's 3&times;3:</b> 13.95s average</div>
-            </div>
+            <p class="hero-foot">On the hunt for what's next.</p>
           </div>
         </div>
       </section>
 
       <!-- ABOUT -->
       <section class="panel" id="about">
-        <h2>About &mdash; <span class="soft">System Properties</span></h2>
-        <p>
-          I built <b>Stock Unlock</b> (YC W22). Scaled to a team of eight and thousands of paying customers.
-          Right-sized in early 2026 to three full-time &mdash; two engineers and an executive assistant &mdash;
-          who handle day-to-day. Runs profitably today. I'm on key decisions and weekend pokes.
+        <h2>About <span class="soft">&middot; System Properties</span></h2>
+        <p class="about-tldr">
+          I built <a href="https://stockunlock.com" target="_blank" rel="noopener"><b>Stock Unlock</b></a> (<a href="https://www.ycombinator.com/companies/stock-unlock" target="_blank" rel="noopener">YC W22</a>), which runs profitable today with a small team. Before that I was a senior engineer at Oscar Health, and my first real job was at CommerceHub. It all started senior year of high school: I refused AP Calc,
+          took Mrs. Nalbandian's AP Computer Science instead, and I was hooked in the first five
+          minutes of class. Pattern: I commit hard to things with depth. Code and cubes are the two
+          that have held fifteen-plus years.
         </p>
-        <p>
-          Before that: senior engineer at <b>Oscar Health</b> from March 2017&ndash;2021. Joined under Alan Warren
-          (formerly scaled Google Docs from 2&ndash;3 people to thousands) at ~50 engineers; left at 150+.
-          Associate &rarr; Mid &rarr; Senior. Declined the team-lead path twice. First real job was
-          <b>CommerceHub</b> in Albany &mdash; intern who took down production with a button he shouldn't have
-          had access to, then heard the manager say the system was the problem, not the intern. Co-founded
-          <b>Youni</b>, a college-localized social iOS app, in between.
-        </p>
-        <p>
-          Westchester, NY originally. Pre-teen lemonade stands frequent enough that my parents told me to stop.
-          Skateboarding, DDR, Guitar Hero, RuneScape, Tetris and Minesweeper on a Windows 95 box. Accelerated
-          math track since third grade. Track captain and MVP senior year of high school &mdash; jumper events
-          (high jump, triple jump, long jump), 400m. SUNY Albany 2011&ndash;2015: BS Computer Science + Applied
-          Mathematics, 3.88 GPA, Dean's List every semester, 99/100 on the standardized Calc 1 exam freshman
-          year (best score among ~500 students that semester, including grad students).
-        </p>
-        <p>
-          Outside of work: competed at WCA-sanctioned Rubik's cube tournaments 2008&ndash;2014 (Northeast US
-          and Nationals, 13.95s average on 3&times;3, top-20 in the US at Pyraminx at peak). Trick-grade
-          mountain unicycle. Solved a cube on a unicycle at an Oscar talent show. Twice.
-        </p>
+        <dl class="sysprops">
+          <div><dt>Name</dt><dd>Jake Ruth</dd></div>
+          <div><dt>Based</dt><dd>NYC area</dd></div>
+          <div><dt>Built</dt><dd><a href="https://stockunlock.com" target="_blank" rel="noopener">Stock Unlock</a> (<a href="https://www.ycombinator.com/companies/stock-unlock" target="_blank" rel="noopener">YC W22</a>, 2021&ndash;present) &middot; Youni (co-founded 2015&ndash;2017)</dd></div>
+          <div><dt>Worked at</dt><dd>Oscar Health (Sr SWE, 2017&ndash;2021) &middot; CommerceHub (intern &rarr; engineer, 2013&ndash;2016)</dd></div>
+          <div><dt>Schooled at</dt><dd>SUNY Albany, BS CS + Applied Mathematics</dd></div>
+          <div><dt>Cubes</dt><dd>WCA (World Cube Association) 2008&ndash;2014 &middot; 13.95s 3&times;3 avg &middot; top-20 US Pyraminx at peak</dd></div>
+          <div><dt>Notable</dt><dd>Solved a Rubik's cube on a unicycle on stage at the Oscar talent show. Twice.</dd></div>
+        </dl>
+      </section>
+
+      <!-- WORK HISTORY (accordion; click any row to expand) -->
+      <section class="panel" id="work">
+        <h2>Work history <span class="soft">&middot; My Documents</span></h2>
+        <p class="work-hint fineprint">Click any row to read more. One open at a time.</p>
+        <ul class="work-list" role="list">
+
+          <!-- Stock Unlock row -->
+          <li class="work-row" id="stock-unlock">
+            <div class="work-head" data-toggle-work tabindex="0" role="button" aria-expanded="false">
+              <span class="work-title"><a href="https://stockunlock.com" target="_blank" rel="noopener"><b>Stock Unlock</b></a> &middot; Co-founder, CEO</span>
+              <span class="work-dates">2021&ndash;present (key decisions only since early 2026)</span>
+              <span class="work-chev" aria-hidden="true">&#9662;</span>
+            </div>
+            <div class="work-body">
+              <div class="two-col">
+                <div class="col">
+                  <p>
+                    Built <a href="https://stockunlock.com" target="_blank" rel="noopener">Stock Unlock</a>. <a href="https://www.ycombinator.com/companies/stock-unlock" target="_blank" rel="noopener"><b>YC Winter 2022.</b></a> Scaled to a team of eight,
+                    raised <b>$1.35M seed</b>, grew to and sustained ~3,900 paying customers. I led the YC interview.
+                  </p>
+                  <p>
+                    Origin: COVID era, watching Daniel Pronk's investing YouTube. He was burning 5&ndash;10 hours
+                    every weekend on Excel sheets for his videos. I wrote a Python automation in a weekend to replace
+                    it. Primary driver was unrelenting curiosity and a nerdy thrill (plus I wanted into his
+                    paid Discord for free, and being useful felt like the way in). Hounded Daniel for six weeks until
+                    he replied to make me stop. First call was over a beer. Brought Nick Puljik over from Oscar.
+                    YC reached out cold via LinkedIn before we'd even applied.
+                  </p>
+                  <p>
+                    The business is stable, profitable, and customers love it. We didn't reach the original
+                    VC-backed scale goals; what we built is a healthy SaaS company that runs without me in
+                    the seat day-to-day. <b>Right-sized in early 2026</b> to three full-time (two engineers
+                    and an executive assistant). I'm on key decisions and weekend pokes.
+                  </p>
+                  <p>
+                    <b>Core conviction underneath the company:</b> overcharging for bad software is theft from people
+                    who can't afford to be robbed. The real <a href="https://stockunlock.com" target="_blank" rel="noopener">Stock Unlock</a> brag isn't a unicorn outcome. It's
+                    that the company is alive, profitable, and has thousands of customers who love it.
+                  </p>
+                  <p class="fineprint">Origin and AI-era moments live on the <a href="#stories" data-scroll="stories">Stories timeline</a>.</p>
+                </div>
+                <div class="col">
+                  <div class="inset-panel">
+                    <div class="inset-title">&#128202; Build log</div>
+                    <div class="kv"><span>YC Batch</span><b>Winter 2022</b></div>
+                    <div class="kv"><span>Raised</span><b>$1.35M seed</b></div>
+                    <div class="kv"><span>Subscribers</span><b>3,900 sustained</b></div>
+                    <div class="kv"><span>Peak team</span><b>8</b></div>
+                    <div class="kv"><span>P&amp;L</span><b class="ok">Profitable</b></div>
+                    <div class="kv"><span>Today</span><b>3 FT (2 eng + EA)</b></div>
+                    <div class="kv"><span>My role</span><b>Key decisions only</b></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </li>
+
+          <!-- Oscar Health row -->
+          <li class="work-row">
+            <div class="work-head" data-toggle-work tabindex="0" role="button" aria-expanded="false">
+              <span class="work-title"><b>Oscar Health</b> &middot; Associate &rarr; Mid &rarr; Senior SWE</span>
+              <span class="work-dates">March 2017&ndash;2021, NYC</span>
+              <span class="work-chev" aria-hidden="true">&#9662;</span>
+            </div>
+            <div class="work-body">
+              <div class="work-role">Joined at ~50 engineers under Alan Warren (formerly scaled Google Docs from 2&ndash;3 people to thousands); left at 150+. No formal levels initially; leveled in as Associate, promoted to Mid within ~1 year, Senior ~2 years later, senior for a year before leaving. Owned services across Python and Golang back-ends and a React front-end, including the entire internal site for the hundreds of care-guides and ops staff in the Tempe office. SRE-adjacent on a custom-hosted analytics integration. Built <b>Emotiqueue</b> (internal Slack chatbot) with coworker Peter. Declined the team-lead path twice. Mentored newer engineers unofficially throughout.</div>
+              <p class="fineprint">Interview luck, Emotiqueue, the talent shows: <a href="#stories" data-scroll="stories">Stories timeline</a>.</p>
+            </div>
+          </li>
+
+          <!-- Youni row -->
+          <li class="work-row">
+            <div class="work-head" data-toggle-work tabindex="0" role="button" aria-expanded="false">
+              <span class="work-title"><b>Youni</b> &middot; Co-founder, engineer</span>
+              <span class="work-dates">2015&ndash;2017, Albany &rarr; Troy</span>
+              <span class="work-chev" aria-hidden="true">&#9662;</span>
+            </div>
+            <div class="work-body">
+              <div class="work-role">Co-founded a college-localized social iOS app with Anthony (CEO; ran the ACE entrepreneurship club at SUNY Albany) and Jordan, both UAlbany D1 soccer players. React Native v0.13/0.14 + a simple companion site. Free office space in Troy. Anthony and Jordan won ~$25K in equity-free business grants while still in school. Launched at SUNY Albany and SUNY Binghamton; 70-person paid-in-credits brand-ambassador program; 20,000+ posts at peak. Worked it nights and weekends through CommerceHub, then full-time. No business model and an unsolved cold-start. Folded after ~4&ndash;5 months full-time.</div>
+            </div>
+          </li>
+
+          <!-- CommerceHub row -->
+          <li class="work-row">
+            <div class="work-head" data-toggle-work tabindex="0" role="button" aria-expanded="false">
+              <span class="work-title"><b>CommerceHub</b> &middot; Intern &rarr; Software Engineer</span>
+              <span class="work-dates">2013&ndash;2016, Albany</span>
+              <span class="work-chev" aria-hidden="true">&#9662;</span>
+            </div>
+            <div class="work-body">
+              <div class="work-role">Intern through senior year of college plus a full-time summer (didn't go home), then FT after graduation. Groovy/Grails on the back, early-pre-hooks React on the front, code-review culture, virtual machines for cross-browser testing. &ldquo;First real engineering.&rdquo; Took down production once with a button I shouldn't have had access to. The manager's response, that the system was the problem and not the intern, rewired how I think about access and blameless culture.</div>
+              <p class="fineprint">The production takedown and the IE7 ellipsis are in the <a href="#stories" data-scroll="stories">Stories timeline</a>.</p>
+            </div>
+          </li>
+
+          <!-- My Plastic Brain row -->
+          <li class="work-row">
+            <div class="work-head" data-toggle-work tabindex="0" role="button" aria-expanded="false">
+              <span class="work-title"><b>My Plastic Brain</b> &middot; Contractor</span>
+              <span class="work-dates">parallel to CommerceHub internship</span>
+              <span class="work-chev" aria-hidden="true">&#9662;</span>
+            </div>
+            <div class="work-body">
+              <div class="work-role">Several hundred hours of paid contract web-game work building KineticJS card-game adaptations of physical games used by brain-injury rehab patients. Billed hourly, working solo, end-to-end.</div>
+            </div>
+          </li>
+
+          <!-- SUNY Albany row -->
+          <li class="work-row">
+            <div class="work-head" data-toggle-work tabindex="0" role="button" aria-expanded="false">
+              <span class="work-title"><b>SUNY Albany</b> &middot; BS Computer Science + Applied Mathematics</span>
+              <span class="work-dates">2011&ndash;2015</span>
+              <span class="work-chev" aria-hidden="true">&#9662;</span>
+            </div>
+            <div class="work-body">
+              <div class="work-role">Dean's List every semester. ACM (CS Club) president for two years; took over a dying club, recruited dozens at a lecture-hall pitch, ran weekly meetings, LAN parties, and workshops. Organized the Tekkapalooza field trip that landed me the CommerceHub internship via direct resume drop. Briefly played rugby (B-squad &rarr; A-squad after learning the sport).</div>
+              <p class="fineprint">ACM revival and Tekkapalooza are in the <a href="#stories" data-scroll="stories">Stories timeline</a>.</p>
+            </div>
+          </li>
+
+        </ul>
       </section>
 
       <!-- AI LINE -->
       <section class="panel" id="ai">
-        <h2>AI philosophy &mdash; <span class="soft">ReadMe.txt</span></h2>
+        <h2>AI philosophy <span class="soft">&middot; ReadMe.txt</span></h2>
         <div class="ai-line">
           <em>Driver in the seat, not driven by the car.</em>
           AI writes more code than I do. Human-reviewed where it matters
@@ -265,7 +396,7 @@
           Grok for current events and snark, Claude for deep thinking, Cursor composer for fast code search.
         </p>
         <p>
-          Recent shipped at Stock Unlock with AI assist: migrated off <b>Customer.io</b> to self-hosted
+          Recent shipped at <a href="https://stockunlock.com" target="_blank" rel="noopener">Stock Unlock</a> with AI assist: migrated off <b>Customer.io</b> to self-hosted
           AWS SES (saved ~$5&ndash;6K/yr); migrated the marketing site <b>off Webflow</b> to a self-hosted
           codebase we control end-to-end (~$1K/yr saved, no more contractors to update copy, 20&times; more
           content pages); built a permissioned internal <b>Discord ops bot</b> on EC2 + Docker Compose for
@@ -275,399 +406,525 @@
           an Adafruit Feather, on the side. Including this site you're reading.
         </p>
         <p class="fineprint">
-          The 10x &rarr; 100x shift in engineer output is real and recent. AI for coding is just the start &mdash;
+          The 10x &rarr; 100x shift in engineer output is real and recent. AI for coding is just the start.
           I use it for deep business strategy, drafting emails and PDFs, even hardware projects on the side.
           There's a real difference between vibe coding and software engineering.
         </p>
       </section>
 
-      <!-- HIRE -->
-      <section class="panel" id="hire">
-        <h2>Hire &mdash; <span class="soft">Choose your edition</span></h2>
-        <div class="pricing">
-          <div class="tier featured">
-            <div class="tier-ribbon">The main thing</div>
-            <div class="tier-head">Full-Time</div>
-            <div class="tier-price">Market rate + equity</div>
-            <ul>
-              <li>Senior IC, founding engineer, or early-stage CTO</li>
-              <li>NYC area / remote / hybrid</li>
-              <li>Won't manage unless the team's right and the work stays close to the code</li>
-              <li>Ships production code on day one</li>
-            </ul>
-            <button class="xp-button primary" data-action="hire">Talk to Jake</button>
+      <!-- STORIES TIMELINE (single-open per item; chronological) -->
+      <section class="panel" id="stories">
+        <h2>Stories <span class="soft">&middot; Shared Documents</span></h2>
+        <p class="work-hint fineprint">A timeline of moments that mattered. Click any to expand.</p>
+
+        <div class="timeline">
+
+          <div class="timeline-era">
+            <span class="timeline-era-dot" aria-hidden="true"></span>
+            <span class="timeline-era-label">~2010</span>
+            <span class="timeline-era-title">Senior year of high school</span>
           </div>
 
-          <div class="tier">
-            <div class="tier-head">Equity Founding</div>
-            <div class="tier-price">Market rate + equity</div>
-            <ul>
-              <li>Co-founder track, real equity</li>
-              <li>Seed or earlier</li>
-              <li>Has to be a problem I'd care about</li>
-              <li>I've led a YC interview before; rather build something that matters than chase a logo</li>
-            </ul>
-            <button class="xp-button" data-copy="jake2ruth@gmail.com">Email Jake</button>
+          <article class="timeline-item">
+            <div class="timeline-head" data-toggle-story tabindex="0" role="button" aria-expanded="false">
+              <span class="timeline-dot" aria-hidden="true"></span>
+              <span class="timeline-title"><b>The AP CS switch</b></span>
+              <span class="timeline-date">~2010</span>
+              <span class="timeline-chev" aria-hidden="true">&#9662;</span>
+            </div>
+            <div class="timeline-body">
+              <div class="timeline-body-inner">
+                <p>
+                  Catch-22: school required seniors to take a math credit, but I'd accelerated since third grade
+                  and burned through every math class except AP Calc. I refused AP Calc.
+                </p>
+                <p>
+                  Mrs. Nalbandian, a teacher who liked me but was annoyed I was clearly smart and clearly coasting,
+                  mentioned in passing she taught AP Computer Science. I asked: <em>&ldquo;Does that count as a math
+                  credit?&rdquo;</em> She said, begrudgingly: <em>&ldquo;Yes. Why are you asking?&rdquo;</em>
+                  I said: <em>&ldquo;Okay, great. Now I don't need to take AP Calc. I'll take your computer
+                  science class instead.&rdquo;</em>
+                </p>
+                <p>
+                  She had mixed feelings. Took me anyway. She ran a function on the board in the first five minutes
+                  of the first class. I knew right there. Fifteen years later, that sideways pivot is still the main road.
+                </p>
+              </div>
+            </div>
+          </article>
+
+          <div class="timeline-era">
+            <span class="timeline-era-dot" aria-hidden="true"></span>
+            <span class="timeline-era-label">2011&ndash;2015</span>
+            <span class="timeline-era-title">SUNY Albany &middot; ACM era</span>
           </div>
 
-          <div class="tier">
-            <div class="tier-head">Contract</div>
-            <div class="tier-price">Contact</div>
-            <ul>
-              <li>Defined deliverable, defined timeline</li>
-              <li>Selective on scope</li>
-              <li>Greenfield and refactor both welcome</li>
-              <li>Email beats DMs; fast during ET business hours</li>
-            </ul>
-            <button class="xp-button" data-copy="jake2ruth@gmail.com">Inquire</button>
+          <article class="timeline-item">
+            <div class="timeline-head" data-toggle-story tabindex="0" role="button" aria-expanded="false">
+              <span class="timeline-dot" aria-hidden="true"></span>
+              <span class="timeline-title"><b>ACM revival</b></span>
+              <span class="timeline-date">Junior year</span>
+              <span class="timeline-chev" aria-hidden="true">&#9662;</span>
+            </div>
+            <div class="timeline-body">
+              <div class="timeline-body-inner">
+                <p>
+                  The SUNY Albany CS Club (ACM) was quietly dying. Outgoing seniors had identified me from time in
+                  the CS lounge and from class performance. They handed me the presidency. I took it because it was
+                  a great r&eacute;sum&eacute; builder; ran it for two years.
+                </p>
+                <p>
+                  Got a handful of professors to let me make end-of-class announcements about an interest meeting.
+                  Booked a lecture hall, ~7pm on a weeknight. ~50 to 100 students showed; a few dozen joined.
+                  Ran weekly meetings, LAN parties, and taught workshops on what I was learning at my CommerceHub
+                  internship. The club survived past me, which mattered more than the headcount.
+                </p>
+              </div>
+            </div>
+          </article>
+
+          <article class="timeline-item">
+            <div class="timeline-head" data-toggle-story tabindex="0" role="button" aria-expanded="false">
+              <span class="timeline-dot" aria-hidden="true"></span>
+              <span class="timeline-title"><b>Tekkapalooza</b></span>
+              <span class="timeline-date">ACM era</span>
+              <span class="timeline-chev" aria-hidden="true">&#9662;</span>
+            </div>
+            <div class="timeline-body">
+              <div class="timeline-body-inner">
+                <p>
+                  Organized a club field trip to Tekkapalooza, a regional showcase of Albany-area tech
+                  companies. Wasn't framed as a recruiting event. I told members to bring resumes anyway.
+                </p>
+                <p>
+                  Handed mine directly to a company called CommerceHub. They liked me enough to offer an interview.
+                  In the interview I told them I really wanted to learn how to code and hopefully it wasn't going
+                  to be about getting coffee. They laughed because that's not what actually happens, that's
+                  what you see in movies. I got the internship. Three years of internship work and a full-time role
+                  grew out of one resume drop at a non-recruiting event.
+                </p>
+              </div>
+            </div>
+          </article>
+
+          <div class="timeline-era">
+            <span class="timeline-era-dot" aria-hidden="true"></span>
+            <span class="timeline-era-label">2013&ndash;2016</span>
+            <span class="timeline-era-title">CommerceHub &middot; first real engineering</span>
           </div>
+
+          <article class="timeline-item">
+            <div class="timeline-head" data-toggle-story tabindex="0" role="button" aria-expanded="false">
+              <span class="timeline-dot" aria-hidden="true"></span>
+              <span class="timeline-title"><b>The production takedown</b></span>
+              <span class="timeline-date">Intern era</span>
+              <span class="timeline-chev" aria-hidden="true">&#9662;</span>
+            </div>
+            <div class="timeline-body">
+              <div class="timeline-body-inner">
+                <p>
+                  I had access to a tool that could take a system in production down with a single button press.
+                  I pressed the button. Production went down. Walked into the meeting room nervous, started
+                  apologizing before anyone spoke. The manager stood up before I finished and said:
+                  <em>&ldquo;That wasn't your fault, you shouldn't have had access to that tool. We're not
+                  celebrating that this happened, but the system was the problem, not you.&rdquo;</em>
+                </p>
+                <p>
+                  That sentence rewired how I think about systems, access, and blameless culture. It's the
+                  engineering culture I've tried to rebuild ever since.
+                </p>
+              </div>
+            </div>
+          </article>
+
+          <article class="timeline-item">
+            <div class="timeline-head" data-toggle-story tabindex="0" role="button" aria-expanded="false">
+              <span class="timeline-dot" aria-hidden="true"></span>
+              <span class="timeline-title"><b>The IE7 ellipsis</b></span>
+              <span class="timeline-date">2014</span>
+              <span class="timeline-chev" aria-hidden="true">&#9662;</span>
+            </div>
+            <div class="timeline-body">
+              <div class="timeline-body-inner">
+                <p>
+                  Quick trench memory. Had to fix a string-truncation bug in a company-name display where the
+                  ellipsis didn't render properly in Internet Explorer 7. QVC was pinned to IE7. To test the fix
+                  I had to spin up a virtual machine running an old version of Windows just to load the browser.
+                  In 2014. Engineering history is preserved in QVC's procurement contracts.
+                </p>
+              </div>
+            </div>
+          </article>
+
+          <div class="timeline-era">
+            <span class="timeline-era-dot" aria-hidden="true"></span>
+            <span class="timeline-era-label">Late 2016</span>
+            <span class="timeline-era-title">The Oscar interview</span>
+          </div>
+
+          <article class="timeline-item">
+            <div class="timeline-head" data-toggle-story tabindex="0" role="button" aria-expanded="false">
+              <span class="timeline-dot" aria-hidden="true"></span>
+              <span class="timeline-title"><b>The Oscar interview luck</b></span>
+              <span class="timeline-date">Late 2016</span>
+              <span class="timeline-chev" aria-hidden="true">&#9662;</span>
+            </div>
+            <div class="timeline-body">
+              <div class="timeline-body-inner">
+                <p>
+                  Oscar Health interview. The design question they asked: <em>&ldquo;if you were going to build a
+                  social-media app where people could follow each other, how would you architect it?&rdquo;</em>
+                  In my head: <em>&ldquo;Wow. They really studied my resume.&rdquo;</em> I'd just spent a year and
+                  a half building Youni, a college-localized social-media iOS app. I crushed the answer.
+                </p>
+                <p>
+                  Years later, I brought it up to my manager. He told me no, it was a standard rotation
+                  question, asked at random, by people who hadn't read my resume. The single most architecturally
+                  similar question they could have asked, asked by chance, on the day that mattered most. That's
+                  the moment I think about when I try to explain why I believe in serendipity.
+                </p>
+              </div>
+            </div>
+          </article>
+
+          <div class="timeline-era">
+            <span class="timeline-era-dot" aria-hidden="true"></span>
+            <span class="timeline-era-label">2017&ndash;2021</span>
+            <span class="timeline-era-title">Oscar Health &middot; peak culture era</span>
+          </div>
+
+          <article class="timeline-item">
+            <div class="timeline-head" data-toggle-story tabindex="0" role="button" aria-expanded="false">
+              <span class="timeline-dot" aria-hidden="true"></span>
+              <span class="timeline-title"><b>Emotiqueue</b></span>
+              <span class="timeline-date">With Peter</span>
+              <span class="timeline-chev" aria-hidden="true">&#9662;</span>
+            </div>
+            <div class="timeline-body">
+              <div class="timeline-body-inner">
+                <p>
+                  Started as a custom-emoticon flood, first in HipChat, then Slack. We turned it into a
+                  hackathon project where messages got routed through a deliberately ridiculous pipeline (queues
+                  into queues, then a ticketing system, then back into chat) that ended in a chatbot. We named it
+                  <b>Emotiqueue</b>.
+                </p>
+                <p>
+                  Over time we added commands. By the time I left, Emotiqueue had <b>3,000+ custom emoticons,
+                  50+ silly entertainment-focused commands</b> that did ridiculously dumb things, and an active
+                  codebase that other engineers across the company committed to. Half goof, half real internal
+                  tool. The kind of culture moment that's missing from most engineering orgs, which is a
+                  thing I care about and try to seed wherever I work.
+                </p>
+              </div>
+            </div>
+          </article>
+
+          <article class="timeline-item">
+            <div class="timeline-head" data-toggle-story tabindex="0" role="button" aria-expanded="false">
+              <span class="timeline-dot" aria-hidden="true"></span>
+              <span class="timeline-title"><b>Talent show #1 (the legendary one)</b></span>
+              <span class="timeline-date">Peak era</span>
+              <span class="timeline-chev" aria-hidden="true">&#9662;</span>
+            </div>
+            <div class="timeline-body">
+              <div class="timeline-body-inner">
+                <p>
+                  Crowd was loose, half-drunk, having a good time. I'd been a competitive cuber since 2008 and a
+                  trick-grade unicyclist since junior year of high school. The plan, in order:
+                </p>
+                <ol>
+                  <li>Hand a Rubik's cube to someone in the audience at the start. <em>&ldquo;Scramble this. We'll come back for it.&rdquo;</em></li>
+                  <li>Ride out from the side of the room on the unicycle. Across the crowd, waving.</li>
+                  <li>Switch to riding backwards.</li>
+                  <li>Stack chairs and a table and a bench from the all-hands room into an obstacle course. Jump across them on the unicycle.</li>
+                  <li>Have the audience member toss back the now-scrambled cube.</li>
+                  <li>Solve it on the unicycle, as the finale.</li>
+                </ol>
+                <p>
+                  &ldquo;All the Small Things&rdquo; by Blink-182 in the background. Crowd lost it. People talked
+                  about it for weeks.
+                </p>
+              </div>
+            </div>
+          </article>
+
+          <article class="timeline-item">
+            <div class="timeline-head" data-toggle-story tabindex="0" role="button" aria-expanded="false">
+              <span class="timeline-dot" aria-hidden="true"></span>
+              <span class="timeline-title"><b>Talent show #2 (encore)</b></span>
+              <span class="timeline-date">~2 yrs later</span>
+              <span class="timeline-chev" aria-hidden="true">&#9662;</span>
+            </div>
+            <div class="timeline-body">
+              <div class="timeline-body-inner">
+                <p>
+                  Mid-20s. Slightly less elaborate; kept the cube-on-unicycle finale, dropped most of the
+                  obstacle course. The funny part: I had to retrain. Spent a couple of days outside my apartment
+                  before the show re-grinding the basics (riding backwards, the cube-on-wheels combo).
+                  Mastery decays fast if you don't tend it.
+                </p>
+              </div>
+            </div>
+          </article>
+
+          <div class="timeline-era">
+            <span class="timeline-era-dot" aria-hidden="true"></span>
+            <span class="timeline-era-label">~2020</span>
+            <span class="timeline-era-title">COVID era &middot; Stock Unlock origin</span>
+          </div>
+
+          <article class="timeline-item">
+            <div class="timeline-head" data-toggle-story tabindex="0" role="button" aria-expanded="false">
+              <span class="timeline-dot" aria-hidden="true"></span>
+              <span class="timeline-title"><b>The Pronk emails</b></span>
+              <span class="timeline-date">COVID</span>
+              <span class="timeline-chev" aria-hidden="true">&#9662;</span>
+            </div>
+            <div class="timeline-body">
+              <div class="timeline-body-inner">
+                <p>
+                  Watching Daniel Pronk's investing YouTube channel. He mentioned spending 5&ndash;10 hours every
+                  weekend building Excel sheets for his content. I thought: <em>&ldquo;Damn, that's so dumb. This
+                  guy's smart. Why is he wasting that time?&rdquo;</em>
+                </p>
+                <p>
+                  Built a Python automation in a weekend that hit cheap financial APIs and exported the same Excel
+                  format he was making by hand. Then I started emailing him. Commenting on his content. Trying to
+                  give him the tool for free. Daniel ignored me for about six weeks. He eventually replied,
+                  not because he was sold but to get me to go away: <em>&ldquo;How can I help you?&rdquo;</em>
+                  Instead of going away, I jumped on a video call, cracked a beer, and we instantly hit it off.
+                  He let me into his paid Discord for free. He asked if I could build web apps. I'd been doing it
+                  professionally for six years.
+                </p>
+              </div>
+            </div>
+          </article>
+
+          <article class="timeline-item">
+            <div class="timeline-head" data-toggle-story tabindex="0" role="button" aria-expanded="false">
+              <span class="timeline-dot" aria-hidden="true"></span>
+              <span class="timeline-title"><b>Discord drop</b></span>
+              <span class="timeline-date">PMF moment</span>
+              <span class="timeline-chev" aria-hidden="true">&#9662;</span>
+            </div>
+            <div class="timeline-body">
+              <div class="timeline-body-inner">
+                <p>
+                  Daniel's paid Discord: about a thousand members, behind a YouTube channel of ~100K subscribers
+                  at the time. I dropped an early alpha, a basic Excel generator that worked for a handful
+                  of stocks. The replies came fast: <em>&ldquo;are you selling this?&rdquo;</em> /
+                  <em>&ldquo;could you add this stock?&rdquo;</em> / <em>&ldquo;I would pay for this.&rdquo;</em>
+                  That's the moment I knew there was a business in it.
+                </p>
+              </div>
+            </div>
+          </article>
+
+          <div class="timeline-era">
+            <span class="timeline-era-dot" aria-hidden="true"></span>
+            <span class="timeline-era-label">2025&ndash;26</span>
+            <span class="timeline-era-title">AI-era engineering at Stock Unlock</span>
+          </div>
+
+          <article class="timeline-item">
+            <div class="timeline-head" data-toggle-story tabindex="0" role="button" aria-expanded="false">
+              <span class="timeline-dot" aria-hidden="true"></span>
+              <span class="timeline-title"><b>The Customer.io migration</b></span>
+              <span class="timeline-date">One weekend</span>
+              <span class="timeline-chev" aria-hidden="true">&#9662;</span>
+            </div>
+            <div class="timeline-body">
+              <div class="timeline-body-inner">
+                <p>
+                  We'd been paying Customer.io for transactional and marketing email. I migrated us off in roughly
+                  a focused weekend, wrote the SES integration, the admin panels for broadcasts and campaign
+                  config, plus the AWS scaffolding around it. Most of the code came out of Claude Code; I read the
+                  parts that mattered (security, deliverability, business logic) and shipped.
+                </p>
+                <p>
+                  Saved ~$5&ndash;6K/year. One person, one weekend. That's what AI-era engineering actually looks
+                  like when you know what you're doing.
+                </p>
+              </div>
+            </div>
+          </article>
+
+          <article class="timeline-item">
+            <div class="timeline-head" data-toggle-story tabindex="0" role="button" aria-expanded="false">
+              <span class="timeline-dot" aria-hidden="true"></span>
+              <span class="timeline-title"><b>The Webflow migration</b></span>
+              <span class="timeline-date">Same era</span>
+              <span class="timeline-chev" aria-hidden="true">&#9662;</span>
+            </div>
+            <div class="timeline-body">
+              <div class="timeline-body-inner">
+                <p>
+                  We'd been on Webflow for the marketing site. I migrated us off into a self-hosted custom codebase,
+                  written almost entirely with Claude Code (post-Opus-4.5). Direct savings were modest, about
+                  $1K/year. The bigger wins: we no longer need contractors to make copy changes (every update is
+                  a code change in our own repo), we have full control over UX patterns Webflow couldn't deliver,
+                  and the marketing surface itself is now <b>20&times; bigger</b> in terms of content pages.
+                  Programmatic SEO + GEO pages on top of that, all AI-generated and reviewed.
+                </p>
+              </div>
+            </div>
+          </article>
+
+          <article class="timeline-item">
+            <div class="timeline-head" data-toggle-story tabindex="0" role="button" aria-expanded="false">
+              <span class="timeline-dot" aria-hidden="true"></span>
+              <span class="timeline-title"><b>The X poster</b></span>
+              <span class="timeline-date">SU internal</span>
+              <span class="timeline-chev" aria-hidden="true">&#9662;</span>
+            </div>
+            <div class="timeline-body">
+              <div class="timeline-body-inner">
+                <p>
+                  A self-improving AI agent that drafts X (Twitter) posts with a human-in-the-loop. Bootstrap-trained
+                  on thousands of posts (ours plus competitor accounts whose content we wanted to learn from), each
+                  tagged with its real engagement metrics. Aware of every product feature. Spins up a Playwright
+                  browser, authenticates as a real user using our custom test-IDs and front-end attributes, takes
+                  in-product screenshots to attach. Error-checks the screenshots before moving on. Pulls live API
+                  data for stats. Queues drafts in an admin UI.
+                </p>
+                <p>
+                  The self-improving loop: a LangChain pipeline runs a few times a day, pulls human feedback
+                  (approvals, denials, edits), and iteratively rewrites the drafter's own prompt. A separate cron
+                  job watches how live posts actually performed and feeds that back as signal too. It learns from
+                  both human judgment and real engagement. Probably the most ambitious thing I've built that isn't
+                  a company. Driver-in-the-seat made architectural.
+                </p>
+              </div>
+            </div>
+          </article>
+
+          <article class="timeline-item">
+            <div class="timeline-head" data-toggle-story tabindex="0" role="button" aria-expanded="false">
+              <span class="timeline-dot" aria-hidden="true"></span>
+              <span class="timeline-title"><b>The blinds motor</b></span>
+              <span class="timeline-date">First hardware</span>
+              <span class="timeline-chev" aria-hidden="true">&#9662;</span>
+            </div>
+            <div class="timeline-body">
+              <div class="timeline-body-inner">
+                <p>
+                  Building a wirelessly-controlled motor that raises and lowers the blinds in my apartment.
+                  Adafruit Feather board, a small motor, more circuitry than I fully understood when I started,
+                  all uploaded via the Arduino IDE. Codex writes most of the embedded code; I learn enough of the
+                  hardware side to stay in the driver's seat. The fact that I'm pulling off a domain I've never
+                  touched, in spare hours, is part of why I'm convinced the 10x &rarr; 100x shift in engineer
+                  output is real and recent.
+                </p>
+              </div>
+            </div>
+          </article>
+
         </div>
-        <p class="fineprint" style="margin-top:14px">
-          If you're not sure, email me anyway. We'll figure out whether it's a fit.
+      </section>
+
+      <!-- MASTERY / HOBBIES (work-row-style cards for visual continuity) -->
+      <section class="panel" id="cube">
+        <h2>Mastery / hobbies <span class="soft">&middot; Accessories</span></h2>
+        <p>
+          The pattern: I commit hard to things with depth. Cubes and code are the two that have held
+          fifteen-plus years. Both have feedback loops and infinite depth.
+          <span class="mastery-creed">&ldquo;Self-improvement as a core operating system part of me.&rdquo;</span>
         </p>
-      </section>
-
-      <!-- STOCK UNLOCK -->
-      <section class="panel" id="stock-unlock">
-        <h2>Stock Unlock &mdash; <span class="soft">Program Files \ Founded</span></h2>
-        <div class="two-col">
-          <div class="col">
-            <p>
-              Built Stock Unlock. <b>YC Winter 2022.</b> Scaled to a team of eight and thousands of paying
-              customers. Raised <b>$1.335M seed</b> &mdash; $500K from YC, $835K from other investors. I led
-              the YC interview. <b>400 paying users in launch week, 800&ndash;900 by seed close.</b>
-            </p>
-            <p>
-              Origin: COVID era, watching Daniel Pronk's investing YouTube. He was burning 5&ndash;10 hours
-              every weekend on Excel sheets for his videos. I wrote a Python automation in a weekend to replace
-              it. Primary driver was unrelenting curiosity and a nerdy thrill &mdash; plus I wanted into his
-              paid Discord for free, and being useful felt like the way in. Hounded Daniel for six weeks until
-              he replied to make me stop. First call was over a beer. Brought Nick Puljik over from Oscar.
-              YC reached out cold via LinkedIn before we'd even applied.
-            </p>
-            <p>
-              Hit a ~3,900-paying-subscriber wall in 2024 &mdash; new sign-ups roughly equaled churn. Tried
-              partial pivots, including B2B sales attempts. Bet on a set of big feature launches in late 2025;
-              they took too long, burned the team, and didn't land. <b>Right-sized in early 2026</b> to three
-              full-time &mdash; two engineers and an executive assistant &mdash; who handle day-to-day. I worked
-              it full-tilt up to that point. Today: I'm on key decisions and weekend pokes.
-            </p>
-            <p>
-              <b>Core conviction underneath the company:</b> overcharging for bad software is theft from people
-              who can't afford to be robbed. The real Stock Unlock brag isn't a unicorn outcome &mdash; it's
-              that the company is alive, profitable, and has thousands of customers who love it. That alone
-              outperforms most YC W22 cohort companies.
-            </p>
-          </div>
-          <div class="col">
-            <div class="inset-panel">
-              <div class="inset-title">&#128202; Build log</div>
-              <div class="kv"><span>YC Batch</span><b>Winter 2022</b></div>
-              <div class="kv"><span>Seed total</span><b>$1.335M</b></div>
-              <div class="kv"><span>Seed breakdown</span><b>$500K YC + $835K</b></div>
-              <div class="kv"><span>Launch week</span><b>400 paying users</b></div>
-              <div class="kv"><span>Seed close</span><b>800&ndash;900 paying</b></div>
-              <div class="kv"><span>Peak team</span><b>8</b></div>
-              <div class="kv"><span>Customers</span><b>Thousands</b></div>
-              <div class="kv"><span>P&amp;L</span><b class="ok">Runs profitably</b></div>
-              <div class="kv"><span>Today</span><b>3 FT (2 eng + EA)</b></div>
-              <div class="kv"><span>My role</span><b>Key decisions only</b></div>
+        <ul class="hobby-list" role="list">
+          <li class="hobby-card">
+            <div class="hobby-head">
+              <span class="hobby-title"><b>Speed-cubing</b></span>
+              <span class="hobby-meta">2008&ndash;2014 &middot; WCA (World Cube Association)</span>
             </div>
-            <div class="quote-block">
-              &ldquo;That&rsquo;s not analysis.&rdquo;
-              <span class="quote-attr">&mdash; on a competitor's &ldquo;margin of safety score&rdquo; calculated as
-              <code>current_price / all_time_high</code>. One of hundreds of small dumb things competing tools did.
-              Load-bearing for the conviction that there was room for software that didn't.</span>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- WORK HISTORY -->
-      <section class="panel" id="work">
-        <h2>Work history &mdash; <span class="soft">My Documents</span></h2>
-        <ul class="work-list" role="list">
-          <li class="work-row">
-            <div class="work-head">
-              <b>Stock Unlock</b> &mdash; Co-founder, CEO
-              <span class="work-dates">2021 &mdash; present (key-decisions-only since early 2026)</span>
-            </div>
-            <div class="work-role">YC Winter 2022. Led the YC interview. Raised $1.335M seed ($500K YC + $835K other). Scaled to a team of eight and thousands of paying customers. Right-sized to three full-time (two engineers + an executive assistant) in early 2026 after big late-2025 launches didn't land. They handle day-to-day; I'm on key decisions and weekend pokes. Runs profitably today.</div>
+            <div class="hobby-body">3&times;3 average <b>13.95s</b>. Top-20 in the US at the Pyraminx at peak. Competed at Northeast US events and Nationals (<a href="https://www.worldcubeassociation.org/persons/2008RUTH01" target="_blank" rel="noopener">WCA profile: 2008RUTH01</a>). No longer ranked in any event.</div>
           </li>
-          <li class="work-row">
-            <div class="work-head">
-              <b>Oscar Health</b> &mdash; Associate &rarr; Mid &rarr; Senior SWE
-              <span class="work-dates">March 2017 &mdash; 2021, NYC</span>
+          <li class="hobby-card">
+            <div class="hobby-head">
+              <span class="hobby-title"><b>Unicycle</b></span>
+              <span class="hobby-meta">~12&ndash;16 months, HS junior year</span>
             </div>
-            <div class="work-role">Joined at ~50 engineers under Alan Warren (formerly scaled Google Docs from 2&ndash;3 people to thousands); left at 150+. No formal levels initially; leveled in as Associate, promoted to Mid within ~1 year, Senior ~2 years later, senior for a year before leaving. Owned services across Python and Golang back-ends and a React front-end, including the entire internal site for the hundreds of care-guides and ops staff in the Tempe office. SRE-adjacent on a custom-hosted analytics integration. Built <b>Emotiqueue</b> (internal Slack chatbot) with coworker Peter. Declined the team-lead path twice. Mentored newer engineers unofficially throughout.</div>
+            <div class="hobby-body">Mountain unicycle, one-footed, forward and backward, stair jumps, mountain-trail riding, bench jumps. Eventually combined with cubing on stage at the Oscar talent show. Twice.</div>
           </li>
-          <li class="work-row">
-            <div class="work-head">
-              <b>Youni</b> &mdash; Co-founder, engineer
-              <span class="work-dates">2015 &mdash; 2017, Albany &rarr; Troy</span>
+          <li class="hobby-card">
+            <div class="hobby-head">
+              <span class="hobby-title"><b>Track and field</b></span>
+              <span class="hobby-meta">HS &middot; Captain &amp; MVP senior year</span>
             </div>
-            <div class="work-role">Co-founded a college-localized social iOS app with Anthony (CEO; ran the ACE entrepreneurship club at SUNY Albany) and Jordan, both UAlbany D1 soccer players. React Native v0.13/0.14 + a simple companion site. Free office space in Troy. Anthony and Jordan won ~$25K in equity-free business grants while still in school. Launched at SUNY Albany and SUNY Binghamton; 70-person paid-in-credits brand-ambassador program; 20,000+ posts at peak. Worked it nights and weekends through CommerceHub, then full-time. No business model and an unsolved cold-start. Folded after ~4&ndash;5 months full-time.</div>
+            <div class="hobby-body">Jumper events (high jump, triple jump, long jump). Also 400m and the occasional 4&times;400. Most points scored on the team.</div>
           </li>
-          <li class="work-row">
-            <div class="work-head">
-              <b>CommerceHub</b> &mdash; Intern &rarr; Software Engineer
-              <span class="work-dates">2013 &mdash; 2016, Albany</span>
+          <li class="hobby-card">
+            <div class="hobby-head">
+              <span class="hobby-title"><b>Soccer</b></span>
+              <span class="hobby-meta">HS sophomore year</span>
             </div>
-            <div class="work-role">Intern through senior year of college plus a full-time summer (didn't go home), then FT after graduation &mdash; exactly one year and seven days before going full-time on Youni. Groovy/Grails on the back, early-pre-hooks React on the front, code-review culture, virtual machines for cross-browser testing. &ldquo;First real engineering.&rdquo; Junior software engineer level by graduation. Took down production once with a button I shouldn't have had access to.</div>
+            <div class="hobby-body">JV captain. Didn't make varsity.</div>
           </li>
-          <li class="work-row">
-            <div class="work-head">
-              <b>My Plastic Brain</b> &mdash; Contractor
-              <span class="work-dates">parallel to CommerceHub internship</span>
+          <li class="hobby-card">
+            <div class="hobby-head">
+              <span class="hobby-title"><b>Rugby</b></span>
+              <span class="hobby-meta">UAlbany &middot; B-squad &rarr; A-squad</span>
             </div>
-            <div class="work-role">Several hundred hours of paid contract web-game work building KineticJS card-game adaptations of physical games used by brain-injury rehab patients. Billed hourly, working solo, end-to-end. Code is still in my old personal-website source.</div>
+            <div class="hobby-body">Came in as a sport newcomer; moved up after learning the game.</div>
           </li>
-          <li class="work-row">
-            <div class="work-head">
-              <b>SUNY Albany</b> &mdash; BS Computer Science + Applied Mathematics
-              <span class="work-dates">2011 &mdash; 2015</span>
+          <li class="hobby-card">
+            <div class="hobby-head">
+              <span class="hobby-title"><b>Rock climbing</b></span>
+              <span class="hobby-meta">Oscar Health era &middot; ~2 yrs</span>
             </div>
-            <div class="work-role">3.88 GPA. Dean's List every semester. 99/100 on the standardized Calc 1 exam freshman year &mdash; best score among ~500 students that semester (the cohort included grad students). ACM (CS Club) president for two years &mdash; took over a dying club, recruited dozens at a lecture-hall pitch, ran weekly meetings, LAN parties, workshops; the club survived past me. Organized the Tekkapalooza field trip that landed me the CommerceHub internship by direct resume drop. Briefly played rugby (B-squad &rarr; A-squad after learning the sport).</div>
+            <div class="hobby-body">Indoor, steady climbing with friends from the team. Problem-solving with your body, plus the social side. Would pick it up again in a heartbeat.</div>
+          </li>
+          <li class="hobby-card">
+            <div class="hobby-head">
+              <span class="hobby-title"><b>Skateboarding, DDR, Guitar Hero, RuneScape</b></span>
+              <span class="hobby-meta">Teen years</span>
+            </div>
+            <div class="hobby-body">Got obsessively good. Guitar Hero was the cleanest level-progression feedback loop I've ever locked into.</div>
+          </li>
+          <li class="hobby-card">
+            <div class="hobby-head">
+              <span class="hobby-title"><b>Math</b></span>
+              <span class="hobby-meta">Since third grade</span>
+            </div>
+            <div class="hobby-body">Accelerated track all the way through.</div>
+          </li>
+          <li class="hobby-card">
+            <div class="hobby-head">
+              <span class="hobby-title"><b>Art</b></span>
+              <span class="hobby-meta">Childhood</span>
+            </div>
+            <div class="hobby-body">One of the only school subjects outside math/science that held my attention.</div>
+          </li>
+          <li class="hobby-card">
+            <div class="hobby-head">
+              <span class="hobby-title"><b>Meditation</b></span>
+              <span class="hobby-meta">Adult practice</span>
+            </div>
+            <div class="hobby-body">Regular. Tied to the serendipity-as-worldview thread.</div>
           </li>
         </ul>
-      </section>
-
-      <!-- STORIES -->
-      <section class="panel" id="stories">
-        <h2>Stories &mdash; <span class="soft">Shared Documents</span></h2>
-
-        <div class="story">
-          <div class="story-head"><b>The AP CS switch</b> <span class="story-date">Senior year of high school</span></div>
-          <p>
-            Catch-22: my school required seniors to take a math credit, but I'd accelerated since third grade
-            and burned through every math class except AP Calc. I refused AP Calc.
-          </p>
-          <p>
-            Mrs. Nalbandian &mdash; a teacher who liked me but was annoyed I was clearly smart and clearly
-            coasting &mdash; mentioned in passing she taught AP Computer Science. I asked: <em>&ldquo;Does
-            that count as a math credit?&rdquo;</em> She said, begrudgingly: <em>&ldquo;Yes. Why are you
-            asking?&rdquo;</em> I said: <em>&ldquo;Okay, great. Now I don't need to take AP Calc &mdash;
-            I'll take your computer science class instead.&rdquo;</em>
-          </p>
-          <p>
-            She had mixed feelings. Took me anyway. She ran a function on the board in the first five minutes
-            of the first class. I knew right there. Fifteen years later, that sideways pivot is still the main road.
-          </p>
-        </div>
-
-        <div class="story">
-          <div class="story-head"><b>The production takedown</b> <span class="story-date">CommerceHub, intern era</span></div>
-          <p>
-            I had access to a tool that could take a system in production down with a single button press.
-            I pressed the button. Production went down. Walked into the meeting room nervous, started
-            apologizing before anyone spoke. The manager stood up before I finished and said:
-            <em>&ldquo;That wasn't your fault &mdash; you shouldn't have had access to that tool. We're not
-            celebrating that this happened, but the system was the problem, not you.&rdquo;</em>
-          </p>
-          <p>
-            That sentence rewired how I think about systems, access, and blameless culture. It's the
-            engineering culture I've tried to rebuild ever since.
-          </p>
-        </div>
-
-        <div class="story">
-          <div class="story-head"><b>ACM revival</b> <span class="story-date">Junior year of college</span></div>
-          <p>
-            The SUNY Albany CS Club (ACM) was quietly dying. Outgoing seniors had identified me from time in
-            the CS lounge and from class performance. They handed me the presidency. I took it because it was
-            a great r&eacute;sum&eacute; builder; ran it for two years.
-          </p>
-          <p>
-            Got a handful of professors to let me make end-of-class announcements about an interest meeting.
-            Booked a lecture hall &mdash; ~7pm on a weeknight. ~50 to 100 students showed; a few dozen joined.
-            Ran weekly meetings, LAN parties, and taught workshops on what I was learning at my CommerceHub
-            internship. The club survived past me &mdash; which mattered more than the headcount.
-          </p>
-        </div>
-
-        <div class="story">
-          <div class="story-head"><b>Tekkapalooza</b> <span class="story-date">ACM era</span></div>
-          <p>
-            Organized a club field trip to Tekkapalooza &mdash; a regional showcase of Albany-area tech
-            companies. Wasn't framed as a recruiting event. I told members to bring resumes anyway.
-          </p>
-          <p>
-            Handed mine directly to a company called CommerceHub. They liked me enough to offer an interview.
-            In the interview I told them I really wanted to learn how to code and hopefully it wasn't going
-            to be about getting coffee. They laughed because that's not what actually happens &mdash; that's
-            what you see in movies. I got the internship. Three years of internship work and a full-time role
-            grew out of one resume drop at a non-recruiting event.
-          </p>
-        </div>
-
-        <div class="story">
-          <div class="story-head"><b>The IE7 ellipsis</b> <span class="story-date">CommerceHub, 2014</span></div>
-          <p>
-            Quick trench memory. Had to fix a string-truncation bug in a company-name display where the
-            ellipsis didn't render properly in Internet Explorer 7. QVC was pinned to IE7. To test the fix
-            I had to spin up a virtual machine running an old version of Windows just to load the browser.
-            In 2014. Engineering history is preserved in QVC's procurement contracts.
-          </p>
-        </div>
-
-        <div class="story">
-          <div class="story-head"><b>The Oscar interview luck</b> <span class="story-date">Late 2016</span></div>
-          <p>
-            Oscar Health interview. The design question they asked: <em>&ldquo;if you were going to build a
-            social-media app where people could follow each other, how would you architect it?&rdquo;</em>
-            In my head: <em>&ldquo;Wow. They really studied my resume.&rdquo;</em> I'd just spent a year and
-            a half building Youni &mdash; a college-localized social-media iOS app. I crushed the answer.
-          </p>
-          <p>
-            Years later, I brought it up to my manager. He told me no &mdash; it was a standard rotation
-            question, asked at random, by people who hadn't read my resume. The single most architecturally
-            similar question they could have asked, asked by chance, on the day that mattered most. That's
-            the moment I think about when I try to explain why I believe in serendipity.
-          </p>
-        </div>
-
-        <div class="story">
-          <div class="story-head"><b>The Pronk emails</b> <span class="story-date">COVID era</span></div>
-          <p>
-            Watching Daniel Pronk's investing YouTube channel. He mentioned spending 5&ndash;10 hours every
-            weekend building Excel sheets for his content. I thought: <em>&ldquo;Damn, that's so dumb. This
-            guy's smart. Why is he wasting that time?&rdquo;</em>
-          </p>
-          <p>
-            Built a Python automation in a weekend that hit cheap financial APIs and exported the same Excel
-            format he was making by hand. Then I started emailing him. Commenting on his content. Trying to
-            give him the tool for free. Daniel ignored me for about six weeks. He eventually replied &mdash;
-            not because he was sold, but to get me to go away: <em>&ldquo;How can I help you?&rdquo;</em>
-            Instead of going away, I jumped on a video call, cracked a beer, and we instantly hit it off.
-            He let me into his paid Discord for free. He asked if I could build web apps. I'd been doing it
-            professionally for six years.
-          </p>
-        </div>
-
-        <div class="story">
-          <div class="story-head"><b>Discord drop</b> <span class="story-date">PMF moment</span></div>
-          <p>
-            Daniel's paid Discord: about a thousand members, behind a YouTube channel of ~100K subscribers
-            at the time. I dropped an early alpha &mdash; a basic Excel generator that worked for a handful
-            of stocks. The replies came fast: <em>&ldquo;are you selling this?&rdquo;</em> /
-            <em>&ldquo;could you add this stock?&rdquo;</em> / <em>&ldquo;I would pay for this.&rdquo;</em>
-            That's the moment I knew there was a business in it.
-          </p>
-        </div>
-
-        <div class="story">
-          <div class="story-head"><b>Talent show #1 (the legendary one)</b> <span class="story-date">Oscar Health, peak culture era</span></div>
-          <p>
-            Crowd was loose, half-drunk, having a good time. I'd been a competitive cuber since 2008 and a
-            trick-grade unicyclist since junior year of high school. The plan, in order:
-          </p>
-          <ol>
-            <li>Hand a Rubik's cube to someone in the audience at the start. <em>&ldquo;Scramble this. We'll come back for it.&rdquo;</em></li>
-            <li>Ride out from the side of the room on the unicycle. Across the crowd, waving.</li>
-            <li>Switch to riding backwards.</li>
-            <li>Stack chairs and a table and a bench from the all-hands room into an obstacle course. Jump across them on the unicycle.</li>
-            <li>Have the audience member toss back the now-scrambled cube.</li>
-            <li>Solve it on the unicycle, as the finale.</li>
-          </ol>
-          <p>
-            &ldquo;All the Small Things&rdquo; by Blink-182 in the background. Crowd lost it. People talked
-            about it for weeks.
-          </p>
-        </div>
-
-        <div class="story">
-          <div class="story-head"><b>Talent show #2 (encore)</b> <span class="story-date">Two years later</span></div>
-          <p>
-            Mid-20s. Slightly less elaborate &mdash; kept the cube-on-unicycle finale, dropped most of the
-            obstacle course. The funny part: I had to retrain. Spent a couple of days outside my apartment
-            before the show re-grinding the basics &mdash; riding backwards, the cube-on-wheels combo.
-            Mastery decays fast if you don't tend it.
-          </p>
-        </div>
-
-        <div class="story">
-          <div class="story-head"><b>Emotiqueue</b> <span class="story-date">Oscar Health, with Peter</span></div>
-          <p>
-            Started as a custom-emoticon flood &mdash; first in HipChat, then Slack. We turned it into a
-            hackathon project where messages got routed through a deliberately ridiculous pipeline (queues
-            into queues, then a ticketing system, then back into chat) that ended in a chatbot. We named it
-            <b>Emotiqueue</b>.
-          </p>
-          <p>
-            Over time we added commands. By the time I left, Emotiqueue had <b>3,000+ custom emoticons,
-            50+ silly entertainment-focused commands</b> that did ridiculously dumb things, and an active
-            codebase that other engineers across the company committed to. Half goof, half real internal
-            tool. The kind of culture moment that's missing from most engineering orgs &mdash; which is a
-            thing I care about and try to seed wherever I work.
-          </p>
-        </div>
-
-        <div class="story">
-          <div class="story-head"><b>The Customer.io migration</b> <span class="story-date">Stock Unlock, recent</span></div>
-          <p>
-            We'd been paying Customer.io for transactional and marketing email. I migrated us off in roughly
-            a focused weekend &mdash; wrote the SES integration, the admin panels for broadcasts and campaign
-            config, plus the AWS scaffolding around it. Most of the code came out of Claude Code; I read the
-            parts that mattered (security, deliverability, business logic) and shipped.
-          </p>
-          <p>
-            Saved ~$5&ndash;6K/year. One person, one weekend. That's what AI-era engineering actually looks
-            like when you know what you're doing.
-          </p>
-        </div>
-
-        <div class="story">
-          <div class="story-head"><b>The Webflow migration</b> <span class="story-date">Same era, same pattern</span></div>
-          <p>
-            We'd been on Webflow for the marketing site. I migrated us off into a self-hosted custom codebase,
-            written almost entirely with Claude Code (post-Opus-4.5). Direct savings were modest &mdash; about
-            $1K/year. The bigger wins: we no longer need contractors to make copy changes (every update is
-            a code change in our own repo), we have full control over UX patterns Webflow couldn't deliver,
-            and the marketing surface itself is now <b>20&times; bigger</b> in terms of content pages.
-            Programmatic SEO + GEO pages on top of that, all AI-generated and reviewed.
-          </p>
-        </div>
-
-        <div class="story">
-          <div class="story-head"><b>The X poster</b> <span class="story-date">Internal Stock Unlock tool</span></div>
-          <p>
-            A self-improving AI agent that drafts X (Twitter) posts with a human-in-the-loop. Bootstrap-trained
-            on thousands of posts (ours plus competitor accounts whose content we wanted to learn from), each
-            tagged with its real engagement metrics. Aware of every product feature. Spins up a Playwright
-            browser, authenticates as a real user using our custom test-IDs and front-end attributes, takes
-            in-product screenshots to attach. Error-checks the screenshots before moving on. Pulls live API
-            data for stats. Queues drafts in an admin UI.
-          </p>
-          <p>
-            The self-improving loop: a LangChain pipeline runs a few times a day, pulls human feedback
-            (approvals, denials, edits), and iteratively rewrites the drafter's own prompt. A separate cron
-            job watches how live posts actually performed and feeds that back as signal too. It learns from
-            both human judgment and real engagement. Probably the most ambitious thing I've built that isn't
-            a company. Driver-in-the-seat made architectural.
-          </p>
-        </div>
-
-        <div class="story">
-          <div class="story-head"><b>The blinds motor</b> <span class="story-date">First hardware project</span></div>
-          <p>
-            Building a wirelessly-controlled motor that raises and lowers the blinds in my apartment &mdash;
-            Adafruit Feather board, a small motor, more circuitry than I fully understood when I started,
-            all uploaded via the Arduino IDE. Codex writes most of the embedded code; I learn enough of the
-            hardware side to stay in the driver's seat. The fact that I'm pulling off a domain I've never
-            touched, in spare hours, is part of why I'm convinced the 10x &rarr; 100x shift in engineer
-            output is real and recent.
-          </p>
-        </div>
+        <p class="mastery-note">
+          <b>The inverse signal.</b> A high school classmate told me once that I was good at everything that
+          didn't matter. He wasn't wrong. The flip side of hyperfixation is that without the feedback loop, I
+          tune out (bad student in English and history, doodled in class). The list above is what I got
+          weirdly good at and then moved past, which is what makes the ones that stuck (cubes, code) stick out.
+        </p>
+        <p style="margin-top:10px">
+          Open <b>CubeMaster XP.exe</b> from the desktop. Scramble the cube, hit Solve. The solver
+          searches the actual cube state for a sequence of moves that returns it to solved, so it
+          handles any reachable position, not just ones we scrambled into. The timer shows how long
+          from scramble start to solved.
+        </p>
+        <button class="xp-button" data-open="cubemaster">Launch CubeMaster XP</button>
       </section>
 
       <!-- CONVICTIONS -->
       <section class="panel" id="convictions">
-        <h2>Convictions &mdash; <span class="soft">Control Panel</span></h2>
+        <h2>Convictions <span class="soft">&middot; Control Panel</span></h2>
         <div class="two-col">
           <div class="col">
-            <div class="inset-panel">
-              <div class="inset-title">&#9989; What I'm for</div>
-              <ul style="margin:6px 0 0 16px;padding:0">
+            <div class="inset-panel conviction-panel conviction-for">
+              <div class="inset-title"><span class="conviction-ico" aria-hidden="true">&#10004;</span> What I'm for</div>
+              <ul class="conviction-list">
                 <li>Brutally honest teammates who disagree directly, with reason. No compliment-sandwiches.</li>
                 <li>Autonomy and real ownership. Things that matter and don't sound like bullshit.</li>
                 <li>High-bar teams. Get-shit-done culture.</li>
@@ -677,73 +934,24 @@
             </div>
           </div>
           <div class="col">
-            <div class="inset-panel">
-              <div class="inset-title">&#10060; What I'm against</div>
-              <ul style="margin:6px 0 0 16px;padding:0">
+            <div class="inset-panel conviction-panel conviction-against">
+              <div class="inset-title"><span class="conviction-ico" aria-hidden="true">&#10006;</span> What I'm against</div>
+              <ul class="conviction-list">
                 <li>Bureaucracy and politics over shipping. PIP-driven theater.</li>
-                <li>Buzzword resumes &mdash; &ldquo;passionate,&rdquo; &ldquo;results-oriented,&rdquo; &ldquo;dynamic team player.&rdquo;</li>
-                <li>&ldquo;Fisher-Price&rdquo; software &mdash; looks polished, breaks under real use.</li>
+                <li>Buzzword resumes (&ldquo;passionate,&rdquo; &ldquo;results-oriented,&rdquo; &ldquo;dynamic team player&rdquo;).</li>
+                <li>&ldquo;Fisher-Price&rdquo; software: looks polished, breaks under real use.</li>
                 <li>Overcharging for software that ships people short, especially when the people getting shorted can't afford it.</li>
                 <li>Vibe coding sold as software engineering. There's a real difference.</li>
               </ul>
             </div>
           </div>
         </div>
-        <p style="margin-top:14px">
+        <p class="serendipity">
           <b>Serendipity as a working principle.</b> Most of what's worked for me looks lucky in retrospect.
           AP CS to dodge AP Calc. The Tekkapalooza resume drop. The Oscar interview question. Daniel replying
           out of exhaustion. YC reaching out via LinkedIn. The pattern is that luck only finds people who
           keep running at it.
         </p>
-      </section>
-
-      <!-- CUBE / MASTERY REFERENCE -->
-      <section class="panel" id="cube">
-        <h2>Mastery / hobbies &mdash; <span class="soft">Accessories</span></h2>
-        <p>
-          The pattern: I find a thing, lock in until I'm weirdly good, and move on. Cubes and code are the
-          two that stuck &mdash; both have feedback loops and infinite depth.
-          <em>&ldquo;Self-improvement as a core operating system part of me.&rdquo;</em>
-        </p>
-        <ul style="margin:6px 0 12px 18px;padding:0">
-          <li><b>Speed-cubing.</b> Competed 2008&ndash;2014 at WCA-sanctioned Northeast US events and Nationals. 3&times;3 average <b>13.95s</b>. Top-20 in the US at the Pyraminx at peak. No longer ranked in any event.</li>
-          <li><b>Unicycle.</b> Started junior year of high school. ~12&ndash;16 months of intense practice. Mountain unicycle, one-footed, forward and backward, stair jumps, mountain-trail riding, bench jumps. Eventually combined with cubing on stage at the Oscar talent show. Twice.</li>
-          <li><b>Track and field.</b> Jumper events &mdash; high jump, triple jump, long jump. Also 400m and the occasional 4&times;400. Captain and MVP senior year (most points scored on the team).</li>
-          <li><b>Soccer.</b> JV captain sophomore year of high school. Didn't make varsity.</li>
-          <li><b>Rugby.</b> UAlbany. Came in as a sport newcomer; moved B-squad &rarr; A-squad after learning the game.</li>
-          <li><b>Rock climbing.</b> Oscar Health era. Indoor, two-ish years of steady climbing with friends from the team. Problem-solving with your body, plus the social side. Would pick it up again in a heartbeat.</li>
-          <li><b>Skateboarding, DDR, Guitar Hero, RuneScape.</b> Got obsessively good as a teen. Guitar Hero was the cleanest level-progression feedback loop I've ever locked into.</li>
-          <li><b>Math.</b> Accelerated track since third grade. Best score on the standardized Calc 1 exam freshman year of college (~500 students that semester, including grad students).</li>
-          <li><b>Art.</b> Actually liked it as a kid; one of the only school subjects outside math/science that held my attention.</li>
-          <li><b>Meditation.</b> Regular practice as an adult; tied to the serendipity-as-worldview thread.</li>
-        </ul>
-        <p class="fineprint">
-          <b>The inverse signal.</b> A high school classmate told me once that I was good at everything that
-          didn't matter. He wasn't wrong. The flip side of hyperfixation is that without the feedback loop, I
-          tune out &mdash; bad student in English and history, doodled in class. The list above is what I got
-          weirdly good at and then moved past, which is what makes the ones that stuck (cubes, code) stick out.
-        </p>
-        <p style="margin-top:10px">
-          Open <b>CubeMaster XP.exe</b> from the desktop. Scramble the cube, hit Solve. The solver runs
-          bidirectional breadth-first search on the actual cube state &mdash; it handles any reachable
-          position, not just ones we scrambled into. The timer shows how long from scramble start to solved.
-        </p>
-        <button class="xp-button" data-open="cubemaster">Launch CubeMaster XP</button>
-      </section>
-
-      <!-- CONTACT -->
-      <section class="panel" id="contact">
-        <h2>Contact &mdash; <span class="soft">Send To</span></h2>
-        <div class="contact-card">
-          <div class="contact-line"><span>E-mail</span><a href="mailto:jake2ruth@gmail.com">jake2ruth@gmail.com</a></div>
-          <div class="contact-line"><span>GitHub</span><a href="https://github.com/JakeRuth" target="_blank" rel="noopener">github.com/JakeRuth</a></div>
-          <div class="contact-line"><span>WCA profile</span><a href="https://www.worldcubeassociation.org/persons/2008RUTH01" target="_blank" rel="noopener">worldcubeassociation.org/persons/2008RUTH01</a></div>
-          <div class="contact-line"><span>Resume</span><a href="../official_resume.pdf" target="_blank" rel="noopener">official_resume.pdf</a></div>
-          <div class="contact-line"><span>Location</span><b>NYC area</b></div>
-          <div class="contact-line"><span>Reply time</span><b>Fast during ET business hours</b></div>
-          <div class="contact-line"><span>Prefers</span><b>E-mail over DMs</b></div>
-          <div class="contact-line"><span>Open to</span><b>Full-time, contract, or equity-founding conversations</b></div>
-        </div>
       </section>
 
     </main>
@@ -752,7 +960,7 @@
   <footer class="statusbar">
     <span id="status-left">Ready</span>
     <span class="sb-sep"></span>
-    <span id="status-count">10 object(s)</span>
+    <span id="status-count">7 object(s)</span>
     <span class="sb-sep-line"></span>
     <span id="status-right">My Computer</span>
   </footer>
@@ -779,7 +987,7 @@
     <div class="cube-panel">
       <div class="cube-row"><span>State</span><b id="cube-state">Solved</b></div>
       <div class="cube-row"><span>Queued</span><b id="cube-moves">0</b></div>
-      <div class="cube-row"><span>Last solve</span><b id="cube-last">&mdash;</b></div>
+      <div class="cube-row"><span>Last solve</span><b id="cube-last">,</b></div>
       <div class="cube-row"><span>PB avg</span><b>13.95s</b></div>
       <div class="cube-actions">
         <button class="xp-button" id="cube-scramble">Scramble</button>
@@ -789,38 +997,7 @@
         <button class="xp-button" id="cube-reset">Reset</button>
       </div>
       <div class="cube-help">
-        Bidirectional BFS on the cube state. Solves from any position, not by undoing a recorded scramble.
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ====================== SEARCH COMPANION ====================== -->
-<section class="xp-window search-window hidden" id="win-search-companion" data-title="Search Companion">
-  <header class="titlebar" data-drag-handle>
-    <div class="tb-icon">&#128269;</div>
-    <div class="tb-title">Search Companion</div>
-    <div class="tb-buttons">
-      <button class="tb-btn close" data-action="close"><span>&times;</span></button>
-    </div>
-  </header>
-  <div class="search-body">
-    <div class="search-dog">
-      <div class="dog" id="dog">&#128021;</div>
-      <div class="dog-bubble" id="dog-bubble">
-        What can I help you find? Click any node on Jake's network below for a fact.
-      </div>
-    </div>
-    <div class="graph-wrap">
-      <div class="graph-title">Jake's network</div>
-      <svg id="graph" viewBox="0 0 420 340" role="img" aria-label="Network graph of Jake's network">
-        <!-- populated by JS -->
-      </svg>
-      <div class="graph-legend">
-        <span><i class="dot dot-self"></i> Jake</span>
-        <span><i class="dot dot-co"></i> Company</span>
-        <span><i class="dot dot-skill"></i> Skill</span>
-        <span><i class="dot dot-fun"></i> Life</span>
+        Searches the cube state for a real solution. Works from any reachable position, not by undoing a recorded scramble.
       </div>
     </div>
   </div>
@@ -839,7 +1016,7 @@
   <div class="quick-launch">
     <button class="ql" data-open="my-computer" title="Jake Ruth (C:)">&#128421;&#65039;</button>
     <button class="ql" data-open="cubemaster" title="CubeMaster XP">&#129482;</button>
-    <button class="ql" data-open="search-companion" title="Search">&#128269;</button>
+    <button class="ql" data-action="open-stock-unlock" title="Stock Unlock website">&#128202;</button>
   </div>
 
   <div class="task-strip" id="task-strip" aria-label="Open windows">
@@ -883,14 +1060,12 @@
       <div class="sm-divider"><span>Navigate</span></div>
       <div>
         <button class="sm-item" data-scroll="about"><span class="sm-ico">&#128100;</span><span class="sm-text"><b>About</b></span></button>
-        <button class="sm-item" data-scroll="ai"><span class="sm-ico">&#129302;</span><span class="sm-text"><b>AI philosophy</b></span></button>
-        <button class="sm-item" data-scroll="hire"><span class="sm-ico">&#128640;</span><span class="sm-text"><b>Hire</b></span></button>
-        <button class="sm-item" data-scroll="stock-unlock"><span class="sm-ico">&#128202;</span><span class="sm-text"><b>Stock Unlock</b></span></button>
         <button class="sm-item" data-scroll="work"><span class="sm-ico">&#128193;</span><span class="sm-text"><b>Work history</b></span></button>
-        <button class="sm-item" data-scroll="stories"><span class="sm-ico">&#128220;</span><span class="sm-text"><b>Stories</b></span></button>
-        <button class="sm-item" data-scroll="convictions"><span class="sm-ico">&#9881;</span><span class="sm-text"><b>Convictions</b></span></button>
+        <button class="sm-item" data-scroll="stock-unlock"><span class="sm-ico">&#128202;</span><span class="sm-text"><b>Stock Unlock</b></span></button>
+        <button class="sm-item" data-scroll="ai"><span class="sm-ico">&#129302;</span><span class="sm-text"><b>AI philosophy</b></span></button>
+        <button class="sm-item" data-scroll="stories"><span class="sm-ico">&#128220;</span><span class="sm-text"><b>Stories timeline</b></span></button>
         <button class="sm-item" data-scroll="cube"><span class="sm-ico">&#129482;</span><span class="sm-text"><b>Mastery / hobbies</b></span></button>
-        <button class="sm-item" data-scroll="contact"><span class="sm-ico">&#128222;</span><span class="sm-text"><b>Contact</b></span></button>
+        <button class="sm-item" data-scroll="convictions"><span class="sm-ico">&#9881;</span><span class="sm-text"><b>Convictions</b></span></button>
       </div>
     </div>
 
@@ -899,9 +1074,9 @@
         <span class="sm-ico">&#129482;</span>
         <span class="sm-text"><b>CubeMaster XP</b><em>Real solver, three.js</em></span>
       </button>
-      <button class="sm-item" data-open="search-companion">
-        <span class="sm-ico">&#128269;</span>
-        <span class="sm-text"><b>Search Companion</b><em>Network graph + dog</em></span>
+      <button class="sm-item" data-action="open-stock-unlock">
+        <span class="sm-ico">&#128202;</span>
+        <span class="sm-text"><b>Stock Unlock</b><em>stockunlock.com</em></span>
       </button>
       <div class="sm-divider thin"></div>
       <a class="sm-item" href="https://github.com/JakeRuth" target="_blank" rel="noopener">

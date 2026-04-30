@@ -12,7 +12,7 @@ Treat the prose as canonical *reference*, not literal copy. Each medium will ada
 
 Jake Ruth.
 
-I find a thing, get weirdly good at it, and move on. Then a senior-year math credit dropped me into AP Computer Science instead of AP Calc, and the loop closed. Fifteen years of shipping later, four companies in (two I worked at, two I started), code is the one that stuck. Cubes too.
+I commit hard to things with depth. Code and cubes are the two that have held fifteen-plus years. Then a senior-year math credit dropped me into AP Computer Science instead of AP Calc, and the loop closed. Fifteen years of shipping later, four companies in (two I worked at, two I started).
 
 ---
 
@@ -27,59 +27,29 @@ I find a thing, get weirdly good at it, and move on. Then a senior-year math cre
 
 ---
 
-## The arc
+## Origins (pre-college framing)
 
-**Pre-teen (Westchester, NY).**
-- Lemonade stands frequent enough that my parents told me to stop. Snow shoveling for cash. Around 11 or 12, ran a mini garage sale of my old toys on the street.
-- Skateboarding, DDR, Guitar Hero, RuneScape, Tetris and Minesweeper on a Windows 95 box. The pick-it-up-get-weirdly-good-move-on pattern that became the through-line.
+Pattern was already there before any career: lemonade stands frequent enough that my parents told me to stop, snow shoveling for cash, a mini garage sale of my old toys on the street around age 11–12. Westchester, NY.
 
-**High school.**
-- Accelerated math track since third grade. Trouble focusing in school overall — math, science, and art classes were the only ones I cared about. Was probably headed for a math major because that's what I was good at.
-- Started speed-cubing in 2008 (competed through 2014). Started unicycling junior year — 12-16 months of mountain-unicycle, one-footed, trick-grade practice.
-- Track captain and MVP senior year — jumper (high jump, triple jump, long jump), 400m, occasional 4x400. Soccer JV captain sophomore year.
-- Senior year I needed a math credit and refused AP Calc. Mrs. Nalbandian had AP Computer Science. Asked if it counted. She said yes. She ran a function on the board in the first five minutes of the first class. I knew right there. → see *Stories: AP CS switch*.
+Skateboarding, DDR, Guitar Hero, RuneScape, plus Tetris and Minesweeper on a Windows 95 box. The lock-in-and-go-deep pattern that became the through-line.
 
-**SUNY Albany (2011–2015).**
-- BS in Computer Science + Applied Mathematics, 3.88 GPA, Dean's List every semester.
-- Freshman year, scored 99/100 on the standardized Calc 1 exam — best score among the ~500 students who took it that semester (the cohort included grad students).
-- Junior year I took over the dying ACM (CS Club). Recruited dozens at a lecture-hall pitch, ran weekly meetings, LAN parties, workshops; ran it for two years; the club survived past me. Organized the Tekkapalooza field trip that landed me a CommerceHub internship by direct resume drop. → see *Stories: ACM revival*, *Tekkapalooza*.
-- Played rugby briefly (B-squad → A-squad after learning the sport).
+High school: accelerated math track since third grade. Trouble focusing in school overall — math, science, and art classes were the only ones I cared about. Was probably headed for a math major because that's what I was good at, until AP CS hijacked the trajectory senior year (→ see *Stories: AP CS switch*).
 
-**CommerceHub (2013–2016, Albany).**
-- Intern through senior year of college plus a full-time summer (didn't go home), then FT after graduation — exactly one year and seven days before going full-time on Youni.
-- Groovy/Grails, early-pre-hooks React, code-review culture; "first real engineering." Fixed an ellipsis bug for QVC, who were pinned to Internet Explorer 7 in 2014 — required spinning up an old-Windows VM just to test it.
-- Took down production with a button I shouldn't have had access to. The manager stood up and said the system was the problem, not the intern. → see *Stories: prod takedown*.
-- Parallel side gig: several hundred hours of paid contract work building KineticJS card games for a brain-injury rehab startup called My Plastic Brain.
+## The arc (chronological scaffold)
 
-**Youni (2015–2017, Albany → Troy).**
-- Co-founded a college-localized social-media iOS app with Anthony (CEO) and Jordan, both UAlbany D1 soccer, met via the ACE entrepreneurship club. Worked nights and weekends through CommerceHub, then went full-time.
-- React Native v0.13/0.14, simple companion site, free office space in Troy. Anthony and Jordan won ~$25K in equity-free business grants while still in school.
-- Launched at SUNY Albany and Binghamton. 70-person paid-in-credits brand-ambassador program. 20,000+ posts.
-- No business model and an unsolved cold-start. Folded after ~4-5 months full-time.
+For depth on each item, see *Companies and orgs* below and *Stories*.
 
-**Oscar Health (March 2017–2021, NYC).**
-- Joined at ~50 engineers under Alan Warren (formerly scaled Google Docs at Google from 2-3 people to thousands). Left at ~150+. Associate → Mid (within a year) → Senior (~2 years later); senior for a year before leaving. Offered the team-lead path twice when I was a senior — declined both times. By then I was already writing the early Stock Unlock code on the side and knew I'd be leaving within a year. Mentored newer engineers unofficially throughout — getting people up to speed is one of my strengths.
-- Got the offer partly via an interview question that just happened to match my last project. Found out years later it was random luck — they hadn't read my resume at all. → see *Stories: Oscar interview luck*.
-- Owned services across Python and Golang back-ends and a React front-end, including the internal site for hundreds of Tempe care-ops staff. SRE-adjacent on a custom-hosted analytics integration.
-- Built **Emotiqueue**, an internal Slack chatbot, with coworker Peter — started as a HipChat-emoji hackathon goof, became a command-routable bot people across the company actually used (3,000+ custom emoticons, 50+ commands by the end). Solved a Rubik's cube on a unicycle at the company talent show. Twice. → see *Stories: talent show*.
-- Picked up indoor rock climbing here with friends from the team. Two-ish years of steady climbing — problem-solving with your body, plus social. Would pick it up again in a heartbeat.
+- **~2010** — AP CS switch, senior year of high school.
+- **2011–2015** — SUNY Albany. BS in Computer Science + Applied Mathematics, Dean's List every semester. Took over the dying ACM (CS Club) junior year, ran it two years. Tekkapalooza resume drop. Played rugby briefly (B-squad → A-squad).
+- **2013–2016** — CommerceHub (Albany), intern → full-time. "First real engineering." Plus parallel paid contract work for My Plastic Brain.
+- **2015–2017** — Youni (Albany → Troy), co-founded with Anthony and Jordan. Worked nights/weekends through CommerceHub, then full-time. Folded after ~4–5 months full-time.
+- **March 2017–2021** — Oscar Health (NYC). Joined at ~50 engineers under Alan Warren, left at ~150+. Built Emotiqueue with Peter. Solved a Rubik's cube on a unicycle on stage. Twice.
+- **2021–present** — Stock Unlock (NYC), YC W22. Scaled to a team of eight + thousands of paying customers. Right-sized in early 2026 to three full-time. On key decisions and weekend pokes since.
+- **~2022 → now** — AI era. Driver in the seat, not driven by the car. → see *Convictions: AI thesis* for the tool progression and the recent AI-assisted shipping; → *Stories* for the migrations and side projects.
 
-**Stock Unlock (2021–present, YC W22).**
-- Origin: COVID era, watching Daniel Pronk's investing YouTube. Wrote a Python automation in a weekend to replace his 5-10 hour weekend Excel work. Primary driver was unrelenting curiosity and a nerdy thrill — plus I wanted free access to his Discord by being useful. Hounded Daniel for six weeks until he replied to make me stop; first call was over a beer. → see *Stories: Pronk emails*.
-- Dropped the alpha (an early Excel-generator) into Daniel's Discord. People freaked. Asked for features. Asked to pay. → see *Stories: Discord drop / PMF moment*.
-- Brought Nick Puljik over from Oscar. YC reached out cold via LinkedIn before we'd applied. Applied, got in. I led the YC interview. Raised $1.335M seed: $500K from YC, $835K from other investors. 400 paying users in launch week, 800-900 by seed close.
-- Scaled to a team of eight and thousands of paying customers. Hit a ~3,900-paying-subscriber wall in 2024; right-sized in early 2026 to three full-time (two engineers + an exec assistant) after big late-2025 feature launches didn't land. Worked it full-tilt until then.
-- Runs profitably today. I'm on key-decisions-only and weekend pokes. Y Combinator W22 — alive, profitable, customers love it. Outperforms most of the cohort by being any of those.
+## Now (April 2026)
 
-**The AI era (~2022 → now).**
-- Tool progression: Copilot ("cool, not life-changing") → Cursor (~1-2 years heavy) → Claude Code dabble through 2025 → Opus 4.5 in early 2026 was the tidal-wave inflection. Now on Opus 4.7. Heavy Claude Code + Codex + CMUX (multi-instance Ghostty wrapper). Built my own harness via Open Hands.
-- Tool-to-task in daily use: Gemini for maps and search, Grok for current events and snark, Claude for deep thinking, Cursor composer for fast code search.
-- Driver in the seat, not driven by the car. AI writes more code than I do; human-reviewed where it matters (business logic, security, architecture); let loose on cosmetic frontend.
-- Recent shipped at Stock Unlock with AI assist: migrated off Customer.io to self-hosted AWS SES (saved ~$5-6K/yr); migrated the marketing site off Webflow to a self-hosted codebase we control end-to-end (~$1K/yr saved, no more contractors to update copy, 20x more content pages); built a permissioned internal Discord ops bot on EC2 + Docker Compose for non-technical teammates; shipped programmatic SEO + GEO pages; building a self-improving social-AI agent with a human-in-the-loop on the side. → see *Stories: Customer.io migration*, *X poster*, *blinds motor*.
-- Including this site you're reading.
-
-**Now (April 2026).**
-- Working on what's next. Open to full-time, contract, or equity-founding conversations — quietly, not as a banner.
+On the hunt for what's next.
 
 ---
 
@@ -128,11 +98,11 @@ I find a thing, get weirdly good at it, and move on. Then a senior-year math cre
 - Daniel ignored me for ~6 weeks while I kept emailing and commenting. He eventually replied — not because he was sold, but to make me stop. Hopped on a video call, cracked a beer. → see *Stories: Pronk emails*.
 - Daniel let me into his Discord. I dropped an early Excel-generator alpha (worked for a handful of stocks). Users freaked: "are you selling this?" "could you add this stock?" "I would pay for this." → see *Stories: Discord drop*.
 - Brought **Nick Puljik** over from Oscar. Y Combinator reached out cold via LinkedIn before we'd even applied. Applied, got in. I led the YC interview.
-- Raised $1.335M seed: $500K from YC, $835K from other investors. YC pushed us to launch before raising. 400 paying users in launch week, 800–900 by seed close.
+- Raised $1.35M seed. YC pushed us to launch before raising.
 - Scaled to a team of eight and thousands of paying customers.
 - Hit a ~3,900-paying-subscriber wall in 2024 — new sign-ups roughly equaled churn. Tried partial pivots, including B2B sales attempts. Eventually bet on a set of big feature launches in late 2025; they took too long to build, burned the team, and didn't land.
-- Right-sized in early 2026. Now three full-time: two engineers and an executive assistant. I worked it full-tilt up to that point.
-- Runs profitably today. Three full-time (two engineers + an exec assistant) handle day-to-day; I'm on key decisions and weekend pokes. My co-founder Daniel stays close to the work alongside me.
+- Right-sized in early 2026. Three full-time handle day-to-day (two engineers + an executive assistant). I worked it full-tilt up to that point.
+- Runs profitably today. My co-founder Daniel and I are above the day-to-day — on key decisions and weekend pokes; the three FT execute.
 - The real Stock Unlock brag isn't a unicorn outcome — it's that the company is alive, profitable, and has thousands of customers who love it. That alone outperforms most YC W22 cohort companies.
 - Core conviction underneath the company: overcharging for bad software is theft from people who can't afford to be robbed.
 
@@ -146,7 +116,7 @@ I find a thing, get weirdly good at it, and move on. Then a senior-year math cre
 ### My Plastic Brain (contracting, parallel to CommerceHub internship)
 
 - Several hundred hours of paid contract web-game work for a now-defunct company called My Plastic Brain. Connected via friend-of-a-friend. Client was a mother roughly double my age.
-- The work: digital adaptations of physical card games that brain-injury rehab patients used in real life.
+- The work: KineticJS digital adaptations of physical card games that brain-injury rehab patients used in real life.
 - Billed hourly, working solo. Independent paid contract work in college, parallel to the CH internship — self-directed end-to-end.
 - The code is still in my old personal-website source.
 
@@ -283,10 +253,10 @@ Quick CommerceHub-trench memory. Had to fix a string-truncation bug in a company
 
 ## Mastery / hobbies
 
-The pattern: I find a thing, lock in until I'm weirdly good, and move on. Cubes and code are the two that stuck — both have feedback loops and infinite depth. *"Self-improvement as a core operating system part of me."*
+The pattern: I commit hard to things with depth. Cubes and code are the two that have held fifteen-plus years. Both have feedback loops and infinite depth. *"Self-improvement as a core operating system part of me."*
 
 ### Speed-cubing
-- Competed 2008–2014 at Northeast US events and Nationals (WCA-sanctioned).
+- Competed 2008–2014 at Northeast US events and Nationals (WCA, the World Cube Association).
 - 3×3 average: 13.95 seconds.
 - Top-20 in the US at the Pyraminx at peak. No longer ranked in any event.
 - WCA profile: [worldcubeassociation.org/persons/2008RUTH01](https://www.worldcubeassociation.org/persons/2008RUTH01).
@@ -306,7 +276,7 @@ The pattern: I find a thing, lock in until I'm weirdly good, and move on. Cubes 
 - **Rock climbing** — Oscar Health era. Indoor, two-ish years of steady climbing with friends from the team. Problem-solving with your body, plus the social side. Would pick it up again in a heartbeat.
 - **Skateboarding** — got "very good" as a teenager.
 - **DDR + Guitar Hero + RuneScape** — got obsessively good as a teen. Guitar Hero was the cleanest level-progression feedback loop I've ever locked into. (Good, not great — but "good" was already past most people.)
-- **Math** — accelerated track since third grade. Best score on the standardized Calc 1 exam freshman year of college (~500 students that semester, including grad students).
+- **Math** — accelerated track since third grade.
 - **Art** — actually liked it as a kid; one of the only school subjects outside math/science that held my attention.
 - **Meditation** — regular practice as an adult; tied to the serendipity-as-worldview thread.
 
@@ -331,13 +301,19 @@ A high school classmate told me once that I was good at everything that didn't m
 - Bureaucracy and politics over shipping. PIP-driven theater.
 - Buzzword resumes — "passionate," "results-oriented," "dynamic team player."
 - "Fisher-Price" software — looks polished, breaks under real use.
-- Overcharging for software that ships people short, especially when the people getting shorted can't afford it. One concrete example I stewed on while building Stock Unlock: a competing platform's "margin of safety score" — calculated as `current_price / all_time_high`. That's not analysis. That was one of hundreds of small dumb things competing tools did, and it was load-bearing for the conviction that there was room for software that didn't.
+- Overcharging for software that ships people short, especially when the people getting shorted can't afford it. That conviction was load-bearing for building Stock Unlock and shows up in every product call I make.
 - Vibe coding sold as software engineering. There's a real difference.
 
 ### The AI thesis
-Driver in the seat, not driven by the car. AI writes more code than I do; human-reviewed where it matters (business logic, security, system architecture); let loose on cosmetic frontend. Opus 4.5 in early 2026 was the inflection point.
+Driver in the seat, not driven by the car. AI writes more code than I do; human-reviewed where it matters (business logic, security, system architecture); let loose on cosmetic frontend.
 
-I'm leaning all the way in. AI for coding is just the start — I use it for deep business strategy conversations, drafting emails and PDFs, even building hardware projects on the side. There's a self-improving social-AI agent with a human-in-the-loop in active development too. The shift from feeling like a 10x engineer to a 100x engineer is real and recent — and I'm fully in it.
+Tool progression: Copilot ("cool, not life-changing") → Cursor (~1–2 years heavy) → Claude Code dabble through 2025 → Opus 4.5 in early 2026 was the tidal-wave inflection. Now on Opus 4.7. Heavy Claude Code + Codex + CMUX (multi-instance Ghostty wrapper). Built my own harness via Open Hands.
+
+Tool-to-task in daily use: Gemini for maps and search, Grok for current events and snark, Claude for deep thinking, Cursor composer for fast code search.
+
+Recent shipped at Stock Unlock with AI assist: migrated off Customer.io to self-hosted AWS SES (saved ~$5–6K/yr); migrated the marketing site off Webflow to a self-hosted codebase (~$1K/yr saved, 20× more content pages, no contractor dependency); built a permissioned internal Discord ops bot on EC2 + Docker Compose; shipped programmatic SEO + GEO pages; running code-review automation across the team (AI reviewing AI, humans gating the merge); building a self-improving X poster agent with a human-in-the-loop; wirelessly-controlled blinds motor on an Adafruit Feather, on the side. Including this site you're reading.
+
+I'm leaning all the way in. AI for coding is just the start — I use it for deep business strategy conversations, drafting emails and PDFs, even building hardware projects on the side. The shift from feeling like a 10x engineer to a 100x engineer is real and recent — and I'm fully in it.
 
 ### Serendipity as a working principle
 Most of what's worked for me looks lucky in retrospect. AP CS to dodge AP Calc. The Tekkapalooza resume drop. The Oscar interview question. Daniel replying out of exhaustion. YC reaching out via LinkedIn. The pattern is that luck only finds people who keep running at it.
@@ -346,10 +322,10 @@ Most of what's worked for me looks lucky in retrospect. AP CS to dodge AP Calc. 
 
 ## Hire
 
-Open to full-time, contract, or equity-founding conversations. Subtle on the site — one quiet line and one button somewhere, not a banner.
+On the hunt for what's next. Subtle on the site — one quiet line, not a banner.
 
 - **Channel:** email. Fast during ET business hours; prefer email to DMs.
-- **Roles:** senior IC, founding engineer, early-stage CTO. Won't manage unless the team is right and the work stays close to the code.
+- **Roles:** senior IC, founding engineer, early-stage CTO. Open to full-time or contract. Won't manage unless the team is right and the work stays close to the code.
 - **Comp:** market rate plus equity. No specific dollar prices anywhere on the site.
 - **Filter:** has to be a problem I'd care about. I've led a YC interview before; I'd rather build something that matters than chase a logo.
 

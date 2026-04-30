@@ -248,7 +248,7 @@
       btnCancel.hidden = false;
       btnCancel.disabled = false;
     } else {
-      // step 2 — loading. No Back/Next, Cancel still available.
+      // step 2, loading. No Back/Next, Cancel still available.
       btnBack.hidden = false;
       btnBack.disabled = true;
       btnNext.hidden = false;
@@ -264,7 +264,7 @@
 
   // ---- Step 3: loading screen ----
   // Shows a brief "Booting…" moment with spinner + progress bar, then
-  // hands off to the cube transition. No text message about nav —
+  // hands off to the cube transition. No text message about nav ,
   // nav guidance lives in the on-arrival onboarding pulse.
   function renderLoading() {
     const sel = getExperience(state.selectedId) || EXPERIENCES[0];
@@ -302,7 +302,7 @@
   function triggerTransition() {
     if (state.selectedId === null) return;
     const destinationUrl = getExperience(state.selectedId).path;
-    // Wizard launch counts as a fresh arrival on the destination — clear
+    // Wizard launch counts as a fresh arrival on the destination, clear
     // the topnav-pill dismissal flag so the onboarding shows on landing.
     try { sessionStorage.removeItem("jrPillDismissed"); } catch (_e) { /* ignore */ }
     try {
@@ -380,7 +380,7 @@
       launchSelected();
       return;
     }
-    // step 2 (loading) — Next is disabled, nothing to do
+    // step 2 (loading), Next is disabled, nothing to do
   });
 
   btnBack.addEventListener("click", () => {
@@ -572,7 +572,7 @@
         window.open("https://github.com/JakeRuth", "_blank", "noopener");
         return;
       case "mail":
-        window.location.href = "mailto:jake2ruth@gmail.com?subject=Saw%20your%20site";
+        if (typeof window.copyJakeEmail === "function") window.copyJakeEmail();
         return;
       case "resume":
         window.open("./official_resume.pdf", "_blank", "noopener");

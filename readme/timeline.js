@@ -1,5 +1,5 @@
 /* ================================================================
-   timeline.js — the git-log view folded into the README chrome.
+   timeline.js, the git-log view folded into the README chrome.
    Four-column log (rail / hash / date / message) with expandable
    `git show` panels. Reverse-chronological within year headers.
    ================================================================ */
@@ -31,7 +31,7 @@ window.TIMELINE = (function () {
       tags: ['available', 'NYC', 'open to talk'],
       body:
         "Stock Unlock runs profitably without me in the seat day-to-day. Open to full-time, contract, or equity-founding " +
-        "conversations — quietly, not as a banner. Has to be a problem I'd care about. " +
+        "conversations, quietly, not as a banner. Has to be a problem I'd care about. " +
         "Driver in the seat, not driven by the car.",
       diffstat: {
         items: [
@@ -71,7 +71,7 @@ window.TIMELINE = (function () {
       subject: 'right-size SU to three FT; move to key decisions only',
       tags: ['~3,900 wall in 2024', '3 FT remain', 'profitable'],
       body:
-        "Hit a ~3,900-paying-subscriber wall in 2024 — sign-ups roughly equaled churn. " +
+        "Hit a ~3,900-paying-subscriber wall in 2024, sign-ups roughly equaled churn. " +
         "Tried partial pivots, including B2B sales attempts. Bet on big late-2025 feature launches; " +
         "they took too long, burned the team, didn't land. Right-sized in early 2026. " +
         "Three full-time (two engineers + an exec assistant) handle day-to-day. Worked it full-tilt up to that point.",
@@ -95,7 +95,7 @@ window.TIMELINE = (function () {
       body:
         "Migrated off Customer.io to self-hosted AWS SES (~$5-6K/yr saved, one weekend). " +
         "Migrated marketing site off Webflow to a self-hosted codebase (~$1K/yr saved, 20x content footprint, no more contractors). " +
-        "Built the X poster — a self-improving social-AI agent with a human-in-the-loop. Bootstrap-trained on thousands of tagged posts; " +
+        "Built the X poster, a self-improving social-AI agent with a human-in-the-loop. Bootstrap-trained on thousands of tagged posts; " +
         "Playwright for in-product screenshots; LangChain pipeline rewrites its own prompt from human feedback + live engagement. " +
         "Built a permissioned Discord ops bot on EC2 + Docker Compose for non-technical teammates. Programmatic SEO + GEO pages. " +
         "Code review automation across the team.",
@@ -117,7 +117,7 @@ window.TIMELINE = (function () {
       subject: 'hit ~3,900-paying-subscriber wall',
       tags: ['plateau', 'churn ≈ signups'],
       body:
-        "Growth flattened — new sign-ups roughly equaled churn. Tried partial pivots, including B2B sales attempts. " +
+        "Growth flattened, new sign-ups roughly equaled churn. Tried partial pivots, including B2B sales attempts. " +
         "Began betting on a set of big feature launches for late 2025.",
       diffstat: {
         items: [
@@ -151,31 +151,29 @@ window.TIMELINE = (function () {
       branch: 'stockunlock', author: 'Jake Ruth <jake2ruth@gmail.com>',
       date: '2022-03',
       subject: 'YC W22: launched before raising',
-      tags: ['YC W22', '400 users in launch week', '800-900 at seed close'],
+      tags: ['YC W22', 'launched'],
       body:
-        "YC pushed us to launch before raising. We did. 400 paying users in launch week. 800-900 by seed close.",
+        "YC pushed us to launch before raising. We did. Subscribers came on fast.",
       diffstat: {
         items: [
           { file: 'product/v1',   added: 1,   removed: 0, note: 'launched' },
-          { file: 'users/paying', added: 400, removed: 0, note: 'launch week' },
         ],
-        summary: '1 product launched, 400 users acquired in week 1',
+        summary: '1 product launched',
       },
     },
     {
       sha: '3e5b192', fullSha: '3e5b192a11c3d55f67ab9921dd04e6faabbccdd1',
       branch: 'stockunlock', author: 'Jake Ruth <jake2ruth@gmail.com>',
       date: '2022-01',
-      subject: 'raised $1.335M seed',
-      tags: ['$500K YC', '$835K other investors', 'led the YC interview'],
+      subject: 'raised $1.35M seed',
+      tags: ['led the YC interview'],
       body:
-        "Closed $1.335M: $500K from YC, $835K from other investors. I led the YC interview.",
+        "Closed a $1.35M seed. I led the YC interview.",
       diffstat: {
         items: [
-          { file: 'balance.json', added: 1335000, removed: 0, note: 'seed' },
-          { file: 'cap-table.md', added: 14,      removed: 0, note: 'investors' },
+          { file: 'balance.json', added: 1350000, removed: 0, note: 'seed' },
         ],
-        summary: '$1.335M deposited',
+        summary: '$1.35M deposited',
       },
     },
 
@@ -254,7 +252,7 @@ window.TIMELINE = (function () {
       body:
         "I'd built a Python automation in a weekend that hit cheap financial APIs and exported the same Excel format he was making by hand. " +
         "Emailed him weekly. Commented on his content. Tried to give him the tool for free. " +
-        "Six weeks in, he replied — to make me stop. Hopped on a video call, cracked a beer, instantly hit it off. " +
+        "Six weeks in, he replied, to make me stop. Hopped on a video call, cracked a beer, instantly hit it off. " +
         "He let me into his paid Discord. Asked if I could build web apps. I'd been doing it professionally for six years.",
       diffstat: {
         items: [{ file: 'inbox/daniel.eml', added: 2, removed: 0, note: 'first reply' }],
@@ -272,7 +270,7 @@ window.TIMELINE = (function () {
       body:
         "Owned services across Python and Golang back-ends and a React front-end, including the internal site for hundreds of " +
         "Tempe care-ops staff. SRE-adjacent on a custom-hosted analytics integration. By senior year, go-to across two teams " +
-        "for full-stack questions. Declined team-lead twice — already writing the early Stock Unlock code on the side.",
+        "for full-stack questions. Declined team-lead twice, already writing the early Stock Unlock code on the side.",
       diffstat: {
         items: [{ file: 'services/**/*', added: 3400, removed: 1100, note: 'ownership' }],
         summary: '54 files changed, 2 manager offers declined',
@@ -285,8 +283,8 @@ window.TIMELINE = (function () {
       subject: 'talent show #2 (encore)',
       tags: ['retraining', 'mastery decays'],
       body:
-        "Two years later, mid-20s. Slightly less elaborate — kept the cube-on-unicycle finale, dropped most of the obstacle course. " +
-        "The funny part: I had to retrain. Spent a couple of days outside my apartment before the show re-grinding the basics — " +
+        "Two years later, mid-20s. Slightly less elaborate, kept the cube-on-unicycle finale, dropped most of the obstacle course. " +
+        "The funny part: I had to retrain. Spent a couple of days outside my apartment before the show re-grinding the basics, " +
         "riding backwards, the cube-on-wheels combo. Mastery decays fast if you don't tend it.",
       diffstat: {
         items: [{ file: 'hobbies/talent-show-2.md', added: 8, removed: 0, note: 'encore' }],
@@ -368,9 +366,9 @@ window.TIMELINE = (function () {
       subject: 'start oscar-health (under Alan Warren)',
       tags: ['~50 engineers at join', 'serendipity question'],
       body:
-        "NYC. Joined under Alan Warren — formerly the Google leader who scaled Google Docs from 2-3 people to thousands. " +
+        "NYC. Joined under Alan Warren, formerly the Google leader who scaled Google Docs from 2-3 people to thousands. " +
         "Got the offer partly via an interview question that just happened to match my last project (a social-media architecture question). " +
-        "Found out years later it was random luck — they hadn't read my resume at all. " +
+        "Found out years later it was random luck, they hadn't read my resume at all. " +
         "First time touching systems where a bad deploy had downstream consequences measured in humans.",
       diffstat: {
         items: [{ file: 'onboarding.md', added: 1, removed: 0, note: 'day one' }],
@@ -389,7 +387,7 @@ window.TIMELINE = (function () {
       body:
         "Three years of e-commerce plumbing. Groovy/Grails on the back, early-pre-hooks React on the front. " +
         "Took down production once with a button I shouldn't have had access to as an intern. " +
-        "Manager stood up before I finished apologizing: 'That wasn't your fault — you shouldn't have had access to that tool. " +
+        "Manager stood up before I finished apologizing: 'That wasn't your fault, you shouldn't have had access to that tool. " +
         "We're not celebrating that this happened, but the system was the problem, not you.' " +
         "That sentence rewired how I think about systems, access, and blameless culture. " +
         "Left exactly one year and seven days into FT to go full-time on Youni.",
@@ -469,7 +467,7 @@ window.TIMELINE = (function () {
       sha: '5u1ff1e', fullSha: '5u1ff1ea1b2c3d4e5f6789abcdeffedcba987654',
       branch: 'main', author: 'Jake Ruth <jake2ruth@gmail.com>',
       date: '2014-04',
-      subject: 'ACM @ SUNY Albany — president (year two)',
+      subject: 'ACM @ SUNY Albany, president (year two)',
       tags: ['~50-100 students at interest meeting', 'survived past me'],
       body:
         "Took over a dying CS club junior year. Outgoing seniors handed me the presidency. " +
@@ -505,7 +503,7 @@ window.TIMELINE = (function () {
       tags: ['KineticJS', 'brain-injury rehab'],
       body:
         "Several hundred hours of paid contract work in college, parallel to the CH internship. " +
-        "Built KineticJS card games — digital adaptations of physical card games that brain-injury rehab patients used in real life. " +
+        "Built KineticJS card games, digital adaptations of physical card games that brain-injury rehab patients used in real life. " +
         "Self-directed end-to-end. Now-defunct company.",
       diffstat: {
         items: [{ file: 'contract/mpb/*', added: 1200, removed: 50, note: 'card games' }],
@@ -533,7 +531,7 @@ window.TIMELINE = (function () {
       sha: 'apcs011', fullSha: 'apcs0111111222223333344444555556666677777',
       branch: 'main', author: 'Jake Ruth <jake2ruth@gmail.com>',
       date: '2011-09',
-      subject: 'AP CS instead of AP Calc — loop closed in week one',
+      subject: 'AP CS instead of AP Calc, loop closed in week one',
       tags: ['pivotal', 'Mrs. Nalbandian'],
       body:
         "Senior year of high school. Catch-22: required to take a math credit, but I'd burned through every math class except AP Calc. " +

@@ -17,7 +17,7 @@
 })();
 
 // ============================================================
-// STATUS CARD — uptime bars (90 days)
+// STATUS CARD, uptime bars (90 days)
 // ============================================================
 (function uptimeBars() {
   const barsEl = document.getElementById("uptime-bars");
@@ -41,7 +41,7 @@
 })();
 
 // ============================================================
-// ARCHITECTURE GRAPH — 9 nodes
+// ARCHITECTURE GRAPH, 9 nodes
 // ============================================================
 (function architecture() {
   const svg = document.getElementById("arch-svg");
@@ -219,8 +219,8 @@
     } else if (panelTitle && !id) {
       panelTitle.textContent = "Hover a node";
       panelBody.textContent = "Click any node to pin its service specification, SLO, and upstream dependencies.";
-      sloEl.textContent = "—";
-      sinceEl.textContent = "—";
+      sloEl.textContent = ",";
+      sinceEl.textContent = ",";
     }
   }
 
@@ -237,7 +237,7 @@
 })();
 
 // ============================================================
-// DOCS — code tab switching + copy
+// DOCS, code tab switching + copy
 // ============================================================
 (function docsTabs() {
   const tabs = document.querySelectorAll(".code-tab[data-tab]");
@@ -279,7 +279,7 @@
 })();
 
 // ============================================================
-// INTEGRATIONS — "last checked" timer
+// INTEGRATIONS, "last checked" timer
 // ============================================================
 (function integTime() {
   const el = document.getElementById("integ-time");

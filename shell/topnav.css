@@ -265,21 +265,22 @@ body.has-topnav {
    experience's styles.css. Nav height is 56px desktop, 52px narrow. */
 
 /* XP Luna: absolute-positioned windows + fixed taskbar. Shift the main
-   explorer window down 56px so the topnav clears it. */
-body.has-topnav .xp-window.explorer { top: 96px !important; }
-body.has-topnav .desktop-icons      { top: 70px !important; }
-body.has-topnav .cube-window        { top: 116px !important; }
-body.has-topnav .search-window      { top: 156px !important; }
+   explorer window down 56px so the topnav clears it. NOTE: no !important
+   so inline top set by the drag handler can override after a user drag. */
+body.has-topnav .xp-window.explorer { top: 96px; }
+body.has-topnav .desktop-icons      { top: 70px; }
+body.has-topnav .cube-window        { top: 116px; }
+body.has-topnav .search-window      { top: 156px; }
 
 /* README .gh-header + SaaS .nav: both sticky at top:0 — bump them under the topnav. */
 body.has-topnav .gh-header,
 body.has-topnav .nav { top: 56px !important; }
 
 @media (max-width: 640px) {
-  body.has-topnav .xp-window.explorer { top: 92px !important; }
-  body.has-topnav .desktop-icons      { top: 66px !important; }
-  body.has-topnav .cube-window        { top: 112px !important; }
-  body.has-topnav .search-window      { top: 152px !important; }
+  body.has-topnav .xp-window.explorer { top: 92px; }
+  body.has-topnav .desktop-icons      { top: 66px; }
+  body.has-topnav .cube-window        { top: 112px; }
+  body.has-topnav .search-window      { top: 152px; }
   body.has-topnav .gh-header,
   body.has-topnav .nav                { top: 52px !important; }
 }
@@ -340,15 +341,16 @@ body.has-topnav .nav { top: 56px !important; }
   align-items: center;
   gap: 10px;
   padding: 11px 20px 11px 16px;
-  /* Bright amber so it pops against both light AND dark experience chrome */
-  background: linear-gradient(180deg, #fff4d8 0%, #ffe19a 100%);
-  border: 1.5px solid #e8a13a;
+  /* Mint — pops against light XP chrome, dark README chrome, and the
+     cream SaaS chrome equally well without fighting any of them. */
+  background: linear-gradient(180deg, #e8fff4 0%, #a8e6c9 100%);
+  border: 1.5px solid #3fa779;
   box-shadow:
-    0 14px 38px rgba(0, 0, 0, 0.35),
-    0 0 0 3px rgba(232, 161, 58, 0.28),
-    0 0 26px 4px rgba(255, 203, 91, 0.55);
+    0 14px 38px rgba(0, 0, 0, 0.28),
+    0 0 0 3px rgba(63, 167, 121, 0.22),
+    0 0 22px 4px rgba(140, 225, 185, 0.45);
   border-radius: 999px;
-  color: #3a2a06;
+  color: #0c3a26;
   font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Inter, Helvetica, Arial, sans-serif;
   font-size: 14px;
   font-weight: 600;
@@ -360,7 +362,7 @@ body.has-topnav .nav { top: 56px !important; }
   transition: opacity 280ms ease, transform 280ms ease;
 }
 .topnav-onboarding-pill::before {
-  /* Upward pointer from the pill toward the nav — clear visual tie. */
+  /* Upward pointer from the pill toward the nav, clear visual tie. */
   content: '';
   position: absolute;
   top: -7px;
@@ -368,10 +370,10 @@ body.has-topnav .nav { top: 56px !important; }
   transform: translateX(-50%) rotate(45deg);
   width: 12px;
   height: 12px;
-  background: #fff4d8;
-  border-top: 1.5px solid #e8a13a;
-  border-left: 1.5px solid #e8a13a;
-  box-shadow: 0 0 10px 2px rgba(255, 203, 91, 0.35);
+  background: #e8fff4;
+  border-top: 1.5px solid #3fa779;
+  border-left: 1.5px solid #3fa779;
+  box-shadow: 0 0 10px 2px rgba(140, 225, 185, 0.30);
 }
 .topnav-onboarding-pill.is-visible {
   opacity: 1;
@@ -387,11 +389,12 @@ body.has-topnav .nav { top: 56px !important; }
   transition: none;
 }
 
+
 .topnav-onboarding-arrow {
   display: inline-block;
   font-size: 17px;
   line-height: 1;
-  color: #8a5a00;
+  color: #06301c;
   transform: translateY(-1px);
   font-weight: 800;
   animation: topnav-onboard-arrow-bob 1.4s ease-in-out infinite;

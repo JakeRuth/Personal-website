@@ -1,9 +1,8 @@
-/* XP experience. Three independent modules, loaded in one file:
-     1. Window manager — toast, clock, windows, dragging, Start menu,
+/* XP experience. Two independent modules, loaded in one file:
+     1. Window manager, toast, clock, windows, dragging, Start menu,
         click dispatch for data-open / data-scroll / data-copy.
-     2. CubeMaster — Three.js Rubik's Cube with bidirectional-BFS
-        solver, live timer, and a scramble/solve UI.
-     3. Network graph — the Search Companion SVG graph + dog bubble.
+     2. CubeMaster, Three.js Rubik's Cube with a search-based solver,
+        live timer, and a scramble/solve UI.
    Modules share no state; each is its own IIFE. */
 
 /* ==================================================================
@@ -16,7 +15,6 @@
   const WINDOWS = {
     "my-computer":      document.getElementById("win-my-computer"),
     "cubemaster":       document.getElementById("win-cubemaster"),
-    "search-companion": document.getElementById("win-search-companion"),
   };
 
   const TASK_STRIP = document.getElementById("task-strip");
@@ -107,9 +105,8 @@
   }
   function iconFor(id) {
     switch (id) {
-      case "my-computer":      return "\u{1F5A5}️";
-      case "cubemaster":       return "\u{1F9CA}";
-      case "search-companion": return "\u{1F50D}";
+      case "my-computer": return "\u{1F5A5}️";
+      case "cubemaster":  return "\u{1F9CA}";
       default: return "\u{1FA9F}";
     }
   }
@@ -213,11 +210,47 @@
       drag.handle.classList.remove("dragging");
       drag = null;
     });
+
+    // Double-click on titlebar toggles maximize (standard OS behavior).
+    document.addEventListener("dblclick", (e) => {
+      const handle = e.target.closest("[data-drag-handle]");
+      if (!handle) return;
+      if (e.target.closest(".tb-btn")) return; // skip titlebar buttons
+      const wnd = handle.closest(".xp-window");
+      if (!wnd) return;
+      const maxBtn = wnd.querySelector(".tb-btn.maximize");
+      if (maxBtn) maxBtn.click();
+    });
   })();
+
+  // ---------- accordion: single-open behavior ----------
+  // Returns whether `row` is now open. Closes any other open work-row
+  // first (single-open). If `forceOpen` is true, always opens (no toggle).
+  function setWorkRowOpen(row, forceOpen) {
+    if (!row) return false;
+    const willOpen = forceOpen ? true : !row.classList.contains("is-open");
+    document.querySelectorAll(".work-row.is-open").forEach(r => {
+      if (r === row) return;
+      r.classList.remove("is-open");
+      const h = r.querySelector(".work-head");
+      if (h) h.setAttribute("aria-expanded", "false");
+    });
+    row.classList.toggle("is-open", willOpen);
+    const head = row.querySelector(".work-head");
+    if (head) head.setAttribute("aria-expanded", willOpen ? "true" : "false");
+    return willOpen;
+  }
 
   // ---------- smooth scroll helper ----------
   function scrollToSection(id) {
     openWindow("my-computer");
+    // If the target is an accordion work-row, auto-expand so the user
+    // doesn't land on a collapsed head with nothing to read. Closes any
+    // other open row to honor single-open behavior.
+    const pre = document.getElementById(id);
+    if (pre && pre.classList.contains("work-row")) {
+      setWorkRowOpen(pre, true);
+    }
     // After open, wait a frame so the Explorer is laid out, then scroll.
     requestAnimationFrame(() => {
       requestAnimationFrame(() => {
@@ -298,7 +331,8 @@
             right: wnd.style.right, bottom: wnd.style.bottom,
             width: wnd.style.width, height: wnd.style.height,
           });
-          wnd.style.top = "0"; wnd.style.left = "0";
+          // Fill viewport but leave the topnav (56px) and taskbar (32px) visible
+          wnd.style.top = "56px"; wnd.style.left = "0";
           wnd.style.right = "0"; wnd.style.bottom = "32px";
           wnd.style.width = "auto"; wnd.style.height = "auto";
         } else if (wnd.dataset.prev) {
@@ -307,15 +341,45 @@
         }
         return;
       }
-      if (action === "hire") {
-        toast("Opening default mail client…");
-        setTimeout(() => {
-          window.location.href = "mailto:jake2ruth@gmail.com?subject=Saw%20your%20site";
-        }, 250);
+      if (action === "email" || action === "hire") {
+        if (typeof window.copyJakeEmail === "function") window.copyJakeEmail();
+        return;
+      }
+      if (action === "resume") {
+        window.open("../official_resume.pdf", "_blank", "noopener");
         return;
       }
       if (action === "back") {
         scrollToSection("hero");
+        return;
+      }
+      if (action === "copy-email") {
+        copyToClipboard("jake2ruth@gmail.com", "E-mail address");
+        return;
+      }
+      if (action === "copy-github") {
+        copyToClipboard("https://github.com/JakeRuth", "GitHub URL");
+        return;
+      }
+      if (action === "refresh") { window.location.reload(); return; }
+      if (action === "open-github") {
+        window.open("https://github.com/JakeRuth", "_blank", "noopener");
+        return;
+      }
+      if (action === "open-wca") {
+        window.open("https://www.worldcubeassociation.org/persons/2008RUTH01", "_blank", "noopener");
+        return;
+      }
+      if (action === "open-source") {
+        window.open("https://github.com/JakeRuth/Personal-website", "_blank", "noopener");
+        return;
+      }
+      if (action === "open-stock-unlock") {
+        window.open("https://stockunlock.com", "_blank", "noopener");
+        return;
+      }
+      if (action === "restart") {
+        window.location.href = "../";
         return;
       }
     }
@@ -329,16 +393,21 @@
     }
   });
 
-  // icons: double-click opens, single click selects, Enter opens
+  // icons: double-click opens, mousedown shows pressed state (released on
+  // mouseup/leave), Enter opens. We don't keep .selected after release —
+  // XP behavior is "highlight while pressed", not "remember last clicked".
   document.querySelectorAll(".desktop-icons .icon").forEach(icon => {
     icon.addEventListener("dblclick", () => {
       const id = icon.dataset.open;
       if (id) openWindow(id);
     });
-    icon.addEventListener("click", () => {
+    icon.addEventListener("mousedown", () => {
       document.querySelectorAll(".icon.selected").forEach(i => i.classList.remove("selected"));
       icon.classList.add("selected");
     });
+    const clearSelected = () => icon.classList.remove("selected");
+    icon.addEventListener("mouseup", clearSelected);
+    icon.addEventListener("mouseleave", clearSelected);
     icon.addEventListener("keydown", (e) => {
       if (e.key === "Enter") {
         const id = icon.dataset.open;
@@ -347,12 +416,187 @@
     });
   });
 
+  // Generic single-open accordion. Used for both work-history rows and
+  // the Stories timeline. Each accordion has its own scope (its container)
+  // so opening a Story doesn't close an open Work row, and vice versa.
+  function wireAccordion(opts) {
+    const { headSelector, rowSelector, bodySelector, innerClass } = opts;
+    document.querySelectorAll(bodySelector).forEach(body => {
+      if (body.querySelector(`:scope > .${innerClass}`)) return;
+      const inner = document.createElement("div");
+      inner.className = innerClass;
+      while (body.firstChild) inner.appendChild(body.firstChild);
+      body.appendChild(inner);
+    });
+    document.querySelectorAll(headSelector).forEach(head => {
+      function toggle() {
+        const row = head.closest(rowSelector);
+        if (!row) return;
+        const willOpen = !row.classList.contains("is-open");
+        // single-open: collapse all siblings inside the same container
+        const scope = row.parentElement;
+        scope.querySelectorAll(`${rowSelector}.is-open`).forEach(r => {
+          if (r === row) return;
+          r.classList.remove("is-open");
+          const h = r.querySelector(headSelector);
+          if (h) h.setAttribute("aria-expanded", "false");
+        });
+        row.classList.toggle("is-open", willOpen);
+        head.setAttribute("aria-expanded", willOpen ? "true" : "false");
+      }
+      head.addEventListener("click", toggle);
+      head.addEventListener("keydown", (e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          toggle();
+        }
+      });
+    });
+  }
+  wireAccordion({
+    headSelector: ".work-head[data-toggle-work]",
+    rowSelector: ".work-row",
+    bodySelector: ".work-body",
+    innerClass: "work-body-inner",
+  });
+  wireAccordion({
+    headSelector: ".timeline-head[data-toggle-story]",
+    rowSelector: ".timeline-item",
+    bodySelector: ".timeline-body",
+    innerClass: "timeline-body-inner",
+  });
+
   // task pane collapsible sections
   document.querySelectorAll(".tp-header[data-toggle]").forEach(h => {
     h.addEventListener("click", () => {
       h.parentElement.classList.toggle("collapsed");
     });
   });
+
+  // ---------- address bar (live path + Go + dropdown) ----------
+  // Path tracks the currently-visible section. Click address or chevron
+  // to open the dropdown. Click an item to jump. Click Go to jump to the
+  // section currently shown in the path.
+  const addressField = document.getElementById("address-field");
+  const addressPath  = document.getElementById("address-path");
+  const addressGo    = document.getElementById("address-go");
+  const addressDropdown = document.getElementById("address-dropdown");
+  if (addressField && addressPath && addressGo && addressDropdown) {
+    let currentSection = "hero";
+    function setPath(section, label) {
+      currentSection = section;
+      addressPath.textContent = "C:\\Jake\\" + (label ? label + "\\" : "");
+    }
+    function openAddressDropdown() {
+      addressDropdown.hidden = false;
+    }
+    function closeAddressDropdown() {
+      addressDropdown.hidden = true;
+    }
+    addressField.addEventListener("click", (e) => {
+      e.stopPropagation();
+      if (addressDropdown.hidden) openAddressDropdown();
+      else closeAddressDropdown();
+    });
+    addressDropdown.querySelectorAll("li").forEach(li => {
+      li.addEventListener("click", (e) => {
+        e.stopPropagation();
+        const section = li.dataset.section;
+        const label = li.dataset.label;
+        setPath(section, label);
+        closeAddressDropdown();
+        scrollToSection(section);
+      });
+    });
+    addressGo.addEventListener("click", (e) => {
+      e.stopPropagation();
+      scrollToSection(currentSection);
+    });
+    document.addEventListener("click", (e) => {
+      if (!e.target.closest("#address-field") && !e.target.closest("#address-dropdown")) {
+        closeAddressDropdown();
+      }
+    });
+    // Track scroll position to update the path. Picks the section whose
+    // top is closest to (but not below) the scroller's top edge.
+    const sectionMap = {
+      hero: "", about: "About", work: "Work",
+      "stock-unlock": "Work\\Stock Unlock", ai: "AI",
+      stories: "Stories", cube: "Mastery", convictions: "Convictions"
+    };
+    const scroller = document.getElementById("content-scroll");
+    if (scroller) {
+      const sections = Object.keys(sectionMap)
+        .map(id => ({ id, el: document.getElementById(id) }))
+        .filter(s => s.el);
+      function updatePathFromScroll() {
+        const sRect = scroller.getBoundingClientRect();
+        const trigger = sRect.top + 80; // small offset so a section "owns" the path once its top crosses the trigger line
+        let active = sections[0];
+        for (const s of sections) {
+          if (s.el.getBoundingClientRect().top <= trigger) active = s;
+        }
+        setPath(active.id, sectionMap[active.id]);
+      }
+      let scrollTick = null;
+      scroller.addEventListener("scroll", () => {
+        if (scrollTick) return;
+        scrollTick = requestAnimationFrame(() => { updatePathFromScroll(); scrollTick = null; });
+      });
+      // Initial state
+      updatePathFromScroll();
+    }
+  }
+
+  // ---------- menubar dropdowns ----------
+  // File / Edit / View / Favorites / Tools / Help, click to open, hover-roll
+  // between siblings while one is open, click outside or Esc to close.
+  function copyToClipboard(text, label) {
+    (navigator.clipboard?.writeText?.(text) ?? Promise.reject())
+      .then(() => toast("Copied " + label + " to Clipboard."))
+      .catch(() => toast(label + ": " + text));
+  }
+  const MENUBAR = document.getElementById("xp-menubar");
+  if (MENUBAR) {
+    function closeMenubar() {
+      MENUBAR.querySelectorAll(".menu-item.is-open").forEach(b => b.classList.remove("is-open"));
+      MENUBAR.querySelectorAll(".menu-panel").forEach(p => p.hidden = true);
+    }
+    function openMenu(id) {
+      closeMenubar();
+      const trigger = MENUBAR.querySelector('[data-menu="' + id + '"]');
+      const panel   = MENUBAR.querySelector('[data-menu-for="' + id + '"]');
+      if (trigger) trigger.classList.add("is-open");
+      if (panel) panel.hidden = false;
+    }
+    MENUBAR.querySelectorAll("[data-menu]").forEach(btn => {
+      btn.addEventListener("click", (e) => {
+        e.stopPropagation();
+        const id = btn.getAttribute("data-menu");
+        if (btn.classList.contains("is-open")) closeMenubar();
+        else openMenu(id);
+      });
+      btn.addEventListener("mouseenter", () => {
+        if (!MENUBAR.querySelector(".menu-item.is-open")) return;
+        if (btn.classList.contains("is-open")) return;
+        openMenu(btn.getAttribute("data-menu"));
+      });
+    });
+    // Close after picking an item, the action itself runs via the
+    // existing global click handler (data-action / data-scroll / data-open).
+    MENUBAR.querySelectorAll(".menu-row").forEach(row => {
+      row.addEventListener("click", () => closeMenubar());
+    });
+    document.addEventListener("click", (e) => {
+      if (!e.target.closest("#xp-menubar")) closeMenubar();
+    });
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && MENUBAR.querySelector(".menu-item.is-open")) {
+        closeMenubar();
+        e.preventDefault();
+      }
+    });
+  }
 
   // ---------- Start menu ----------
   function openStartMenu() {
@@ -377,7 +621,7 @@
 })();
 
 /* ==================================================================
-   2. CubeMaster — Three.js Rubik's Cube
+   2. CubeMaster, Three.js Rubik's Cube
    ================================================================== */
 (function cubeMaster() {
   "use strict";
@@ -387,7 +631,7 @@
   const CUBE_WIN = document.getElementById("win-cubemaster");
 
   // Local toast helper. Writes to the same element as windowManager's
-  // toast() — keeps a single UI surface without sharing JS state.
+  // toast(), keeps a single UI surface without sharing JS state.
   let toastTimer = null;
   function toast(msg) {
     const TOAST = document.getElementById("xp-toast");
@@ -439,6 +683,21 @@
     cubeGroup = new THREE.Group();
     cubeScene.add(cubeGroup);
 
+    buildCubeContents();
+
+    THREE_READY = true;
+    window.addEventListener("resize", onCubeResize);
+    startRAF();
+    return true;
+  }
+
+  // Tear down + rebuild the cubies and stickers in canonical positions.
+  // Called at first build and on reset/scramble (since after free-form
+  // turns the meshes carry baked-in rotations that we can't easily undo).
+  function buildCubeContents() {
+    if (!cubeGroup) return;
+    // Clear any existing children (cubies, stickers, leftover layerGroups)
+    while (cubeGroup.children.length) cubeGroup.remove(cubeGroup.children[0]);
     const bodyMat = new THREE.MeshBasicMaterial({ color: 0x101418 });
     const bodySize = 0.97;
     const gap = 1.0;
@@ -452,16 +711,9 @@
         }
       }
     }
-
     stickerMeshes = buildStickers();
     stickerMeshes.forEach(s => cubeGroup.add(s.mesh));
-
     repaintStickers();
-
-    THREE_READY = true;
-    window.addEventListener("resize", onCubeResize);
-    startRAF();
-    return true;
   }
 
   function buildStickers() {
@@ -480,12 +732,12 @@
           const cc = c - 1;
           const rr = r - 1;
           switch (faceId) {
-            case 0: // U: +Y
-              mesh.position.set(cc, half, -rr);
+            case 0: // U: +Y. cube-solver convention: idx 0..2 = back row, 6..8 = front row.
+              mesh.position.set(cc, half, rr);
               mesh.rotation.x = -Math.PI / 2;
               break;
-            case 3: // D: -Y
-              mesh.position.set(cc, -half, rr);
+            case 3: // D: -Y. cube-solver convention: idx 0..2 = front row, 6..8 = back row.
+              mesh.position.set(cc, -half, -rr);
               mesh.rotation.x = Math.PI / 2;
               break;
             case 2: // F: +Z
@@ -625,16 +877,23 @@
     if (t < 1) {
       requestAnimationFrame(tickMove);
     } else {
+      // Bake the layerGroup's rotation into each affected child's local
+      // transform so they keep their newly-rotated visual position when
+      // re-parented to cubeGroup. Avoids the snap-back-and-repaint dance
+      // (which broke sticker positions because Math.round wrecked the
+      // ±1.5 sticker coordinates).
+      moveAnim.layerGroup.updateMatrix();
+      const layerMatrix = moveAnim.layerGroup.matrix;
       moveAnim.affected.forEach(c => {
+        c.applyMatrix4(layerMatrix);
         moveAnim.layerGroup.remove(c);
         cubeGroup.add(c);
-        c.position.set(Math.round(c.position.x), Math.round(c.position.y), Math.round(c.position.z));
-        c.rotation.set(0, 0, 0);
       });
       cubeGroup.remove(moveAnim.layerGroup);
 
+      // Update the logical facelet state so the solver/scrambler stay in
+      // sync. No repaintStickers — stickers carry their colors physically.
       window.CubeSolver.faceletTurn(faceletCube, moveAnim.move);
-      repaintStickers();
       moveAnim = null;
       nextMove();
     }
@@ -731,12 +990,15 @@
 
   btnScramble?.addEventListener("click", () => {
     if (moveAnim || moveQueue.length) return;
-    // Scramble depth 8 — within the solver's 9-per-side BFS window,
+    // Scramble depth 8, within the solver's 9-per-side BFS window,
     // so every scramble has a guaranteed solution found in browser-
     // friendly time (typically <150ms).
+    // Always scramble from a fresh solved cube — both visually
+    // (rebuild meshes at canonical positions) and logically.
+    faceletCube = window.CubeSolver.solvedFacelets();
     const scramble = window.CubeSolver.randomScramble(8);
     window.CubeSolver.applyFaceletMoves(faceletCube, scramble);
-    repaintStickers();
+    buildCubeContents();
     resetTimer();
     startTimer();
     toast("Cube scrambled. Timer running.");
@@ -780,9 +1042,9 @@
       return;
     }
     faceletCube = window.CubeSolver.solvedFacelets();
-    repaintStickers();
+    buildCubeContents();
     resetTimer();
-    if (timerLastEl) timerLastEl.textContent = "—";
+    if (timerLastEl) timerLastEl.textContent = "–";
     toast("Cube reset to solved.");
     updateStatus();
   });
@@ -800,193 +1062,3 @@
   }
 })();
 
-/* ==================================================================
-   3. Network graph — Search Companion
-   ================================================================== */
-(function networkGraph() {
-  "use strict";
-
-  const SEARCH_WIN = document.getElementById("win-search-companion");
-  const GRAPH_EL = document.getElementById("graph");
-  const DOG_EL = document.getElementById("dog");
-  const BUBBLE = document.getElementById("dog-bubble");
-
-  const NODES = [
-    { id: "jake",         label: "Jake Ruth",       group: "self" },
-    { id: "stock-unlock", label: "Stock Unlock",    group: "co" },
-    { id: "oscar",        label: "Oscar Health",    group: "co" },
-    { id: "commerce",     label: "CommerceHub",     group: "co" },
-    { id: "youni",        label: "Youni",           group: "co" },
-    { id: "ai",           label: "AI discipline",   group: "skill" },
-    { id: "founding",     label: "0→1 Founding",    group: "skill" },
-    { id: "python",       label: "Python / Go",     group: "skill" },
-    { id: "yc",           label: "YC W22",          group: "skill" },
-    { id: "cube",         label: "Rubik's 13.95s",  group: "fun" },
-    { id: "unicycle",     label: "Unicycle",        group: "fun" },
-  ];
-  const LINKS = [
-    ["jake", "stock-unlock"],
-    ["jake", "oscar"],
-    ["jake", "commerce"],
-    ["jake", "youni"],
-    ["jake", "ai"],
-    ["jake", "founding"],
-    ["jake", "python"],
-    ["jake", "cube"],
-    ["jake", "unicycle"],
-    ["stock-unlock", "founding"],
-    ["stock-unlock", "ai"],
-    ["stock-unlock", "yc"],
-    ["oscar", "python"],
-    ["oscar", "unicycle"],
-    ["cube", "unicycle"],
-    ["commerce", "python"],
-  ];
-
-  let GRAPH_BUILT = false;
-  function ensureGraphBuilt() {
-    if (GRAPH_BUILT) return;
-    buildGraph();
-    GRAPH_BUILT = true;
-  }
-
-  function buildGraph() {
-    if (!GRAPH_EL) return;
-    const W = 420, H = 340;
-    const byId = Object.fromEntries(NODES.map(n => [n.id, n]));
-
-    const groups = ["co", "skill", "fun"];
-    const radii  = { co: 120, skill: 140, fun: 110 };
-    const angleOffset = { co: -Math.PI / 2, skill: Math.PI / 2, fun: Math.PI };
-
-    NODES.forEach(n => { n.x = W / 2; n.y = H / 2; });
-    groups.forEach(g => {
-      const members = NODES.filter(n => n.group === g);
-      const n = members.length;
-      members.forEach((node, i) => {
-        const spread = g === "skill" ? Math.PI * 1.0 : Math.PI * 1.15;
-        const angle = angleOffset[g] + ((i - (n - 1) / 2) / n) * spread;
-        const rad = radii[g];
-        node.x = W / 2 + Math.cos(angle) * rad;
-        node.y = H / 2 + Math.sin(angle) * rad * 0.82;
-      });
-    });
-
-    const svgNS = "http://www.w3.org/2000/svg";
-    GRAPH_EL.innerHTML = "";
-
-    const linkG = document.createElementNS(svgNS, "g");
-    const linkEls = [];
-    LINKS.forEach(([a, b]) => {
-      const A = byId[a], B = byId[b];
-      if (!A || !B) return;
-      const line = document.createElementNS(svgNS, "line");
-      line.setAttribute("class", "link");
-      line.dataset.a = a; line.dataset.b = b;
-      line.setAttribute("x1", A.x); line.setAttribute("y1", A.y);
-      line.setAttribute("x2", B.x); line.setAttribute("y2", B.y);
-      linkG.appendChild(line);
-      linkEls.push(line);
-    });
-    GRAPH_EL.appendChild(linkG);
-
-    const nodeG = document.createElementNS(svgNS, "g");
-    const nodeEls = {};
-    NODES.forEach(n => {
-      const g = document.createElementNS(svgNS, "g");
-      g.setAttribute("class", `node ${n.group}`);
-      g.setAttribute("transform", `translate(${n.x}, ${n.y})`);
-      g.dataset.id = n.id;
-
-      const r = n.group === "self" ? 22 : 15;
-      const circle = document.createElementNS(svgNS, "circle");
-      circle.setAttribute("r", r);
-      g.appendChild(circle);
-
-      const text = document.createElementNS(svgNS, "text");
-      text.setAttribute("y", r + 11);
-      text.textContent = n.label;
-      g.appendChild(text);
-
-      g.addEventListener("click", (e) => {
-        e.stopPropagation();
-        highlightNode(n.id, linkEls, nodeEls);
-        setBubble(nodeBlurb(n.id));
-      });
-      nodeG.appendChild(g);
-      nodeEls[n.id] = g;
-    });
-    GRAPH_EL.appendChild(nodeG);
-
-    GRAPH_EL.addEventListener("click", (e) => {
-      // Clicking empty SVG area clears the highlight.
-      if (e.target === GRAPH_EL) {
-        clearHighlight(linkEls, nodeEls);
-        setBubble("What can I help you find? Click any node on Jake's network below for a fact.");
-      }
-    });
-
-    DOG_EL?.addEventListener("click", () => {
-      const lines = [
-        "Want to know something? Click a node.",
-        "That cube node is worth a click.",
-        "Rubik's 13.95s average is real, by the way.",
-        "Stock Unlock. YC W22. Runs profitably. Thousands of customers.",
-        "Ask me about the Pronk emails.",
-        "AP CS to dodge AP Calc. Loop closed in five minutes.",
-        "Tekkapalooza resume drop. One non-recruiting event, three years of CommerceHub.",
-        "Driver in the seat, not driven by the car.",
-      ];
-      setBubble(lines[(Math.random() * lines.length) | 0]);
-    });
-  }
-
-  function highlightNode(id, linkEls, nodeEls) {
-    linkEls.forEach(el => {
-      const hit = el.dataset.a === id || el.dataset.b === id;
-      el.classList.toggle("active", hit);
-    });
-    Object.entries(nodeEls).forEach(([nid, el]) => {
-      el.classList.toggle("active", nid === id);
-    });
-  }
-  function clearHighlight(linkEls, nodeEls) {
-    linkEls.forEach(el => el.classList.remove("active"));
-    Object.values(nodeEls).forEach(el => el.classList.remove("active"));
-  }
-
-  function setBubble(text) {
-    if (!BUBBLE) return;
-    // Retrigger CSS animation by removing and re-adding.
-    BUBBLE.style.animation = "none";
-    BUBBLE.offsetHeight;
-    BUBBLE.style.animation = "";
-    BUBBLE.textContent = text;
-  }
-
-  function nodeBlurb(id) {
-    switch (id) {
-      case "jake":         return "Jake. Engineer and founder. NYC area. Working on what's next.";
-      case "stock-unlock": return "Built it. YC W22. Scaled to eight and thousands of paying customers. Right-sized in early 2026 to three full-time. Runs profitably; I'm on key decisions only.";
-      case "oscar":        return "Associate to Mid to Senior, March 2017 to 2021. Joined at ~50 engineers under Alan Warren; left at 150+. Declined the team-lead path twice.";
-      case "commerce":     return "First real engineering job, 2013-2016, Albany. Took down prod as an intern with a button I shouldn't have had access to. Manager said the system was the problem, not the intern.";
-      case "youni":        return "Co-founded with Anthony and Jordan. College-localized social iOS app, React Native v0.13/0.14. Launched at SUNY Albany and Binghamton; 20,000+ posts at peak. No business model, unsolved cold-start. Folded after ~4-5 months full-time.";
-      case "ai":           return "Driver in the seat, not driven by the car. AI writes more code than I do. Human-reviewed where it matters: business logic, security, architecture.";
-      case "founding":     return "Raised $1.335M seed ($500K YC + $835K). Led the YC interview. 400 paying users in launch week, 800-900 by seed close. Scaled to a team of eight.";
-      case "python":       return "Python, Golang, TypeScript, React. React since the pre-hooks era at CommerceHub.";
-      case "yc":           return "YC Winter 2022. YC reached out cold via LinkedIn before we'd even applied. Outperforms most of the cohort by being alive, profitable, and loved.";
-      case "cube":         return "3x3 average 13.95s. Competed 2008-2014 at WCA-sanctioned Northeast US events and Nationals. Top-20 in the US at Pyraminx at peak.";
-      case "unicycle":     return "Trick-grade. Started junior year of high school. Mountain unicycle, one-footed, forward and backward. Solved a cube on it on stage at an Oscar talent show. Twice.";
-      default: return "Related to Jake.";
-    }
-  }
-
-  // Lazy-build the SVG graph the first time the window is shown.
-  if (SEARCH_WIN) {
-    const obs = new MutationObserver(() => {
-      if (!SEARCH_WIN.classList.contains("hidden")) ensureGraphBuilt();
-    });
-    obs.observe(SEARCH_WIN, { attributes: true, attributeFilter: ["class"] });
-    if (!SEARCH_WIN.classList.contains("hidden")) ensureGraphBuilt();
-  }
-})();
