@@ -81,7 +81,7 @@
     const brand = document.createElement("a");
     brand.className = "topnav-brand";
     brand.href = DEFAULT_SETUP_HREF;
-    brand.setAttribute("aria-label", "Jake Ruth — back to Setup");
+    brand.setAttribute("aria-label", "Jake Ruth, back to Setup");
 
     const logo = document.createElement("img");
     logo.className = "topnav-brand-logo";

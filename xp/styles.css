@@ -1,5 +1,5 @@
-/* Windows XP Luna experience — Bliss wallpaper, draggable windows,
-   taskbar/start menu, CubeMaster HUD. */
+/* Windows XP Luna experience, Bliss wallpaper, draggable windows,
+   taskbar/start menu, Cube Patterns window. */
 
 @import url('https://fonts.googleapis.com/css2?family=Asap:wght@400;500;700&family=Trebuchet+MS&display=swap');
 
@@ -1029,6 +1029,14 @@ body {
 .work-title { flex: 1 1 auto; min-width: 0; }
 .work-head b { color: var(--xp-primary); font-size: 13px; }
 .work-dates { color: var(--xp-muted); font-size: 11px; flex: 0 0 auto; white-space: nowrap; }
+.work-sub {
+  flex-basis: 100%;
+  font-size: 11px;
+  color: var(--xp-muted);
+  font-style: italic;
+  margin-top: 2px;
+  line-height: 1.4;
+}
 .work-chev {
   flex: 0 0 auto;
   display: inline-flex; align-items: center; justify-content: center;
@@ -1128,7 +1136,7 @@ body {
 .sb-sep-line { width: 1px; height: 14px; background: #c6c2ae; }
 
 /* ================================================================
-   CubeMaster window
+   Cube Patterns window
    ================================================================ */
 .cube-window {
   width: 460px; height: 360px;
@@ -1154,30 +1162,6 @@ body {
   width: 100% !important;
   height: 100% !important;
 }
-.cube-hud {
-  position: absolute;
-  top: 6px; left: 8px; right: 8px;
-  display: flex; justify-content: space-between; align-items: baseline;
-  pointer-events: none;
-  z-index: 2;
-  text-shadow: 1px 1px 2px rgba(0,0,0,0.55);
-}
-.cube-timer {
-  font-family: "Courier New", Courier, monospace;
-  font-size: 18px;
-  font-weight: 700;
-  color: #d8ffd5;
-  letter-spacing: 0.5px;
-}
-.cube-timer.running { color: #fffd80; }
-.cube-timer.done { color: #6effa5; }
-.cube-pb {
-  font-family: "Trebuchet MS", "Asap", Tahoma, sans-serif;
-  font-size: 11px;
-  color: #cfe0f7;
-  letter-spacing: 0.4px;
-  text-transform: uppercase;
-}
 .cube-panel {
   display: flex; flex-direction: column; gap: 6px;
   font-size: 11px;
@@ -1190,11 +1174,25 @@ body {
 .cube-row span { color: var(--xp-muted); }
 .cube-row b { color: var(--xp-primary); }
 
-.cube-actions {
-  display: flex; gap: 6px;
+.pattern-list {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
   margin-top: 6px;
 }
-.cube-actions .xp-button { flex: 1; padding: 5px 8px; }
+.pattern-list .xp-button {
+  width: 100%;
+  padding: 4px 10px;
+  justify-content: flex-start;
+  font-size: 11px;
+}
+.pattern-list .xp-button.is-current {
+  background: linear-gradient(to bottom, #fff7d9 0%, #ffe9a0 100%);
+  border-color: #d3a940;
+  color: #4a3910;
+  font-weight: 700;
+}
+.pattern-list .xp-button.is-current:hover { filter: brightness(1.02); }
 
 .cube-help {
   margin-top: auto;

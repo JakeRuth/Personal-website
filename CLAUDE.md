@@ -1,10 +1,10 @@
-# jakeruth.com — Personal Website Rebuild
+# jakeruth.com, Personal Website Rebuild
 
-Project context for future Claude sessions. Read this first, then `rambles-personal-bio-conversations.md` (gitignored, repo root — Jake's voice-to-text transcripts).
+Project context for future Claude sessions. Read this first, then `rambles-personal-bio-conversations.md` (gitignored, repo root, Jake's voice-to-text transcripts).
 
 ## Mission
 
-Complete rebuild of jakeruth.com as a portfolio showcase. Genuinely unique site — not a template. Communicates who Jake is quickly while impressing visitors with build quality and creativity. No deadline.
+Complete rebuild of jakeruth.com as a portfolio showcase. Genuinely unique site, not a template. Communicates who Jake is quickly while impressing visitors with build quality and creativity. No deadline.
 
 ## Hard constraints
 
@@ -34,21 +34,31 @@ The three mediums must satisfy **hard parity**: every fact, story, or claim pres
 
 These apply on every medium (`xp/`, `readme/`, `saas/`) and the wizard at `/`. When you add/edit content, follow these.
 
-**Branded link conventions** — every body-prose mention of these terms gets a hyperlink. Skip chrome elements (section headings, nav labels, status pills, JS-injected toast strings).
+**Branded link conventions.** Every body-prose mention of these terms gets a hyperlink. Skip chrome elements (section headings, nav labels, status pills, JS-injected toast strings).
 
 | Term | Link |
 |---|---|
 | `Stock Unlock` | `https://stockunlock.com` |
 | `YC W22` / `YC Winter 2022` | `https://www.ycombinator.com/companies/stock-unlock` |
 
-**Email behavior** — every `mailto:jake2ruth@gmail.com` link and every `data-copy-email` element copies the address to clipboard and shows a toast (no mail client launch). Implemented site-wide via `shell/email-copy.js`. Don't add new mailto launches.
+**Email behavior.** Every `mailto:jake2ruth@gmail.com` link and every `data-copy-email` element copies the address to clipboard and shows a toast (no mail client launch). Implemented site-wide via `shell/email-copy.js`. Don't add new mailto launches.
 
-**No em-dashes (`—`) or `&mdash;` in any rendered output.** Use `,`, `.`, `;`, `:`, `(parens)`, or ` · ` (middle dot, for label/sublabel separators in section headers) depending on context. Em-dashes are a recognized AI tell.
+**No em-dashes (`—`) or `&mdash;` in any rendered output.** This includes ARIA labels, alt text, and JS-injected strings, anything a screen reader or browser surfaces. Use `,`, `.`, `;`, `:`, `(parens)`, or ` · ` (middle dot, for label/sublabel separators in section headers) depending on context. Em-dashes are a recognized AI tell. Comments in source are exempt.
 
 **No specific dollar prices, no explicit ARR figures** anywhere in pricing UI. Use "Contact", "Talk to Jake", "Market rate + equity".
 
-**Stock Unlock framing** — see `BACKBONE.md → Companies and orgs → Stock Unlock` for the canonical frame. The non-negotiables: never imply Jake is full-time at SU, never imply the company is dead.
+**Number formatting.** Subscriber counts in the thousands render as `~3.9k`, not `~3,900` or `3,900 sustained`. The tilde + k form is the house style.
+
+**Stock Unlock framing.** See `BACKBONE.md → Companies and orgs → Stock Unlock` for the canonical frame. The non-negotiables: never imply Jake is full-time at SU, never imply the company is dead. Title is **Co-founder, CEO**.
+
+**Co-founder mentions.** When introducing the Youni co-founders, lead with the descriptor (`two UAlbany D1 soccer players (Anthony, CEO; Jordan)`), not the bare names. Names alone don't carry signal for an outside reader.
+
+**Senior Software Engineer.** When referring to Jake's exit level at Oscar, use the full term ("Senior Software Engineer") on first mention in a section. "Senior" alone is fine afterward.
+
+**No invented acronyms.** Spell out **CommerceHub** and **My Plastic Brain** in full every time. Don't shorten to "CH" / "MPB" / similar. The only acronyms allowed in rendered content are real, externally-recognized ones (YC, ACM, WCA, NYC, MVP, JV, FT, IDE, API, AWS, SES, SEO, GEO, etc.). 2-letter brand monograms in avatar/chip UI (e.g. `SU`, `OH`, `JR`) are fine because they're visual, not prose.
+
+**Resume usage (`official_resume.pdf`).** ~9 years out of date. Authoritative for **pre-2017 dates only** (CommerceHub start/end, SUNY Albany graduation, ACM and TA dates). Do **not** pull post-2017 facts from it; those still come from `BACKBONE.md` and `rambles-personal-bio-conversations.md`. The resume is staying as-is until Jake updates it as a separate effort.
 
 **No "next chapter" framing.** Anywhere.
 
-**No surfacing of personal-life content.** "Engaged", wedding planning, etc. — out. Site is professional.
+**No surfacing of personal-life content.** "Engaged", wedding planning, etc., out. Site is professional.

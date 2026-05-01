@@ -1,6 +1,9 @@
-# Private working notes — raw voice-to-text conversations + personal context.
+# Private working notes, raw voice-to-text conversations + personal context.
 # NEVER commit. Lives locally only.
 rambles-personal-bio-conversations.md
+
+# Cross-session handoff notes. Ephemeral, can rot, regenerated as needed.
+SESSION_NOTES.md
 
 # macOS
 .DS_Store

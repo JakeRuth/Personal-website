@@ -40,11 +40,13 @@ High school: accelerated math track since third grade. Trouble focusing in schoo
 For depth on each item, see *Companies and orgs* below and *Stories*.
 
 - **~2010** — AP CS switch, senior year of high school.
-- **2011–2015** — SUNY Albany. BS in Computer Science + Applied Mathematics, Dean's List every semester. Took over the dying ACM (CS Club) junior year, ran it two years. Tekkapalooza resume drop. Played rugby briefly (B-squad → A-squad).
-- **2013–2016** — CommerceHub (Albany), intern → full-time. "First real engineering." Plus parallel paid contract work for My Plastic Brain.
-- **2015–2017** — Youni (Albany → Troy), co-founded with Anthony and Jordan. Worked nights/weekends through CommerceHub, then full-time. Folded after ~4–5 months full-time.
-- **March 2017–2021** — Oscar Health (NYC). Joined at ~50 engineers under Alan Warren, left at ~150+. Built Emotiqueue with Peter. Solved a Rubik's cube on a unicycle on stage. Twice.
-- **2021–present** — Stock Unlock (NYC), YC W22. Scaled to a team of eight + thousands of paying customers. Right-sized in early 2026 to three full-time. On key decisions and weekend pokes since.
+- **2011 – May 2015** — SUNY Albany. BS in Computer Science + Applied Mathematics, GPA 3.88, Dean's List every semester. Freshman-year Calc 1: 99/100, the top score in a ~500-student cohort that semester (the cohort included grad students). Took over the dying ACM (CS Club) junior year, ran it two years. Teaching Assistant in the CS dept 2013–14. Tekkapalooza resume drop. Played rugby briefly (B-squad → A-squad).
+- **Nov 2013 – May 2015** — CommerceHub (Albany), Software Engineer Intern. Part-time fall/spring + full-time summers.
+- **July 2015 – July 2016** — CommerceHub, Associate Software Engineer. Exactly one year and seven days. Left to go full-time on Youni.
+- **late 2014 – ~Nov 2016** — Youni (Albany → Troy), co-founded with two UAlbany D1 soccer players (Anthony, CEO; Jordan). Started moonlighting late 2014 alongside CommerceHub; ramped up the last quarter or two at CommerceHub; went full-time July 2016. Folded after ~4–5 months full-time. Title: Co-founder, CTO.
+- **~2014 – 2015** — My Plastic Brain, paid contract web-game work in college. **Parallel to the CommerceHub internship**, mostly during senior year.
+- **March 2017 – 2021** — Oscar Health (NYC). Joined at ~50 engineers under Alan Warren, left at ~150+. Built Emotiqueue with Peter. Solved a Rubik's cube on a unicycle on stage. Twice. Levels: Associate → Mid → Senior Software Engineer.
+- **2021 – present** — Stock Unlock (NYC), YC W22. Co-founder, CEO. Scaled to a team of eight + thousands of paying customers. Right-sized in early 2026 to three full-time. On key decisions and weekend pokes since.
 - **~2022 → now** — AI era. Driver in the seat, not driven by the car. → see *Convictions: AI thesis* for the tool progression and the recent AI-assisted shipping; → *Stories* for the migrations and side projects.
 
 ## Now (April 2026)
@@ -55,19 +57,20 @@ On the hunt for what's next.
 
 ## Companies and orgs
 
-### CommerceHub (Albany, 2013–2016)
+### CommerceHub (Albany, Nov 2013 – July 2016)
 
-- Started as an intern junior year of college, courtesy of the Tekkapalooza resume drop. Stayed through senior year plus a full-time summer (didn't go home for break), then went full-time after graduation. Left exactly one year and seven days into FT to go full-time on Youni.
+- **Software Engineer Intern: Nov 2013 – May 2015.** Started as an intern junior year of college, courtesy of the Tekkapalooza resume drop. Part-time during fall/spring semesters, full-time summers (didn't go home for break senior-year summer).
+- **Associate Software Engineer: July 1, 2015 – July 7, 2016.** Full-time after graduation. Worked an agile team of ~10 engineers, embraced micro-service architecture, on the interview squad (graded offsite submissions, conducted interviews). Left exactly one year and seven days into FT to go full-time on Youni.
 - Stack: Groovy/Grails on the back, early-pre-hooks React on the front, code-review culture, virtual machines for cross-browser testing.
 - The "first real engineering" job. Great mentors. Loved it from the start.
 - One concrete debug memory: an ellipsis bug in a company-name display string that didn't render properly in Internet Explorer 7. QVC was pinned to that browser version, and even in 2014 IE7 was already old. Required spinning up an old-Windows VM just to test it. → see *Stories: IE7 ellipsis*.
 - Took down production once with a button I shouldn't have had access to as an intern. The manager's response — that the system, not the intern, was the problem — rewired how I think about systems and access. → see *Stories: prod takedown*.
 - Junior software engineer level by graduation.
 
-### Youni (Albany → Troy, 2015–2017)
+### Youni (Albany → Troy, late 2014 – ~Nov 2016)
 
-- Co-founded with **Anthony** (CEO; ran the ACE entrepreneurship club at SUNY Albany) and **Jordan**, both UAlbany D1 soccer players. Met them via club mixers when ACM (which I ran) and ACE crossed paths.
-- Worked on it nights and weekends through CommerceHub, picking up more as time went on. Eventually went full-time after CH.
+- Co-founded with two UAlbany D1 soccer players: **Anthony** (CEO; ran the ACE entrepreneurship club at SUNY Albany) and **Jordan**. Met them via club mixers when ACM (which I ran) and ACE crossed paths. **My title: Co-founder, CTO.**
+- **Started moonlighting late 2014**, very part-time alongside the CommerceHub internship. **Ramped up in the last quarter or two at CommerceHub.** Went full-time July 2016 after I left CommerceHub.
 - Anthony and Jordan were still in school after I graduated (I was a year ahead). They won ~$25K in equity-free business grants while still students.
 - iOS social-media app on React Native v0.13 / 0.14, plus a simple companion site. Free office space at an accelerator near Troy.
 - A "school-localized Instagram" — closed-loop networks per college, with Greek-life and sports-team features. Bootstrapped distribution by signing up campus leaders before launch and flyer-bombing.
@@ -75,12 +78,12 @@ On the hunt for what's next.
 - "Eyes definitely bigger than my stomach." No business model and an unsolved cold-start. Folded after ~4–5 months full-time.
 - A demo video lives on my old personal-website source.
 
-### Oscar Health (NYC, March 2017–2021)
+### Oscar Health (NYC, March 2017 – 2021)
 
 - Hired in March 2017 under Alan Warren — formerly the Google leader who scaled Google Docs and Apps from 2-3 people to thousands. That attracted heavy talent: lots of FAANG and Ivy-pedigreed engineers. The bar was visibly higher than CommerceHub.
-- Joined at ~50 engineers; left at ~150+. No formal levels initially (one of the reasons I joined). Levels were introduced mid-tenure: leveled in as Associate, promoted to Mid within ~1 year, Senior ~2 years later. Senior for a year before leaving.
-- Offered the team-lead path twice when I was a senior — declined both times. By that point I was already writing the early Stock Unlock code on the side and knew I'd be leaving within a year. Mentored newer engineers unofficially throughout — getting people up to speed is one of my strengths.
-- Owned services across both Python and Golang back-ends and a React front-end. Owned the entire internal site for the hundreds of care-guides and ops staff working out of the Tempe, AZ office. Worked tightly with SRE on a custom-hosted analytics integration. By my senior year I was a go-to engineer across two teams for full-stack questions and just getting stuff shipped.
+- Joined at ~50 engineers; left at ~150+. No formal levels initially (one of the reasons I joined). Levels were introduced mid-tenure: leveled in as Associate Software Engineer, promoted to Mid SWE within ~1 year, **Senior Software Engineer** ~2 years later. Senior SWE for a year before leaving.
+- Offered the team-lead path twice when I was a Senior SWE — declined both times. By that point I was already writing the early Stock Unlock code on the side and knew I'd be leaving within a year. Mentored newer engineers unofficially throughout — getting people up to speed is one of my strengths.
+- Owned a portfolio of back-end services in Python and Golang plus a React front-end. One of those was the entire internal site for the hundreds of care-guides and ops staff working out of the Tempe, AZ office. Worked tightly with SRE on a custom-hosted analytics integration. By my Senior year I was a go-to engineer across two teams for full-stack questions and just getting stuff shipped.
 - Probably one of the more productive engineers there in terms of code shipped — though I'd honestly still question how I got hired in the first place.
 - Got the offer partly via an interview question that just happened to match my last project (a social-media architecture question). Found out years later it was random luck — they hadn't actually read my resume. → see *Stories: Oscar interview luck*.
 - Built **Emotiqueue**, an internal Slack chatbot, with my coworker Peter. Started as a custom-emoticon flood, became a hackathon project that routed messages through a deliberately ridiculous pipeline (queues into queues, then a ticketing system, then back into chat), and ended up as a real command-routable bot. By the time I left it had 3,000+ custom emoticons, 50+ silly commands, and a codebase other engineers across the company committed to. → see *Stories: Emotiqueue*.
@@ -92,7 +95,10 @@ On the hunt for what's next.
 - **Code review automation across the team** (AI reviewing AI, with humans gating the merge).
 - Solved a Rubik's cube on a unicycle at the company talent show. Twice. → see *Stories: talent show*.
 
-### Stock Unlock (NYC, 2021–present, YC W22)
+### Stock Unlock (NYC, 2021 – present, YC W22)
+
+**Title: Co-founder, CEO.** I led the YC interview, the seed raise, and the company day-to-day until early 2026.
+
 
 - Origin: COVID era, watching Daniel Pronk's investing YouTube content. He was burning 5–10 hours every weekend on Excel sheets for his videos. I built a Python automation in a weekend to replace it. Primary driver was unrelenting curiosity and a nerdy thrill — plus I wanted into his paid Discord for free, and being useful felt like the way in.
 - Daniel ignored me for ~6 weeks while I kept emailing and commenting. He eventually replied — not because he was sold, but to make me stop. Hopped on a video call, cracked a beer. → see *Stories: Pronk emails*.
@@ -100,11 +106,12 @@ On the hunt for what's next.
 - Brought **Nick Puljik** over from Oscar. Y Combinator reached out cold via LinkedIn before we'd even applied. Applied, got in. I led the YC interview.
 - Raised $1.35M seed. YC pushed us to launch before raising.
 - Scaled to a team of eight and thousands of paying customers.
-- Hit a ~3,900-paying-subscriber wall in 2024 — new sign-ups roughly equaled churn. Tried partial pivots, including B2B sales attempts. Eventually bet on a set of big feature launches in late 2025; they took too long to build, burned the team, and didn't land.
+- Hit a **~3.9k-paying-subscriber wall** in 2024 — new sign-ups roughly equaled churn. Tried partial pivots, including B2B sales attempts. Eventually bet on a set of big feature launches in late 2025; they took too long to build, burned the team, and didn't land.
 - Right-sized in early 2026. Three full-time handle day-to-day (two engineers + an executive assistant). I worked it full-tilt up to that point.
 - Runs profitably today. My co-founder Daniel and I are above the day-to-day — on key decisions and weekend pokes; the three FT execute.
 - The real Stock Unlock brag isn't a unicorn outcome — it's that the company is alive, profitable, and has thousands of customers who love it. That alone outperforms most YC W22 cohort companies.
-- Core conviction underneath the company: overcharging for bad software is theft from people who can't afford to be robbed.
+- Core conviction underneath the company: retail investing is going mainstream, but brokerages profit from trade volume, so they push predatory engagement features over tools that help customers make informed decisions. Overcharging for bad software is theft from people who can't afford to be robbed. We built Stock Unlock incentivized the right way, subscription revenue only.
+- Full founder story lives on [stockunlock.com/our-story.html](https://stockunlock.com/our-story.html). Always link to it when surfacing origin / mission framing on the rendered mediums.
 
 ### ACM (SUNY Albany, ~2013–2015)
 
@@ -113,11 +120,12 @@ On the hunt for what's next.
 - Ran weekly meetings and LAN parties. Taught workshops on what I was learning at my CommerceHub internship. Organized the Tekkapalooza field trip that became my CommerceHub on-ramp. → see *Stories: ACM revival*, *Tekkapalooza*.
 - The club survived past me.
 
-### My Plastic Brain (contracting, parallel to CommerceHub internship)
+### My Plastic Brain (contracting, parallel to CommerceHub, ~senior year of college)
 
-- Several hundred hours of paid contract web-game work for a now-defunct company called My Plastic Brain. Connected via friend-of-a-friend. Client was a mother roughly double my age.
-- The work: KineticJS digital adaptations of physical card games that brain-injury rehab patients used in real life.
-- Billed hourly, working solo. Independent paid contract work in college, parallel to the CH internship — self-directed end-to-end.
+- Paid contract web-game work for a now-defunct company called My Plastic Brain. Connected via friend-of-a-friend. Client was a mother roughly double my age.
+- The work: **dozens of simple HTML5 web games (JavaScript, jQuery)**, digital adaptations of physical card games that brain-injury rehab patients used in real life.
+- **Handled my own billing, built the client side end-to-end, handed off the deliverables myself.** Recruited and trained another contractor as the workload grew.
+- **Ran in parallel to the CommerceHub internship**, mostly during senior year of college (~2014–2015). Independent paid contract work, self-directed start to finish.
 - The code is still in my old personal-website source.
 
 ---
@@ -253,7 +261,7 @@ Quick CommerceHub-trench memory. Had to fix a string-truncation bug in a company
 
 ## Mastery / hobbies
 
-The pattern: I commit hard to things with depth. Cubes and code are the two that have held fifteen-plus years. Both have feedback loops and infinite depth. *"Self-improvement as a core operating system part of me."*
+Pattern throughout my life: I commit hard to things with depth. Cubes and code are the two that have held fifteen-plus years. Both have feedback loops and infinite depth. *"Self-improvement as a core operating system part of me."*
 
 ### Speed-cubing
 - Competed 2008–2014 at Northeast US events and Nationals (WCA, the World Cube Association).

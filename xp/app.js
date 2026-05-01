@@ -1,8 +1,9 @@
 /* XP experience. Two independent modules, loaded in one file:
      1. Window manager, toast, clock, windows, dragging, Start menu,
         click dispatch for data-open / data-scroll / data-copy.
-     2. CubeMaster, Three.js Rubik's Cube with a search-based solver,
-        live timer, and a scramble/solve UI.
+     2. Cube Patterns, Three.js Rubik's Cube + pattern morpher.
+        Click a pattern; the cube animates from its current state into
+        the new one. Never snaps, never resets.
    Modules share no state; each is its own IIFE. */
 
 /* ==================================================================
@@ -621,9 +622,9 @@
 })();
 
 /* ==================================================================
-   2. CubeMaster, Three.js Rubik's Cube
+   2. Cube Patterns, Three.js Rubik's Cube + pattern morpher
    ================================================================== */
-(function cubeMaster() {
+(function cubePatterns() {
   "use strict";
 
   // The only cross-module handle we need: the window element, so we
@@ -791,8 +792,8 @@
         return;
       }
       if (!moveAnim) {
-        cubeGroup.rotation.y += 0.003;
-        cubeGroup.rotation.x = Math.sin(performance.now() * 0.00015) * 0.1 - 0.25;
+        cubeGroup.rotation.y += 0.0033;
+        cubeGroup.rotation.x = Math.sin(performance.now() * 0.000165) * 0.1 - 0.25;
       }
       cubeRenderer.render(cubeScene, cubeCamera);
     };
@@ -827,8 +828,7 @@
   function nextMove() {
     if (!moveQueue.length) {
       moveAnim = null;
-      finishSolveTimerIfSolved();
-      updateStatus();
+      updatePatternUI();
       return;
     }
     const m = moveQueue.shift();
@@ -910,146 +910,76 @@
     L: { axis: 'x', sign: -1, test: p => p.x < -0.5 },
   };
 
-  // ---------- Cube timer ----------
-  // Starts the moment a scramble finishes. Stops when solved.
-  let timerStart = null;
-  let timerRAF = 0;
-  const timerEl  = document.getElementById("cube-timer");
-  const timerLastEl = document.getElementById("cube-last");
+  // ---------- Pattern engine ----------
+  // Each click picks a target pattern. The cube animates from its current
+  // state into the target, never snaps. We track the moves applied to
+  // reach the current pattern so we can play their inverse to morph back
+  // to solved, then play the new pattern's algorithm.
+  const PATTERNS = {
+    checkerboard:   { name: "Checkerboard",            alg: "U2 D2 F2 B2 L2 R2" },
+    sixspot:        { name: "Six Spots",                alg: "U D' R L' F B' U D'" },
+    cubeincube:     { name: "Cube in a Cube",           alg: "F L F U' R U F2 L2 U' L' B D' B' L2 U" },
+    cubeincubeincube: { name: "Cube in a Cube in a Cube", alg: "U' L' U' F' R2 B' R F U B2 U B' L U' F U R F'" },
+    anaconda:       { name: "Anaconda",                 alg: "L U B' U' R L' B R' F B' D R D' F'" },
+    superflip:      { name: "Superflip",                alg: "U R2 F B R B2 R U2 L B2 R U' D' R2 F R' L B2 U2 F2" },
+  };
 
-  function timerFmt(ms) {
-    return (ms / 1000).toFixed(2);
-  }
-
-  function startTimer() {
-    timerStart = performance.now();
-    if (timerEl) {
-      timerEl.classList.remove("done");
-      timerEl.classList.add("running");
+  // The shared cube-solver only handles X (single CW) and X' (single
+  // CCW); X2 (180°) is expanded to X X at queue time.
+  function expandAlg(s) {
+    const out = [];
+    for (const t of s.trim().split(/\s+/)) {
+      if (t.endsWith("2")) { const b = t.slice(0, -1); out.push(b, b); }
+      else out.push(t);
     }
-    const tick = () => {
-      if (timerStart == null) return;
-      if (timerEl) timerEl.textContent = timerFmt(performance.now() - timerStart);
-      timerRAF = requestAnimationFrame(tick);
-    };
-    tick();
+    return out;
   }
-
-  function stopTimer() {
-    if (timerStart == null) return null;
-    const dt = performance.now() - timerStart;
-    timerStart = null;
-    cancelAnimationFrame(timerRAF);
-    if (timerEl) {
-      timerEl.classList.remove("running");
-      timerEl.classList.add("done");
-      timerEl.textContent = timerFmt(dt);
+  function invertMoves(moves) {
+    const out = [];
+    for (let i = moves.length - 1; i >= 0; i--) {
+      const m = moves[i];
+      out.push(m.endsWith("'") ? m[0] : m + "'");
     }
-    return dt;
+    return out;
   }
 
-  function resetTimer() {
-    timerStart = null;
-    cancelAnimationFrame(timerRAF);
-    if (timerEl) {
-      timerEl.classList.remove("running", "done");
-      timerEl.textContent = "0.00";
-    }
-  }
+  // currentPatternId === null means solved.
+  let currentPatternId = null;
+  let currentPatternMoves = [];
 
-  function finishSolveTimerIfSolved() {
-    if (window.CubeSolver.faceletsSolved(faceletCube) && timerStart != null) {
-      const dt = stopTimer();
-      if (timerLastEl) timerLastEl.textContent = timerFmt(dt) + "s";
-      const comparedToPB = dt / 1000 - 13.95;
-      if (comparedToPB <= 0) {
-        toast(`Solved in ${timerFmt(dt)}s. Beats PB.`);
-      } else {
-        toast(`Solved in ${timerFmt(dt)}s. PB avg: 13.95s.`);
-      }
-    }
-  }
+  const patternLabel = document.getElementById("cube-pattern-label");
+  const patternBtns  = document.querySelectorAll(".pattern-btn");
 
-  // ---------- UI: scramble / solve ----------
-  const btnScramble = document.getElementById("cube-scramble");
-  const btnSolve    = document.getElementById("cube-solve");
-  const btnReset    = document.getElementById("cube-reset");
-  const elState     = document.getElementById("cube-state");
-  const elMoves     = document.getElementById("cube-moves");
-
-  function updateStatus() {
-    if (!elState || !elMoves) return;
-    const solved = window.CubeSolver.faceletsSolved(faceletCube);
+  function updatePatternUI() {
     const busy = !!moveAnim || moveQueue.length > 0;
-    elState.textContent = solved ? "Solved" : busy ? "Solving…" : "Scrambled";
-    elMoves.textContent = String(moveQueue.length + (moveAnim ? 1 : 0));
-    if (btnSolve)    btnSolve.disabled    = solved || busy;
-    if (btnScramble) btnScramble.disabled = busy;
-    if (btnReset)    btnReset.disabled    = busy;
+    if (patternLabel) {
+      const cur = currentPatternId ? PATTERNS[currentPatternId].name : "Solved";
+      patternLabel.textContent = busy ? "Morphing…" : cur;
+    }
+    patternBtns.forEach(b => {
+      const id = b.dataset.pattern || null;
+      b.disabled = busy;
+      b.classList.toggle("is-current", id === currentPatternId);
+    });
   }
 
-  btnScramble?.addEventListener("click", () => {
+  function executePattern(targetId) {
     if (moveAnim || moveQueue.length) return;
-    // Scramble depth 8, within the solver's 9-per-side BFS window,
-    // so every scramble has a guaranteed solution found in browser-
-    // friendly time (typically <150ms).
-    // Always scramble from a fresh solved cube — both visually
-    // (rebuild meshes at canonical positions) and logically.
-    faceletCube = window.CubeSolver.solvedFacelets();
-    const scramble = window.CubeSolver.randomScramble(8);
-    window.CubeSolver.applyFaceletMoves(faceletCube, scramble);
-    buildCubeContents();
-    resetTimer();
-    startTimer();
-    toast("Cube scrambled. Timer running.");
-    updateStatus();
+    const target = targetId || null;
+    if (target === currentPatternId) return;
+    const inverse = invertMoves(currentPatternMoves);
+    const next = target ? expandAlg(PATTERNS[target].alg) : [];
+    currentPatternId = target;
+    currentPatternMoves = next;
+    if (inverse.length || next.length) enqueueMoves(inverse.concat(next));
+    updatePatternUI();
+  }
+
+  patternBtns.forEach(btn => {
+    btn.addEventListener("click", () => executePattern(btn.dataset.pattern || null));
   });
 
-  btnSolve?.addEventListener("click", () => {
-    if (moveAnim || moveQueue.length) return;
-    if (window.CubeSolver.faceletsSolved(faceletCube)) {
-      toast("Already solved.");
-      return;
-    }
-    const t0 = performance.now();
-    let moves;
-    try {
-      moves = window.CubeSolver.solveFromFacelets(faceletCube);
-    } catch (err) {
-      console.error("Solver crashed:", err);
-      toast("Solver error. Try Reset.");
-      return;
-    }
-    const dt = performance.now() - t0;
-    if (moves == null) {
-      toast("Solver timed out. Try Reset.");
-      updateStatus();
-      return;
-    }
-    if (moves.length === 0) {
-      toast("Already solved.");
-      updateStatus();
-      return;
-    }
-    toast(`Solving: ${moves.length} moves (found in ${dt.toFixed(0)}ms).`);
-    enqueueMoves(moves);
-    updateStatus();
-  });
-
-  btnReset?.addEventListener("click", () => {
-    if (moveAnim || moveQueue.length) {
-      toast("Finish the solve first.");
-      return;
-    }
-    faceletCube = window.CubeSolver.solvedFacelets();
-    buildCubeContents();
-    resetTimer();
-    if (timerLastEl) timerLastEl.textContent = "–";
-    toast("Cube reset to solved.");
-    updateStatus();
-  });
-
-  setTimeout(updateStatus, 200);
+  setTimeout(updatePatternUI, 200);
 
   // Lazy-build the Three.js cube the first time the window is shown
   // (observing .hidden class removal keeps the modules decoupled).

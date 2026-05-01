@@ -69,9 +69,9 @@ window.TIMELINE = (function () {
       date: '2026-02',
       decoration: [{ kind: 'remote', text: 'origin/stock-unlock' }],
       subject: 'right-size SU to three FT; move to key decisions only',
-      tags: ['~3,900 wall in 2024', '3 FT remain', 'profitable'],
+      tags: ['~3.9k wall in 2024', '3 FT remain', 'profitable'],
       body:
-        "Hit a ~3,900-paying-subscriber wall in 2024, sign-ups roughly equaled churn. " +
+        "Hit a ~3.9k-paying-subscriber wall in 2024, sign-ups roughly equaled churn. " +
         "Tried partial pivots, including B2B sales attempts. Bet on big late-2025 feature launches; " +
         "they took too long, burned the team, didn't land. Right-sized in early 2026. " +
         "Three full-time (two engineers + an exec assistant) handle day-to-day. Worked it full-tilt up to that point.",
@@ -114,7 +114,7 @@ window.TIMELINE = (function () {
       sha: '9234f1a', fullSha: '9234f1abe77c1180cafe4d2b101f012bdeadbeef',
       branch: 'stockunlock', author: 'Jake Ruth <jake2ruth@gmail.com>',
       date: '2024-09',
-      subject: 'hit ~3,900-paying-subscriber wall',
+      subject: 'hit ~3.9k-paying-subscriber wall',
       tags: ['plateau', 'churn ≈ signups'],
       body:
         "Growth flattened, new sign-ups roughly equaled churn. Tried partial pivots, including B2B sales attempts. " +
@@ -201,7 +201,7 @@ window.TIMELINE = (function () {
       tags: ['~150+ engineers at exit', 'declined team-lead twice'],
       body:
         "Four+ years at Oscar. Joined at ~50 engineers under Alan Warren, left at ~150+. " +
-        "Associate → Mid → Senior. Declined the team-lead path twice. " +
+        "Associate → Mid → Senior Software Engineer. Declined the team-lead path twice. " +
         "Brought Nick over to Stock Unlock.",
       diffstat: {
         items: [{ file: 'offboarding.md', added: 1, removed: 0, note: 'exit' }],
@@ -404,7 +404,7 @@ window.TIMELINE = (function () {
       subject: "Merge branch 'youni' (project ended)",
       tags: ['React Native v0.13/0.14', '20,000+ posts', 'shut down'],
       body:
-        "Co-founded with Anthony (CEO) and Jordan, both UAlbany D1 soccer. Launched at SUNY Albany and Binghamton. " +
+        "Co-founded with two UAlbany D1 soccer players (Anthony, CEO; Jordan). Launched at SUNY Albany and Binghamton. " +
         "70-person paid-in-credits brand-ambassador program. 20,000+ posts at peak. " +
         "Anthony and Jordan won ~$25K in equity-free business grants while still students. " +
         "No business model and an unsolved cold-start. Folded after ~4-5 months full-time. Eyes definitely bigger than my stomach.",
@@ -436,11 +436,11 @@ window.TIMELINE = (function () {
       branch: 'main', author: 'Jake Ruth <jake2ruth@gmail.com>',
       date: '2015-05',
       subject: 'BS CS + Applied Math, SUNY Albany',
-      tags: ['3.88 GPA', "Dean's List every semester"],
+      tags: ["Dean's List every semester", "ACM president 2 yrs", "TA 2013–14"],
       body:
-        "Double major shipped. 3.88 GPA, Dean's List every semester. Freshman year: 99/100 on the standardized Calc 1 exam, " +
-        "best score among the ~500 students who took it that semester (the cohort included grad students). " +
-        "ACM chapter: president for two years. The club survived past me.",
+        "Double major shipped. Dean's List every semester. ACM chapter: president for two years. " +
+        "Teaching Assistant in the CS department 2013–14, weekly office hours and grading exams/projects. " +
+        "The club survived past me.",
       diffstat: {
         items: [{ file: 'education/diploma.pdf', added: 120, removed: 0, note: 'earned' }],
         summary: '2 majors completed',
@@ -473,7 +473,7 @@ window.TIMELINE = (function () {
         "Took over a dying CS club junior year. Outgoing seniors handed me the presidency. " +
         "Got professors to let me announce an interest meeting at the end of their classes. Booked a lecture hall, ~7pm on a weeknight. " +
         "~50-100 students showed; few dozen joined. Ran weekly meetings, LAN parties, and workshops on what I was learning at CommerceHub. " +
-        "Organized the Tekkapalooza field trip that became my CommerceHub on-ramp. The club survived past me.",
+        "Organized the Tekkapalooza field trip (a regional Albany-area tech showcase) that became my CommerceHub on-ramp. The club survived past me.",
       diffstat: {
         items: [{ file: 'clubs/acm/*', added: 80, removed: 0, note: 'rebuilt' }],
         summary: 'few dozen members recruited, 1 career launched',
@@ -499,12 +499,12 @@ window.TIMELINE = (function () {
       sha: 'mpb2013', fullSha: 'mpb20130000000000000000000000000000000000',
       branch: 'main', author: 'Jake Ruth <jake2ruth@gmail.com>',
       date: '2013-09',
-      subject: 'My Plastic Brain contracting (parallel)',
-      tags: ['KineticJS', 'brain-injury rehab'],
+      subject: 'My Plastic Brain contracting (college era)',
+      tags: ['JavaScript', 'jQuery', 'brain-injury rehab'],
       body:
-        "Several hundred hours of paid contract work in college, parallel to the CH internship. " +
-        "Built KineticJS card games, digital adaptations of physical card games that brain-injury rehab patients used in real life. " +
-        "Self-directed end-to-end. Now-defunct company.",
+        "Paid contract web-game work for a now-defunct company called My Plastic Brain. " +
+        "Dozens of simple HTML5 web games (JavaScript, jQuery), digital adaptations of physical card games used by brain-injury rehab patients. " +
+        "Handled my own billing, built the client side end-to-end, handed off the deliverables myself. Recruited and trained another contractor as the workload grew. Self-directed start to finish.",
       diffstat: {
         items: [{ file: 'contract/mpb/*', added: 1200, removed: 50, note: 'card games' }],
         summary: '1 contract delivered',
@@ -519,7 +519,7 @@ window.TIMELINE = (function () {
       tags: ['Groovy/Grails', 'React pre-hooks', 'Tekkapalooza drop'],
       body:
         "First real codebase. First real deploy. Agile team, Groovy/Grails on the back, early-pre-hooks React on the front, code-review culture. " +
-        "Got here via the Tekkapalooza resume drop while running ACM. Career clock starts ticking now.",
+        "Got here via the Tekkapalooza resume drop (a regional Albany-area tech showcase) while running ACM. Career clock starts ticking now.",
       diffstat: {
         items: [{ file: 'onboarding.md', added: 1, removed: 0, note: 'day one' }],
         summary: '1 engineer added, career started',
