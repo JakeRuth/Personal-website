@@ -445,7 +445,18 @@
         row.classList.toggle("is-open", willOpen);
         head.setAttribute("aria-expanded", willOpen ? "true" : "false");
       }
-      head.addEventListener("click", toggle);
+      // Click handling: bind to the row so the entire shaded region (including
+      // .work-row padding around .work-head) toggles. Skip clicks inside the
+      // body so links/buttons inside expanded content keep working.
+      const row = head.closest(rowSelector);
+      if (row) {
+        row.addEventListener("click", (e) => {
+          if (e.target.closest(bodySelector)) return;
+          toggle();
+        });
+      } else {
+        head.addEventListener("click", toggle);
+      }
       head.addEventListener("keydown", (e) => {
         if (e.key === "Enter" || e.key === " ") {
           e.preventDefault();
@@ -523,7 +534,7 @@
     const sectionMap = {
       hero: "", about: "About", work: "Work",
       "stock-unlock": "Work\\Stock Unlock", ai: "AI",
-      stories: "Stories", cube: "Mastery", convictions: "Convictions"
+      stories: "Stories", cube: "Mastery"
     };
     const scroller = document.getElementById("content-scroll");
     if (scroller) {
@@ -990,5 +1001,78 @@
     obs.observe(CUBE_WIN, { attributes: true, attributeFilter: ["class"] });
     if (!CUBE_WIN.classList.contains("hidden")) ensureCubeStarted();
   }
+})();
+
+/* ==================================================================
+   3. Log Off / Turn Off magnet-evade prank
+      Buttons in the start menu push themselves away from the cursor
+      when it gets close. They re-anchor when the cursor moves off.
+      You can't quit. That's the joke.
+   ================================================================== */
+(function powerEvade() {
+  "use strict";
+  const buttons = document.querySelectorAll(".sm-power");
+  if (!buttons.length) return;
+
+  const MAGNET_RADIUS = 110;
+  const MAX_PUSH = 90;
+  const EASE = 0.22;
+
+  const state = new Map();
+  buttons.forEach(b => {
+    state.set(b, { x: 0, y: 0, tx: 0, ty: 0 });
+    b.style.willChange = "transform";
+  });
+
+  function tick() {
+    state.forEach((s, b) => {
+      const dx = s.tx - s.x, dy = s.ty - s.y;
+      if (Math.abs(dx) > 0.05 || Math.abs(dy) > 0.05) {
+        s.x += dx * EASE;
+        s.y += dy * EASE;
+        b.style.transform = `translate(${s.x.toFixed(2)}px, ${s.y.toFixed(2)}px)`;
+      }
+    });
+    requestAnimationFrame(tick);
+  }
+  requestAnimationFrame(tick);
+
+  document.addEventListener("mousemove", e => {
+    buttons.forEach(b => {
+      const r = b.getBoundingClientRect();
+      if (r.width === 0 || r.height === 0) return; // start menu hidden
+      const s = state.get(b);
+      // anchored center (subtract current translation so we measure
+      // from the button's resting position, not from where it's been
+      // pushed to — otherwise the chase becomes self-amplifying)
+      const cx = r.left + r.width / 2 - s.x;
+      const cy = r.top + r.height / 2 - s.y;
+      const dx = e.clientX - cx;
+      const dy = e.clientY - cy;
+      const dist = Math.hypot(dx, dy);
+      if (dist < MAGNET_RADIUS) {
+        const force = (MAGNET_RADIUS - dist) / MAGNET_RADIUS;
+        const angle = Math.atan2(dy, dx);
+        s.tx = -Math.cos(angle) * force * MAX_PUSH;
+        s.ty = -Math.sin(angle) * force * MAX_PUSH;
+      } else {
+        s.tx = 0;
+        s.ty = 0;
+      }
+    });
+  });
+
+  // If the user catches it (touch, keyboard, sheer luck), refuse politely.
+  const TOAST = document.getElementById("xp-toast");
+  function refuse() {
+    if (!TOAST) return;
+    TOAST.textContent = "Nice catch. You're staying.";
+    TOAST.classList.add("show");
+    clearTimeout(refuse._t);
+    refuse._t = setTimeout(() => TOAST.classList.remove("show"), 1800);
+  }
+  buttons.forEach(b => {
+    b.addEventListener("click", e => { e.preventDefault(); refuse(); });
+  });
 })();
 

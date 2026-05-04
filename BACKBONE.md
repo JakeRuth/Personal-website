@@ -12,7 +12,7 @@ Treat the prose as canonical *reference*, not literal copy. Each medium will ada
 
 Jake Ruth.
 
-I commit hard to things with depth. Code and cubes are the two that have held fifteen-plus years. Then a senior-year math credit dropped me into AP Computer Science instead of AP Calc, and the loop closed. Fifteen years of shipping later, four companies in (two I worked at, two I started).
+I commit hard to things with depth. Software engineering is the one that stuck. Then a senior-year math credit dropped me into AP Computer Science instead of AP Calc, and the loop closed. Fifteen years of shipping later, four companies in (two I worked at, two I started). **Note (2026-05-03):** earlier drafts framed this as "code and cubes are the two that have held fifteen-plus years"; Jake corrected it because he hasn't been consistently cubing for fifteen years. Cubing is in the mastery section as a competed-then-moved-past pursuit, not a current through-line. Then "Software engineering is the through-line that's held fifteen-plus years" was tried, also rejected as clunky. Canonical now is "Software engineering is the one that stuck." Don't regress.
 
 ---
 
@@ -43,11 +43,11 @@ For depth on each item, see *Companies and orgs* below and *Stories*.
 - **2011 – May 2015** — SUNY Albany. BS in Computer Science + Applied Mathematics, GPA 3.88, Dean's List every semester. Freshman-year Calc 1: 99/100, the top score in a ~500-student cohort that semester (the cohort included grad students). Took over the dying ACM (CS Club) junior year, ran it two years. Teaching Assistant in the CS dept 2013–14. Tekkapalooza resume drop. Played rugby briefly (B-squad → A-squad).
 - **Nov 2013 – May 2015** — CommerceHub (Albany), Software Engineer Intern. Part-time fall/spring + full-time summers.
 - **July 2015 – July 2016** — CommerceHub, Associate Software Engineer. Exactly one year and seven days. Left to go full-time on Youni.
-- **late 2014 – ~Nov 2016** — Youni (Albany → Troy), co-founded with two UAlbany D1 soccer players (Anthony, CEO; Jordan). Started moonlighting late 2014 alongside CommerceHub; ramped up the last quarter or two at CommerceHub; went full-time July 2016. Folded after ~4–5 months full-time. Title: Co-founder, CTO.
+- **late 2014 – ~Nov 2016** — Youni (Albany → Troy), co-founded with two UAlbany D1 soccer players (Anthony, CEO; Jordan). Started nights and weekends late 2014 alongside CommerceHub, ramped up over my last few months at CommerceHub, went full-time July 2016. Folded after ~4–5 months full-time. Title: Co-founder, CTO.
 - **~2014 – 2015** — My Plastic Brain, paid contract web-game work in college. **Parallel to the CommerceHub internship**, mostly during senior year.
-- **March 2017 – 2021** — Oscar Health (NYC). Joined at ~50 engineers under Alan Warren, left at ~150+. Built Emotiqueue with Peter. Solved a Rubik's cube on a unicycle on stage. Twice. Levels: Associate → Mid → Senior Software Engineer.
+- **March 2017 – 2021** — Oscar Health (NYC). Joined at ~50 engineers under Alan Warren, left at ~150+. Built Emotiqueue (culture-carrier energy). Solved a Rubik's cube on a unicycle on stage. Twice. Levels: Associate → Mid → Senior Software Engineer.
 - **2021 – present** — Stock Unlock (NYC), YC W22. Co-founder, CEO. Scaled to a team of eight + thousands of paying customers. Right-sized in early 2026 to three full-time. On key decisions and weekend pokes since.
-- **~2022 → now** — AI era. Driver in the seat, not driven by the car. → see *Convictions: AI thesis* for the tool progression and the recent AI-assisted shipping; → *Stories* for the migrations and side projects.
+- **~2022 → now** — AI era. My AI philosophy: *"I drive AI. It doesn't drive me."* (yes, like a car). → see *AI philosophy and projects* for the rendered version; → *Stories* for the migrations and side projects.
 
 ## Now (April 2026)
 
@@ -70,7 +70,7 @@ On the hunt for what's next.
 ### Youni (Albany → Troy, late 2014 – ~Nov 2016)
 
 - Co-founded with two UAlbany D1 soccer players: **Anthony** (CEO; ran the ACE entrepreneurship club at SUNY Albany) and **Jordan**. Met them via club mixers when ACM (which I ran) and ACE crossed paths. **My title: Co-founder, CTO.**
-- **Started moonlighting late 2014**, very part-time alongside the CommerceHub internship. **Ramped up in the last quarter or two at CommerceHub.** Went full-time July 2016 after I left CommerceHub.
+- **Started nights and weekends late 2014**, very part-time alongside the CommerceHub internship. **Ramped up in the last quarter or two at CommerceHub.** Went full-time July 2016 after I left CommerceHub.
 - Anthony and Jordan were still in school after I graduated (I was a year ahead). They won ~$25K in equity-free business grants while still students.
 - iOS social-media app on React Native v0.13 / 0.14, plus a simple companion site. Free office space at an accelerator near Troy.
 - A "school-localized Instagram" — closed-loop networks per college, with Greek-life and sports-team features. Bootstrapped distribution by signing up campus leaders before launch and flyer-bombing.
@@ -82,14 +82,14 @@ On the hunt for what's next.
 
 - Hired in March 2017 under Alan Warren — formerly the Google leader who scaled Google Docs and Apps from 2-3 people to thousands. That attracted heavy talent: lots of FAANG and Ivy-pedigreed engineers. The bar was visibly higher than CommerceHub.
 - Joined at ~50 engineers; left at ~150+. No formal levels initially (one of the reasons I joined). Levels were introduced mid-tenure: leveled in as Associate Software Engineer, promoted to Mid SWE within ~1 year, **Senior Software Engineer** ~2 years later. Senior SWE for a year before leaving.
-- Offered the team-lead path twice when I was a Senior SWE — declined both times. By that point I was already writing the early Stock Unlock code on the side and knew I'd be leaving within a year. Mentored newer engineers unofficially throughout — getting people up to speed is one of my strengths.
+- Offered the team-lead path once near the end of my Senior SWE year. Declined to stay close to the code. By that point I was already writing the early Stock Unlock code on the side and knew I'd be leaving within a year. Mentored newer engineers unofficially throughout, getting people up to speed is one of my strengths. **Note:** this story used to say "twice" in earlier drafts; that was wrong. Canonical is "once, near the end". Do not regress.
 - Owned a portfolio of back-end services in Python and Golang plus a React front-end. One of those was the entire internal site for the hundreds of care-guides and ops staff working out of the Tempe, AZ office. Worked tightly with SRE on a custom-hosted analytics integration. By my Senior year I was a go-to engineer across two teams for full-stack questions and just getting stuff shipped.
 - Probably one of the more productive engineers there in terms of code shipped — though I'd honestly still question how I got hired in the first place.
-- Got the offer partly via an interview question that just happened to match my last project (a social-media architecture question). Found out years later it was random luck — they hadn't actually read my resume. → see *Stories: Oscar interview luck*.
-- Built **Emotiqueue**, an internal Slack chatbot, with my coworker Peter. Started as a custom-emoticon flood, became a hackathon project that routed messages through a deliberately ridiculous pipeline (queues into queues, then a ticketing system, then back into chat), and ended up as a real command-routable bot. By the time I left it had 3,000+ custom emoticons, 50+ silly commands, and a codebase other engineers across the company committed to. → see *Stories: Emotiqueue*.
+- Got the offer in part via a design question that landed exactly where my last eighteen months of work were (a social-media architecture question, after eighteen months of Youni). Found out years later it was a standard rotation question, asked at random, by people who hadn't read my resume. The catch was random; the prep wasn't. → see *Stories: Ready for the question that came*.
+- Built **Emotiqueue**, an internal Slack bot. Half goof, half real tool, the kind of culture-carrier energy I try to seed wherever I work. Started as a custom-emoticon flood, became a hackathon project that routed messages through a deliberately ridiculous pipeline (queues into queues, then a ticketing system, then back into chat), and ended up as a real command-routable bot. By the time I left it had 3,000+ custom emoticons, 50+ silly commands, and a codebase other engineers across the company committed to. → see *Stories: Emotiqueue*. **Note (2026-05-03):** the co-builder is real but is never named on rendered surfaces, per Jake's preference. Refer as "an internal Slack bot I built at Oscar" or just "Emotiqueue" without attribution.
 
 **Recent AI-driven work at Stock Unlock** (extends the migration list above):
-- **Webflow → self-hosted marketing site** (post-Opus-4.5). ~$1K/year saved, 20x more content pages, full control of the codebase, no more contractor dependency.
+- **Webflow → self-hosted marketing site.** Every line written by Claude Code, every commit reviewed by me. ~$500 to $1K/year saved in hosting, contractor, and upkeep costs. 20x more content pages, full control of the codebase, no more contractor dependency.
 - **The X poster** — self-improving AI agent that drafts X posts, screenshots in-product context via Playwright, queues drafts in an admin UI for human approval, and rewrites its own prompt based on human feedback + live post-performance signals via a LangChain pipeline. → see *Stories: X poster*.
 - **Programmatic SEO + GEO pages** — AI-generated, human-reviewed.
 - **Code review automation across the team** (AI reviewing AI, with humans gating the merge).
@@ -103,7 +103,7 @@ On the hunt for what's next.
 - Origin: COVID era, watching Daniel Pronk's investing YouTube content. He was burning 5–10 hours every weekend on Excel sheets for his videos. I built a Python automation in a weekend to replace it. Primary driver was unrelenting curiosity and a nerdy thrill — plus I wanted into his paid Discord for free, and being useful felt like the way in.
 - Daniel ignored me for ~6 weeks while I kept emailing and commenting. He eventually replied — not because he was sold, but to make me stop. Hopped on a video call, cracked a beer. → see *Stories: Pronk emails*.
 - Daniel let me into his Discord. I dropped an early Excel-generator alpha (worked for a handful of stocks). Users freaked: "are you selling this?" "could you add this stock?" "I would pay for this." → see *Stories: Discord drop*.
-- Brought **Nick Puljik** over from Oscar. Y Combinator reached out cold via LinkedIn before we'd even applied. Applied, got in. I led the YC interview.
+- Brought a third co-founder over from Oscar (a fellow engineer there). Y Combinator reached out cold via LinkedIn before we'd even applied. Applied, got in. I led the YC interview. **Note:** the third co-founder is a real person but is never named on the rendered site, per Jake's preference. Refer to him as "a third co-founder" or "a fellow Oscar engineer" only.
 - Raised $1.35M seed. YC pushed us to launch before raising.
 - Scaled to a team of eight and thousands of paying customers.
 - Hit a **~3.9k-paying-subscriber wall** in 2024 — new sign-ups roughly equaled churn. Tried partial pivots, including B2B sales attempts. Eventually bet on a set of big feature launches in late 2025; they took too long to build, burned the team, and didn't land.
@@ -123,7 +123,7 @@ On the hunt for what's next.
 ### My Plastic Brain (contracting, parallel to CommerceHub, ~senior year of college)
 
 - Paid contract web-game work for a now-defunct company called My Plastic Brain. Connected via friend-of-a-friend. Client was a mother roughly double my age.
-- The work: **dozens of simple HTML5 web games (JavaScript, jQuery)**, digital adaptations of physical card games that brain-injury rehab patients used in real life.
+- The work: **dozens of simple HTML5 web games (JavaScript, jQuery, KineticJS)**, digital adaptations of physical card games that brain-injury rehab patients used in real life.
 - **Handled my own billing, built the client side end-to-end, handed off the deliverables myself.** Recruited and trained another contractor as the workload grew.
 - **Ran in parallel to the CommerceHub internship**, mostly during senior year of college (~2014–2015). Independent paid contract work, self-directed start to finish.
 - The code is still in my old personal-website source.
@@ -170,15 +170,15 @@ I handed mine directly to a company called CommerceHub. They liked me enough to 
 
 Three years of internship work and a full-time role grew out of one resume drop at a non-recruiting event.
 
-### The Oscar interview luck
+### Ready for the question that came
 
 Oscar Health interview, late 2016. The design question they asked: *"if you were going to build a social-media app where people could follow each other, how would you architect it?"*
 
-In my head: *"Wow. They really studied my resume."* I'd just spent a year and a half building Youni — a college-localized social-media iOS app. I crushed the answer.
+In my head: *"Wow. They really studied my resume."* I'd just spent eighteen months building Youni, a college-localized social-media iOS app. I crushed the answer.
 
-Years later, I brought it up to my manager. He told me no — it was a standard rotation question, asked at random, by people who hadn't read my resume. The single most architecturally similar question they could have asked, asked by chance, on the day that mattered most.
+Years later, my manager told me it was a standard rotation question, asked at random, by people who hadn't read my resume. The catch was random; the prep wasn't. The single most architecturally similar question they could have asked, asked by chance, on the day my eighteen months of work had me fully ready for it.
 
-That's the moment I think about when I try to explain why I believe in serendipity.
+That's the moment I think about when I try to explain why I believe in serendipity. Luck doesn't land on you, it lands on the work you've already done.
 
 ### The Pronk emails
 
@@ -219,21 +219,21 @@ Two years later, mid-20s. Slightly less elaborate — kept the cube-on-unicycle 
 
 ### The Customer.io migration
 
-Stock Unlock, recent. We'd been paying Customer.io for transactional and marketing email. I migrated us off in roughly a focused weekend — wrote the SES integration, the admin panels for broadcasts and campaign config, plus the AWS scaffolding around it. Most of the code came out of Claude Code; I read the parts that mattered (security, deliverability, business logic) and shipped.
+Stock Unlock, recent. We'd been paying Customer.io for transactional and marketing email. I migrated us off over 27 days on the side (Jake's detailed write-up of the timeline lives in his X article): wrote the SES integration with three send modes (triggered Lambda-direct, SQS-buffered broadcasts with DLQs, EventBridge-scheduled campaigns) and idempotent enrollment that auto-cancels conflicting variants, plus the AWS scaffolding. Built a self-serve composer for non-engineers (three-button UI with live preview and locked design areas) with a "Copy Agent Prompt" button that emits a Claude Code instruction so anyone on the team can branch into custom HTML in about five minutes of training. SES bounce/complaint feedback drives suppression; full activity log with send/delivery/open/click counts, filterable by recipient, campaign, template, or status. Most of the code came out of Claude Code; I read the parts that mattered (security, deliverability, business logic) and shipped.
 
-Saved ~$5–6K/year. One person, one weekend. That's what AI-era engineering actually looks like when you know what you're doing.
+Saved ~$5 to 6K/year. 200K+ emails/month. One person, 27 days on the side. That's what AI-era engineering actually looks like when you know what you're doing.
 
 ### The Webflow migration
 
-Same era, same pattern. We'd been on Webflow for the marketing site. I migrated us off into a self-hosted custom codebase, written almost entirely with Claude Code (post-Opus-4.5).
+Same era, same pattern. We'd been on Webflow for the marketing site. I migrated us off into a self-hosted custom codebase. Every line written by Claude Code, every commit reviewed by me.
 
-Direct savings were modest — about $1K/year. The bigger wins: we no longer need contractors to make copy changes (every update is a code change in our own repo), we have full control over UX patterns Webflow couldn't deliver, and the marketing surface itself is now 20x bigger in terms of content pages. Programmatic SEO + GEO pages on top of that, all AI-generated and reviewed.
+Direct savings were modest, ~$500 to $1K/year in hosting, contractor, and upkeep costs. The bigger wins: we no longer need contractors to make copy changes (every update is a code change in our own repo), we have full control over UX patterns Webflow couldn't deliver, and the marketing surface itself is now 20x bigger in terms of content pages. Programmatic SEO + GEO pages on top of that, all AI-generated and reviewed.
 
 ### The X poster
 
 Internal Stock Unlock tool — a self-improving AI agent that drafts X (Twitter) posts with a human-in-the-loop.
 
-Bootstrap-trained on thousands of posts (ours plus competitor accounts whose content we wanted to learn from), each tagged with its real engagement metrics, to give it an internal representation of what lands vs. flops. Aware of every product feature. Spins up a Playwright browser, authenticates as a real user using our custom test-IDs and front-end attributes, takes in-product screenshots to attach. Error-checks the screenshots before moving on. Pulls live API data for stats. Queues drafts in an admin UI.
+Trained on real posts via the X API: Stock Unlock's own account (top 50 promoted to few-shot exemplars, the rest seeding pattern signal) plus competitor accounts whose content we wanted to learn from. Every post tagged with full engagement metrics (reach, likes, retweets, replies, quotes, bookmarks), so the model learns what actually lands. Aware of every product feature. Spins up a Playwright browser, authenticates as a real user using our custom test-IDs and front-end attributes, takes in-product screenshots to attach. Error-checks the screenshots before moving on. Pulls live API data for stats. Queues drafts in an admin UI ("Social Station"). **Posting itself is intentionally disabled in code; approved drafts live in the DB and a human copies them to X.** (Verified in `social_engine/src/main.py` lines 82-84 and `pipeline.py` / `optimizer.py` / `capture.py` on the `social-ai-loops` branch as of 2026-05-03.)
 
 The self-improving loop: a LangChain pipeline runs a few times a day, pulls human feedback (approvals, denials, edits), and iteratively rewrites the drafter's own prompt. A separate cron job watches how live posts actually performed and feeds that back as signal too. It learns from both human judgment and real engagement.
 
@@ -247,7 +247,7 @@ Codex writes most of the embedded code; I learn enough of the hardware side to s
 
 ### Emotiqueue
 
-Oscar, with my coworker Peter. Started as a custom-emoticon flood — first in HipChat, then Slack. We turned it into a hackathon project where messages got routed through a deliberately ridiculous pipeline (queues into queues, then a ticketing system, then back into chat) that ended in a chatbot. We named it **Emotiqueue**.
+Oscar. Started as a custom-emoticon flood — first in HipChat, then Slack. We turned it into a hackathon project where messages got routed through a deliberately ridiculous pipeline (queues into queues, then a ticketing system, then back into chat) that ended in a chatbot. We named it **Emotiqueue**.
 
 Over time we added commands. By the time I left, Emotiqueue had 3,000+ custom emoticons, 50+ silly entertainment-focused commands that did ridiculously dumb things, and an active codebase that other engineers across the company committed to. It had a real internal user base.
 
@@ -261,7 +261,7 @@ Quick CommerceHub-trench memory. Had to fix a string-truncation bug in a company
 
 ## Mastery / hobbies
 
-Pattern throughout my life: I commit hard to things with depth. Cubes and code are the two that have held fifteen-plus years. Both have feedback loops and infinite depth. *"Self-improvement as a core operating system part of me."*
+Pattern throughout my life: I commit hard to things with depth. Software engineering is the one that stuck. *"Self-improvement as a core operating system part of me."*
 
 ### Speed-cubing
 - Competed 2008–2014 at Northeast US events and Nationals (WCA, the World Cube Association).
@@ -272,7 +272,7 @@ Pattern throughout my life: I commit hard to things with depth. Cubes and code a
 ### Unicycle
 - Started junior year of high school. ~12–16 months of intense practice.
 - Mountain unicycle. One-footed riding. Forward and backward. Stair jumps, mountain-trail riding, bench jumps.
-- Eventually combined with cubing — solved a Rubik's cube while riding the unicycle. Did it on stage at an Oscar talent show. Twice. → see *Stories: talent show*.
+- Eventually combined with cubing — solved a Rubik's cube while riding the unicycle. Did it on stage at Oscar Health's company talent show. Twice. → see *Stories: talent show*.
 
 ### Track and field (high school)
 - Jumper events: high jump, triple jump, long jump. Also ran the 400m and the occasional 4x400.
@@ -282,8 +282,7 @@ Pattern throughout my life: I commit hard to things with depth. Cubes and code a
 - **Soccer** — JV captain sophomore year of high school. Didn't make varsity.
 - **Rugby** — UAlbany. Came in as a sport newcomer; moved B-squad → A-squad after learning the game.
 - **Rock climbing** — Oscar Health era. Indoor, two-ish years of steady climbing with friends from the team. Problem-solving with your body, plus the social side. Would pick it up again in a heartbeat.
-- **Skateboarding** — got "very good" as a teenager.
-- **DDR + Guitar Hero + RuneScape** — got obsessively good as a teen. Guitar Hero was the cleanest level-progression feedback loop I've ever locked into. (Good, not great — but "good" was already past most people.)
+- **Skateboarding + DDR + Guitar Hero + RuneScape** — insanely good at DDR and Guitar Hero, very good at skateboarding, deep on RuneScape. The lock-in pattern was already showing.
 - **Math** — accelerated track since third grade.
 - **Art** — actually liked it as a kid; one of the only school subjects outside math/science that held my attention.
 - **Meditation** — regular practice as an adult; tied to the serendipity-as-worldview thread.
@@ -296,35 +295,44 @@ A high school classmate told me once that I was good at everything that didn't m
 
 ---
 
-## Convictions / philosophy
+## AI philosophy and projects
 
-### What I'm for
-- Brutally honest teammates who disagree directly, with reason. No compliment-sandwiches.
-- Autonomy and real ownership. Things that matter and don't sound like bullshit.
-- High-bar teams. Get-shit-done culture.
-- AI as a first-class tool, with the human in the driver's seat.
-- Being a culture carrier by default. The people, the interactions, the personality of a team — I'm conscious of being a positive force in those wherever I'm working. Emotiqueue is one example of that energy in action.
+The Convictions / "What I'm for / What I'm against" section was **fully removed across all surfaces (xp, saas, readme) and from this canonical doc as of 2026-05-04.** Jake decided it wasn't carrying its weight on the site, and removed the private-reference list from BACKBONE too because it's not needed. Do not reintroduce it on any medium or in this doc.
 
-### What I'm against
-- Bureaucracy and politics over shipping. PIP-driven theater.
-- Buzzword resumes — "passionate," "results-oriented," "dynamic team player."
-- "Fisher-Price" software — looks polished, breaks under real use.
-- Overcharging for software that ships people short, especially when the people getting shorted can't afford it. That conviction was load-bearing for building Stock Unlock and shows up in every product call I make.
-- Vibe coding sold as software engineering. There's a real difference.
+### AI philosophy (rendered)
 
-### The AI thesis
-Driver in the seat, not driven by the car. AI writes more code than I do; human-reviewed where it matters (business logic, security, system architecture); let loose on cosmetic frontend.
+This is what surfaces on the rendered AI section, above the AI projects accordion, as a minimal italic lead + three numbered points. Canonical headline format (used verbatim across xp/, saas/, readme/, with each medium adapting the chrome):
 
-Tool progression: Copilot ("cool, not life-changing") → Cursor (~1–2 years heavy) → Claude Code dabble through 2025 → Opus 4.5 in early 2026 was the tidal-wave inflection. Now on Opus 4.7. Heavy Claude Code + Codex + CMUX (multi-instance Ghostty wrapper). Built my own harness via Open Hands.
+> **My AI philosophy: *"I drive AI. It doesn't drive me."* (yes, like a car)**
+>
+> *"Two kinds of people use AI. One uses it to skip learning, the other uses it to learn everything. I work hard to be the second."*
 
-Tool-to-task in daily use: Gemini for maps and search, Grok for current events and snark, Claude for deep thinking, Cursor composer for fast code search.
+Three tight bullets, distilled from Jake's own voice in `rambles-personal-bio-conversations.md` (the "code is code... whether I'm writing that by hand or with AI, to me, as long as it's correct, does the job, is compliant, is sturdy" line + the vibe-vs-engineering distinction + the tool-to-task taxonomy):
 
-Recent shipped at Stock Unlock with AI assist: migrated off Customer.io to self-hosted AWS SES (saved ~$5–6K/yr); migrated the marketing site off Webflow to a self-hosted codebase (~$1K/yr saved, 20× more content pages, no contractor dependency); built a permissioned internal Discord ops bot on EC2 + Docker Compose; shipped programmatic SEO + GEO pages; running code-review automation across the team (AI reviewing AI, humans gating the merge); building a self-improving X poster agent with a human-in-the-loop; wirelessly-controlled blinds motor on an Adafruit Feather, on the side. Including this site you're reading.
+1. **Code is code.** Hand-written or AI-written, I want the same thing: correct, secure, built to spec, read by a human where it matters.
+2. **Vibe coding isn't software engineering.** The distinction is real. I care about it.
+3. **Current AI tool stack (as of May 4, 2026):** CMUX (a custom Ghostty wrapper) for terminal AI work, invoking Claude Code primarily and Codex situationally. Lighter Cursor / Gemini / Grok use. Constantly reassessing tool fit as the space evolves.
 
-I'm leaning all the way in. AI for coding is just the start — I use it for deep business strategy conversations, drafting emails and PDFs, even building hardware projects on the side. The shift from feeling like a 10x engineer to a 100x engineer is real and recent — and I'm fully in it.
+Earlier drafts ran longer ("the capability is changing weekly", "stay on top of architecture and the whole project", "never go blind") with paragraph-length explainers; Jake rejected those as wordy / try-hard / word-salad. Don't regress. The verbose tool-progression history (Copilot → Cursor → Claude Code → Opus 4.5 → Opus 4.7) and Opus 4.5 inflection moment live here as private reference and surface elsewhere on the rendered mediums (saas service-graph, readme philosophy answer), not in the AI philosophy bullets themselves.
 
-### Serendipity as a working principle
-Most of what's worked for me looks lucky in retrospect. AP CS to dodge AP Calc. The Tekkapalooza resume drop. The Oscar interview question. Daniel replying out of exhaustion. YC reaching out via LinkedIn. The pattern is that luck only finds people who keep running at it.
+### Recent AI projects (rendered)
+
+These ship as accordion rows on the rendered AI section. Order matches what's currently on `xp/`:
+
+1. **The X poster** (Stock Unlock internal). LangGraph self-improving pipeline (ideate, generate, fact-check, screenshot, quality-gate, save with conditional retry). Daily learning loop ingests human edits + live engagement, optimizes the system prompt, runs A/B prompt experiments. Custom React admin UI for human-in-the-loop. Playwright for in-product screenshots.
+2. **AI coding-and-question agent for the team** (Stock Unlock infra, built as part of Jake's off-boarding). Discord.py + Open Hands harness on EC2 (Docker Compose). Four slash commands. `/code` opens GitLab MRs with Playwright screenshots (via the OpenHands browser tool, which uses Playwright + BrowserGym under the hood — verified in OpenHands' `pyproject.toml`), code-enforced human-in-the-loop. `/ask` answers across a dozen-plus read-only data sources (codebase, Aurora, PostHog, Stripe, RevenueCat, Sentry, plus Finnhub, Finchat, Google Analytics, CloudWatch, S3, Cognito). Two model tiers via AWS Bedrock (Claude Sonnet 4.6 for `/code`, MiniMax M2.7 for `/ask`). Strict secret-isolation: `/code`-only secrets are deleted on each `/ask` invocation to prevent privilege escalation. IAM least-privilege boundary between agent and prod.
+3. **Customer.io to AWS SES migration** (Stock Unlock, 27 days on the side). Three send modes: triggered (Lambda-direct), broadcasts (SQS-buffered + DLQs), campaigns (EventBridge-scheduled), with idempotent enrollment that auto-cancels conflicting variants. Self-serve composer for non-engineers (three-button UI with live preview, ~5 min training). Built-in AI handoff via a "Copy Agent Prompt" button that emits a Claude Code instruction with the template. SES bounce/complaint feedback drives suppression; full activity log with send/delivery/open/click counts. 200K+ emails/month. Saved ~$5 to 6K/yr.
+4. **Webflow to self-hosted marketing site** (Stock Unlock). ~$500 to $1K/year saved in hosting, contractor, and upkeep costs. 20× more content pages. No contractor dependency. Programmatic SEO + GEO on top. Code-review automation across the team.
+5. **This site, jakeruth.com** (personal). Vanilla HTML/CSS/JS, three chrome experiences sharing one shell, BFS solver for cube transition. AI-built, human-reviewed. BACKBONE.md and CLAUDE.md keep agents on-voice.
+6. **Wirelessly-controlled blinds motor** (personal, **in progress**). Adafruit Feather, Codex writes most of the embedded code. First hardware project.
+
+Once finalized in `xp/`, port this list and the philosophy bullets to readme/saas under hard parity.
+
+### Serendipity (rendered as a small bottom-of-page note)
+
+Surfaced as a small italic callout at the very bottom of the xp/ explorer scroll, framed as a personal aside ("I'll shoot my shot, this is something I believe in"). Not a section heading anywhere.
+
+> Made it to the bottom? A working principle of mine: most of what's worked for me looks lucky in retrospect. AP CS to dodge AP Calc. The Tekkapalooza resume drop. The Oscar interview question. Daniel replying out of exhaustion. YC reaching out via LinkedIn. The pattern is that luck only lands on people who keep running at it. Not sure if you're into that worldview, but I'll shoot my shot, this is something I believe in.
 
 ---
 

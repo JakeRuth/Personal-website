@@ -32,7 +32,7 @@ window.TIMELINE = (function () {
       body:
         "Stock Unlock runs profitably without me in the seat day-to-day. Open to full-time, contract, or equity-founding " +
         "conversations, quietly, not as a banner. Has to be a problem I'd care about. " +
-        "Driver in the seat, not driven by the car.",
+        "My AI philosophy: \"I drive AI. It doesn't drive me.\" (yes, like a car).",
       diffstat: {
         items: [
           { file: 'status.md',  added: 1, removed: 1, note: 'available' },
@@ -52,7 +52,7 @@ window.TIMELINE = (function () {
         "Tool progression: Copilot ('cool, not life-changing') → Cursor (~1-2 years heavy) → Claude Code dabble through 2025 → " +
         "Opus 4.5 in early 2026 was the tidal-wave inflection. Now on Opus 4.7. " +
         "Heavy Claude Code + Codex + CMUX. Built my own harness via Open Hands. " +
-        "Driver in the seat, not driven by the car.",
+        "My AI philosophy: \"I drive AI. It doesn't drive me.\" (yes, like a car).",
       diffstat: {
         items: [
           { file: 'tools/claude-code', added: 1200, removed: 0, note: 'heavy' },
@@ -93,7 +93,7 @@ window.TIMELINE = (function () {
       subject: 'ship X poster, marketing rewrite, ops bot, SEO',
       tags: ['LangChain', 'Playwright', 'self-improving'],
       body:
-        "Migrated off Customer.io to self-hosted AWS SES (~$5-6K/yr saved, one weekend). " +
+        "Migrated off Customer.io to self-hosted AWS SES (~$5-6K/yr saved, 27 days on the side). " +
         "Migrated marketing site off Webflow to a self-hosted codebase (~$1K/yr saved, 20x content footprint, no more contractors). " +
         "Built the X poster, a self-improving social-AI agent with a human-in-the-loop. Bootstrap-trained on thousands of tagged posts; " +
         "Playwright for in-product screenshots; LangChain pipeline rewrites its own prompt from human feedback + live engagement. " +
@@ -197,12 +197,12 @@ window.TIMELINE = (function () {
       branch: 'oscar', author: 'Jake Ruth <jake2ruth@gmail.com>',
       date: '2021-08',
       decoration: [{ kind: 'branch', text: 'oscar-health' }],
-      subject: 'oscar-health: final commit; brought Nick Puljik with me',
-      tags: ['~150+ engineers at exit', 'declined team-lead twice'],
+      subject: 'oscar-health: final commit; brought a co-founder with me',
+      tags: ['~150+ engineers at exit', 'declined team-lead path near the end'],
       body:
         "Four+ years at Oscar. Joined at ~50 engineers under Alan Warren, left at ~150+. " +
-        "Associate → Mid → Senior Software Engineer. Declined the team-lead path twice. " +
-        "Brought Nick over to Stock Unlock.",
+        "Associate → Mid → Senior Software Engineer. Declined the team-lead path near the end. " +
+        "Brought a co-founder over to Stock Unlock.",
       diffstat: {
         items: [{ file: 'offboarding.md', added: 1, removed: 0, note: 'exit' }],
         summary: '1 exit, 1 co-founder recruited',
@@ -265,12 +265,12 @@ window.TIMELINE = (function () {
       sha: 'c0ffee1', fullSha: 'c0ffee1deadbeefcafebabef00dbaadf00df00df',
       branch: 'oscar', author: 'Jake Ruth <jake2ruth@gmail.com>',
       date: '2020-09',
-      subject: 'senior at Oscar; declined team-lead path twice',
+      subject: 'senior at Oscar; declined team-lead path near the end',
       tags: ['Senior', 'go-to across two teams'],
       body:
         "Owned services across Python and Golang back-ends and a React front-end, including the internal site for hundreds of " +
         "Tempe care-ops staff. SRE-adjacent on a custom-hosted analytics integration. By senior year, go-to across two teams " +
-        "for full-stack questions. Declined team-lead twice, already writing the early Stock Unlock code on the side.",
+        "for full-stack questions. Declined team-lead near the end, already writing the early Stock Unlock code on the side.",
       diffstat: {
         items: [{ file: 'services/**/*', added: 3400, removed: 1100, note: 'ownership' }],
         summary: '54 files changed, 2 manager offers declined',
@@ -312,9 +312,9 @@ window.TIMELINE = (function () {
       branch: 'oscar', author: 'Jake Ruth <jake2ruth@gmail.com>',
       date: '2019-05',
       subject: 'Emotiqueue: hackathon → real internal tool',
-      tags: ['Peter', '3,000+ emoticons', '50+ commands'],
+      tags: ['culture carrier', '3,000+ emoticons', '50+ commands'],
       body:
-        "Built with my coworker Peter. Started as a custom-emoticon flood (HipChat → Slack). " +
+        "Started as a custom-emoticon flood (HipChat → Slack). " +
         "Hackathon project that routed messages through queues-into-queues + a ticketing system back into chat. " +
         "By the time I left: 3,000+ custom emoticons, 50+ silly entertainment-focused commands, " +
         "and a codebase other engineers across the company committed to. Half goof, half real internal tool.",
@@ -500,10 +500,10 @@ window.TIMELINE = (function () {
       branch: 'main', author: 'Jake Ruth <jake2ruth@gmail.com>',
       date: '2013-09',
       subject: 'My Plastic Brain contracting (college era)',
-      tags: ['JavaScript', 'jQuery', 'brain-injury rehab'],
+      tags: ['JavaScript', 'jQuery', 'KineticJS', 'brain-injury rehab'],
       body:
         "Paid contract web-game work for a now-defunct company called My Plastic Brain. " +
-        "Dozens of simple HTML5 web games (JavaScript, jQuery), digital adaptations of physical card games used by brain-injury rehab patients. " +
+        "Dozens of simple HTML5 web games (JavaScript, jQuery, KineticJS), digital adaptations of physical card games used by brain-injury rehab patients. " +
         "Handled my own billing, built the client side end-to-end, handed off the deliverables myself. Recruited and trained another contractor as the workload grew. Self-directed start to finish.",
       diffstat: {
         items: [{ file: 'contract/mpb/*', added: 1200, removed: 50, note: 'card games' }],

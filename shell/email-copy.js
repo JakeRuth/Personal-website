@@ -18,29 +18,52 @@
     return href.startsWith("mailto:" + EMAIL);
   }
 
-  function showToast(message) {
+  function ensureToast() {
     let t = document.getElementById("shell-email-toast");
-    if (!t) {
-      t = document.createElement("div");
-      t.id = "shell-email-toast";
-      t.style.cssText =
-        "position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(20px);" +
-        "background:#1a1a1a;color:#fff;padding:10px 16px;border-radius:6px;" +
-        "font:500 13px/1.3 system-ui,-apple-system,Segoe UI,sans-serif;" +
-        "box-shadow:0 4px 18px rgba(0,0,0,0.25);z-index:99999;" +
-        "opacity:0;transition:opacity .18s,transform .18s;pointer-events:none;";
-      document.body.appendChild(t);
-    }
-    t.textContent = message;
+    if (t) return t;
+    t = document.createElement("div");
+    t.id = "shell-email-toast";
+    t.style.cssText =
+      "position:fixed;bottom:48px;left:50%;transform:translateX(-50%) translateY(28px) scale(0.96);" +
+      "display:flex;align-items:center;gap:10px;" +
+      "background:linear-gradient(180deg,#2faa54 0%,#1f8a3f 100%);color:#fff;" +
+      "padding:13px 22px 13px 18px;border-radius:999px;" +
+      "border:1px solid rgba(255,255,255,0.35);" +
+      "font:600 14px/1.2 'Segoe UI','Trebuchet MS',system-ui,-apple-system,sans-serif;" +
+      "letter-spacing:0.2px;" +
+      "box-shadow:0 10px 30px rgba(20,80,40,0.42),0 2px 6px rgba(0,0,0,0.2);" +
+      "z-index:99999;opacity:0;transition:opacity .22s ease,transform .22s ease;" +
+      "pointer-events:none;max-width:90vw;white-space:nowrap;" +
+      "text-shadow:0 1px 1px rgba(0,0,0,0.18);";
+    const check = document.createElement("span");
+    check.setAttribute("aria-hidden", "true");
+    check.style.cssText =
+      "display:inline-flex;align-items:center;justify-content:center;" +
+      "width:22px;height:22px;border-radius:50%;" +
+      "background:rgba(255,255,255,0.22);" +
+      "border:1px solid rgba(255,255,255,0.5);" +
+      "font-size:13px;font-weight:700;line-height:1;color:#fff;";
+    check.textContent = "✓";
+    const text = document.createElement("span");
+    text.id = "shell-email-toast-text";
+    t.appendChild(check);
+    t.appendChild(text);
+    document.body.appendChild(t);
+    return t;
+  }
+
+  function showToast(message) {
+    const t = ensureToast();
+    t.querySelector("#shell-email-toast-text").textContent = message;
     requestAnimationFrame(() => {
       t.style.opacity = "1";
-      t.style.transform = "translateX(-50%) translateY(0)";
+      t.style.transform = "translateX(-50%) translateY(0) scale(1)";
     });
     clearTimeout(t._hideTimer);
     t._hideTimer = setTimeout(() => {
       t.style.opacity = "0";
-      t.style.transform = "translateX(-50%) translateY(20px)";
-    }, 1900);
+      t.style.transform = "translateX(-50%) translateY(28px) scale(0.96)";
+    }, 2600);
   }
 
   function copyEmail() {

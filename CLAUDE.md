@@ -53,7 +53,15 @@ These apply on every medium (`xp/`, `readme/`, `saas/`) and the wizard at `/`. W
 
 **Co-founder mentions.** When introducing the Youni co-founders, lead with the descriptor (`two UAlbany D1 soccer players (Anthony, CEO; Jordan)`), not the bare names. Names alone don't carry signal for an outside reader.
 
+**Stock Unlock third co-founder is unnamed on the rendered site.** Refer to him as `a third co-founder`, `a fellow Oscar engineer`, or `a fellow engineer from Oscar`, depending on context. Never use his name (it stays in private notes only). Daniel Pronk is named.
+
+**Emotiqueue co-builder is unnamed on the rendered site.** Earlier drafts referred to "with my coworker Peter" or "with Peter"; Jake doesn't want the name surfaced. Frame Emotiqueue without attribution: `Built Emotiqueue, the internal Slack bot. Half goof, half real tool, the kind of culture-carrier energy I try to seed wherever I work.` (or similar). The "we" in the timeline story body is fine since it's unnamed plural.
+
 **Senior Software Engineer.** When referring to Jake's exit level at Oscar, use the full term ("Senior Software Engineer") on first mention in a section. "Senior" alone is fine afterward.
+
+**Team-lead path: declined ONCE, near the end.** Not twice. Earlier drafts said "twice" and "declined both times"; that's wrong and Jake has corrected it multiple times. Canonical: "Declined the team-lead path near the end" (or "once, near the end"). If you see "twice" or "both times" in a team-lead-path context anywhere, it's a regression, fix it.
+
+**The fifteen-plus-year through-line is software engineering, NOT "code and cubes".** Earlier drafts paired the two as "the two that have held fifteen-plus years"; Jake corrected this because he hasn't been consistently cubing for fifteen years. Cubing belongs in the mastery section as a competed-then-moved-past pursuit (2008–2014). Canonical framing: **"Software engineering is the one that stuck."** ("Software engineering is the through-line that's held fifteen-plus years" was tried and Jake rejected it as clunky.) The mastery section does NOT use a "the rest are X" framing sentence (every variant — "receipts that the pattern is real", "things I got weirdly good at along the way" — was rejected). The hobby list speaks for itself; the section header carries the framing. If you see "code and cubes" / "cubes and code" framed as the dual through-line, it's a regression.
 
 **No invented acronyms.** Spell out **CommerceHub** and **My Plastic Brain** in full every time. Don't shorten to "CH" / "MPB" / similar. The only acronyms allowed in rendered content are real, externally-recognized ones (YC, ACM, WCA, NYC, MVP, JV, FT, IDE, API, AWS, SES, SEO, GEO, etc.). 2-letter brand monograms in avatar/chip UI (e.g. `SU`, `OH`, `JR`) are fine because they're visual, not prose.
 
@@ -62,3 +70,7 @@ These apply on every medium (`xp/`, `readme/`, `saas/`) and the wizard at `/`. W
 **No "next chapter" framing.** Anywhere.
 
 **No surfacing of personal-life content.** "Engaged", wedding planning, etc., out. Site is professional.
+
+**No Convictions / "What I'm for, what I'm against" section anywhere.** Removed from `xp/` 2026-04-30 per Jake's call ("not driving any value"). The substance lives in `BACKBONE.md` as private reference only. Don't propagate to readme/saas; remove on the parity sweep. Serendipity-as-working-principle survives, but only as a small italic aside at the very bottom of the page, framed personal ("I'll shoot my shot"). Not as a section heading.
+
+**AI section is "Recent AI projects".** Section h2 reads `Recent AI projects · post-Opus 4.5` (or equivalent on other mediums). Above the project accordion sits a minimal lead, no green callout: the label `My AI philosophy:`, the italic quoted headline `"I drive AI. It doesn't drive me."`, a muted parenthetical aside `(yes, like a car)`, then 3 numbered points (capability changes weekly; stay on top of architecture; never go blind). Project accordion uses the same `.work-row` pattern as work history. Don't expand the bullets back into prose paragraphs and don't reintroduce the green callout, both were tried and rejected.
