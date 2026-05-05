@@ -1662,8 +1662,6 @@ kbd, .kbd-inline {
 @media (max-width: 420px) {
   .gh-header-inner { padding: 8px 10px; }
   .gh-tabs { padding: 0 10px; }
-  .gh-btn-skin .gh-btn-label,
-  .gh-btn-theme .gh-btn-label { display: none; }
   .readme { padding: 22px 16px; }
 }
 

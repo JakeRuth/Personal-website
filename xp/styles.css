@@ -1651,7 +1651,6 @@ body {
   .two-col { grid-template-columns: 1fr; }
   .pricing { grid-template-columns: 1fr; }
   .task-pane { width: 160px; }
-  .desktop-icons { display: none; }
   .cube-window { width: 90vw; right: 5vw; }
   .search-window { width: 88vw; left: 6vw; }
 }
@@ -1734,16 +1733,24 @@ body {
   /* Hobby cards: title + meta. No chev, so a flex wrap is fine. */
   .hobby-meta { white-space: normal; flex-basis: 100%; }
 
-  /* Floating Cube window fits viewport, body stacks. */
+  /* Floating Cube window fits the available viewport (between the
+     topnav and taskbar), body stacks, pattern panel scrolls so all
+     buttons stay reachable on short screens (e.g. Moto G4). */
   .cube-window {
     width: calc(100vw - 16px);
     left: 8px;
     right: auto;
-    height: auto;
-    max-height: 70vh;
+    top: 92px;
+    height: calc(100vh - 92px - 48px);
+    max-height: none;
   }
-  .cube-body { grid-template-columns: 1fr; min-height: 0; }
+  .cube-body {
+    grid-template-columns: 1fr;
+    grid-template-rows: minmax(180px, 220px) minmax(0, 1fr);
+    min-height: 0;
+  }
   .cube-stage { min-height: 180px; }
+  .cube-panel { overflow-y: auto; -webkit-overflow-scrolling: touch; min-height: 0; }
 
   /* Search window same treatment. */
   .search-window {
