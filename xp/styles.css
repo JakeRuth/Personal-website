@@ -1702,13 +1702,36 @@ body {
   .proj-stack { grid-template-columns: 1fr; row-gap: 4px; padding: 10px 12px; }
   .proj-stack-row-label { margin-top: 2px; }
 
-  /* Work-history accordion: dates and chevron stay tight, dates can wrap. */
-  .work-head { gap: 8px; }
-  .work-dates { white-space: normal; flex-basis: 100%; order: 3; }
-  .work-chev { order: 2; }
-  .work-title { order: 1; }
+  /* Work-history accordion: grid keeps the chevron pinned top-right next
+     to the title even when the title wraps; dates always span row 2. */
+  .work-head {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    grid-template-areas:
+      "title chev"
+      "dates dates";
+    gap: 4px 8px;
+    align-items: center;
+  }
+  .work-title { grid-area: title; min-width: 0; }
+  .work-chev  { grid-area: chev; }
+  .work-dates { grid-area: dates; white-space: normal; }
 
-  /* Hobby cards likewise allow meta to wrap below title. */
+  /* Stories timeline rows have the same title + date + chev shape. */
+  .timeline-head {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    grid-template-areas:
+      "title chev"
+      "date  date";
+    gap: 4px 8px;
+    align-items: center;
+  }
+  .timeline-title { grid-area: title; min-width: 0; }
+  .timeline-chev  { grid-area: chev; }
+  .timeline-date  { grid-area: date; white-space: normal; align-self: start; justify-self: start; }
+
+  /* Hobby cards: title + meta. No chev, so a flex wrap is fine. */
   .hobby-meta { white-space: normal; flex-basis: 100%; }
 
   /* Floating Cube window fits viewport, body stacks. */
