@@ -64,7 +64,7 @@ On the hunt for what's next.
 - **Associate Software Engineer: July 1, 2015 – July 7, 2016.** Full-time after graduation. Worked an agile team of ~10 engineers, embraced micro-service architecture, on the interview squad (graded offsite submissions, conducted interviews). Left exactly one year and seven days into FT to go full-time on Youni.
 - Stack: Groovy/Grails on the back, early-pre-hooks React on the front, code-review culture, virtual machines for cross-browser testing.
 - The "first real engineering" job. Great mentors. Loved it from the start.
-- One concrete debug memory: an ellipsis bug in a company-name display string that didn't render properly in Internet Explorer 7. QVC was pinned to that browser version, and even in 2014 IE7 was already old. Required spinning up an old-Windows VM just to test it. → see *Stories: IE7 ellipsis*.
+- One concrete debug memory: an ellipsis bug in a company-name display string that didn't render properly in Internet Explorer 7. QVC, one of CommerceHub's customers, was pinned to that browser version, and even in 2014 IE7 was already old. Required spinning up an old-Windows VM just to test it. → see *Stories: IE7 ellipsis*.
 - Took down production once with a button I shouldn't have had access to as an intern. The manager's response — that the system, not the intern, was the problem — rewired how I think about systems and access. → see *Stories: prod takedown*.
 - Junior software engineer level by graduation.
 
@@ -159,9 +159,9 @@ It set the work-ethic floor and made the case for college sharper. The lesson ab
 
 ### The production takedown
 
-CommerceHub, intern era. I had access to a tool that could take a system in production down with a single button press. I pressed the button. Production went down.
+CommerceHub, intern era. I had admin access to our Apache Solr cluster, the search index powering parts of the production site. Thought I was clicking around in the dev environment; cleared a Solr core. Turned out I was in production. The site went down. Big deal.
 
-Walked into the meeting room nervous, started apologizing before anyone spoke. The manager stood up before I finished and said: *"That wasn't your fault — you shouldn't have had access to that tool. We're not celebrating that this happened, but the system was the problem, not you."*
+Walked into the retrospective nervous, started apologizing before anyone spoke. The manager stood up before I finished and said: *"That wasn't your fault — you shouldn't have had access to that tool. We're not celebrating that this happened, but the system was the problem, not you."*
 
 That sentence rewired how I think about systems, access, and blameless culture. It's the engineering culture I've tried to rebuild ever since.
 
@@ -172,6 +172,16 @@ Junior year of college. The SUNY Albany CS Club (ACM) was quietly dying. Outgoin
 I got a handful of professors who liked me to let me make end-of-class announcements about an interest meeting. Booked a lecture hall — capacity hundreds — for around 7pm on a weeknight. Around 50 to 100 students showed, a few dozen signed up.
 
 Ran weekly meetings, LAN parties, and taught workshops on what I was learning at my CommerceHub internship. Two years as president. The club survived past me — which mattered more than the headcount.
+
+### Youni
+
+Co-founded with two UAlbany D1 soccer players (Anthony, CEO; Jordan). College-localized social-media iOS app on React Native v0.13/0.14, plus a simple companion site. Built out of free accelerator space in Troy. A "school-localized Instagram" — closed-loop networks per college, with Greek-life and sports-team features.
+
+Anthony and Jordan won ~$25K in equity-free business grants while still students. Launched at SUNY Albany and Binghamton. Ran a 70-person paid-in-credits brand-ambassador program (Anthony's design); 20,000+ posts on the app at peak.
+
+Started on the side late 2014 alongside the CommerceHub internship, ramped up over my last few months at CommerceHub, full-time July 2016. No business model and an unsolved cold-start; folded after about four to five months full-time. Eyes definitely bigger than my stomach.
+
+The eighteen months of architecture work paid off in an unexpected place: the Oscar interview question that came right after. → see *Stories: Ready for the question that came*.
 
 ### Tekkapalooza
 
@@ -209,7 +219,7 @@ I dropped an early alpha — a basic Excel generator that worked for a handful o
 
 That's the moment I knew there was a business in it.
 
-### Talent show #1 (the legendary one)
+### The unicycle cube (twice)
 
 Oscar Health, in the old office, when the culture was at its peak. Crowd was loose, half-drunk, having a good time. I'd been a competitive cuber since 2008 and a trick-grade unicyclist since junior year of high school.
 
@@ -224,9 +234,7 @@ The plan, in order:
 
 "All the Small Things" by Blink-182 in the background. Crowd lost it. People talked about it for weeks.
 
-### Talent show #2 (encore)
-
-Two years later, mid-20s. Slightly less elaborate — kept the cube-on-unicycle finale, dropped most of the obstacle course. The funny part: I had to retrain. Spent a couple of days outside my apartment before the show re-grinding the basics — riding backwards, the cube-on-wheels combo. Mastery decays fast if you don't tend it.
+Did it again about two years later for the encore, mid-20s. Slightly less elaborate — kept the cube-on-unicycle finale, dropped most of the obstacle course. The funny part: I had to retrain. Spent a couple of days outside my apartment before the show re-grinding the basics — riding backwards, the cube-on-wheels combo. Mastery decays fast if you don't tend it.
 
 ### The Customer.io migration
 
@@ -266,7 +274,7 @@ Half goof, half real internal tool. The kind of culture moment that's missing fr
 
 ### The IE7 ellipsis
 
-Quick CommerceHub-trench memory. Had to fix a string-truncation bug in a company-name display where the ellipsis didn't render properly in Internet Explorer 7. QVC was pinned to IE7. To test the fix I had to spin up a virtual machine running an old version of Windows just to load the browser. In 2014. Engineering history is preserved in QVC's procurement contracts.
+Quick CommerceHub-trench memory. Had to fix a string-truncation bug in a company-name display where the ellipsis didn't render properly in Internet Explorer 7. QVC, one of CommerceHub's customers, was pinned to IE7. To test the fix I had to spin up a virtual machine running an old version of Windows just to load the browser. In 2014. Engineering history is preserved in QVC's procurement contracts.
 
 ---
 

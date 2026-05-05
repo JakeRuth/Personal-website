@@ -276,22 +276,6 @@ window.TIMELINE = (function () {
         summary: '54 files changed, 2 manager offers declined',
       },
     },
-    {
-      sha: 'tshow02', fullSha: 'tshow02abcde1234567890abcdef0123456789ab',
-      branch: 'rubiks', author: 'Jake Ruth <jake2ruth@gmail.com>',
-      date: '2020-08',
-      subject: 'talent show #2 (encore)',
-      tags: ['retraining', 'mastery decays'],
-      body:
-        "Two years later, mid-20s. Slightly less elaborate, kept the cube-on-unicycle finale, dropped most of the obstacle course. " +
-        "The funny part: I had to retrain. Spent a couple of days outside my apartment before the show re-grinding the basics, " +
-        "riding backwards, the cube-on-wheels combo. Mastery decays fast if you don't tend it.",
-      diffstat: {
-        items: [{ file: 'hobbies/talent-show-2.md', added: 8, removed: 0, note: 'encore' }],
-        summary: '1 encore shipped, 2 days retraining',
-      },
-    },
-
     { year: '2019' },
     {
       sha: 'climb20', fullSha: 'climb20cafebabe0011223344556677889900aabb',
@@ -344,16 +328,18 @@ window.TIMELINE = (function () {
       sha: 'un1cy13', fullSha: 'un1cy13abcde1234567890abcdef1234567890ab',
       branch: 'rubiks', author: 'Jake Ruth <jake2ruth@gmail.com>',
       date: '2018-06',
-      subject: 'talent show #1: cube on a unicycle',
-      tags: ['legendary', "'All the Small Things'"],
+      subject: 'talent show: cube on a unicycle (twice, two years apart)',
+      tags: ['legendary', "'All the Small Things'", 'encore ~2020'],
       body:
         "The plan: hand a cube to someone in the audience to scramble. Ride out on the unicycle. " +
         "Switch to riding backwards. Stack chairs and a table from the all-hands room into an obstacle course. " +
         "Jump across them. Take the cube back. Solve it on the unicycle, as the finale. " +
-        "'All the Small Things' by Blink-182 in the background. People talked about it for weeks.",
+        "'All the Small Things' by Blink-182 in the background. People talked about it for weeks. " +
+        "Did it again about two years later for the encore. Less elaborate, kept the cube-on-unicycle finale. " +
+        "Had to retrain, mastery decays fast if you don't tend it.",
       diffstat: {
-        items: [{ file: 'hobbies/talent-show-1.md', added: 14, removed: 0, note: 'shipped' }],
-        summary: '1 cube solved, 0 dignity lost',
+        items: [{ file: 'hobbies/talent-show.md', added: 14, removed: 0, note: 'twice' }],
+        summary: '2 cubes solved, 0 dignity lost',
       },
     },
 
@@ -386,8 +372,8 @@ window.TIMELINE = (function () {
       tags: ['"the system was the problem, not you"'],
       body:
         "Three years of e-commerce plumbing. Groovy/Grails on the back, early-pre-hooks React on the front. " +
-        "Took down production once with a button I shouldn't have had access to as an intern. " +
-        "Manager stood up before I finished apologizing: 'That wasn't your fault, you shouldn't have had access to that tool. " +
+        "Cleared a Solr core in production by accident as an intern, thinking I was in dev; site went down. " +
+        "Manager stood up before I finished apologizing in the retrospective: 'That wasn't your fault, you shouldn't have had access to that tool. " +
         "We're not celebrating that this happened, but the system was the problem, not you.' " +
         "That sentence rewired how I think about systems, access, and blameless culture. " +
         "Left exactly one year and seven days into FT to go full-time on Youni.",
@@ -456,7 +442,7 @@ window.TIMELINE = (function () {
       tags: ['QVC', 'Internet Explorer 7', '2014'],
       body:
         "Fixed a string-truncation bug where the ellipsis didn't render properly in IE7. " +
-        "QVC was pinned to IE7. To test the fix I had to spin up a virtual machine running an old version of Windows just to load the browser. In 2014. " +
+        "QVC, one of CommerceHub's customers, was pinned to IE7. To test the fix I had to spin up a virtual machine running an old version of Windows just to load the browser. In 2014. " +
         "Engineering history is preserved in QVC's procurement contracts.",
       diffstat: {
         items: [{ file: 'fix/ellipsis.js', added: 6, removed: 2, note: 'IE7 quirk' }],
