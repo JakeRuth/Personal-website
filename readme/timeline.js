@@ -298,7 +298,7 @@ window.TIMELINE = (function () {
       subject: 'Emotiqueue: hackathon → real internal tool',
       tags: ['culture carrier', '3,000+ emoticons', '50+ commands'],
       body:
-        "Started as a custom-emoticon flood (HipChat → Slack). " +
+        "Started as a goof: I kept making custom emoticons for our team chat (HipChat, later Slack). " +
         "Hackathon project that routed messages through queues-into-queues + a ticketing system back into chat. " +
         "By the time I left: 3,000+ custom emoticons, 50+ silly entertainment-focused commands, " +
         "and a codebase other engineers across the company committed to. Half goof, half real internal tool.",
