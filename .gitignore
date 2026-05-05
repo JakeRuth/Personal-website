@@ -10,3 +10,4 @@ SESSION_NOTES.md
 
 # Local Claude Code settings (per-machine preferences, not project rules)
 .claude/settings.local.json
+.mobile-screenshots/

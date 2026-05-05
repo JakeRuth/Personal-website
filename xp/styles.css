@@ -929,6 +929,10 @@ body {
   min-height: 0;
 }
 .timeline-body-inner > * { padding-left: 12px; padding-right: 12px; }
+/* Lists need extra left padding so the markers (1./2./3., bullets) render
+   visibly inside the panel rather than colliding with its left edge. */
+.timeline-body-inner > ol,
+.timeline-body-inner > ul { padding-left: 32px; }
 .timeline-body-inner > :last-child { padding-bottom: 10px; }
 .timeline-item.is-open .timeline-body {
   grid-template-rows: 1fr;
@@ -1639,8 +1643,9 @@ body {
 .dog-icon { font-size: 36px; }
 
 /* =========================== responsive ==================== */
+/* Tablet and below: explorer fills viewport, columns stack, desktop icons hide. */
 @media (max-width: 900px) {
-  .explorer { left: 8px; right: 8px; top: 8px; bottom: 40px; }
+  .explorer { left: 8px; right: 8px; bottom: 40px; }
   .hero-banner { grid-template-columns: 1fr; }
   .hero-chip { border-left: 0; border-top: 1px solid var(--xp-link); }
   .two-col { grid-template-columns: 1fr; }
@@ -1649,6 +1654,105 @@ body {
   .desktop-icons { display: none; }
   .cube-window { width: 90vw; right: 5vw; }
   .search-window { width: 88vw; left: 6vw; }
+}
+
+/* Phone: drop the task pane (its links live in menus + start menu),
+   compress chrome, stack inner grids, fit floating windows to viewport. */
+@media (max-width: 720px) {
+  .explorer { left: 4px; right: 4px; bottom: 36px; border-radius: 6px 6px 0 0; }
+
+  /* Menubar can horizontal-scroll if labels don't fit. */
+  .menubar {
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .menubar::-webkit-scrollbar { display: none; }
+  .menubar .menu-item { flex: 0 0 auto; }
+  .menubar .menu-panel { min-width: 180px; max-width: calc(100vw - 16px); }
+
+  /* Toolbar: hide "Address" label, give the field room. */
+  .toolbar { padding: 3px 4px; gap: 1px; }
+  .address label { display: none; }
+  .address-field { padding: 0 4px; gap: 4px; }
+  .go-btn { padding: 0 6px; }
+
+  /* Address dropdown spans the explorer width on narrow. */
+  .address-dropdown { left: 0; right: 0; }
+
+  /* Drop the left task pane; its actions live in File/View/Tools menus
+     and the start menu. */
+  .task-pane { display: none; }
+
+  /* Tighter content padding so prose has room. */
+  .content { padding: 12px 12px 48px; }
+  .panel { padding: 14px 14px; margin-bottom: 14px; }
+
+  /* Hero compresses. */
+  .hero-text { padding: 22px 18px; }
+  .hero-text h1 { font-size: 32px; }
+  .hero-text .tagline { font-size: 14px; }
+
+  /* About: stack label above value rather than 2-col grid. */
+  .sysprops { grid-template-columns: 1fr; row-gap: 2px; }
+  .sysprops dt { margin-top: 6px; }
+
+  /* AI projects stack chips below their label. */
+  .proj-stack { grid-template-columns: 1fr; row-gap: 4px; padding: 10px 12px; }
+  .proj-stack-row-label { margin-top: 2px; }
+
+  /* Work-history accordion: dates and chevron stay tight, dates can wrap. */
+  .work-head { gap: 8px; }
+  .work-dates { white-space: normal; flex-basis: 100%; order: 3; }
+  .work-chev { order: 2; }
+  .work-title { order: 1; }
+
+  /* Hobby cards likewise allow meta to wrap below title. */
+  .hobby-meta { white-space: normal; flex-basis: 100%; }
+
+  /* Floating Cube window fits viewport, body stacks. */
+  .cube-window {
+    width: calc(100vw - 16px);
+    left: 8px;
+    right: auto;
+    height: auto;
+    max-height: 70vh;
+  }
+  .cube-body { grid-template-columns: 1fr; min-height: 0; }
+  .cube-stage { min-height: 180px; }
+
+  /* Search window same treatment. */
+  .search-window {
+    width: calc(100vw - 16px);
+    left: 8px;
+    right: auto;
+    max-height: 70vh;
+  }
+
+  /* Start menu: never wider than the viewport. */
+  .start-menu { width: min(420px, calc(100vw - 8px)); }
+
+  /* Taskbar a touch shorter, start label readable. */
+  .taskbar { height: 36px; }
+  .start-btn { padding: 0 16px 0 10px; font-size: 14px; }
+  .task-btn { max-width: 130px; }
+
+  /* Bring titlebar buttons up to comfortable touch size without
+     blowing out the XP look. */
+  .tb-btn { width: 28px; height: 24px; }
+  .tb-btn.close { font-size: 15px; }
+
+  /* Toast positioned safely above the taskbar. */
+  .xp-toast { right: 10px; bottom: 44px; left: 10px; max-width: none; }
+}
+
+/* Very narrow phones: shrink hero further, tighten panels. */
+@media (max-width: 380px) {
+  .hero-text { padding: 18px 14px; }
+  .hero-text h1 { font-size: 28px; }
+  .panel { padding: 12px 12px; }
+  .content { padding: 10px 8px 48px; }
 }
 
 /* window focus state */

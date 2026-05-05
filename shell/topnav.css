@@ -252,6 +252,26 @@ body.has-topnav {
   /* On very narrow screens, hide the name and keep the JR mark
      alone — the mark is the constant. */
   .topnav-brand-name { display: none; }
+  .topnav { padding: 0 6px; }
+  .topnav-left { left: 8px; }
+  .topnav-tab { padding: 6px 8px; gap: 5px; }
+}
+
+@media (max-width: 420px) {
+  /* Labels on non-current tabs get visually hidden so the bar still
+     fits and the colored cube marks differentiate. The current tab
+     keeps its label so the user always sees where they are. The
+     hidden labels stay in the a11y tree. */
+  .topnav-tab:not(.is-current) .topnav-label {
+    position: absolute;
+    width: 1px; height: 1px;
+    padding: 0; margin: 0;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+  .topnav-tab { padding: 6px 7px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -440,6 +460,9 @@ body.has-topnav .nav { top: 56px !important; }
     top: 60px;
     font-size: 12.5px;
     padding: 8px 14px 8px 12px;
+    max-width: calc(100vw - 16px);
+    white-space: normal;
+    text-align: left;
   }
 }
 
