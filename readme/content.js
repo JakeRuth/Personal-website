@@ -49,7 +49,7 @@ CONTENT.README = [
 '',
 'Pre-teen me ran lemonade stands often enough that my parents told me to stop, shoveled snow for cash, and dragged my old toys onto the curb for a garage sale around age 11. The lock-in-and-go-deep pattern has been there the whole time. Senior year of high school I needed a math credit, refused AP Calc, and asked Mrs. Nalbandian if her AP Computer Science class counted. She said yes. She ran a function on the board in the first five minutes of the first class. I knew right there.',
 '',
-'CommerceHub three years (intern → FT, "first real engineering"). Co-founded **Youni**, a college-localized social-media iOS app, with Anthony and Jordan; folded after a few months full-time. Joined **Oscar Health** at ~50 engineers under Alan Warren (the Google leader who scaled Google Docs from 2-3 people to thousands), left at ~150+. Co-founded **[Stock Unlock](https://stockunlock.com)**, led the [YC W22](https://www.ycombinator.com/companies/stock-unlock) interview, raised $1.35M seed, scaled to a team of eight and thousands of paying customers. Runs profitably today; a small, lean team handles day-to-day; I\'m on key decisions only.',
+'CommerceHub three years (intern → FT, "first real engineering"). Co-founded **Youni**, a college-localized social-media iOS app, with Anthony and Jordan; folded after a few months full-time. Joined **Oscar Health** at ~50 engineers under Alan Warren (the Google leader who scaled Google Docs from 2-3 people to thousands), left at ~150+. Co-founded **[Stock Unlock](https://stockunlock.com)**, led the [YC W22](https://www.ycombinator.com/companies/stock-unlock) interview, raised $1.335M seed, scaled to a team of eight and thousands of paying customers. Runs profitably today; a small, lean team handles day-to-day; I\'m on key decisions only.',
 '',
 '> [!TIP]',
 '> Open **TIMELINE** in the file tree for the `git log` view. Flip the **Terminal** toggle in the header for the same content with a shell skin.',
@@ -57,7 +57,7 @@ CONTENT.README = [
 '## What\'s in the box',
 '',
 '- **Fifteen years shipping production code** across CommerceHub, Oscar Health, Youni, and Stock Unlock.',
-'- **Founder experience that isn\'t theoretical.** Co-founder, CEO at Stock Unlock. Led the YC interview. Closed a $1.35M seed. Hired a team of eight; grew to and sustained ~3.9k paying customers; right-sized when the math demanded it.',
+'- **Founder experience that isn\'t theoretical.** Co-founder, CEO at Stock Unlock. Led the YC interview. Closed a $1.335M seed. Hired a team of eight; grew to and sustained ~3.9k paying customers; right-sized when the math demanded it.',
 '- **Full-stack range.** Python, Golang, TypeScript, Java, Groovy/Grails. React since pre-hooks; React Native since v0.13.',
 '- **Infra fluency.** AWS (SES, EC2, S3), Docker Compose, Postgres, SRE-adjacent on a custom-hosted analytics integration at Oscar.',
 '- **AI-native, done right.** Heavy Claude Code + Codex + CMUX, with my own Open Hands harness on the side. My AI philosophy: *"I drive AI. It doesn\'t drive me."* (yes, like a car). Opus 4.5 in early 2026 was the inflection.',
@@ -75,7 +75,7 @@ CONTENT.README = [
 '      Software for retail investors that doesn\'t treat them as marks. Built it. Scaled to eight people and thousands of paying customers. Runs profitably today; a small, lean team handles day-to-day, I\'m on key decisions.',
 '    </div>',
 '    <div class="pc-meta">',
-'      <span>YC W22</span><span>$1.35M seed</span><span>profitable</span>',
+'      <span>YC W22</span><span>$1.335M seed</span><span>profitable</span>',
 '    </div>',
 '  </div>',
 '',
@@ -155,9 +155,9 @@ CONTENT.README = [
 '',
 'Daniel ignored me for ~6 weeks while I emailed and commented. He eventually replied, to make me stop. First call was over a beer. He let me into the Discord. I dropped an early Excel-generator alpha. Users freaked: *"are you selling this?"* / *"could you add this stock?"* / *"I would pay for this."* That was the moment I knew there was a business in it.',
 '',
-'Brought a fellow Oscar engineer with me as the third co-founder. **Y Combinator reached out cold via LinkedIn before we\'d applied.** We applied, got in. I led the YC interview. Closed **$1.35M seed**. Scaled to a team of eight, grew to and sustained ~3.9k paying customers.',
+'Brought a fellow Oscar engineer with me as the third co-founder. **Y Combinator reached out cold via LinkedIn before we\'d applied.** We applied, got in. I led the YC interview. Closed **$1.335M seed**. Scaled to a team of eight, grew to and sustained ~3.9k paying customers.',
 '',
-'Hit a ~3.9k-paying-subscriber wall in 2024, new sign-ups roughly equaled churn. Tried partial pivots. Bet on a set of big feature launches in late 2025; they took too long, burned the team, and didn\'t land. Right-sized in early 2026. Worked it full-tilt up to that point.',
+'Sustained ~3.9k paying customers at a profitable, durable steady-state through 2024-2025. Explored adjacent paths to keep growing (partial pivots, a late-2025 feature push). Right-sized in early 2026 around the steady-state. Worked it full-tilt up to that point.',
 '',
 'Runs profitably today. A small, lean team handles day-to-day. I\'m on key decisions and weekend pokes.',
 '',
@@ -434,7 +434,7 @@ CONTENT.STOCK_UNLOCK = [
 '',
 '## The raise',
 '',
-'**$1.35M seed.** Grew to and sustained ~3.9k paying customers.',
+'**$1.335M seed.** Grew to and sustained ~3.9k paying customers.',
 '',
 '## Scale',
 '',
@@ -442,7 +442,7 @@ CONTENT.STOCK_UNLOCK = [
 '',
 '## The wall',
 '',
-'Hit a ~3.9k-paying-subscriber wall in 2024, new sign-ups roughly equaled churn. Tried partial pivots, including B2B sales attempts. Bet on a set of big feature launches in late 2025; they took too long to build, burned the team, and didn\'t land. Right-sized in early 2026. Worked it full-tilt up to that point.',
+'Sustained ~3.9k paying customers at a profitable, durable steady-state through 2024-2025. Explored adjacent paths to keep growing, including partial pivots and B2B motions. Made a heavy late-2025 feature push, then right-sized in early 2026 around the steady-state. Worked it full-tilt up to that point.',
 '',
 '## Today',
 '',
@@ -478,7 +478,7 @@ CONTENT.PROJECTS = [
 '',
 '## [Stock Unlock](https://stockunlock.com), [YC W22](https://www.ycombinator.com/companies/stock-unlock)',
 '',
-'Co-founded with **Daniel Pronk** and a third co-founder (a fellow engineer from Oscar). **Co-founder, CEO.** Closed **$1.35M seed**. Scaled to a team of eight, grew to and sustained ~3.9k paying customers. Runs profitably today; a small, lean team handles day-to-day. I\'m on key decisions only.',
+'Co-founded with **Daniel Pronk** and a third co-founder (a fellow engineer from Oscar). **Co-founder, CEO.** Closed **$1.335M seed**. Scaled to a team of eight, grew to and sustained ~3.9k paying customers. Runs profitably today; a small, lean team handles day-to-day. I\'m on key decisions only.',
 '',
 '> [Stock Unlock](https://stockunlock.com) exists because a lot of investing software overcharges people who can\'t afford to be robbed. We built something better.',
 '',
@@ -749,7 +749,7 @@ CONTENT.CHANGELOG = [
 '',
 '### Added',
 '- YC W22 batch.',
-'- $1.35M seed. Grew to and sustained ~3.9k paying customers.',
+'- $1.335M seed. Grew to and sustained ~3.9k paying customers.',
 '- Scaled team to eight; thousands of paying customers.',
 '',
 '## 2021',
@@ -887,7 +887,7 @@ CONTENT.PRS = [
     additions: 200,
     deletions: 5,
     body:
-      "Hit a ~3.9k-paying-subscriber wall in 2024. Late-2025 feature launches took too long, burned the team, didn't land. " +
+      "Sustained ~3.9k paying customers at a profitable, durable steady-state. Late-2025 feature push, then a decision to right-size. " +
       "Right-sized in early 2026. A small, lean team handles day-to-day. " +
       "Company runs profitably. Customers love it. Worked it full-tilt up to that point."
   },
@@ -913,7 +913,7 @@ CONTENT.PRS = [
   },
   {
     id: 25,
-    title: 'Raise $1.35M seed, scale to a team of eight',
+    title: 'Raise $1.335M seed, scale to a team of eight',
     state: 'merged',
     labels: ['stock-unlock', 'YC-W22'],
     branch: 'stock-unlock',
@@ -927,7 +927,7 @@ CONTENT.PRS = [
     deletions: 200,
     body:
       "Y Combinator reached out cold via LinkedIn before we'd applied. Applied, got in. Led the YC interview. " +
-      "$1.35M seed. Grew to and sustained ~3.9k paying customers. " +
+      "$1.335M seed. Grew to and sustained ~3.9k paying customers. " +
       "Scaled to a team of eight and thousands of paying customers."
   },
   {

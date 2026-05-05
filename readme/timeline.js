@@ -69,11 +69,11 @@ window.TIMELINE = (function () {
       date: '2026-02',
       decoration: [{ kind: 'remote', text: 'origin/stock-unlock' }],
       subject: 'right-size SU to a lean team; move to key decisions only',
-      tags: ['~3.9k wall in 2024', 'lean team', 'profitable'],
+      tags: ['~3.9k sustained', 'lean team', 'profitable'],
       body:
-        "Hit a ~3.9k-paying-subscriber wall in 2024, sign-ups roughly equaled churn. " +
-        "Tried partial pivots, including B2B sales attempts. Bet on big late-2025 feature launches; " +
-        "they took too long, burned the team, didn't land. Right-sized in early 2026. " +
+        "Sustained ~3.9k paying customers through 2024-2025 at a profitable, durable steady-state. " +
+        "Explored adjacent paths to keep growing (partial pivots, B2B motions, a late-2025 feature push). " +
+        "Right-sized in early 2026 around the steady-state we'd built. " +
         "A small, lean team handles day-to-day. Worked it full-tilt up to that point.",
       diffstat: {
         items: [
@@ -114,16 +114,17 @@ window.TIMELINE = (function () {
       sha: '9234f1a', fullSha: '9234f1abe77c1180cafe4d2b101f012bdeadbeef',
       branch: 'stockunlock', author: 'Jake Ruth <jake2ruth@gmail.com>',
       date: '2024-09',
-      subject: 'hit ~3.9k-paying-subscriber wall',
-      tags: ['plateau', 'churn ≈ signups'],
+      subject: 'sustained ~3.9k paying customers; explored growth paths',
+      tags: ['steady-state', 'profitable'],
       body:
-        "Growth flattened, new sign-ups roughly equaled churn. Tried partial pivots, including B2B sales attempts. " +
-        "Began betting on a set of big feature launches for late 2025.",
+        "Sustained ~3.9k paying customers at a profitable, durable steady-state. " +
+        "Explored adjacent paths to keep growing, including B2B motions. " +
+        "Began work on a set of bigger feature launches for late 2025.",
       diffstat: {
         items: [
-          { file: 'metrics/subs.csv', added: 0, removed: 0, note: 'flat' },
+          { file: 'metrics/subs.csv', added: 0, removed: 0, note: 'steady' },
         ],
-        summary: 'plateau identified',
+        summary: 'steady-state held',
       },
     },
 
@@ -165,15 +166,15 @@ window.TIMELINE = (function () {
       sha: '3e5b192', fullSha: '3e5b192a11c3d55f67ab9921dd04e6faabbccdd1',
       branch: 'stockunlock', author: 'Jake Ruth <jake2ruth@gmail.com>',
       date: '2022-01',
-      subject: 'raised $1.35M seed',
+      subject: 'raised $1.335M seed',
       tags: ['led the YC interview'],
       body:
-        "Closed a $1.35M seed. I led the YC interview.",
+        "Closed a $1.335M seed. I led the YC interview.",
       diffstat: {
         items: [
           { file: 'balance.json', added: 1350000, removed: 0, note: 'seed' },
         ],
-        summary: '$1.35M deposited',
+        summary: '$1.335M deposited',
       },
     },
 

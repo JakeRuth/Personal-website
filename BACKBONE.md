@@ -105,9 +105,9 @@ On the hunt for what's next.
 - Daniel ignored me for ~6 weeks while I kept emailing and commenting. He eventually replied — not because he was sold, but to make me stop. Hopped on a video call, cracked a beer. → see *Stories: Pronk emails*.
 - Daniel let me into his Discord. I dropped an early Excel-generator alpha (worked for a handful of stocks). Users freaked: "are you selling this?" "could you add this stock?" "I would pay for this." → see *Stories: Discord drop*.
 - Brought a third co-founder over from Oscar (a fellow engineer there). Y Combinator reached out cold via LinkedIn before we'd even applied. Applied, got in. I led the YC interview. **Note:** the third co-founder is a real person but is never named on the rendered site, per Jake's preference. Refer to him as "a third co-founder" or "a fellow Oscar engineer" only.
-- Raised $1.35M seed. YC pushed us to launch before raising.
+- Raised $1.335M seed. YC pushed us to launch before raising.
 - Scaled to a team of eight and thousands of paying customers.
-- Hit a **~3.9k-paying-subscriber wall** in 2024 — new sign-ups roughly equaled churn. Tried partial pivots, including B2B sales attempts. Eventually bet on a set of big feature launches in late 2025; they took too long to build, burned the team, and didn't land.
+- **Sustained ~3.9k paying customers** through 2024-2025 at a profitable, durable steady-state. Explored adjacent paths to keep growing, including B2B motions. Made a heavy late-2025 feature push before the team decided to right-size in early 2026.
 - Right-sized in early 2026. A small, lean team handles day-to-day. I worked it full-tilt up to that point. (Specific headcount kept private and never surfaced as a number; rendered language is always "small, lean team".)
 - Runs profitably today. My co-founder Daniel and I are above the day-to-day — on key decisions and weekend pokes; the small, lean team executes.
 - The real Stock Unlock brag isn't a unicorn outcome — it's that the company is alive, profitable, and has thousands of customers who love it. That alone outperforms most YC W22 cohort companies.
