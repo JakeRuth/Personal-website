@@ -459,7 +459,7 @@ window.TIMELINE = (function () {
         "Took over a dying CS club junior year. Outgoing seniors handed me the presidency. " +
         "Got professors to let me announce an interest meeting at the end of their classes. Booked a lecture hall, ~7pm on a weeknight. " +
         "~50-100 students showed; few dozen joined. Ran weekly meetings, LAN parties, and workshops on what I was learning at CommerceHub. " +
-        "Organized the Tekkapalooza field trip (a regional Albany-area tech showcase) that became my CommerceHub on-ramp. The club survived past me.",
+        "Organized the Tekkapalooza field trip (a regional Albany-area tech showcase) on behalf of the club, which became my CommerceHub on-ramp. The club survived past me.",
       diffstat: {
         items: [{ file: 'clubs/acm/*', added: 80, removed: 0, note: 'rebuilt' }],
         summary: 'few dozen members recruited, 1 career launched',
