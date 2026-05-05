@@ -148,7 +148,7 @@
       <article class="feat-card">
         <div class="feat-icon"><i class="lucide lucide-git-pull-request"></i></div>
         <h3>Boring migrations</h3>
-        <p>Customer.io to self-hosted AWS SES, 27 days on the side, ~$5&ndash;6K/yr saved (200K+ emails/month, self-serve composer for non-engineers). Webflow to a self-hosted marketing codebase, ~$500 to $1K/yr saved in hosting/contractor/upkeep, 20x more content pages, no contractor dependency. AI coding-and-question agent for the team (Discord-fronted, /code + /ask, two model tiers via Bedrock).</p>
+        <p>Customer.io to self-hosted AWS SES, 27 days on the side, ~$5&ndash;6K/yr saved (hundreds of thousands of emails per month, over a million a year, self-serve composer for non-engineers). Webflow to a self-hosted marketing codebase, ~$500 to $1K/yr saved in hosting/contractor/upkeep, 20x more content pages, no contractor dependency. AI coding-and-question agent for the team (Discord-fronted, /code + /ask, Claude Sonnet 4.6 + MiniMax M2.7).</p>
       </article>
 
       <article class="feat-card">
@@ -408,6 +408,15 @@
       <article class="note-card">
         <div class="note-head">
           <span class="note-tag note-tag-story">trench</span>
+          <span class="note-date mono">Summers 2012, 2013 &middot; NYC</span>
+        </div>
+        <h3>The moving-van summers</h3>
+        <p>Two summers as a mover at Barr Brothers Moving Company in NYC, between freshman/sophomore and sophomore/junior year of college. Five to six days a week, up to 80 hours, 100% humidity in the sun. You learn fast that you can't drop a heavy thing even when your hands are slipping, because it isn't yours. Set the work-ethic floor and made the case for college sharper; the not-dropping lesson has cashed in on engineering work plenty since.</p>
+      </article>
+
+      <article class="note-card">
+        <div class="note-head">
+          <span class="note-tag note-tag-story">trench</span>
           <span class="note-date mono">CommerceHub &middot; intern era</span>
         </div>
         <h3>The production takedown</h3>
@@ -474,7 +483,7 @@
           <span class="note-date mono">Stock Unlock</span>
         </div>
         <h3>The Customer.io migration</h3>
-        <p>Migrated us off Customer.io onto self-hosted AWS SES over 27 days on the side. Three send modes (triggered, broadcasts, scheduled campaigns) with idempotent enrollment that auto-cancels conflicting variants, plus a self-serve composer for non-engineers with a &ldquo;Copy Agent Prompt&rdquo; button that emits a Claude Code instruction so anyone on the team can ship a broadcast in about five minutes of training. Most of the code came out of Claude Code; I read the parts that mattered (security, deliverability, business logic) and shipped. Saved ~$5&ndash;6K/year. 200K+ emails/month, one person, 27 days on the side.</p>
+        <p>Migrated us off Customer.io onto self-hosted AWS SES over 27 days on the side. Three send modes (triggered, broadcasts, scheduled campaigns), plus a self-serve composer for non-engineers. The composer's &ldquo;Copy Agent Prompt&rdquo; button copies a guided Q&amp;A script into Claude Code that walks the user through the email's purpose and audience, then hands back finished HTML to paste in. Bounces, complaints, and unsubscribes auto-route to the suppression list via SES feedback loops. FastAPI admin runs on Fargate; send-mode workers run on Lambda. Most of the code came out of Claude Code; I read the parts that mattered (security, deliverability, business logic) and shipped. Saved ~$5&ndash;6K/year. Hundreds of thousands of emails per month, over a million a year, one person, 27 days on the side.</p>
       </article>
 
       <article class="note-card">
@@ -492,7 +501,7 @@
           <span class="note-date mono">Stock Unlock &middot; off-boarding</span>
         </div>
         <h3>AI coding-and-question agent for the team</h3>
-        <p>Built on the way out of full-time at Stock Unlock so the three-person team can ship code and self-serve answers without me on Slack day-to-day. <code>/code</code> is end-to-end full-stack engineering on demand: plain-English Discord ask in, GitLab MR out with Playwright screenshots of the change running, code-enforced human-in-the-loop on every merge. <code>/ask</code> answers across a dozen-plus read-only data sources (codebase, Aurora, PostHog, Stripe, RevenueCat, Sentry, and more). Two model tiers via AWS Bedrock (Claude Sonnet 4.6 for <code>/code</code>, MiniMax M2.7 for <code>/ask</code>). Strict secret isolation: <code>/code</code>-only secrets are deleted on each <code>/ask</code> invocation. Discord.py + Open Hands harness on EC2 + Docker Compose.</p>
+        <p>Built on the way out of full-time at Stock Unlock so the small, lean team can ship code and self-serve answers without me in chat day-to-day. <code>/code</code> is end-to-end full-stack engineering on demand: plain-English Discord ask in, GitLab MR out with Playwright screenshots of the change running, code-enforced human-in-the-loop at all critical steps. <code>/ask</code> answers across a dozen-plus read-only data sources (codebase, Aurora, PostHog, Stripe, RevenueCat, Sentry, and more). Two model tiers, Claude Sonnet 4.6 for <code>/code</code> and MiniMax M2.7 for <code>/ask</code>, called via direct Anthropic and MiniMax SDKs (API keys in AWS Secrets Manager). Strict secret isolation: <code>/code</code>-only secrets are deleted on each <code>/ask</code> invocation. Private Discord bot (Discord.py) + Open Hands harness on EC2 + Docker Compose.</p>
       </article>
 
       <article class="note-card">
@@ -510,7 +519,7 @@
           <span class="note-date mono">spare hours</span>
         </div>
         <h3>The blinds motor</h3>
-        <p>First hardware project I've ever attempted. A wirelessly-controlled motor for the blinds in my apartment, Adafruit Feather, a small motor, more circuitry than I fully understood when I started, all uploaded via the Arduino IDE. Codex writes most of the embedded code; I learn enough hardware to stay in the driver's seat. Pulling off a domain I've never touched in spare hours is part of why I'm convinced the 10x &rarr; 100x shift in engineer output is real and recent.</p>
+        <p>First hardware project I've ever attempted. A battery-powered, Wi-Fi-controllable motor that pulls the bead chain on the roller shades in my apartment. Bench-prototyping the Adafruit Feather ESP32-C6 &rarr; DRV8833 driver &rarr; N20 motor chain over USB; LiPo + MiniBoost battery pass and the FixMyBlinds Rollease R8 clutch coupler come next. Tooling: tried Claude Code first, switched to Codex, which held the depth of conversation I needed for embedded (voltage, motor torque, datasheets, pinouts). Early on I was a robotic front-end for Codex; iteration is teaching me the underlying systems. Pulling off a domain I've never touched in spare hours is part of why I'm convinced the 10x &rarr; 100x shift in engineer output is real and recent.</p>
       </article>
 
       <article class="note-card">
@@ -538,12 +547,11 @@
       <div class="integ-tile"><span class="integ-tile-status"></span><span class="integ-tile-icon"><i class="lucide lucide-box"></i></span><span class="integ-tile-name">Speed-cubing</span><span class="integ-tile-v">3x3 avg 13.95s &middot; top-20 US Pyraminx</span></div>
       <div class="integ-tile"><span class="integ-tile-status"></span><span class="integ-tile-icon"><i class="lucide lucide-circle"></i></span><span class="integ-tile-name">Unicycle</span><span class="integ-tile-v">mountain &middot; one-footed &middot; trick-grade</span></div>
       <div class="integ-tile"><span class="integ-tile-status"></span><span class="integ-tile-icon"><i class="lucide lucide-trophy"></i></span><span class="integ-tile-name">Track &amp; field</span><span class="integ-tile-v">captain + MVP, sr year &middot; jumps + 400m</span></div>
-      <div class="integ-tile"><span class="integ-tile-status"></span><span class="integ-tile-icon"><i class="lucide lucide-goal"></i></span><span class="integ-tile-name">Soccer / Rugby</span><span class="integ-tile-v">JV captain &middot; UAlbany B&rarr;A squad</span></div>
+      <div class="integ-tile"><span class="integ-tile-status"></span><span class="integ-tile-icon"><i class="lucide lucide-goal"></i></span><span class="integ-tile-name">Soccer / Rugby</span><span class="integ-tile-v">JV captain (soph), 4 yrs HS &middot; UAlbany B&rarr;A squad</span></div>
       <div class="integ-tile"><span class="integ-tile-status"></span><span class="integ-tile-icon"><i class="lucide lucide-mountain"></i></span><span class="integ-tile-name">Rock climbing</span><span class="integ-tile-v">Oscar era &middot; ~2 yrs indoor</span></div>
       <div class="integ-tile"><span class="integ-tile-status"></span><span class="integ-tile-icon"><i class="lucide lucide-sigma"></i></span><span class="integ-tile-name">Math</span><span class="integ-tile-v">CS + Applied Math &middot; Dean's List</span></div>
       <div class="integ-tile"><span class="integ-tile-status"></span><span class="integ-tile-icon"><i class="lucide lucide-music"></i></span><span class="integ-tile-name">Skateboarding / DDR / Guitar Hero / RuneScape</span><span class="integ-tile-v">lock-in pattern &middot; teen era</span></div>
-      <div class="integ-tile"><span class="integ-tile-status"></span><span class="integ-tile-icon"><i class="lucide lucide-palette"></i></span><span class="integ-tile-name">Art</span><span class="integ-tile-v">held attention as a kid &middot; alongside math/science</span></div>
-      <div class="integ-tile"><span class="integ-tile-status"></span><span class="integ-tile-icon"><i class="lucide lucide-flower"></i></span><span class="integ-tile-name">Meditation</span><span class="integ-tile-v">regular &middot; tied to the serendipity thread</span></div>
+      <div class="integ-tile"><span class="integ-tile-status"></span><span class="integ-tile-icon"><i class="lucide lucide-flower"></i></span><span class="integ-tile-name">Meditation</span><span class="integ-tile-v">in and out &middot; subconscious + spirituality + Buddhism reading</span></div>
     </div>
 
     <div class="integ-foot">

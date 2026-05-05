@@ -526,6 +526,25 @@ window.TIMELINE = (function () {
       },
     },
 
+    { year: '2012' },
+    {
+      sha: 'b4rrm0v', fullSha: 'b4rrm0v0000111122223333444455556666777788',
+      branch: 'main', author: 'Jake Ruth <jake2ruth@gmail.com>',
+      date: '2012-08',
+      subject: 'Barr Brothers Moving Co: mover, two college summers',
+      tags: ['NYC summers', 'work-ethic floor', 'pre-engineering'],
+      body:
+        "Two summers as a mover at Barr Brothers Moving Company in NYC, between freshman/sophomore and " +
+        "sophomore/junior year of college. Five to six days a week, up to 80 hours, 100% humidity in the sun. " +
+        "You learn fast that you can't drop a heavy thing even when your hands are slipping, because it isn't yours. " +
+        "Set the work-ethic floor and made the case for college sharper; the not-dropping lesson has cashed in " +
+        "on engineering work plenty since.",
+      diffstat: {
+        items: [{ file: 'jobs/barr-brothers.md', added: 80, removed: 0, note: '2 summers' }],
+        summary: '2 summers logged, 0 things dropped',
+      },
+    },
+
     { year: '2011' },
     {
       sha: 'apcs011', fullSha: 'apcs0111111222223333344444555556666677777',
@@ -578,6 +597,7 @@ window.TIMELINE = (function () {
     { year: '2015', label: 'graduated' },
     { year: '2014', label: 'cube peak · ACM' },
     { year: '2013', label: 'CommerceHub starts' },
+    { year: '2012', label: 'Barr Brothers Moving' },
     { year: '2011', label: 'AP CS' },
     { year: '2008', label: 'first cube' },
   ];

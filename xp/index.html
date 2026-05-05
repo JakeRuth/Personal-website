@@ -239,10 +239,10 @@
       <section class="panel" id="about">
         <h2>About <span class="soft">&middot; System Properties</span></h2>
         <p class="about-tldr">
-          I built <a href="https://stockunlock.com" target="_blank" rel="noopener"><b>Stock Unlock</b></a> (<a href="https://www.ycombinator.com/companies/stock-unlock" target="_blank" rel="noopener">YC W22</a>), which runs profitable today with a small team. Before that I was a senior engineer at Oscar Health, and my first real job was at CommerceHub. It all started senior year of high school: I refused AP Calc,
+          I built <a href="https://stockunlock.com" target="_blank" rel="noopener"><b>Stock Unlock</b></a> (<a href="https://www.ycombinator.com/companies/stock-unlock" target="_blank" rel="noopener">YC W22</a>), which runs profitable today with a small team. Before that I was a senior engineer at Oscar Health, and my first real engineering job was at CommerceHub. It all started senior year of high school: I refused AP Calc,
           took Mrs. Nalbandian's AP Computer Science instead, and I was hooked in the first five
-          minutes of class. Pattern: I commit hard to things with depth. Software engineering is the
-          one that stuck.
+          minutes of class. Committing hard to things with depth has been the pattern through my life.
+          Software engineering is the one that stuck.
         </p>
         <dl class="sysprops">
           <div><dt>Name</dt><dd>Jake Ruth</dd></div>
@@ -437,20 +437,20 @@
             </div>
             <div class="work-body">
               <div class="work-role">
-                <p class="proj-lead">Built on the way out of full-time at Stock Unlock so the three-person team can ship code changes and answer their own questions without needing me on Slack day-to-day.</p>
+                <p class="proj-lead">Built on the way out of full-time at Stock Unlock so the small, lean team can ship code changes and answer their own questions without needing me in chat day-to-day.</p>
                 <ul class="proj-list">
-                  <li><b>Harness:</b> Discord.py front-end on EC2 + Docker Compose, calling an Open Hands harness with source-level patches.</li>
-                  <li><b><code>/code</code> is end-to-end full-stack engineering on demand.</b> Takes a plain-English ask in Discord, plans the change, writes the code (frontend, backend, or infra), opens a GitLab MR, and attaches Playwright screenshots (via the OpenHands browser tool) of the change actually running so a reviewer sees visual proof alongside the diff. Code-enforced human-in-the-loop on every merge.</li>
+                  <li><b>Harness:</b> Private Discord bot (Discord.py) on EC2 + Docker Compose, calling an Open Hands harness with source-level patches.</li>
+                  <li><b><code>/code</code> is end-to-end full-stack engineering on demand.</b> Takes a plain-English ask in Discord, plans the change, writes the code (frontend, backend, or infra), opens a GitLab MR, and attaches Playwright screenshots (via the OpenHands browser tool) of the change actually running so a reviewer sees visual proof alongside the diff. Code-enforced human-in-the-loop at all critical steps.</li>
                   <li><b><code>/ask</code></b> answers across a dozen-plus read-only data sources: codebase, Aurora, PostHog, Stripe, RevenueCat, Sentry, and several more.</li>
                   <li><b>Reliability:</b> SQLite task tracking with orphan-conversation reconciliation on restart; thread-aware UX so multiple people can run jobs in parallel.</li>
-                  <li><b>Models + cost:</b> tuned across two model tiers via AWS Bedrock (Claude Sonnet 4.6 for <code>/code</code>, MiniMax M2.7 for <code>/ask</code>).</li>
+                  <li><b>Models + cost:</b> two model tiers, Claude Sonnet 4.6 for <code>/code</code> and MiniMax M2.7 for <code>/ask</code>, called via direct Anthropic and MiniMax SDKs (API keys in AWS Secrets Manager).</li>
                   <li><b>Security boundary:</b> strict secret isolation, <code>/code</code> runs with deployer / Aurora-write / OpenSearch creds while <code>/ask</code> runs read-only-only. The <code>/code</code>-only secrets are explicitly deleted on each <code>/ask</code> invocation to prevent privilege escalation, even if a previous <code>/code</code> session left them in the workspace. IAM least-privilege between the agent and prod.</li>
                 </ul>
                 <div class="proj-stack">
                   <span class="proj-stack-row-label">Backend</span>
                   <ul class="proj-stack-row-chips"><li>Python</li><li>Discord.py</li><li>Open Hands</li><li>Playwright</li><li>BrowserGym</li><li>GitLab API</li><li>Anthropic SDK</li><li>MiniMax SDK</li></ul>
                   <span class="proj-stack-row-label">AWS</span>
-                  <ul class="proj-stack-row-chips"><li>EC2</li><li>IAM</li><li>Bedrock</li><li>Secrets Manager</li><li>Aurora (Postgres)</li></ul>
+                  <ul class="proj-stack-row-chips"><li>EC2</li><li>IAM</li><li>Secrets Manager</li><li>Aurora (Postgres)</li></ul>
                   <span class="proj-stack-row-label">Infra</span>
                   <ul class="proj-stack-row-chips"><li>Docker Compose</li><li>SQLite</li></ul>
                   <span class="proj-stack-row-label">External</span>
@@ -469,19 +469,19 @@
             </div>
             <div class="work-body">
               <div class="work-role">
-                <p class="proj-lead">Migrated transactional and marketing email off Customer.io across 27 days on the side. <b>200K+ emails per month, ~$5 to 6K per year saved.</b></p>
+                <p class="proj-lead">Migrated transactional and marketing email off Customer.io across 27 days on the side. <b>Hundreds of thousands of emails per month, over a million a year, ~$5 to 6K per year saved.</b></p>
                 <ul class="proj-list">
-                  <li><b>Three send modes:</b> triggered (Lambda-direct), broadcasts (SQS-buffered + DLQs), campaigns (EventBridge-scheduled). Idempotent enrollment auto-cancels conflicting variants.</li>
+                  <li><b>Three send modes:</b> triggered (Lambda-direct), broadcasts (SQS-buffered + DLQs), campaigns (EventBridge-scheduled).</li>
                   <li><b>Self-serve composer for non-engineers:</b> three-button UI with live preview and locked design areas. Five minutes of training, anyone on the team can ship a broadcast.</li>
-                  <li><b>Built-in AI handoff:</b> a &ldquo;Copy Agent Prompt&rdquo; button emits a structured Claude Code instruction with the template, so the composer can branch into custom HTML without leaving the flow.</li>
-                  <li><b>Deliverability + audit:</b> SES bounce/complaint feedback drives suppression; full activity log with send/delivery/open/click counts, filterable by recipient, campaign, template, or status.</li>
-                  <li><b>Posture:</b> Claude Code wrote most of the code; I read the parts that mattered (security, deliverability, business logic) and shipped.</li>
+                  <li><b>Claude Code helper prompt:</b> a &ldquo;Copy Agent Prompt&rdquo; button copies a guided Q&amp;A script into Claude. Claude walks the user through the email's purpose, audience, and structure, then hands back finished HTML they paste back into the composer. Non-technical users get a co-author, not a blank page.</li>
+                  <li><b>Deliverability + tracking:</b> bounces, complaints, and unsubscribes auto-route to the suppression list via SES feedback loops. Full activity log of send/delivery/open/click counts, filterable by recipient, campaign, template, or status.</li>
+                  <li><b>How I built it:</b> Claude Code wrote most of the code; I read the parts that mattered (security, deliverability, business logic) and shipped.</li>
                 </ul>
                 <div class="proj-stack">
                   <span class="proj-stack-row-label">Backend</span>
                   <ul class="proj-stack-row-chips"><li>Python</li><li>FastAPI</li></ul>
                   <span class="proj-stack-row-label">AWS</span>
-                  <ul class="proj-stack-row-chips"><li>SES</li><li>SNS</li><li>Lambda</li><li>SQS</li><li>EventBridge</li><li>S3</li><li>Aurora (Postgres)</li></ul>
+                  <ul class="proj-stack-row-chips"><li>SES</li><li>SNS</li><li>Lambda</li><li>Fargate</li><li>SQS</li><li>EventBridge</li><li>S3</li><li>Aurora (Postgres)</li></ul>
                   <span class="proj-stack-row-label">Frontend</span>
                   <ul class="proj-stack-row-chips"><li>TypeScript</li><li>React</li><li>MUI</li></ul>
                 </div>
@@ -503,13 +503,12 @@
                   <li><b>20&times; more content pages.</b> Full UX control Webflow couldn't deliver.</li>
                   <li><b>Programmatic SEO + GEO Lambdas</b> generate per-keyword and per-region pages. AI-generated, human-reviewed.</li>
                   <li><b>No more contractor dependency:</b> every copy update is a code change in our own repo.</li>
-                  <li><b>Code-review automation</b> across the team: AI reviews AI, humans gate the merge.</li>
                 </ul>
                 <div class="proj-stack">
                   <span class="proj-stack-row-label">Frontend</span>
                   <ul class="proj-stack-row-chips"><li>HTML</li><li>Tailwind CSS</li><li>JavaScript</li></ul>
                   <span class="proj-stack-row-label">Backend</span>
-                  <ul class="proj-stack-row-chips"><li>Node.js</li><li>Handlebars</li><li>pSEO pipeline</li></ul>
+                  <ul class="proj-stack-row-chips"><li>Node.js</li><li>Handlebars</li></ul>
                   <span class="proj-stack-row-label">AWS</span>
                   <ul class="proj-stack-row-chips"><li>Lambda</li><li>CloudFront</li><li>S3</li></ul>
                 </div>
@@ -529,9 +528,8 @@
                 <p class="proj-lead">Vanilla HTML/CSS/JS, no build step, three chrome experiences sharing a single shell. Written by AI, reviewed by me.</p>
                 <ul class="proj-list">
                   <li><b>Three mediums (XP, README, SaaS)</b> deliver hard parity on every fact via shared canonical content.</li>
-                  <li><b>BFS solver</b> over a shared move set animates the Rubik's-cube transition between mediums.</li>
+                  <li><b>Custom Rubik's-cube solver</b> computes the shortest move sequence between any two cube states; animates the transition between mediums.</li>
                   <li><b><code>BACKBONE.md</code> + <code>CLAUDE.md</code></b> live in the repo as canonical docs so any agent reading the codebase stays on-voice and parity stays enforced.</li>
-                  <li><b>Log Off / Turn Off dodge the cursor.</b> Reach for either and they magnet-evade. You literally can't quit.</li>
                 </ul>
                 <div class="proj-stack">
                   <span class="proj-stack-row-label">Frontend</span>
@@ -552,19 +550,26 @@
             </div>
             <div class="work-body">
               <div class="work-role">
-                <p class="proj-lead">First hardware project I've ever attempted. Codex writes most of the embedded code; I learn enough hardware to stay in the seat.</p>
+                <p class="proj-lead">First hardware project I've ever attempted. Building a battery-powered, Wi-Fi-controllable motor that pulls the bead chain on the roller shades in my apartment. Working bench-up from a Feather + breadboard toward a wall-mounted unit.</p>
                 <ul class="proj-list">
-                  <li><b>Build:</b> Adafruit Feather + small motor + circuitry I'm still wrapping my head around.</li>
-                  <li><b>Tooling:</b> Arduino IDE, OTA-style uploads, Codex pair-programming.</li>
-                  <li><b>Why it matters:</b> pulling off a domain I've never touched, in spare hours, is part of why I'm convinced the 10x to 100x shift is real and recent.</li>
+                  <li><b>What it is.</b> A small device that pulls a 4.5mm bead chain on a standard roller shade, eventually battery-powered and Wi-Fi-controllable. Currently bench-prototyping the Feather &rarr; DRV8833 &rarr; N20 motor chain over USB; battery + boost-converter pass and the FixMyBlinds clutch coupler come next.</li>
+                  <li><b>Codex over Claude Code.</b> Tried both; for embedded work (voltage, motor torque, gear ratios, datasheet reading, board pinouts), Codex held the depth of conversation I needed for this project, so I switched. Long Codex sessions plan the next step; I go bench-test it.</li>
+                  <li><b>The learning loop.</b> Early on I was effectively a robotic front-end for Codex, copying instructions and observing what happened. With iteration I'm picking up the underlying systems, voltage, current, motor drivers, encoder feedback, LiPo + boost-converter behavior, and starting to ask better questions instead of just relaying.</li>
+                  <li><b>Why it matters.</b> Pulling off a domain I've never touched, in spare hours, is part of why I'm convinced the 10x to 100x shift in engineer output is real and recent. Hardware was the toughest gap to bridge; with the right tooling, that gap is closing.</li>
                 </ul>
                 <div class="proj-stack">
                   <span class="proj-stack-row-label">Firmware</span>
                   <ul class="proj-stack-row-chips"><li>C++ (Arduino)</li></ul>
                   <span class="proj-stack-row-label">Tooling</span>
-                  <ul class="proj-stack-row-chips"><li>Codex</li></ul>
-                  <span class="proj-stack-row-label">Hardware</span>
-                  <ul class="proj-stack-row-chips"><li>Adafruit Feather</li><li>Wi-Fi</li></ul>
+                  <ul class="proj-stack-row-chips"><li>Codex</li><li>Arduino IDE</li></ul>
+                  <span class="proj-stack-row-label">Microcontroller</span>
+                  <ul class="proj-stack-row-chips"><li>Adafruit Feather ESP32-C6</li><li>Seeed XIAO ESP32-C6</li></ul>
+                  <span class="proj-stack-row-label">Motor + driver</span>
+                  <ul class="proj-stack-row-chips"><li>N20 DC motor (6V, 1:100, magnetic encoder)</li><li>DRV8833</li></ul>
+                  <span class="proj-stack-row-label">Power</span>
+                  <ul class="proj-stack-row-chips"><li>LiPo 3.7V 1200mAh</li><li>MiniBoost 5V (TPS61023)</li></ul>
+                  <span class="proj-stack-row-label">Mechanical</span>
+                  <ul class="proj-stack-row-chips"><li>FixMyBlinds Rollease R8 clutch</li><li>4.5mm bead chain</li></ul>
                 </div>
               </div>
             </div>
@@ -619,6 +624,28 @@
             <span class="timeline-era-label">2011&ndash;2015</span>
             <span class="timeline-era-title">SUNY Albany &middot; ACM era</span>
           </div>
+
+          <article class="timeline-item">
+            <div class="timeline-head" data-toggle-story tabindex="0" role="button" aria-expanded="false">
+              <span class="timeline-dot" aria-hidden="true"></span>
+              <span class="timeline-title"><b>The moving-van summers</b></span>
+              <span class="timeline-date">Summers 2012, 2013</span>
+              <span class="timeline-chev" aria-hidden="true">&#9662;</span>
+            </div>
+            <div class="timeline-body">
+              <div class="timeline-body-inner">
+                <p>
+                  Two summers as a mover at Barr Brothers Moving Company in NYC, between freshman/sophomore and
+                  sophomore/junior year of college. Five to six days a week, up to 80 hours, 100% humidity in the sun.
+                </p>
+                <p>
+                  You learn fast that you can't drop a heavy thing even when your hands are slipping, because
+                  it isn't yours. Set the work-ethic floor and made the case for college sharper; the not-dropping
+                  lesson has cashed in on engineering work plenty since.
+                </p>
+              </div>
+            </div>
+          </article>
 
           <article class="timeline-item">
             <div class="timeline-head" data-toggle-story tabindex="0" role="button" aria-expanded="false">
@@ -970,12 +997,21 @@
             <div class="timeline-body">
               <div class="timeline-body-inner">
                 <p>
-                  Building a wirelessly-controlled motor that raises and lowers the blinds in my apartment.
-                  Adafruit Feather board, a small motor, more circuitry than I fully understood when I started,
-                  all uploaded via the Arduino IDE. Codex writes most of the embedded code; I learn enough of the
-                  hardware side to stay in the driver's seat. The fact that I'm pulling off a domain I've never
-                  touched, in spare hours, is part of why I'm convinced the 10x &rarr; 100x shift in engineer
-                  output is real and recent.
+                  Building a battery-powered, Wi-Fi-controllable motor that pulls the bead chain on the roller shades
+                  in my apartment. Bench-prototyping the Feather ESP32-C6 &rarr; DRV8833 driver &rarr; N20 motor chain
+                  over USB; LiPo + boost-converter pass and the FixMyBlinds clutch coupler come next.
+                </p>
+                <p>
+                  Tooling: tried Claude Code first, then switched to Codex. For embedded work (voltage, motor torque,
+                  gear ratios, datasheet reading, board pinouts), Codex held the depth of conversation I needed for
+                  this project. Long Codex sessions plan the next step; I go bench-test it.
+                </p>
+                <p>
+                  Early on I was effectively a robotic front-end for Codex, copying instructions and observing what
+                  happened. With iteration I'm picking up the underlying systems, voltage, current, motor drivers,
+                  encoder feedback, LiPo + boost-converter behavior, and starting to ask better questions instead of
+                  just relaying. Pulling off a domain I've never touched, in spare hours, is part of why I'm
+                  convinced the 10x &rarr; 100x shift in engineer output is real and recent.
                 </p>
               </div>
             </div>
@@ -988,8 +1024,8 @@
       <section class="panel" id="cube">
         <h2>Mastery / hobbies <span class="soft">&middot; Accessories</span></h2>
         <p>
-          Pattern throughout my life: I commit hard to things with depth. Software engineering is the one that
-          stuck.
+          Committing hard to things with depth has been the pattern through my life. Software engineering is the
+          one that stuck.
           <span class="mastery-creed">&ldquo;Self-improvement as a core operating system part of me.&rdquo;</span>
         </p>
         <ul class="hobby-list" role="list">
@@ -998,7 +1034,7 @@
               <span class="hobby-title"><b>Speed-cubing</b></span>
               <span class="hobby-meta">2008&ndash;2014 &middot; WCA (World Cube Association)</span>
             </div>
-            <div class="hobby-body">3&times;3 average <b>13.95s</b>. Top-20 in the US at the Pyraminx at peak. Competed at Northeast US events and Nationals (<a href="https://www.worldcubeassociation.org/persons/2008RUTH01" target="_blank" rel="noopener">WCA profile: 2008RUTH01</a>). No longer ranked in any event.</div>
+            <div class="hobby-body">3&times;3 average <b>13.95s</b>. Top-20 in the US at the Pyraminx at peak. Competed at Northeast US events and Nationals (<a href="https://www.worldcubeassociation.org/persons/2008RUTH01" target="_blank" rel="noopener">WCA profile: 2008RUTH01</a>).</div>
           </li>
           <li class="hobby-card">
             <div class="hobby-head">
@@ -1017,9 +1053,9 @@
           <li class="hobby-card">
             <div class="hobby-head">
               <span class="hobby-title"><b>Soccer</b></span>
-              <span class="hobby-meta">HS sophomore year</span>
+              <span class="hobby-meta">All four years HS</span>
             </div>
-            <div class="hobby-body">JV captain. Didn't make varsity.</div>
+            <div class="hobby-body">Played all four years of high school. JV captain sophomore year. Started on the varsity team senior year.</div>
           </li>
           <li class="hobby-card">
             <div class="hobby-head">
@@ -1047,21 +1083,14 @@
               <span class="hobby-title"><b>Math</b></span>
               <span class="hobby-meta">Since third grade</span>
             </div>
-            <div class="hobby-body">Accelerated track all the way through.</div>
-          </li>
-          <li class="hobby-card">
-            <div class="hobby-head">
-              <span class="hobby-title"><b>Art</b></span>
-              <span class="hobby-meta">Childhood</span>
-            </div>
-            <div class="hobby-body">One of the only school subjects outside math/science that held my attention.</div>
+            <div class="hobby-body">Skipped onto the accelerated track in third grade and stayed ahead through senior year of high school, burning through every available math class except AP Calc.</div>
           </li>
           <li class="hobby-card">
             <div class="hobby-head">
               <span class="hobby-title"><b>Meditation</b></span>
               <span class="hobby-meta">Adult practice</span>
             </div>
-            <div class="hobby-body">Regular. Tied to the serendipity-as-worldview thread.</div>
+            <div class="hobby-body">In and out of the practice but generally enjoy meditating. Also into books on the subconscious mind, plus territory that borders on spirituality, Buddhism, and quantum-philosophy.</div>
           </li>
         </ul>
         <p class="mastery-note">

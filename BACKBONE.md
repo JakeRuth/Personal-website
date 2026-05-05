@@ -12,7 +12,7 @@ Treat the prose as canonical *reference*, not literal copy. Each medium will ada
 
 Jake Ruth.
 
-I commit hard to things with depth. Software engineering is the one that stuck. Then a senior-year math credit dropped me into AP Computer Science instead of AP Calc, and the loop closed. Fifteen years of shipping later, four companies in (two I worked at, two I started). **Note (2026-05-03):** earlier drafts framed this as "code and cubes are the two that have held fifteen-plus years"; Jake corrected it because he hasn't been consistently cubing for fifteen years. Cubing is in the mastery section as a competed-then-moved-past pursuit, not a current through-line. Then "Software engineering is the through-line that's held fifteen-plus years" was tried, also rejected as clunky. Canonical now is "Software engineering is the one that stuck." Don't regress.
+Committing hard to things with depth has been the pattern through my life. Software engineering is the one that stuck. Then a senior-year math credit dropped me into AP Computer Science instead of AP Calc, and the loop closed. Fifteen years of shipping later, four companies in (two I worked at, two I started). **Note (2026-05-03):** earlier drafts framed this as "code and cubes are the two that have held fifteen-plus years"; Jake corrected it because he hasn't been consistently cubing for fifteen years. Cubing is in the mastery section as a competed-then-moved-past pursuit, not a current through-line. Then "Software engineering is the through-line that's held fifteen-plus years" was tried, also rejected as clunky. Canonical now is "Software engineering is the one that stuck." The "Pattern: I commit..." colon-prefixed form was also tried and rejected as abrupt; canonical sentence form is **"Committing hard to things with depth has been the pattern through my life. Software engineering is the one that stuck."** Don't regress.
 
 ---
 
@@ -41,6 +41,7 @@ For depth on each item, see *Companies and orgs* below and *Stories*.
 
 - **~2010** — AP CS switch, senior year of high school.
 - **2011 – May 2015** — SUNY Albany. BS in Computer Science + Applied Mathematics, GPA 3.88, Dean's List every semester. Freshman-year Calc 1: 99/100, the top score in a ~500-student cohort that semester (the cohort included grad students). Took over the dying ACM (CS Club) junior year, ran it two years. Teaching Assistant in the CS dept 2013–14. Tekkapalooza resume drop. Played rugby briefly (B-squad → A-squad).
+- **Summers 2012 + 2013** — Barr Brothers Moving Company (NYC), mover. Two summers of hard labor in between freshman/sophomore and sophomore/junior year of college. Five to six days a week, up to 80 hours, full New York summer. Junior-to-senior summer was the CommerceHub internship instead. → see *Stories: The moving-van summers*.
 - **Nov 2013 – May 2015** — CommerceHub (Albany), Software Engineer Intern. Part-time fall/spring + full-time summers.
 - **July 2015 – July 2016** — CommerceHub, Associate Software Engineer. Exactly one year and seven days. Left to go full-time on Youni.
 - **late 2014 – ~Nov 2016** — Youni (Albany → Troy), co-founded with two UAlbany D1 soccer players (Anthony, CEO; Jordan). Started nights and weekends late 2014 alongside CommerceHub, ramped up over my last few months at CommerceHub, went full-time July 2016. Folded after ~4–5 months full-time. Title: Co-founder, CTO.
@@ -146,6 +147,16 @@ She had mixed feelings. Took me anyway.
 
 She ran a function on the board in the first five minutes of the first class. I knew right there. Fifteen years later, that sideways pivot is still the main road.
 
+### The moving-van summers
+
+Two summers as a mover at Barr Brothers Moving Company in NYC: between freshman/sophomore and sophomore/junior year of college (summers 2012 and 2013). Junior-to-senior summer was the CommerceHub internship instead.
+
+Five to six days a week, up to 80 hours, 100% humidity in the New York sun. The guys on the truck were tough; the work was sweaty and arduous; the stuff was always other people's. You learn fast that you can't drop a heavy thing even when your hands are slipping, because it isn't yours.
+
+It set the work-ethic floor and made the case for college sharper. The lesson about not putting down a hard thing has cashed in on engineering work plenty since.
+
+(Family-connection entry point — kept private; not surfaced on rendered pages.)
+
 ### The production takedown
 
 CommerceHub, intern era. I had access to a tool that could take a system in production down with a single button press. I pressed the button. Production went down.
@@ -219,9 +230,9 @@ Two years later, mid-20s. Slightly less elaborate — kept the cube-on-unicycle 
 
 ### The Customer.io migration
 
-Stock Unlock, recent. We'd been paying Customer.io for transactional and marketing email. I migrated us off over 27 days on the side (Jake's detailed write-up of the timeline lives in his X article): wrote the SES integration with three send modes (triggered Lambda-direct, SQS-buffered broadcasts with DLQs, EventBridge-scheduled campaigns) and idempotent enrollment that auto-cancels conflicting variants, plus the AWS scaffolding. Built a self-serve composer for non-engineers (three-button UI with live preview and locked design areas) with a "Copy Agent Prompt" button that emits a Claude Code instruction so anyone on the team can branch into custom HTML in about five minutes of training. SES bounce/complaint feedback drives suppression; full activity log with send/delivery/open/click counts, filterable by recipient, campaign, template, or status. Most of the code came out of Claude Code; I read the parts that mattered (security, deliverability, business logic) and shipped.
+Stock Unlock, recent. We'd been paying Customer.io for transactional and marketing email. I migrated us off over 27 days on the side (Jake's detailed write-up of the timeline lives in his X article): wrote the SES integration with three send modes (triggered Lambda-direct, SQS-buffered broadcasts with DLQs, EventBridge-scheduled campaigns), plus the AWS scaffolding. Built a self-serve composer for non-engineers (three-button UI with live preview and locked design areas) with a "Copy Agent Prompt" button that emits a Claude Code instruction so anyone on the team can branch into custom HTML in about five minutes of training. SES bounce/complaint feedback drives suppression; full activity log with send/delivery/open/click counts, filterable by recipient, campaign, template, or status. Most of the code came out of Claude Code; I read the parts that mattered (security, deliverability, business logic) and shipped.
 
-Saved ~$5 to 6K/year. 200K+ emails/month. One person, 27 days on the side. That's what AI-era engineering actually looks like when you know what you're doing.
+Saved ~$5 to 6K/year. Hundreds of thousands of emails per month, over a million a year. One person, 27 days on the side. That's what AI-era engineering actually looks like when you know what you're doing.
 
 ### The Webflow migration
 
@@ -241,9 +252,9 @@ Probably the most ambitious thing I've built that isn't a company. Driver-in-the
 
 ### The blinds motor
 
-First hardware project I've ever attempted. Building a wirelessly-controlled motor that raises and lowers the blinds in my apartment — Adafruit Feather board, a small motor, more circuitry than I fully understood when I started, all uploaded via the Arduino IDE.
+First hardware project I've ever attempted. Building a battery-powered, Wi-Fi-controllable motor that pulls the bead chain on the roller shades in my apartment. Bench-prototyping the Feather ESP32-C6 → DRV8833 driver → N20 motor (6V, 1:100, magnetic encoder) chain over USB; LiPo 3.7V + MiniBoost (TPS61023) battery pass and the FixMyBlinds Rollease R8 clutch coupler come next. Smaller Seeed XIAO ESP32-C6 board waiting in the wings for a refined V2.
 
-Codex writes most of the embedded code; I learn enough of the hardware side to stay in the driver's seat. The fact that I'm pulling off a domain I've never touched, in spare hours, is part of why I'm convinced the 10x → 100x shift in engineer output is real and recent.
+**Tooling note:** tried Claude Code first, switched to Codex. For embedded work (voltage, motor torque, gear ratios, datasheet reading, board pinouts), Codex held the depth of conversation Jake needed for this project. Long Codex sessions plan the next step; he goes bench-tests it. Early on Jake was effectively a robotic front-end for Codex, copying instructions and observing what happened. With iteration he's picking up the underlying systems (voltage, current, motor drivers, encoder feedback, LiPo + boost-converter behavior) and asking better questions instead of just relaying. Project lives at `/Users/hippofluff/code/throwing-shade-codex/`. Pulling off a domain he's never touched, in spare hours, is part of why he's convinced the 10x → 100x shift in engineer output is real and recent.
 
 ### Emotiqueue
 
@@ -261,12 +272,12 @@ Quick CommerceHub-trench memory. Had to fix a string-truncation bug in a company
 
 ## Mastery / hobbies
 
-Pattern throughout my life: I commit hard to things with depth. Software engineering is the one that stuck. *"Self-improvement as a core operating system part of me."*
+Committing hard to things with depth has been the pattern through my life. Software engineering is the one that stuck. *"Self-improvement as a core operating system part of me."*
 
 ### Speed-cubing
 - Competed 2008–2014 at Northeast US events and Nationals (WCA, the World Cube Association).
 - 3×3 average: 13.95 seconds.
-- Top-20 in the US at the Pyraminx at peak. No longer ranked in any event.
+- Top-20 in the US at the Pyraminx at peak.
 - WCA profile: [worldcubeassociation.org/persons/2008RUTH01](https://www.worldcubeassociation.org/persons/2008RUTH01).
 
 ### Unicycle
@@ -279,13 +290,12 @@ Pattern throughout my life: I commit hard to things with depth. Software enginee
 - Captain and MVP senior year (most points scored on the team). Well-known across the four sectional teams in our area.
 
 ### Other hobbies / pursuits
-- **Soccer** — JV captain sophomore year of high school. Didn't make varsity.
+- **Soccer** — played all four years of high school. JV captain sophomore year. Started on the varsity team senior year.
 - **Rugby** — UAlbany. Came in as a sport newcomer; moved B-squad → A-squad after learning the game.
 - **Rock climbing** — Oscar Health era. Indoor, two-ish years of steady climbing with friends from the team. Problem-solving with your body, plus the social side. Would pick it up again in a heartbeat.
 - **Skateboarding + DDR + Guitar Hero + RuneScape** — insanely good at DDR and Guitar Hero, very good at skateboarding, deep on RuneScape. The lock-in pattern was already showing.
-- **Math** — accelerated track since third grade.
-- **Art** — actually liked it as a kid; one of the only school subjects outside math/science that held my attention.
-- **Meditation** — regular practice as an adult; tied to the serendipity-as-worldview thread.
+- **Math** — skipped onto the accelerated track in third grade and stayed ahead through senior year of high school, burning through every available math class except AP Calc.
+- **Meditation** — in and out of the practice as an adult but generally enjoys meditating. Also reads books on the subconscious mind and the territory bordering on spirituality, Buddhism, and quantum-philosophy.
 
 ### The inverse signal
 
@@ -320,11 +330,11 @@ Earlier drafts ran longer ("the capability is changing weekly", "stay on top of 
 These ship as accordion rows on the rendered AI section. Order matches what's currently on `xp/`:
 
 1. **The X poster** (Stock Unlock internal). LangGraph self-improving pipeline (ideate, generate, fact-check, screenshot, quality-gate, save with conditional retry). Daily learning loop ingests human edits + live engagement, optimizes the system prompt, runs A/B prompt experiments. Custom React admin UI for human-in-the-loop. Playwright for in-product screenshots.
-2. **AI coding-and-question agent for the team** (Stock Unlock infra, built as part of Jake's off-boarding). Discord.py + Open Hands harness on EC2 (Docker Compose). Four slash commands. `/code` opens GitLab MRs with Playwright screenshots (via the OpenHands browser tool, which uses Playwright + BrowserGym under the hood — verified in OpenHands' `pyproject.toml`), code-enforced human-in-the-loop. `/ask` answers across a dozen-plus read-only data sources (codebase, Aurora, PostHog, Stripe, RevenueCat, Sentry, plus Finnhub, Finchat, Google Analytics, CloudWatch, S3, Cognito). Two model tiers via AWS Bedrock (Claude Sonnet 4.6 for `/code`, MiniMax M2.7 for `/ask`). Strict secret-isolation: `/code`-only secrets are deleted on each `/ask` invocation to prevent privilege escalation. IAM least-privilege boundary between agent and prod.
-3. **Customer.io to AWS SES migration** (Stock Unlock, 27 days on the side). Three send modes: triggered (Lambda-direct), broadcasts (SQS-buffered + DLQs), campaigns (EventBridge-scheduled), with idempotent enrollment that auto-cancels conflicting variants. Self-serve composer for non-engineers (three-button UI with live preview, ~5 min training). Built-in AI handoff via a "Copy Agent Prompt" button that emits a Claude Code instruction with the template. SES bounce/complaint feedback drives suppression; full activity log with send/delivery/open/click counts. 200K+ emails/month. Saved ~$5 to 6K/yr.
-4. **Webflow to self-hosted marketing site** (Stock Unlock). ~$500 to $1K/year saved in hosting, contractor, and upkeep costs. 20× more content pages. No contractor dependency. Programmatic SEO + GEO on top. Code-review automation across the team.
-5. **This site, jakeruth.com** (personal). Vanilla HTML/CSS/JS, three chrome experiences sharing one shell, BFS solver for cube transition. AI-built, human-reviewed. BACKBONE.md and CLAUDE.md keep agents on-voice.
-6. **Wirelessly-controlled blinds motor** (personal, **in progress**). Adafruit Feather, Codex writes most of the embedded code. First hardware project.
+2. **AI coding-and-question agent for the team** (Stock Unlock infra, built as part of Jake's off-boarding). Private Discord bot (Discord.py) calling an Open Hands harness, deployed on EC2 + Docker Compose. Four slash commands. `/code` opens GitLab MRs with Playwright screenshots (via the OpenHands browser tool, which uses Playwright + BrowserGym under the hood — verified in OpenHands' `pyproject.toml`), code-enforced human-in-the-loop at all critical steps (plan approval, screenshot approval, MR review). `/ask` answers across a dozen-plus read-only data sources (codebase, Aurora, PostHog, Stripe, RevenueCat, Sentry, plus Finnhub, Finchat, Google Analytics, CloudWatch, S3, Cognito). Two model tiers, Claude Sonnet 4.6 for `/code` and MiniMax M2.7 for `/ask`, called via direct Anthropic and MiniMax SDKs (API keys in AWS Secrets Manager). Strict secret-isolation: `/code`-only secrets are deleted on each `/ask` invocation to prevent privilege escalation. IAM least-privilege boundary between agent and prod.
+3. **Customer.io to AWS SES migration** (Stock Unlock, 27 days on the side). Three send modes: triggered (Lambda-direct), broadcasts (SQS-buffered + DLQs), campaigns (EventBridge-scheduled). Self-serve composer for non-engineers (three-button UI with live preview, ~5 min training). Claude Code helper prompt: a "Copy Agent Prompt" button copies a guided Q&A script into Claude that walks the user through the email's purpose, audience, and structure, then hands back finished HTML to paste into the composer. Bounces, complaints, and unsubscribes auto-route to the suppression list via SES feedback loops; full activity log with send/delivery/open/click counts. Stack note: FastAPI admin endpoints run on AWS Fargate; the send-mode workers run on Lambda. Hundreds of thousands of emails per month, over a million a year. Saved ~$5 to 6K/yr.
+4. **Webflow to self-hosted marketing site** (Stock Unlock). ~$500 to $1K/year saved in hosting, contractor, and upkeep costs. 20× more content pages. No contractor dependency. Programmatic SEO + GEO on top.
+5. **This site, jakeruth.com** (personal). Vanilla HTML/CSS/JS, three chrome experiences sharing one shell, custom Rubik's-cube solver (bidirectional BFS over a compact cubie model) animates the transition between mediums. AI-built, human-reviewed. BACKBONE.md and CLAUDE.md keep agents on-voice.
+6. **Wirelessly-controlled blinds motor** (personal, **in progress**). First hardware project. Bench-prototyping the Adafruit Feather ESP32-C6 → DRV8833 driver → N20 motor chain over USB; LiPo + MiniBoost battery pass and FixMyBlinds Rollease R8 clutch come next. Tooling: tried Claude Code, switched to Codex (held the depth of conversation needed for embedded — voltage, motor torque, datasheets, pinouts).
 
 Once finalized in `xp/`, port this list and the philosophy bullets to readme/saas under hard parity.
 
