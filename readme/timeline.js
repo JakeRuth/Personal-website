@@ -68,13 +68,13 @@ window.TIMELINE = (function () {
       branch: 'stockunlock', author: 'Jake Ruth <jake2ruth@gmail.com>',
       date: '2026-02',
       decoration: [{ kind: 'remote', text: 'origin/stock-unlock' }],
-      subject: 'right-size SU to three FT; move to key decisions only',
-      tags: ['~3.9k wall in 2024', '3 FT remain', 'profitable'],
+      subject: 'right-size SU to a lean team; move to key decisions only',
+      tags: ['~3.9k wall in 2024', 'lean team', 'profitable'],
       body:
         "Hit a ~3.9k-paying-subscriber wall in 2024, sign-ups roughly equaled churn. " +
         "Tried partial pivots, including B2B sales attempts. Bet on big late-2025 feature launches; " +
         "they took too long, burned the team, didn't land. Right-sized in early 2026. " +
-        "Three full-time (two engineers + an exec assistant) handle day-to-day. Worked it full-tilt up to that point.",
+        "A small, lean team handles day-to-day. Worked it full-tilt up to that point.",
       diffstat: {
         items: [
           { file: 'ops/payroll', added: 0,   removed: 5, note: 'right-sized' },
@@ -198,10 +198,10 @@ window.TIMELINE = (function () {
       date: '2021-08',
       decoration: [{ kind: 'branch', text: 'oscar-health' }],
       subject: 'oscar-health: final commit; brought a co-founder with me',
-      tags: ['~150+ engineers at exit', 'declined team-lead path near the end'],
+      tags: ['~150+ engineers at exit'],
       body:
         "Four+ years at Oscar. Joined at ~50 engineers under Alan Warren, left at ~150+. " +
-        "Associate → Mid → Senior Software Engineer. Declined the team-lead path near the end. " +
+        "Associate → Mid → Senior Software Engineer. " +
         "Brought a co-founder over to Stock Unlock.",
       diffstat: {
         items: [{ file: 'offboarding.md', added: 1, removed: 0, note: 'exit' }],
@@ -265,7 +265,7 @@ window.TIMELINE = (function () {
       sha: 'c0ffee1', fullSha: 'c0ffee1deadbeefcafebabef00dbaadf00df00df',
       branch: 'oscar', author: 'Jake Ruth <jake2ruth@gmail.com>',
       date: '2020-09',
-      subject: 'senior at Oscar; declined team-lead path near the end',
+      subject: 'senior at Oscar; go-to across two teams',
       tags: ['Senior', 'go-to across two teams'],
       body:
         "Owned services across Python and Golang back-ends and a React front-end, including the internal site for hundreds of " +

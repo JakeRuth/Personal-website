@@ -49,7 +49,7 @@ CONTENT.README = [
 '',
 'Pre-teen me ran lemonade stands often enough that my parents told me to stop, shoveled snow for cash, and dragged my old toys onto the curb for a garage sale around age 11. The lock-in-and-go-deep pattern has been there the whole time. Senior year of high school I needed a math credit, refused AP Calc, and asked Mrs. Nalbandian if her AP Computer Science class counted. She said yes. She ran a function on the board in the first five minutes of the first class. I knew right there.',
 '',
-'CommerceHub three years (intern → FT, "first real engineering"). Co-founded **Youni**, a college-localized social-media iOS app, with Anthony and Jordan; folded after a few months full-time. Joined **Oscar Health** at ~50 engineers under Alan Warren (the Google leader who scaled Google Docs from 2-3 people to thousands), left at ~150+, declined the team-lead path near the end. Co-founded **[Stock Unlock](https://stockunlock.com)**, led the [YC W22](https://www.ycombinator.com/companies/stock-unlock) interview, raised $1.35M seed, scaled to a team of eight and thousands of paying customers. Runs profitably today; three full-time (two engineers + an exec assistant) handle day-to-day; I\'m on key decisions only.',
+'CommerceHub three years (intern → FT, "first real engineering"). Co-founded **Youni**, a college-localized social-media iOS app, with Anthony and Jordan; folded after a few months full-time. Joined **Oscar Health** at ~50 engineers under Alan Warren (the Google leader who scaled Google Docs from 2-3 people to thousands), left at ~150+. Co-founded **[Stock Unlock](https://stockunlock.com)**, led the [YC W22](https://www.ycombinator.com/companies/stock-unlock) interview, raised $1.35M seed, scaled to a team of eight and thousands of paying customers. Runs profitably today; a small, lean team handles day-to-day; I\'m on key decisions only.',
 '',
 '> [!TIP]',
 '> Open **TIMELINE** in the file tree for the `git log` view. Flip the **Terminal** toggle in the header for the same content with a shell skin.',
@@ -72,7 +72,7 @@ CONTENT.README = [
 '      <span class="pc-type">SaaS · YC W22</span>',
 '    </div>',
 '    <div class="pc-body">',
-'      Software for retail investors that doesn\'t treat them as marks. Built it. Scaled to eight people and thousands of paying customers. Runs profitably today; three FT (two engineers + an exec assistant) handle day-to-day, I\'m on key decisions.',
+'      Software for retail investors that doesn\'t treat them as marks. Built it. Scaled to eight people and thousands of paying customers. Runs profitably today; a small, lean team handles day-to-day, I\'m on key decisions.',
 '    </div>',
 '    <div class="pc-meta">',
 '      <span>YC W22</span><span>$1.35M seed</span><span>profitable</span>',
@@ -149,7 +149,7 @@ CONTENT.README = [
 '## Stock Unlock',
 '',
 '> [!NOTE]',
-'> **The honest framing.** Built it. [YC W22](https://www.ycombinator.com/companies/stock-unlock). Scaled to eight people and thousands of paying customers. Runs profitably today. Three full-time (two engineers + an exec assistant) handle day-to-day; I\'m on key decisions only.',
+'> **The honest framing.** Built it. [YC W22](https://www.ycombinator.com/companies/stock-unlock). Scaled to eight people and thousands of paying customers. Runs profitably today. A small, lean team handles day-to-day; I\'m on key decisions only.',
 '',
 'COVID era, watching Daniel Pronk\'s investing YouTube. He was burning 5-10 hours every weekend on Excel sheets for his videos. I built a Python automation in a weekend that did the same job, faster. Driver was unrelenting curiosity and a nerdy thrill, plus I wanted free access to his paid Discord by being useful.',
 '',
@@ -159,7 +159,7 @@ CONTENT.README = [
 '',
 'Hit a ~3.9k-paying-subscriber wall in 2024, new sign-ups roughly equaled churn. Tried partial pivots. Bet on a set of big feature launches in late 2025; they took too long, burned the team, and didn\'t land. Right-sized in early 2026. Worked it full-tilt up to that point.',
 '',
-'Runs profitably today. Three FT (two engineers + an exec assistant) handle day-to-day. I\'m on key decisions and weekend pokes.',
+'Runs profitably today. A small, lean team handles day-to-day. I\'m on key decisions and weekend pokes.',
 '',
 '> The real [Stock Unlock](https://stockunlock.com) brag isn\'t a unicorn outcome, it\'s that the company is alive, profitable, and has thousands of customers who love it. That alone outperforms most [YC W22](https://www.ycombinator.com/companies/stock-unlock) cohort companies.',
 '',
@@ -224,7 +224,7 @@ CONTENT.README = [
 '',
 '<details>',
 '  <summary><strong>What\'s your role at Stock Unlock now?</strong></summary>',
-'  <p>Key decisions and weekend pokes. Three full-time employees, two engineers and an exec assistant, handle day-to-day. The company runs profitably and has thousands of customers who love it. I worked it full-tilt until early 2026.</p>',
+'  <p>Key decisions and weekend pokes. A small, lean team handles day-to-day. The company runs profitably and has thousands of customers who love it. I worked it full-tilt until early 2026.</p>',
 '</details>',
 '',
 '<details>',
@@ -239,7 +239,7 @@ CONTENT.README = [
 '',
 '<details>',
 '  <summary><strong>Will you manage?</strong></summary>',
-'  <p>Only if the team is right and the work stays close to the code. Declined the team-lead path at Oscar near the end. Hired and let go gracefully at Stock Unlock. Mentored newer engineers unofficially throughout, getting people up to speed is one of my strengths.</p>',
+'  <p>Only if the team is right and the work stays close to the code. Hired and let go gracefully at Stock Unlock. Mentored newer engineers unofficially throughout, getting people up to speed is one of my strengths.</p>',
 '</details>',
 '',
 '<details>',
@@ -356,7 +356,7 @@ CONTENT.ABOUT = [
 '',
 '## Oscar Health (March 2017 - 2021, NYC)',
 '',
-'Joined at ~50 engineers under **Alan Warren** (formerly the Google leader who scaled Google Docs from 2-3 people to thousands). That attracted heavy talent: lots of FAANG and Ivy-pedigreed engineers. The bar was visibly higher than CommerceHub. Left at ~150+. Associate Software Engineer → Mid (within a year) → **Senior Software Engineer** (~2 years later); Senior SWE for a year before leaving. Offered the team-lead path once near the end, declined to stay close to the code. Mentored newer engineers unofficially throughout, getting people up to speed is one of my strengths.',
+'Joined at ~50 engineers under **Alan Warren** (formerly the Google leader who scaled Google Docs from 2-3 people to thousands). That attracted heavy talent: lots of FAANG and Ivy-pedigreed engineers. The bar was visibly higher than CommerceHub. Left at ~150+. Associate Software Engineer → Mid (within a year) → **Senior Software Engineer** (~2 years later); Senior SWE for a year before leaving. Mentored newer engineers unofficially throughout, getting people up to speed is one of my strengths.',
 '',
 'Owned a portfolio of back-end services in Python and Golang plus a React front-end. One of those was the internal site for the hundreds of care-guides and ops staff working out of the Tempe, AZ office. Worked tightly with SRE on a custom-hosted analytics integration. By my Senior year I was a go-to engineer across two teams for full-stack questions and just getting stuff shipped.',
 '',
@@ -410,7 +410,7 @@ CONTENT.STOCK_UNLOCK = [
 '',
 '## Framing',
 '',
-'> Built it. [YC W22](https://www.ycombinator.com/companies/stock-unlock). Scaled to a team of eight and thousands of paying customers. Runs profitably today. Three full-time (two engineers + an exec assistant) handle day-to-day; I\'m on key decisions only.',
+'> Built it. [YC W22](https://www.ycombinator.com/companies/stock-unlock). Scaled to a team of eight and thousands of paying customers. Runs profitably today. A small, lean team handles day-to-day; I\'m on key decisions only.',
 '',
 'Read the above twice before reading the rest. It\'s the honest framing.',
 '',
@@ -445,7 +445,7 @@ CONTENT.STOCK_UNLOCK = [
 '## Today',
 '',
 '- Runs profitably.',
-'- Three full-time (two engineers + an exec assistant) handle day-to-day.',
+'- A small, lean team handles day-to-day.',
 '- I\'m on key decisions and weekend pokes.',
 '- Y Combinator W22, alive, profitable, customers love it. Outperforms most of the cohort by being any of those.',
 '',
@@ -476,7 +476,7 @@ CONTENT.PROJECTS = [
 '',
 '## [Stock Unlock](https://stockunlock.com), [YC W22](https://www.ycombinator.com/companies/stock-unlock)',
 '',
-'Co-founded with **Daniel Pronk** and a third co-founder (a fellow engineer from Oscar). **Co-founder, CEO.** Closed **$1.35M seed**. Scaled to a team of eight, grew to and sustained ~3.9k paying customers. Runs profitably today; three full-time (two engineers + an exec assistant) handle day-to-day. I\'m on key decisions only.',
+'Co-founded with **Daniel Pronk** and a third co-founder (a fellow engineer from Oscar). **Co-founder, CEO.** Closed **$1.35M seed**. Scaled to a team of eight, grew to and sustained ~3.9k paying customers. Runs profitably today; a small, lean team handles day-to-day. I\'m on key decisions only.',
 '',
 '> [Stock Unlock](https://stockunlock.com) exists because a lot of investing software overcharges people who can\'t afford to be robbed. We built something better.',
 '',
@@ -674,7 +674,7 @@ CONTENT.FAQ = [
 '',
 '## What\'s your role at Stock Unlock now?',
 '',
-'Key decisions and weekend pokes. Three full-time employees, two engineers and an exec assistant, handle day-to-day. The company runs profitably and has thousands of customers who love it. I worked it full-tilt until early 2026.',
+'Key decisions and weekend pokes. A small, lean team handles day-to-day. The company runs profitably and has thousands of customers who love it. I worked it full-tilt until early 2026.',
 '',
 '## What\'s your take on AI tools?',
 '',
@@ -684,7 +684,7 @@ CONTENT.FAQ = [
 '',
 '## Will you manage?',
 '',
-'Only if the team is right and the work stays close to the code. Declined the team-lead path at Oscar near the end. Hired and let go gracefully at Stock Unlock. Mentored newer engineers unofficially throughout, getting people up to speed is one of my strengths.',
+'Only if the team is right and the work stays close to the code. Hired and let go gracefully at Stock Unlock. Mentored newer engineers unofficially throughout, getting people up to speed is one of my strengths.',
 '',
 '## Remote / hybrid / onsite?',
 '',
@@ -722,7 +722,7 @@ CONTENT.CHANGELOG = [
 '- Open to full-time, contract, or equity-founding conversations.',
 '',
 '### Changed',
-'- Right-sized Stock Unlock to three FT (two engineers + an exec assistant); moved to key decisions only.',
+'- Right-sized Stock Unlock to a small, lean team; moved to key decisions only.',
 '- AI workflow: heavy Claude Code + Codex + CMUX, plus a homemade Open Hands harness. Opus 4.7 in the seat.',
 '',
 '## 2025',
@@ -761,7 +761,7 @@ CONTENT.CHANGELOG = [
 '## 2017-2021 · Oscar Health',
 '',
 '- Joined under Alan Warren at ~50 engineers; left at ~150+.',
-'- Associate → Mid → Senior Software Engineer. Declined the team-lead path near the end.',
+'- Associate → Mid → Senior Software Engineer.',
 '- Built Emotiqueue at Oscar (3,000+ emoticons, 50+ commands, the kind of culture-carrier energy I try to seed wherever I work).',
 '- Solved a Rubik\'s cube on a unicycle at the talent show. Twice.',
 '- Picked up indoor rock climbing.',
@@ -797,7 +797,7 @@ CONTENT.ISSUES = [
     opened: '2 days ago',
     comments: 3,
     body:
-      "Key decisions and weekend pokes. Three full-time employees, two engineers and an exec assistant, handle day-to-day. " +
+      "Key decisions and weekend pokes. A small, lean team handles day-to-day. " +
       "The company runs profitably and has thousands of customers who love it. I worked it full-tilt until early 2026."
   },
   {
@@ -821,7 +821,7 @@ CONTENT.ISSUES = [
     opened: '1 week ago',
     comments: 1,
     body:
-      "Only if the team is right and the work stays close to the code. Declined the team-lead path at Oscar near the end. " +
+      "Only if the team is right and the work stays close to the code. " +
       "Hired and let go gracefully at Stock Unlock. Mentored newer engineers unofficially throughout, getting people up to speed is one of my strengths."
   },
   {
@@ -872,7 +872,7 @@ CONTENT.PRS = [
   },
   {
     id: 27,
-    title: 'Right-size Stock Unlock to three FT; move to key decisions only',
+    title: 'Right-size Stock Unlock to a lean team; move to key decisions only',
     state: 'merged',
     labels: ['stock-unlock', 'maintenance'],
     branch: 'stock-unlock',
@@ -886,7 +886,7 @@ CONTENT.PRS = [
     deletions: 5,
     body:
       "Hit a ~3.9k-paying-subscriber wall in 2024. Late-2025 feature launches took too long, burned the team, didn't land. " +
-      "Right-sized in early 2026. Three full-time (two engineers + an exec assistant) handle day-to-day. " +
+      "Right-sized in early 2026. A small, lean team handles day-to-day. " +
       "Company runs profitably. Customers love it. Worked it full-tilt up to that point."
   },
   {

@@ -47,7 +47,7 @@ For depth on each item, see *Companies and orgs* below and *Stories*.
 - **late 2014 – ~Nov 2016** — Youni (Albany → Troy), co-founded with two UAlbany D1 soccer players (Anthony, CEO; Jordan). Started nights and weekends late 2014 alongside CommerceHub, ramped up over my last few months at CommerceHub, went full-time July 2016. Folded after ~4–5 months full-time. Title: Co-founder, CTO.
 - **~2014 – 2015** — My Plastic Brain, paid contract web-game work in college. **Parallel to the CommerceHub internship**, mostly during senior year.
 - **March 2017 – 2021** — Oscar Health (NYC). Joined at ~50 engineers under Alan Warren, left at ~150+. Built Emotiqueue (culture-carrier energy). Solved a Rubik's cube on a unicycle on stage. Twice. Levels: Associate → Mid → Senior Software Engineer.
-- **2021 – present** — Stock Unlock (NYC), YC W22. Co-founder, CEO. Scaled to a team of eight + thousands of paying customers. Right-sized in early 2026 to three full-time. On key decisions and weekend pokes since.
+- **2021 – present** — Stock Unlock (NYC), YC W22. Co-founder, CEO. Scaled to a team of eight + thousands of paying customers. Right-sized in early 2026 to a small, lean team. On key decisions and weekend pokes since.
 - **~2022 → now** — AI era. My AI philosophy: *"I drive AI. It doesn't drive me."* (yes, like a car). → see *AI philosophy and projects* for the rendered version; → *Stories* for the migrations and side projects.
 
 ## Now (April 2026)
@@ -108,8 +108,8 @@ On the hunt for what's next.
 - Raised $1.35M seed. YC pushed us to launch before raising.
 - Scaled to a team of eight and thousands of paying customers.
 - Hit a **~3.9k-paying-subscriber wall** in 2024 — new sign-ups roughly equaled churn. Tried partial pivots, including B2B sales attempts. Eventually bet on a set of big feature launches in late 2025; they took too long to build, burned the team, and didn't land.
-- Right-sized in early 2026. Three full-time handle day-to-day (two engineers + an executive assistant). I worked it full-tilt up to that point.
-- Runs profitably today. My co-founder Daniel and I are above the day-to-day — on key decisions and weekend pokes; the three FT execute.
+- Right-sized in early 2026. A small, lean team handles day-to-day. I worked it full-tilt up to that point. (Specific headcount kept private and never surfaced as a number; rendered language is always "small, lean team".)
+- Runs profitably today. My co-founder Daniel and I are above the day-to-day — on key decisions and weekend pokes; the small, lean team executes.
 - The real Stock Unlock brag isn't a unicorn outcome — it's that the company is alive, profitable, and has thousands of customers who love it. That alone outperforms most YC W22 cohort companies.
 - Core conviction underneath the company: retail investing is going mainstream, but brokerages profit from trade volume, so they push predatory engagement features over tools that help customers make informed decisions. Overcharging for bad software is theft from people who can't afford to be robbed. We built Stock Unlock incentivized the right way, subscription revenue only.
 - Full founder story lives on [stockunlock.com/our-story.html](https://stockunlock.com/our-story.html). Always link to it when surfacing origin / mission framing on the rendered mediums.
