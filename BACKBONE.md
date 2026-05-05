@@ -116,7 +116,7 @@ On the hunt for what's next.
 
 ### ACM (SUNY Albany, ~2013–2015)
 
-- Took over as president of a CS club that was quietly dying. Mostly handed to me by graduating seniors who'd identified me from CS-lounge time and class performance. I took it because it was a great résumé builder; ran it for two years.
+- Took over as president of a CS club that was quietly dying. Mostly handed to me by graduating seniors who'd identified me from CS-lounge time and class performance. I took it because it was a great resume builder; ran it for two years.
 - Got professors to let me announce an interest meeting at the end of their classes. Booked a lecture hall, ~7pm on a weeknight. ~50–100 students showed; few dozen joined.
 - Ran weekly meetings and LAN parties. Taught workshops on what I was learning at my CommerceHub internship. Organized the Tekkapalooza field trip that became my CommerceHub on-ramp. → see *Stories: ACM revival*, *Tekkapalooza*.
 - The club survived past me.
