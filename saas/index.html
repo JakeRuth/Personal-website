@@ -488,47 +488,20 @@
 
       <article class="note-card">
         <div class="note-head">
-          <span class="note-tag note-tag-ai">AI-era</span>
-          <span class="note-date mono">Stock Unlock</span>
+          <span class="note-tag note-tag-story">building</span>
+          <span class="note-date mono">2021 &ndash; early 2026</span>
         </div>
-        <h3>The Customer.io migration</h3>
-        <p>Migrated us off Customer.io onto self-hosted AWS SES over 27 days on the side. Three send modes (triggered, broadcasts, scheduled campaigns), plus a self-serve composer for non-engineers. The composer's &ldquo;Copy Agent Prompt&rdquo; button copies a guided Q&amp;A script into Claude Code that walks the user through the email's purpose and audience, then hands back finished HTML to paste in. Bounces, complaints, and unsubscribes auto-route to the suppression list via SES feedback loops. FastAPI admin runs on Fargate; send-mode workers run on Lambda. Most of the code came out of Claude Code; I read the parts that mattered (security, deliverability, business logic) and shipped. Saved ~$5&ndash;6K/year. Hundreds of thousands of emails per month, over a million a year, one person, 27 days on the side.</p>
+        <h3>Building Stock Unlock</h3>
+        <p>Co-founded with Daniel Pronk and a third co-founder (a fellow Oscar engineer). YC W22. Led the YC interview. Raised $1.335M seed. Scaled to a team of eight, grew to and sustained ~3.9k paying customers. Worked it full-tilt through the scale era. Sustained ~3.9k paying customers through 2024-2025 at a profitable, durable steady-state. Explored adjacent paths to keep growing (partial pivots, B2B motions, a late-2025 feature push). In early 2026, made the call to right-size around the steady-state we'd built.</p>
       </article>
 
       <article class="note-card">
         <div class="note-head">
-          <span class="note-tag note-tag-ai">AI-era</span>
-          <span class="note-date mono">post-Opus 4.5</span>
+          <span class="note-tag note-tag-next">now</span>
+          <span class="note-date mono">Early 2026 &rarr;</span>
         </div>
-        <h3>The Webflow migration</h3>
-        <p>Migrated the marketing site off Webflow into a self-hosted custom codebase. Every line written by Claude Code, every commit reviewed by me. Direct savings ~$500 to $1K/year in hosting, contractor, and upkeep costs. The bigger wins: no contractors needed for copy changes, full UX control, the marketing surface is now 20x bigger in content pages, programmatic SEO + GEO pages on top, all AI-generated and human-reviewed.</p>
-      </article>
-
-      <article class="note-card">
-        <div class="note-head">
-          <span class="note-tag note-tag-ai">AI-era</span>
-          <span class="note-date mono">Stock Unlock &middot; off-boarding</span>
-        </div>
-        <h3>AI coding-and-question agent for the team</h3>
-        <p>Built on the way out of full-time at Stock Unlock so the small, lean team can ship code and self-serve answers without me in chat day-to-day. <code>/code</code> is end-to-end full-stack engineering on demand: plain-English Discord ask in, GitLab MR out with Playwright screenshots of the change running, code-enforced human-in-the-loop at all critical steps. <code>/ask</code> answers across a dozen-plus read-only data sources (codebase, Aurora, PostHog, Stripe, RevenueCat, Sentry, and more). Two model tiers, Claude Sonnet 4.6 for <code>/code</code> and MiniMax M2.7 for <code>/ask</code>, called via direct Anthropic and MiniMax SDKs (API keys in AWS Secrets Manager). Strict secret isolation: <code>/code</code>-only secrets are deleted on each <code>/ask</code> invocation. Private Discord bot (Discord.py) + Open Hands harness on EC2 + Docker Compose.</p>
-      </article>
-
-      <article class="note-card">
-        <div class="note-head">
-          <span class="note-tag note-tag-ai">AI-era</span>
-          <span class="note-date mono">Stock Unlock &middot; internal</span>
-        </div>
-        <h3>The X poster</h3>
-        <p>Self-improving AI agent that drafts X posts with a human-in-the-loop. Trained on real posts, ours and competitor accounts via the X API, with our top 50 promoted to few-shot exemplars and the rest seeding pattern signal; every post tagged with full engagement metrics (reach, likes, retweets, replies, quotes, bookmarks). Aware of every product feature. Spins up a Playwright browser, authenticates as a real user via custom test-IDs, takes in-product screenshots, error-checks them, queues drafts in an admin UI. A LangMem-backed optimizer rewrites the drafter's own prompt daily from human edit-pair preferences, rejection reasons, approval commentary, and 30-day live engagement, with A/B prompt experiments that auto-promote winners and retire underperformers. Posting itself is intentionally disabled in code; approved drafts live in the DB and a human copies them to X. Probably the most ambitious thing I've built that isn't a company.</p>
-      </article>
-
-      <article class="note-card">
-        <div class="note-head">
-          <span class="note-tag note-tag-ai">AI-era</span>
-          <span class="note-date mono">spare hours</span>
-        </div>
-        <h3>The blinds motor</h3>
-        <p>First hardware project I've ever attempted. A battery-powered, Wi-Fi-controllable motor that pulls the bead chain on the roller shades in my apartment. Bench-prototyping the Adafruit Feather ESP32-C6 &rarr; DRV8833 driver &rarr; N20 motor chain over USB; LiPo + MiniBoost battery pass and the FixMyBlinds Rollease R8 clutch coupler come next. Tooling: tried Claude Code first, switched to Codex, which held the depth of conversation I needed for embedded (voltage, motor torque, datasheets, pinouts). Early on I was a robotic front-end for Codex; iteration is teaching me the underlying systems. Pulling off a domain I've never touched in spare hours is part of why I'm convinced the 10x &rarr; 100x shift in engineer output is real and recent.</p>
+        <h3>Now</h3>
+        <p>Stock Unlock runs profitably without me in the seat day-to-day. Handed off to a small, lean team; I'm on key decisions and weekend pokes only. Working on what's next. Open to full-time, contract, or equity-founding conversations on a problem worth caring about.</p>
       </article>
 
       <article class="note-card">

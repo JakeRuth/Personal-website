@@ -236,33 +236,19 @@ The plan, in order:
 
 Did it again about two years later for the encore, mid-20s. Slightly less elaborate — kept the cube-on-unicycle finale, dropped most of the obstacle course. The funny part: I had to retrain. Spent a couple of days outside my apartment before the show re-grinding the basics — riding backwards, the cube-on-wheels combo. Mastery decays fast if you don't tend it.
 
-### The Customer.io migration
+### Building Stock Unlock
 
-Stock Unlock, recent. We'd been paying Customer.io for transactional and marketing email. I migrated us off over 27 days on the side (Jake's detailed write-up of the timeline lives in his X article): wrote the SES integration with three send modes (triggered Lambda-direct, SQS-buffered broadcasts with DLQs, EventBridge-scheduled campaigns), plus the AWS scaffolding. Built a self-serve composer for non-engineers (three-button UI with live preview and locked design areas) with a "Copy Agent Prompt" button that emits a Claude Code instruction so anyone on the team can branch into custom HTML in about five minutes of training. SES bounce/complaint feedback drives suppression; full activity log with send/delivery/open/click counts, filterable by recipient, campaign, template, or status. Most of the code came out of Claude Code; I read the parts that mattered (security, deliverability, business logic) and shipped.
+Co-founded with Daniel Pronk and a third co-founder (a fellow Oscar engineer). YC W22. Led the YC interview. Raised $1.335M seed. Scaled to a team of eight, grew to and sustained ~3.9k paying customers. Worked it full-tilt through the scale era.
 
-Saved ~$5 to 6K/year. Hundreds of thousands of emails per month, over a million a year. One person, 27 days on the side. That's what AI-era engineering actually looks like when you know what you're doing.
+Sustained ~3.9k paying customers through 2024-2025 at a profitable, durable steady-state. Explored adjacent paths to keep growing (partial pivots, B2B motions, a late-2025 feature push). In early 2026, made the call to right-size around the steady-state we'd built.
 
-### The Webflow migration
+### Now
 
-Same era, same pattern. We'd been on Webflow for the marketing site. I migrated us off into a self-hosted custom codebase. Every line written by Claude Code, every commit reviewed by me.
+Stock Unlock runs profitably without me in the seat day-to-day. Handed off to a small, lean team; I'm on key decisions and weekend pokes only.
 
-Direct savings were modest, ~$500 to $1K/year in hosting, contractor, and upkeep costs. The bigger wins: we no longer need contractors to make copy changes (every update is a code change in our own repo), we have full control over UX patterns Webflow couldn't deliver, and the marketing surface itself is now 20x bigger in terms of content pages. Programmatic SEO + GEO pages on top of that, all AI-generated and reviewed.
+Working on what's next. Open to full-time, contract, or equity-founding conversations on a problem worth caring about.
 
-### The X poster
-
-Internal Stock Unlock tool — a self-improving AI agent that drafts X (Twitter) posts with a human-in-the-loop.
-
-Trained on real posts via the X API: Stock Unlock's own account (top 50 promoted to few-shot exemplars, the rest seeding pattern signal) plus competitor accounts whose content we wanted to learn from. Every post tagged with full engagement metrics (reach, likes, retweets, replies, quotes, bookmarks), so the model learns what actually lands. Aware of every product feature. Spins up a Playwright browser, authenticates as a real user using our custom test-IDs and front-end attributes, takes in-product screenshots to attach. Error-checks the screenshots before moving on. Pulls live API data for stats. Queues drafts in an admin UI ("Social Station"). **Posting itself is intentionally disabled in code; approved drafts live in the DB and a human copies them to X.** (Verified in `social_engine/src/main.py` lines 82-84 and `pipeline.py` / `optimizer.py` / `capture.py` on the `social-ai-loops` branch as of 2026-05-03.)
-
-The self-improving loop: a LangChain pipeline runs a few times a day, pulls human feedback (approvals, denials, edits), and iteratively rewrites the drafter's own prompt. A separate cron job watches how live posts actually performed and feeds that back as signal too. It learns from both human judgment and real engagement.
-
-Probably the most ambitious thing I've built that isn't a company. Driver-in-the-seat made architectural.
-
-### The blinds motor
-
-First hardware project I've ever attempted. Building a battery-powered, Wi-Fi-controllable motor that pulls the bead chain on the roller shades in my apartment. Bench-prototyping the Feather ESP32-C6 → DRV8833 driver → N20 motor (6V, 1:100, magnetic encoder) chain over USB; LiPo 3.7V + MiniBoost (TPS61023) battery pass and the FixMyBlinds Rollease R8 clutch coupler come next. Smaller Seeed XIAO ESP32-C6 board waiting in the wings for a refined V2.
-
-**Tooling note:** tried Claude Code first, switched to Codex. For embedded work (voltage, motor torque, gear ratios, datasheet reading, board pinouts), Codex held the depth of conversation Jake needed for this project. Long Codex sessions plan the next step; he goes bench-tests it. Early on Jake was effectively a robotic front-end for Codex, copying instructions and observing what happened. With iteration he's picking up the underlying systems (voltage, current, motor drivers, encoder feedback, LiPo + boost-converter behavior) and asking better questions instead of just relaying. Project lives at `/Users/hippofluff/code/throwing-shade-codex/`. Pulling off a domain he's never touched, in spare hours, is part of why he's convinced the 10x → 100x shift in engineer output is real and recent.
+(Note: AI-era projects — Customer.io migration, Webflow migration, X poster, AI coding-and-question agent for the team, blinds motor, this site — live in the canonical *Recent AI projects (rendered)* section below, not in the Stories. Keep that separation.)
 
 ### Emotiqueue
 
