@@ -457,7 +457,7 @@ CONTENT.STOCK_UNLOCK = [
 '- **Customer.io → AWS SES**, self-hosted, with admin panels for broadcasts and campaign config. Saved ~$5-6K/yr. One person, 27 days on the side. See [Stories: Customer.io migration](#)',
 '- **Webflow → self-hosted marketing site.** Every line written by Claude Code, every commit reviewed by me. ~$500 to $1K/year saved in hosting, contractor, and upkeep costs. 20x more content pages, full control of the codebase, no more contractor dependency.',
 '- **Programmatic SEO + GEO pages**, AI-generated, human-reviewed.',
-'- **The X poster**, self-improving AI agent that drafts X posts, screenshots in-product context via Playwright, queues drafts in an admin UI for human approval, and rewrites its own prompt based on human feedback + live post-performance signals via a LangChain pipeline.',
+'- **The X poster**, self-improving AI agent that drafts X posts, screenshots in-product context via Playwright, queues drafts in an admin UI for human approval, and rewrites its own prompt based on human feedback + live post-performance signals via a LangGraph pipeline with a daily LangMem-backed optimizer.',
 '- **AI coding-and-question agent for the team** (Discord-fronted), built as off-boarding gift. `/code` opens GitLab MRs with Playwright screenshots, `/ask` answers across a dozen-plus read-only data sources. Two model tiers (Claude Sonnet 4.6 + MiniMax M2.7) via direct Anthropic and MiniMax SDKs, strict secret isolation between commands.',
 ''
 ].join('\n');
@@ -551,7 +551,7 @@ CONTENT.HOBBIES = [
 '',
 '## Track and field (high school)',
 '',
-'Jumper events: high jump, triple jump, long jump. Also ran the 400m and the occasional 4x400. **Captain and MVP senior year** (most points scored on the team). Well-known across the four sectional teams in our area.',
+'Jumper events: high jump, triple jump, long jump. Also ran the 400m and the occasional 4x400. **Captain and MVP senior year** (most points scored on the team).',
 '',
 '## Soccer',
 '',
@@ -805,7 +805,7 @@ CONTENT.PRS = [
     body:
       "Migrated off Customer.io to self-hosted AWS SES (~$5-6K/yr saved, 27 days on the side). " +
       "Migrated marketing site off Webflow to self-hosted (~$500 to $1K/yr saved in hosting/contractor/upkeep, 20x content footprint, full UX control). " +
-      "Built the X poster, self-improving social-AI agent with a human-in-the-loop, LangChain pipeline. " +
+      "Built the X poster, self-improving social-AI agent with a human-in-the-loop, LangGraph pipeline + LangMem optimizer. " +
       "Built an AI coding-and-question agent for the team (Discord-fronted): /code opens GitLab MRs with Playwright screenshots, /ask answers across a dozen-plus read-only data sources, two model tiers (Claude Sonnet 4.6 + MiniMax M2.7) via direct Anthropic and MiniMax SDKs, strict secret isolation. Programmatic SEO + GEO pages. Code review automation across the team."
   },
   {

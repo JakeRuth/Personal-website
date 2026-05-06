@@ -96,7 +96,7 @@ window.TIMELINE = (function () {
         "Migrated off Customer.io to self-hosted AWS SES (~$5-6K/yr saved, 27 days on the side). " +
         "Migrated marketing site off Webflow to a self-hosted codebase (~$1K/yr saved, 20x content footprint, no more contractors). " +
         "Built the X poster, a self-improving social-AI agent with a human-in-the-loop. Bootstrap-trained on thousands of tagged posts; " +
-        "Playwright for in-product screenshots; LangChain pipeline rewrites its own prompt from human feedback + live engagement. " +
+        "Playwright for in-product screenshots; LangGraph pipeline + daily LangMem-backed optimizer rewrites its own prompt from human feedback + live engagement. " +
         "Built a permissioned Discord ops bot on EC2 + Docker Compose for non-technical teammates. Programmatic SEO + GEO pages. " +
         "Code review automation across the team.",
       diffstat: {
