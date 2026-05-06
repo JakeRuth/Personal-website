@@ -26,6 +26,8 @@ Visitor flow: wizard → pick experience → cube transition → land on experie
 
 The three mediums must satisfy **hard parity**: every fact, story, or claim present in any one medium must be present in all three. Mediums differ visually, not in information content.
 
+**`/xp/` is the rendered source of truth for content.** When the three mediums diverge, `/xp/` wins. `/readme/` and `/saas/` adapt voice and structure to fit their chrome (GitHub markdown, marketing prose) but never carry a fact, story, or framing that isn't on `/xp/`. If `/xp/` doesn't say it, no medium says it. If `/xp/` says it, every medium says it. `BACKBONE.md` is the upstream reference doc; `/xp/` is the rendered ground truth.
+
 **Live site (`jakeruth.com`)** still serves the 2017-era React build. Local alpha is many commits ahead and unpushed.
 
 **Personal email throughout the site:** `jake2ruth@gmail.com`.
@@ -50,6 +52,8 @@ These apply on every medium (`xp/`, `readme/`, `saas/`) and the wizard at `/`. W
 **Number formatting.** Subscriber counts in the thousands render as `~3.9k`, not `~3,900` or `3,900 sustained`. The tilde + k form is the house style.
 
 **Stock Unlock framing.** See `BACKBONE.md → Companies and orgs → Stock Unlock` for the canonical frame. The non-negotiables: never imply Jake is full-time at SU, never imply the company is dead. Title is **Co-founder, CEO**.
+
+**Stock Unlock voice: glass-half-full, never glass-half-empty.** SU is a profitable, durable business with thousands of customers who love it. The narrative leans positive without over-embellishing. Banned framings on every rendered surface: `wall`, `hit a wall`, `~3.9k-paying-subscriber wall`, `burned the team`, `didn't land`, `didn't reach VC-backed scale goals`, `plateau` (as a heading or noun for the era), `failed`, `flatlined`. Canonical framings: `sustained ~3.9k paying customers at a profitable, durable steady-state`, `explored adjacent paths to keep growing`, `made a heavy late-2025 feature push`, `right-sized in early 2026 around the steady-state we'd built`, `runs profitably today`, `a small, lean team handles day-to-day`. Steady-state is the canonical noun; right-size is the canonical verb. The XP page is the rendered reference, voice it like that. Jake has corrected this multiple times. Do not regress.
 
 **Co-founder mentions.** When introducing the Youni co-founders, lead with the descriptor (`two UAlbany D1 soccer players (Anthony, CEO; Jordan)`), not the bare names. Names alone don't carry signal for an outside reader.
 
