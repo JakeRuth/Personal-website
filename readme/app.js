@@ -123,7 +123,7 @@
       const tab = t.dataset.tab;
       const wantActive =
         (view === VIEWS.MARKDOWN && tab === 'code') ||
-        (view === VIEWS.TIMELINE && tab === 'code') ||
+        (view === VIEWS.TIMELINE && tab === 'timeline') ||
         (view === VIEWS.ISSUES   && tab === 'issues') ||
         (view === VIEWS.PRS      && tab === 'prs');
       t.classList.toggle('active', !!wantActive);
@@ -377,6 +377,9 @@
         if (tab === 'code') {
           if (ACTIVE === 'TIMELINE') renderFile('TIMELINE');
           else renderFile(ACTIVE);
+        } else if (tab === 'timeline') {
+          renderFile('TIMELINE');
+          scrollPaneTop();
         } else if (tab === 'issues') {
           showView(VIEWS.ISSUES);
           renderIssues();
@@ -387,7 +390,7 @@
           scrollPaneTop();
         } else {
           // visual-only tabs (Actions, Projects, Security, Insights)
-          toast('That tab is decorative. Try Code, Issues, or Pull requests.');
+          toast('That tab is decorative. Try Code, Timeline, Issues, or Pull requests.');
         }
       });
     });
