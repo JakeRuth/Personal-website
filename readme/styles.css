@@ -1665,9 +1665,19 @@ kbd, .kbd-inline {
   .gh-header-inner { padding: 10px 14px; gap: 10px; }
   .gh-tabs { padding: 0 14px; }
 
-  /* Repo header pills wrap so the chrome never overflows. */
-  .gh-header-right { gap: 6px; row-gap: 6px; }
-  .gh-btn { padding: 6px 10px; font-size: 12px; }
+  /* Repo header on phones: ruthless cull. The Star/Fork count groups
+     are vanity chrome; the "Public" pill is decoration; the Skin / Raw
+     / Theme buttons keep their icons but drop their text labels. Only
+     the hamburger, logo, breadcrumb, and Hire CTA stay full size. */
+  .gh-header-right { gap: 6px; row-gap: 6px; flex-wrap: nowrap; }
+  .gh-btn { padding: 6px 8px; font-size: 12px; }
+  .gh-header-right .gh-btn-group { display: none; }
+  .gh-pill.public { display: none; }
+  .gh-btn-skin span,
+  #viewSourceBtn span,
+  #themeToggle span#themeLabel { display: none; }
+  .gh-btn-skin, #viewSourceBtn, #themeToggle { padding: 6px 9px; }
+  .gh-btn-primary span { font-size: 12px; }
 
   /* Project cards: pc-name and pc-type stack so long type labels don't
      force the card to expand past the viewport. */
