@@ -1783,6 +1783,12 @@ body {
   .hero-text h1 { font-size: 28px; }
   .panel { padding: 12px 12px; }
   .content { padding: 10px 8px 48px; }
+
+  /* AI project tech-stack chips: long strings like "N20 DC motor (6V,
+     1:100, magnetic encoder)" or "Adafruit Feather ESP32-C6" can't fit
+     on a single line at 320px. Allow wrapping inside the chip. */
+  .proj-stack { padding: 8px 10px; }
+  .proj-stack-row-chips li { white-space: normal; }
 }
 
 /* window focus state */

@@ -301,6 +301,7 @@
         if (!key) return;
         if (key !== 'TIMELINE' && !window.CONTENT[key]) return;
         renderFile(key);
+        closeSidebarDrawer();
       });
     });
     $$('#fileTree li.dir').forEach((li) => {
@@ -308,6 +309,34 @@
         e.stopPropagation();
         li.classList.toggle('open');
       });
+    });
+  }
+
+  function openSidebarDrawer() {
+    const layout = $('.layout');
+    const btn = $('#sidebarToggle');
+    if (!layout) return;
+    layout.classList.add('sidebar-open');
+    if (btn) btn.setAttribute('aria-expanded', 'true');
+  }
+  function closeSidebarDrawer() {
+    const layout = $('.layout');
+    const btn = $('#sidebarToggle');
+    if (!layout) return;
+    layout.classList.remove('sidebar-open');
+    if (btn) btn.setAttribute('aria-expanded', 'false');
+  }
+  function wireSidebarDrawer() {
+    const btn = $('#sidebarToggle');
+    const backdrop = $('#sidebarBackdrop');
+    if (btn) btn.addEventListener('click', () => {
+      const layout = $('.layout');
+      if (layout && layout.classList.contains('sidebar-open')) closeSidebarDrawer();
+      else openSidebarDrawer();
+    });
+    if (backdrop) backdrop.addEventListener('click', closeSidebarDrawer);
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeSidebarDrawer();
     });
   }
 
@@ -647,6 +676,7 @@
     wireTheme();
     wireSkin();
     wireFileTree();
+    wireSidebarDrawer();
     wireTopTabs();
     wireModal();
     wireStarFork();
