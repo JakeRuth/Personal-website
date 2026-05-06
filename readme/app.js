@@ -340,6 +340,31 @@
     });
   }
 
+  function closeOverflow() {
+    const right = $('.gh-header-right');
+    const btn = $('#overflowBtn');
+    if (right) right.classList.remove('overflow-open');
+    if (btn) btn.setAttribute('aria-expanded', 'false');
+  }
+  function wireOverflowMenu() {
+    const btn = $('#overflowBtn');
+    const right = $('.gh-header-right');
+    if (!btn || !right) return;
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const isOpen = right.classList.toggle('overflow-open');
+      btn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    });
+    document.addEventListener('click', (e) => {
+      if (!right.classList.contains('overflow-open')) return;
+      if (e.target.closest('.gh-overflow-wrap') || e.target.closest('#overflowBtn')) return;
+      closeOverflow();
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeOverflow();
+    });
+  }
+
   /* ========================================================== */
   /* top tabs (Code / Issues / PRs)                             */
   /* ========================================================== */
@@ -677,6 +702,7 @@
     wireSkin();
     wireFileTree();
     wireSidebarDrawer();
+    wireOverflowMenu();
     wireTopTabs();
     wireModal();
     wireStarFork();

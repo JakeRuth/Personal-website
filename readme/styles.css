@@ -187,6 +187,14 @@ kbd, .kbd-inline {
 :root[data-theme="light"] .gh-btn-primary { background: #1f883d; }
 .gh-btn-primary:hover { filter: brightness(1.08); }
 
+/* Desktop defaults for the mobile-overflow + primary-CTA-swap pieces.
+   The mobile breakpoint overrides these; desktop wants Email visible,
+   Resume hidden, the 3 toggles inline (wrap is a no-op container),
+   and the overflow ⋯ button hidden. */
+.gh-overflow-btn { display: none; }
+.gh-btn-resume { display: none; }
+.gh-overflow-wrap { display: contents; }
+
 /* Star/Fork button group (two-pill style like GitHub) */
 .gh-btn-group {
   display: inline-flex;
@@ -1671,17 +1679,44 @@ kbd, .kbd-inline {
 
   /* Repo header on phones: ruthless cull. The Star/Fork count groups
      are vanity chrome; the "Public" pill is decoration; the Skin / Raw
-     / Theme buttons keep their icons but drop their text labels. Only
-     the hamburger, logo, breadcrumb, and Hire CTA stay full size. */
-  .gh-header-right { gap: 6px; row-gap: 6px; flex-wrap: nowrap; }
+     / Theme buttons collapse into a single "⋯" overflow dropdown so
+     the breadcrumb has room and the primary CTA stays prominent. */
+  .gh-header-right { gap: 6px; row-gap: 6px; flex-wrap: nowrap; position: relative; }
   .gh-btn { padding: 6px 8px; font-size: 12px; }
   .gh-header-right .gh-btn-group { display: none; }
   .gh-pill.public { display: none; }
-  .gh-btn-skin span,
-  #viewSourceBtn span,
-  #themeToggle span#themeLabel { display: none; }
-  .gh-btn-skin, #viewSourceBtn, #themeToggle { padding: 6px 9px; }
-  .gh-btn-primary span { font-size: 12px; }
+
+  /* Overflow popover: stack the 3 toggles vertically below the
+     overflow button as a dropdown. Hidden by default, shown when
+     .gh-header-right.overflow-open is set. */
+  .gh-overflow-wrap {
+    position: absolute;
+    top: calc(100% + 4px);
+    right: 0;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 6px;
+    display: none;
+    flex-direction: column;
+    gap: 4px;
+    min-width: 160px;
+    z-index: 40;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.35);
+  }
+  .gh-header-right.overflow-open .gh-overflow-wrap { display: flex; }
+  .gh-overflow-wrap .gh-overflow-item {
+    width: 100%;
+    justify-content: flex-start;
+    padding: 8px 12px;
+  }
+  .gh-overflow-wrap .gh-overflow-item span { display: inline; }
+
+  /* Mobile primary action swap: hide Email button, show Resume.
+     Show the ⋯ overflow button. */
+  .gh-btn-email { display: none; }
+  .gh-btn-resume { display: inline-flex; }
+  .gh-overflow-btn { display: inline-flex; align-items: center; justify-content: center; }
 
   /* Breadcrumb: keep the repo path on a single line; truncate with
      ellipsis if needed so it never wraps under the action buttons. */
