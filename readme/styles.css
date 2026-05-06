@@ -1406,7 +1406,11 @@ kbd, .kbd-inline {
 @media (max-width: 720px) {
   .tl-commit { grid-template-columns: 32px 60px minmax(0, 1fr); padding-right: 14px; }
   .tl-date { display: none; }
-  .tl-head { padding: 18px 18px 14px; }
+  .tl-head { padding: 18px 18px 14px; flex-direction: column; align-items: stretch; gap: 12px; }
+  .tl-title-block { flex: none; }
+  .tl-controls { flex: none; }
+  .tl-search { flex: 1; width: 100%; }
+  .tl-search input { width: 100%; min-width: 0; }
 }
 
 /* ---------- Issues view ---------- */
@@ -1678,6 +1682,17 @@ kbd, .kbd-inline {
   #themeToggle span#themeLabel { display: none; }
   .gh-btn-skin, #viewSourceBtn, #themeToggle { padding: 6px 9px; }
   .gh-btn-primary span { font-size: 12px; }
+
+  /* Breadcrumb: keep the repo path on a single line; truncate with
+     ellipsis if needed so it never wraps under the action buttons. */
+  .gh-breadcrumb {
+    flex-wrap: nowrap;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    min-width: 0;
+  }
+  .gh-breadcrumb a, .gh-breadcrumb .slash { white-space: nowrap; }
 
   /* Project cards: pc-name and pc-type stack so long type labels don't
      force the card to expand past the viewport. */
