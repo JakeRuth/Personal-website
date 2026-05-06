@@ -1638,6 +1638,23 @@ kbd, .kbd-inline {
   color: var(--fg);
 }
 
+/* Raw-source modal on phones: tighten the backdrop padding so the
+   modal has room, and wrap long lines (HTML markup, prose) instead of
+   forcing horizontal scroll. Loses original line-break fidelity but
+   actually readable on a 375px screen. */
+@media (max-width: 720px) {
+  .modal-backdrop { padding: 8px; }
+  .raw-source {
+    padding: 14px 14px;
+    font-size: 12px;
+    white-space: pre-wrap;
+    word-break: break-word;
+    overflow-wrap: anywhere;
+  }
+  .modal-actions { padding: 10px 12px; gap: 6px; }
+  .modal-chrome { padding: 12px 12px; }
+}
+
 /* ---------- toast ---------- */
 .toast {
   position: fixed;

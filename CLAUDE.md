@@ -83,6 +83,10 @@ These apply on every medium (`xp/`, `readme/`, `saas/`) and the wizard at `/`. W
 
 **No surfacing of personal-life content.** "Engaged", wedding planning, etc., out. Site is professional.
 
+**No pronouns (he/him, she/her, they/them, etc.) anywhere on rendered surfaces.** Banned site-wide. Don't add to bios, avatar rows, profile chips, hover panels, signatures, or anywhere else a reader sees. If you find one in the codebase, remove it.
+
+**No meta dev-notes / internal-direction prose on rendered surfaces.** Lines like "Quiet line, not a banner: ..." that read like internal CMS instructions to a writer rather than content for the reader are banned. If a section is meant to be quiet/subtle, just write the quiet/subtle version; don't narrate the intent. The reader should never see the editorial scaffolding.
+
 **No Convictions / "What I'm for, what I'm against" section anywhere.** Removed from `xp/` 2026-04-30 per Jake's call ("not driving any value"). The substance lives in `BACKBONE.md` as private reference only. Don't propagate to readme/saas; remove on the parity sweep. Serendipity-as-working-principle survives, but only as a small italic aside at the very bottom of the page, framed personal ("I'll shoot my shot"). Not as a section heading.
 
 **AI section is "Recent AI projects".** Section h2 reads `Recent AI projects · post-Opus 4.5` (or equivalent on other mediums). Above the project accordion sits a minimal lead, no green callout: the label `My AI philosophy:`, the italic quoted headline `"I drive AI. It doesn't drive me."`, a muted parenthetical aside `(yes, like a car)`, then 3 numbered points (capability changes weekly; stay on top of architecture; never go blind). Project accordion uses the same `.work-row` pattern as work history. Don't expand the bullets back into prose paragraphs and don't reintroduce the green callout, both were tried and rejected.
