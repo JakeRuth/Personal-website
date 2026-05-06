@@ -322,9 +322,12 @@ kbd, .kbd-inline {
   font-size: 13px;
   overflow: hidden;
   align-self: start;
+  /* Stick below the topnav (56px fixed) + gh-header (sticky, ~97px
+     including the tabs row) so the sidebar doesn't slide up behind
+     the header on scroll. */
   position: sticky;
-  top: 92px;
-  max-height: calc(100vh - 110px);
+  top: 160px;
+  max-height: calc(100vh - 180px);
   display: flex;
   flex-direction: column;
 }
@@ -915,12 +918,14 @@ kbd, .kbd-inline {
 /* ---------- TOC / right rail ---------- */
 .toc {
   align-self: start;
+  /* Match the sidebar sticky offset so neither rail slides up behind
+     the gh-header on scroll. */
   position: sticky;
-  top: 92px;
+  top: 160px;
   border-left: 1px solid var(--border);
   padding: 4px 0 4px 16px;
   font-size: 13px;
-  max-height: calc(100vh - 110px);
+  max-height: calc(100vh - 180px);
   overflow-y: auto;
 }
 .toc-title {
