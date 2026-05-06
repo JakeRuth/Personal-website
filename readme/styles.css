@@ -490,7 +490,8 @@ kbd, .kbd-inline {
   padding: 0 8px 0 0;
   overflow-x: auto;
 }
-.file-tabs { display: flex; }
+.file-tabs { display: flex; overflow-x: auto; min-width: 0; }
+.file-tabs::-webkit-scrollbar { height: 4px; }
 .file-tab {
   appearance: none;
   border: 0;
