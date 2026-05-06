@@ -572,7 +572,7 @@ window.TIMELINE = (function () {
   const JUMPS = [
     { year: '2026', label: 'SU on key decisions only · quietly open' },
     { year: '2025', label: 'AI era ships' },
-    { year: '2024', label: 'SU plateau' },
+    { year: '2024', label: 'SU steady-state' },
     { year: '2023', label: 'scale peak' },
     { year: '2022', label: 'YC + seed' },
     { year: '2021', label: 'SU starts' },
