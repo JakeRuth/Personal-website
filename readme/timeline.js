@@ -14,7 +14,7 @@ window.TIMELINE = (function () {
     { id: 'stockunlock', name: 'stock-unlock', colorVar: '--c-stockunlock', years: '2021 → now' },
     { id: 'pronk',       name: 'pronk',        colorVar: '--c-pronk',       years: '2021' },
     { id: 'oscar',       name: 'oscar-health', colorVar: '--c-oscar',       years: '2017–2021' },
-    { id: 'youni',       name: 'youni',        colorVar: '--c-youni',       years: '2015–2017' },
+    { id: 'youni',       name: 'youni',        colorVar: '--c-youni',       years: '2014–2016' },
     { id: 'commercehub', name: 'commercehub',  colorVar: '--c-commercehub', years: '2013–2016' },
     { id: 'rubiks',      name: 'rubiks-cube',  colorVar: '--c-rubiks',      years: '2008–2014' },
   ];
@@ -98,7 +98,7 @@ window.TIMELINE = (function () {
         "Built the X poster, a self-improving social-AI agent with a human-in-the-loop. Bootstrap-trained on thousands of tagged posts; " +
         "Playwright for in-product screenshots; LangGraph pipeline + daily LangMem-backed optimizer rewrites its own prompt from human feedback + live engagement. " +
         "Built a permissioned Discord ops bot on EC2 + Docker Compose for non-technical teammates. Programmatic SEO + GEO pages. " +
-        "Code review automation across the team.",
+        "",
       diffstat: {
         items: [
           { file: 'infra/aws-ses/*',     added: 1840, removed: 0,    note: 'self-hosted' },

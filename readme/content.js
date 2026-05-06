@@ -631,7 +631,6 @@ CONTENT.CHANGELOG = [
 '- Customer.io → AWS SES migration (~$5-6K/yr saved, 27 days on the side).',
 '- The X poster (self-improving social-AI agent with a human-in-the-loop).',
 '- Programmatic SEO + GEO pages.',
-'- Code review automation across the team.',
 '- AI coding-and-question agent for the team (Discord-fronted, /code + /ask, two model tiers (Claude Sonnet 4.6 + MiniMax M2.7) via direct Anthropic and MiniMax SDKs, strict secret isolation).',
 '',
 '### Changed',
@@ -806,7 +805,7 @@ CONTENT.PRS = [
       "Migrated off Customer.io to self-hosted AWS SES (~$5-6K/yr saved, 27 days on the side). " +
       "Migrated marketing site off Webflow to self-hosted (~$500 to $1K/yr saved in hosting/contractor/upkeep, 20x content footprint, full UX control). " +
       "Built the X poster, self-improving social-AI agent with a human-in-the-loop, LangGraph pipeline + LangMem optimizer. " +
-      "Built an AI coding-and-question agent for the team (Discord-fronted): /code opens GitLab MRs with Playwright screenshots, /ask answers across a dozen-plus read-only data sources, two model tiers (Claude Sonnet 4.6 + MiniMax M2.7) via direct Anthropic and MiniMax SDKs, strict secret isolation. Programmatic SEO + GEO pages. Code review automation across the team."
+      "Built an AI coding-and-question agent for the team (Discord-fronted): /code opens GitLab MRs with Playwright screenshots, /ask answers across a dozen-plus read-only data sources, two model tiers (Claude Sonnet 4.6 + MiniMax M2.7) via direct Anthropic and MiniMax SDKs, strict secret isolation. Programmatic SEO + GEO pages."
   },
   {
     id: 25,
