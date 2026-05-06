@@ -50,7 +50,7 @@ window.TIMELINE = (function () {
       tags: ['Opus 4.5', 'tidal-wave inflection'],
       body:
         "Tool progression: Copilot ('cool, not life-changing') → Cursor (~1-2 years heavy) → Claude Code dabble through 2025 → " +
-        "Opus 4.5 in early 2026 was the tidal-wave inflection. Now on Opus 4.7. " +
+        "Opus 4.5 in early 2026 was the tidal-wave inflection. " +
         "Heavy Claude Code + Codex + CMUX. Built my own harness via OpenHands. " +
         "My AI philosophy: \"I drive AI. It doesn't drive me.\" (yes, like a car).",
       diffstat: {
