@@ -134,7 +134,7 @@ window.TIMELINE = (function () {
       branch: 'stockunlock', author: 'Jake Ruth <jake2ruth@gmail.com>',
       date: '2023-05',
       subject: 'scale: 8 employees, thousands of paying customers',
-      tags: ['8 FTE', 'thousands of customers'],
+      tags: ['team of 8', 'thousands of customers'],
       body:
         "Team of eight. Thousands of paying subscribers. Worked it full-tilt.",
       diffstat: {
@@ -271,10 +271,10 @@ window.TIMELINE = (function () {
       body:
         "Owned services across Python and Golang back-ends and a React front-end, including the internal site for hundreds of " +
         "Tempe care-ops staff. SRE-adjacent on a custom-hosted analytics integration. By senior year, go-to across two teams " +
-        "for full-stack questions. Declined team-lead near the end, already writing the early Stock Unlock code on the side.",
+        "for full-stack questions and just getting stuff shipped.",
       diffstat: {
         items: [{ file: 'services/**/*', added: 3400, removed: 1100, note: 'ownership' }],
-        summary: '54 files changed, 2 manager offers declined',
+        summary: '54 files changed, 2 teams covered',
       },
     },
     { year: '2019' },
