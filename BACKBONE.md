@@ -47,7 +47,7 @@ For depth on each item, see *Companies and orgs* below and *Stories*.
 - **late 2014 – ~Nov 2016** — Youni (Albany → Troy), co-founded with two UAlbany D1 soccer players (Anthony, CEO; Jordan). Started nights and weekends late 2014 alongside CommerceHub, ramped up over my last few months at CommerceHub, went full-time July 2016. Folded after ~4–5 months full-time. Title: Co-founder, CTO.
 - **~2014 – 2015** — My Plastic Brain, paid contract web-game work in college. **Parallel to the CommerceHub internship**, mostly during senior year.
 - **March 2017 – 2021** — Oscar Health (NYC). Joined at ~50 engineers under Alan Warren, left at ~150+. Built Emotiqueue (culture-carrier energy). Solved a Rubik's cube on a unicycle on stage. Twice. Levels: Associate → Mid → Senior Software Engineer.
-- **2021 – present** — Stock Unlock (NYC), YC W22. Co-founder, CEO. Scaled to a team of eight + thousands of paying customers. Right-sized in early 2026 to a small, lean team. On key decisions and weekend pokes since.
+- **2021 – 2026** — Stock Unlock (NYC), YC W22. Co-founder, CEO. Scaled to a team of eight + thousands of paying customers. Right-sized in early 2026 to a small, lean team. On key decisions and weekend pokes since.
 - **~2022 → now** — AI era. My AI philosophy: *"I drive AI. It doesn't drive me."* (yes, like a car). → see *AI philosophy and projects* for the rendered version; → *Stories* for the migrations and side projects.
 
 ## Now (April 2026)
@@ -96,7 +96,7 @@ On the hunt for what's next.
 - **Code review automation across the team** (AI reviewing AI, with humans gating the merge).
 - Solved a Rubik's cube on a unicycle at the company talent show. Twice. → see *Stories: talent show*.
 
-### Stock Unlock (NYC, 2021 – present, YC W22)
+### Stock Unlock (NYC, 2021 – 2026, YC W22)
 
 **Title: Co-founder, CEO.** I led the YC interview, the seed raise, and the company day-to-day until early 2026.
 
