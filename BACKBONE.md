@@ -4,7 +4,7 @@ The source of truth for the jakeruth.com rebuild (not yet pushed). Every fact, s
 
 Treat the prose as canonical *reference*, not literal copy. Each medium will adapt the voice to fit its chrome — saas/ marketing block, readme/ markdown overview, xp/ welcome screen — but no medium surfaces a fact or claim that isn't here. The wizard at `/` is intentionally light entry copy and not bound by parity.
 
-**Note on the resume:** Canonical resume is `resume/index.html` (HTML source) rendered to `resume/Jake_Ruth_Resume.pdf`. All "Resume" links across the site point to that PDF. Render command + content rules live in `resume/RESEARCH_HANDOFF.md`. Facts still come from this file and `rambles-personal-bio-conversations.md` (gitignored, repo root) — the resume is a derived product, not a source of truth.
+**Note on the resume:** Canonical resume is `resume/index.html` (HTML source) rendered to `resume/Jake_Ruth_Resume.pdf`. All "Resume" links across the site point to that PDF. The resume is a derived product, not a source of truth, facts still come from this file.
 
 ---
 
@@ -12,7 +12,7 @@ Treat the prose as canonical *reference*, not literal copy. Each medium will ada
 
 Jake Ruth.
 
-Committing hard to things with depth has been the pattern through my life. Software engineering is the one that stuck. Then a senior-year math credit dropped me into AP Computer Science instead of AP Calc, and the loop closed. Fifteen years of shipping later, four companies in (two I worked at, two I started). **Note (2026-05-03):** earlier drafts framed this as "code and cubes are the two that have held fifteen-plus years"; Jake corrected it because he hasn't been consistently cubing for fifteen years. Cubing is in the mastery section as a competed-then-moved-past pursuit, not a current through-line. Then "Software engineering is the through-line that's held fifteen-plus years" was tried, also rejected as clunky. Canonical now is "Software engineering is the one that stuck." The "Pattern: I commit..." colon-prefixed form was also tried and rejected as abrupt; canonical sentence form is **"Committing hard to things with depth has been the pattern through my life. Software engineering is the one that stuck."** Don't regress.
+Committing hard to things with depth has been the pattern through my life. Software engineering is the one that stuck. Then a senior-year math credit dropped me into AP Computer Science instead of AP Calc, and the loop closed. Fifteen years of shipping later, four companies in (two I worked at, two I started).
 
 ---
 
@@ -83,11 +83,11 @@ On the hunt for what's next.
 
 - Hired in March 2017 under Alan Warren — formerly the Google leader who scaled Google Docs and Apps from 2-3 people to thousands. That attracted heavy talent: lots of FAANG and Ivy-pedigreed engineers. The bar was visibly higher than CommerceHub.
 - Joined at ~50 engineers; left at ~150+. No formal levels initially (one of the reasons I joined). Levels were introduced mid-tenure: leveled in as Associate Software Engineer, promoted to Mid SWE within ~1 year, **Senior Software Engineer** ~2 years later. Senior SWE for a year before leaving.
-- Offered the team-lead path once near the end of my Senior SWE year. Declined to stay close to the code. By that point I was already writing the early Stock Unlock code on the side and knew I'd be leaving within a year. Mentored newer engineers unofficially throughout, getting people up to speed is one of my strengths. **Note:** this story used to say "twice" in earlier drafts; that was wrong. Canonical is "once, near the end". Do not regress.
+- Mentored newer engineers unofficially throughout. Getting people up to speed is one of my strengths.
 - Owned a portfolio of back-end services in Python and Golang plus a React front-end. One of those was the entire internal site for the hundreds of care-guides and ops staff working out of the Tempe, AZ office. Worked tightly with SRE on a custom-hosted analytics integration. By my Senior year I was a go-to engineer across two teams for full-stack questions and just getting stuff shipped.
-- Probably one of the more productive engineers there in terms of code shipped — though I'd honestly still question how I got hired in the first place.
+- One of the more productive engineers there in terms of code shipped.
 - Got the offer in part via a design question that landed exactly where my last eighteen months of work were (a social-media architecture question, after eighteen months of Youni). Found out years later it was a standard rotation question, asked at random, by people who hadn't read my resume. The catch was random; the prep wasn't. → see *Stories: Ready for the question that came*.
-- Built **Emotiqueue**, an internal Slack bot. Half goof, half real tool, the kind of culture-carrier energy I try to seed wherever I work. Started as a goof: I kept making custom emoticons for our team chat (HipChat at the time, later Slack after the company switched tools). That habit grew into a hackathon project that routed messages through a deliberately ridiculous pipeline (queues into queues, then a ticketing system, then back into chat), and ended up as a real command-routable bot. By the time I left it had 3,000+ custom emoticons, 50+ silly commands, and a codebase other engineers across the company committed to. → see *Stories: Emotiqueue*. **Note (2026-05-03):** the co-builder is real but is never named on rendered surfaces, per Jake's preference. Refer as "an internal Slack bot I built at Oscar" or just "Emotiqueue" without attribution.
+- Built **Emotiqueue**, an internal Slack bot. Half goof, half real tool, the kind of culture-carrier energy I try to seed wherever I work. Started as a goof: I kept making custom emoticons for our team chat (HipChat at the time, later Slack after the company switched tools). That habit grew into a hackathon project that routed messages through a deliberately ridiculous pipeline (queues into queues, then a ticketing system, then back into chat), and ended up as a real command-routable bot. By the time I left it had 3,000+ custom emoticons, 50+ silly commands, and a codebase other engineers across the company committed to. → see *Stories: Emotiqueue*.
 
 **Recent AI-driven work at Stock Unlock** (extends the migration list above):
 - **Webflow → self-hosted marketing site.** Every line written by Claude Code, every commit reviewed by me. ~$500 to $1K/year saved in hosting, contractor, and upkeep costs. 20x more content pages, full control of the codebase, no more contractor dependency.
@@ -104,11 +104,11 @@ On the hunt for what's next.
 - Origin: COVID era, watching Daniel Pronk's investing YouTube content. He was burning 5–10 hours every weekend on Excel sheets for his videos. I built a Python automation in a weekend to replace it. Primary driver was unrelenting curiosity and a nerdy thrill — plus I wanted into his paid Discord for free, and being useful felt like the way in.
 - Daniel ignored me for ~6 weeks while I kept emailing and commenting. He eventually replied — not because he was sold, but to make me stop. Hopped on a video call, cracked a beer. → see *Stories: Pronk emails*.
 - Daniel let me into his Discord. I dropped an early Excel-generator alpha (worked for a handful of stocks). Users freaked: "are you selling this?" "could you add this stock?" "I would pay for this." → see *Stories: Discord drop*.
-- Brought a third co-founder over from Oscar (a fellow engineer there). Y Combinator reached out cold via LinkedIn before we'd even applied. Applied, got in. I led the YC interview. **Note:** the third co-founder is a real person but is never named on the rendered site, per Jake's preference. Refer to him as "a third co-founder" or "a fellow Oscar engineer" only.
+- Brought a third co-founder over from Oscar (a fellow engineer there). Y Combinator reached out cold via LinkedIn before we'd even applied. Applied, got in. I led the YC interview.
 - Raised $1.335M seed. YC pushed us to launch before raising.
 - Scaled to a team of eight and thousands of paying customers.
 - **Sustained ~3.9k paying customers** through 2024-2025 at a profitable, durable steady-state. Explored adjacent paths to keep growing, including B2B motions. Made a heavy late-2025 feature push before the team decided to right-size in early 2026.
-- Right-sized in early 2026. A small, lean team handles day-to-day. I worked it full-tilt up to that point. (Specific headcount kept private and never surfaced as a number; rendered language is always "small, lean team".)
+- Right-sized in early 2026. A small, lean team handles day-to-day. I worked it full-tilt up to that point.
 - Runs profitably today. My co-founder Daniel and I are above the day-to-day — on key decisions and weekend pokes; the small, lean team executes.
 - The real Stock Unlock brag isn't a unicorn outcome — it's that the company is alive, profitable, and has thousands of customers who love it. That alone outperforms most YC W22 cohort companies.
 - Core conviction underneath the company: retail investing is going mainstream, but brokerages profit from trade volume, so they push predatory engagement features over tools that help customers make informed decisions. Overcharging for bad software is theft from people who can't afford to be robbed. We built Stock Unlock incentivized the right way, subscription revenue only.
@@ -154,8 +154,6 @@ Two summers as a mover at Barr Brothers Moving Company in NYC: between freshman/
 Five to six days a week, up to 80 hours, 100% humidity in the New York sun. The guys on the truck were tough; the work was sweaty and arduous; the stuff was always other people's. You learn fast that you can't drop a heavy thing even when your hands are slipping, because it isn't yours.
 
 It set the work-ethic floor and made the case for college sharper. The lesson about not putting down a hard thing has cashed in on engineering work plenty since.
-
-(Family-connection entry point — kept private; not surfaced on rendered pages.)
 
 ### The production takedown
 
@@ -295,13 +293,11 @@ Committing hard to things with depth has been the pattern through my life. Softw
 
 What I couldn't lock in on: anything I didn't enjoy. Bad student in English and history class — the classroom register was too dry. I doodled. The flip side of hyperfixation is that without the feedback loop, I tune out.
 
-A high school classmate told me once that I was good at everything that didn't matter. He wasn't wrong. The list above is the list of things I got weirdly good at and then moved past — which is what makes the ones that stuck (cubes, code) stick out.
+A high school classmate told me once that I was good at everything that didn't matter. He wasn't wrong. The list above is the list of things I got weirdly good at and then moved past, which is what makes software engineering, the one that stuck, stand out.
 
 ---
 
 ## AI philosophy and projects
-
-The Convictions / "What I'm for / What I'm against" section was **fully removed across all surfaces (xp, saas, readme) and from this canonical doc as of 2026-05-04.** Jake decided it wasn't carrying its weight on the site, and removed the private-reference list from BACKBONE too because it's not needed. Do not reintroduce it on any medium or in this doc.
 
 ### AI philosophy (rendered)
 
@@ -317,8 +313,6 @@ Three tight bullets, distilled from Jake's own voice in `rambles-personal-bio-co
 2. **Vibe coding isn't software engineering.** The distinction is real. I care about it.
 3. **Current AI tool stack (as of May 4, 2026):** CMUX (a custom Ghostty wrapper) for terminal AI work, invoking Claude Code primarily and Codex situationally. Lighter Cursor / Gemini / Grok use. Constantly reassessing tool fit as the space evolves.
 
-Earlier drafts ran longer ("the capability is changing weekly", "stay on top of architecture and the whole project", "never go blind") with paragraph-length explainers; Jake rejected those as wordy / try-hard / word-salad. Don't regress. The verbose tool-progression history (Copilot → Cursor → Claude Code → Opus 4.5 → Opus 4.7) and Opus 4.5 inflection moment live here as private reference and surface elsewhere on the rendered mediums (saas service-graph, readme philosophy answer), not in the AI philosophy bullets themselves.
-
 ### Recent AI projects (rendered)
 
 These ship as accordion rows on the rendered AI section. Order matches what's currently on `xp/`:
@@ -327,14 +321,14 @@ These ship as accordion rows on the rendered AI section. Order matches what's cu
 2. **AI coding-and-question agent for the team** (Stock Unlock infra, built as part of Jake's off-boarding). Private Discord bot (Discord.py) calling an OpenHands harness, deployed on EC2 + Docker Compose. Four slash commands. `/code` opens GitLab MRs with Playwright screenshots (via the OpenHands browser tool, which uses Playwright + BrowserGym under the hood — verified in OpenHands' `pyproject.toml`), code-enforced human-in-the-loop at all critical steps (plan approval, screenshot approval, MR review). `/ask` answers across a dozen-plus read-only data sources (codebase, Aurora, PostHog, Stripe, RevenueCat, Sentry, plus Finnhub, Finchat, Google Analytics, CloudWatch, S3, Cognito). Two model tiers, Claude Sonnet 4.6 for `/code` and MiniMax M2.7 for `/ask`, called via direct Anthropic and MiniMax SDKs (API keys in AWS Secrets Manager). Strict secret-isolation: `/code`-only secrets are deleted on each `/ask` invocation to prevent privilege escalation. IAM least-privilege boundary between agent and prod.
 3. **Customer.io to AWS SES migration** (Stock Unlock, 27 days on the side). Three send modes: triggered (Lambda-direct), broadcasts (SQS-buffered + DLQs), campaigns (EventBridge-scheduled). Self-serve composer for non-engineers (three-button UI with live preview, ~5 min training). Claude Code helper prompt: a "Copy Agent Prompt" button copies a guided Q&A script into Claude that walks the user through the email's purpose, audience, and structure, then hands back finished HTML to paste into the composer. Bounces, complaints, and unsubscribes auto-route to the suppression list via SES feedback loops; full activity log with send/delivery/open/click counts. Stack note: FastAPI admin endpoints run on AWS Fargate; the send-mode workers run on Lambda. Hundreds of thousands of emails per month, over a million a year. Saved ~$5 to 6K/yr.
 4. **Webflow to self-hosted marketing site** (Stock Unlock). ~$500 to $1K/year saved in hosting, contractor, and upkeep costs. 20× more content pages. No contractor dependency. Programmatic SEO + GEO on top.
-5. **This site, jakeruth.com** (personal). Vanilla HTML/CSS/JS, three chrome experiences sharing one shell, custom Rubik's-cube solver (bidirectional BFS over a compact cubie model) animates the transition between mediums. AI-built, human-reviewed. BACKBONE.md and CLAUDE.md keep agents on-voice.
+5. **This site, jakeruth.com** (personal). Vanilla HTML/CSS/JS, three chrome experiences sharing one shell, custom Rubik's-cube solver (bidirectional BFS over a compact cubie model) animates the transition between mediums. AI-built, human-reviewed.
 6. **Wirelessly-controlled blinds motor** (personal, **in progress**). First hardware project. Bench-prototyping the Adafruit Feather ESP32-C6 → DRV8833 driver → N20 motor chain over USB; LiPo + MiniBoost battery pass and FixMyBlinds Rollease R8 clutch come next. Tooling: tried Claude Code, switched to Codex (held the depth of conversation needed for embedded — voltage, motor torque, datasheets, pinouts).
 
 Once finalized in `xp/`, port this list and the philosophy bullets to readme/saas under hard parity.
 
-### Serendipity (rendered as a small bottom-of-page note)
+### Serendipity
 
-Surfaced as a small italic callout at the very bottom of the xp/ explorer scroll, framed as a personal aside ("I'll shoot my shot, this is something I believe in"). Not a section heading anywhere.
+A small italic callout at the bottom of the xp/ explorer scroll, framed as a personal aside.
 
 > Made it to the bottom? A working principle of mine: most of what's worked for me looks lucky in retrospect. AP CS to dodge AP Calc. The Tekkapalooza resume drop. The Oscar interview question. Daniel replying out of exhaustion. YC reaching out via LinkedIn. The pattern is that luck only lands on people who keep running at it. Not sure if you're into that worldview, but I'll shoot my shot, this is something I believe in.
 
@@ -342,11 +336,11 @@ Surfaced as a small italic callout at the very bottom of the xp/ explorer scroll
 
 ## Hire
 
-On the hunt for what's next. Subtle on the site — one quiet line, not a banner.
+On the hunt for what's next.
 
 - **Channel:** email. Fast during ET business hours; prefer email to DMs.
 - **Roles:** senior IC, founding engineer, early-stage CTO. Open to full-time or contract. Won't manage unless the team is right and the work stays close to the code.
-- **Comp:** market rate plus equity. No specific dollar prices anywhere on the site.
+- **Comp:** market rate plus equity.
 - **Filter:** has to be a problem I'd care about. I've led a YC interview before; I'd rather build something that matters than chase a logo.
 
 If you're not sure, email me anyway. We'll figure out whether it's a fit.

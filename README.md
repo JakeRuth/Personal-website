@@ -6,7 +6,7 @@ One InstallShield-style setup wizard at `/`, three experiences at `/xp/`, `/read
 
 Vanilla HTML/CSS/JS. No build step. Deployed to GitHub Pages from `master`.
 
-> **Built with AI, reviewed by Jake.** Exact public framing wording TBD before re-push. See `CLAUDE.md`.
+> **100% built with AI (Claude Code), reviewed by Jake.**
 
 ## Run locally
 
@@ -16,9 +16,11 @@ python3 -m http.server 8000
 
 Open `http://localhost:8000/`.
 
-## Pointers
+## Layout
 
-- `CLAUDE.md` — durable project context for AI sessions
-- `BACKBONE.md` — canonical content source (every fact on the site lives here first)
-- `rambles-personal-bio-conversations.md` — Jake's voice-to-text bio transcripts (gitignored)
-- `shell/` — cross-experience chrome (top-nav, cube transition, solver)
+- `/` — setup wizard (entry point)
+- `xp/` — Windows XP experience
+- `readme/` — GitHub repo experience
+- `saas/` — marketing-site experience
+- `shell/` — cross-experience chrome (top-nav, cube transition, BFS solver)
+- `resume/` — resume HTML source + rendered PDF

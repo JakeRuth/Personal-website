@@ -11,3 +11,10 @@ SESSION_NOTES.md
 # Local Claude Code settings (per-machine preferences, not project rules)
 .claude/settings.local.json
 .mobile-screenshots/
+
+# Scratch / debug artifacts (screenshots, server logs, agent output dumps).
+# Created by tooling during development, never meant to ship.
+.tmp/
+
+# Resume research notes (private working doc; never meant to ship).
+resume/RESEARCH_HANDOFF.md
