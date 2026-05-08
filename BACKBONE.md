@@ -4,7 +4,7 @@ The source of truth for the jakeruth.com rebuild (not yet pushed). Every fact, s
 
 Treat the prose as canonical *reference*, not literal copy. Each medium will adapt the voice to fit its chrome — saas/ marketing block, readme/ markdown overview, xp/ welcome screen — but no medium surfaces a fact or claim that isn't here. The wizard at `/` is intentionally light entry copy and not bound by parity.
 
-**Note on the resume:** Canonical resume is `resume/index.html` (HTML source) rendered to `resume/Jake_Ruth_Resume.pdf`. All "Resume" links across the site point to that PDF. The resume is a derived product, not a source of truth, facts still come from this file.
+**Note on the resume:** Canonical resume is `resume/index.html` (web view + Download PDF button), rendered to `resume/Jake_Ruth_Resume.pdf` for the download. All "Resume" links across the site point to `/resume/`. The resume is a derived product, not a source of truth, facts still come from this file.
 
 ---
 
@@ -23,7 +23,7 @@ Committing hard to things with depth has been the pattern through my life. Softw
 - **Email:** jake2ruth@gmail.com
 - **GitHub:** [github.com/JakeRuth](https://github.com/JakeRuth)
 - **WCA profile:** [worldcubeassociation.org/persons/2008RUTH01](https://www.worldcubeassociation.org/persons/2008RUTH01)
-- **Resume:** [resume/Jake_Ruth_Resume.pdf](./resume/Jake_Ruth_Resume.pdf) (rendered from `resume/index.html`)
+- **Resume:** [resume/](./resume/) (HTML view with Download PDF button)
 
 ---
 

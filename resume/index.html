@@ -24,7 +24,33 @@
   @media print {
     html { background: #fff; }
     .page { box-shadow: none; margin: 0; padding: 0; width: auto; }
+    .download-pdf { display: none !important; }
   }
+  .download-pdf {
+    position: fixed;
+    top: 16px;
+    right: 16px;
+    z-index: 10;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 14px;
+    background: var(--accent);
+    color: #fff;
+    font-family: "Inter", -apple-system, system-ui, sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    text-decoration: none;
+    border-radius: 6px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+  }
+  .download-pdf:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.18);
+    text-decoration: none;
+  }
+  .download-pdf svg { width: 14px; height: 14px; }
   :root { --accent: #1f3a5f; }
   h1 {
     font-size: 21pt;
@@ -72,6 +98,14 @@
 </style>
 </head>
 <body>
+<a class="download-pdf" href="./Jake_Ruth_Resume.pdf" download aria-label="Download resume as PDF">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+    <polyline points="7 10 12 15 17 10"/>
+    <line x1="12" y1="15" x2="12" y2="3"/>
+  </svg>
+  Download PDF
+</a>
 <div class="page">
 
   <h1>Jake Ruth</h1>

@@ -44,5 +44,5 @@ These are render-surface choices that BACKBONE doesn't carry.
 
 - **Number style.** Subscriber counts in the thousands render as `~3.9k`, not `~3,900`.
 - **No specific dollar prices, no explicit ARR figures.** Use `Contact`, `Talk to Jake`, `Market rate + equity`.
-- **Resume.** Canonical HTML at `/resume/index.html`; rendered PDF at `/resume/Jake_Ruth_Resume.pdf`. Every "Resume" link points to the PDF.
+- **Resume.** Canonical HTML at `/resume/index.html` with a Download PDF button; rendered PDF at `/resume/Jake_Ruth_Resume.pdf`. "Resume" links point to `/resume/` (the HTML page).
 - **Personal email throughout the site:** `jake2ruth@gmail.com`.

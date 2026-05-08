@@ -347,7 +347,7 @@
         return;
       }
       if (action === "resume") {
-        window.open("../resume/Jake_Ruth_Resume.pdf", "_blank", "noopener");
+        window.open("../resume/", "_blank", "noopener");
         return;
       }
       if (action === "back") {
