@@ -23,6 +23,12 @@
     if (t) return t;
     t = document.createElement("div");
     t.id = "shell-email-toast";
+    // Live region: screen readers announce "Copied jake2ruth@gmail.com
+    // to clipboard" when the toast appears. Without this, copy-on-click
+    // is silent for non-sighted users.
+    t.setAttribute("role", "status");
+    t.setAttribute("aria-live", "polite");
+    t.setAttribute("aria-atomic", "true");
     t.style.cssText =
       "position:fixed;bottom:48px;left:50%;transform:translateX(-50%) translateY(28px) scale(0.96);" +
       "display:flex;align-items:center;gap:10px;" +

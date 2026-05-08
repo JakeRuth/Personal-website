@@ -51,8 +51,14 @@
   </div>
 </header>
 
+<main id="main">
 <!-- ===================== HERO ===================== -->
 <section class="hero">
+  <!-- Hover-grid of micro-cubes: faint field of CSS-3D cubes
+       behind the hero. Cursor / touch within radius scrambles
+       per-cube; outside the radius, cubes shrink; cubes that
+       got scrambled auto-resolve when the cursor leaves them. -->
+  <div class="hero-cube-grid" aria-hidden="true"></div>
   <div class="container hero-row">
     <div class="hero-content">
       <div class="eyebrow"><span class="eyebrow-num">[00]</span><span class="dot-blue"></span> Welcome &middot; C:\Jake\</div>
@@ -71,6 +77,11 @@
       <div class="hero-ctas">
         <a href="mailto:jake2ruth@gmail.com" class="btn btn-primary btn-lg">Email Jake <i class="lucide icon-arrow-right"></i></a>
         <a href="../resume/Jake_Ruth_Resume.pdf" target="_blank" rel="noopener" class="btn btn-ghost btn-lg">Get resume</a>
+        <button type="button" id="cube-lab-cta" class="btn btn-demo btn-lg" aria-haspopup="dialog">
+          <span class="btn-demo-dot" aria-hidden="true"></span>
+          Try the live demo
+          <i class="lucide icon-arrow-up-right"></i>
+        </button>
       </div>
       <p class="hero-foot"><span class="dot-green"></span> On the hunt for what's next.</p>
     </div>
@@ -85,13 +96,13 @@
         <span class="marquee-logo marquee-logo-jr" aria-hidden="true">JR</span>
         <div class="marquee-titles">
           <a href="mailto:jake2ruth@gmail.com" class="marquee-name">Jake Ruth <i class="lucide icon-arrow-up-right"></i></a>
-          <p class="marquee-role">Software engineer &middot; ex-YC founder</p>
+          <p class="marquee-role">Software engineer &middot; YC founder</p>
         </div>
       </div>
       <div class="marquee-stats">
         <div><b>15 yrs</b><span>shipping software</span></div>
         <div><b>YC W22</b><span>co-founder, CEO</span></div>
-        <div><b>4 yrs</b><span>Oscar Health</span></div>
+        <div><b>AI</b><span>driver-seat</span></div>
         <div><b>13.95s</b><span>3&times;3 avg</span></div>
       </div>
       <p class="marquee-note">Open to full-time, contract, or equity-founding conversations on a problem worth caring about.</p>
@@ -143,7 +154,7 @@
           <div class="work-row-body">
             <div class="su-stats-ribbon">
               <div><b>$1.335M</b><span>seed raised</span></div>
-              <div><b>~3.9k</b><span>paying subscribers</span></div>
+              <div><b>~3.9k sustained</b><span>paying subscribers</span></div>
               <div><b>8</b><span>peak team</span></div>
               <div><b class="ok">Profitable</b><span>steady-state</span></div>
             </div>
@@ -258,8 +269,8 @@
 
     <div class="aiv-card">
       <span class="aiv-card-mark" aria-hidden="true">&ldquo;</span>
-      <div class="aiv-card-label">My AI philosophy</div>
-      <p class="aiv-card-headline"><em>I drive AI. It doesn't drive me.</em> <span class="aiv-card-aside">(yes, like a car)</span></p>
+      <div class="aiv-card-label">My AI philosophy:</div>
+      <p class="aiv-card-headline"><em>&ldquo;I drive AI. It doesn't drive me.&rdquo;</em> <span class="aiv-card-aside">(yes, like a car)</span></p>
       <p class="aiv-card-quote"><em>&ldquo;Two kinds of people use AI. One uses it to skip learning, the other uses it to learn everything. I work hard to be the second.&rdquo;</em></p>
       <ol class="aiv-card-points">
         <li><b>Code is code.</b> Hand-written or AI-written, I want the same thing: correct, secure, built to spec, read by a human where it matters.</li>
@@ -585,7 +596,7 @@
         </summary>
         <div class="story-body">
           <p>Co-founded with two UAlbany D1 soccer players (<b>Anthony</b>, CEO; <b>Jordan</b>). College-localized social-media iOS app on React Native v0.13/0.14, built out of free accelerator space in Troy. A &ldquo;school-localized Instagram&rdquo;: closed-loop networks per college, with Greek-life and sports-team features.</p>
-          <p>Anthony and Jordan won ~$25K in equity-free grants while still in school. Launched at SUNY Albany and Binghamton; ran a 70-person paid-in-credits brand-ambassador program; 20,000+ posts at peak.</p>
+          <p>Anthony and Jordan won ~$25K in equity-free grants while still in school. Launched at SUNY Albany and SUNY Binghamton; ran a 70-person paid-in-credits brand-ambassador program; 20,000+ posts at peak.</p>
           <p>Started on the side late 2014 alongside CommerceHub, ramped up over my last few months there, full-time July 2016. No business model and an unsolved cold-start; folded after about four to five months full-time. Eyes bigger than my stomach. The eighteen months of building it paid off in an unexpected place, the Oscar interview question that came right after.</p>
         </div>
       </details>
@@ -795,7 +806,7 @@
     </ul>
 
     <p class="mastery-inverse">
-      <b>The inverse signal.</b> A high school classmate told me once that I was good at everything that didn't matter. He wasn't wrong. The flip side of hyperfixation is that without the feedback loop, I tune out (bad student in English and history, doodled in class). The list above is what I got weirdly good at and then moved past, which is what makes the ones that stuck (cubes, code) stick out.
+      <b>The inverse signal.</b> A high school classmate told me once that I was good at everything that didn't matter. He wasn't wrong. The flip side of hyperfixation is that without the feedback loop, I tune out (bad student in English and history, doodled in class). The list above is what I got weirdly good at and then moved past, which is what makes the one that stuck, software engineering, stand out.
     </p>
   </div>
 </section>
@@ -808,6 +819,8 @@
     </p>
   </div>
 </section>
+
+</main>
 
 <!-- ===================== FOOTER ===================== -->
 <footer class="footer">
@@ -835,12 +848,48 @@
         <span>&copy; 2026 Jake Ruth</span>
       </div>
       <div class="footer-meta footer-build">
-        <span>100% built with Claude Code, reviewed by Jake</span>
+        <span>100% built with AI (Claude Code), reviewed by Jake</span>
       </div>
     </div>
   </div>
 </footer>
 
 <script src="./app.js"></script>
+<script src="./cubes.js" defer></script>
+
+<!-- ===================== CUBE LAB MODAL ===================== -->
+<!-- Standalone "live demo" program: a 5x3 grid of real Rubik's
+     cubes that respond to cursor proximity. Hidden until the
+     hero CTA opens it. ESC or the close button dismisses. -->
+<div class="cube-lab-modal" id="cube-lab-modal" role="dialog" aria-modal="true" aria-label="Cube Lab live demo" aria-hidden="true">
+  <div class="cube-lab-backdrop" data-cube-lab-close></div>
+  <div class="cube-lab-window" role="document">
+    <header class="cube-lab-head">
+      <div class="cube-lab-mark" aria-hidden="true">
+        <span class="cube-lab-dot cube-lab-dot-red"></span>
+        <span class="cube-lab-dot cube-lab-dot-amber"></span>
+        <span class="cube-lab-dot cube-lab-dot-green"></span>
+      </div>
+      <span class="cube-lab-title">Cube Lab</span>
+      <span class="cube-lab-tag">live demo &middot; v1.0</span>
+      <button type="button" class="cube-lab-close" data-cube-lab-close aria-label="Close demo">
+        <span class="cube-lab-close-glyph" aria-hidden="true">&times;</span>
+        <span class="cube-lab-close-text">Close</span>
+      </button>
+    </header>
+    <div class="cube-lab-stage" id="cube-lab-stage" aria-hidden="true">
+      <div class="cube-lab-hint-overlay" id="cube-lab-hint">
+        <p class="cube-lab-hint-strong">Move your cursor across the grid.</p>
+        <p class="cube-lab-hint-sub">The closer you get, the faster the cubes scramble. Move away and every cube solves itself within four seconds.</p>
+        <p class="cube-lab-hint-meta">Drag your finger on touch devices.</p>
+      </div>
+    </div>
+    <footer class="cube-lab-foot">
+      <span class="cube-lab-hint">Move your cursor across the grid. The closer you get, the faster the cubes scramble. Move away and they solve themselves.</span>
+      <span class="cube-lab-meta mono">esc to close</span>
+    </footer>
+  </div>
+</div>
+<script src="./cube-lab.js" defer></script>
 </body>
 </html>

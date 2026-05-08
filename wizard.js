@@ -200,7 +200,7 @@
       return (
         '<button type="button" class="' + classes.join(" ") + '"' +
           ' data-idx="' + idx + '" data-id="' + e.id + '"' +
-          ' role="radio" aria-checked="' + (isSelected ? "true" : "false") + '"' +
+          ' aria-pressed="' + (isSelected ? "true" : "false") + '"' +
           ' aria-label="' + escapeHtml(e.name) + '">' +
           '<span class="sel-badge" aria-hidden="true">&#10003;</span>' +
           '<div class="exp-mockup">' + mockupFor(e.id) + '</div>' +
@@ -216,7 +216,7 @@
           '<h2>Choose your experience</h2>' +
           '<p class="dim">All three ship the same content, just through different coding art.</p>' +
         '</div>' +
-        '<div class="exp-grid" id="exp-grid" role="radiogroup" aria-label="Experience">' +
+        '<div class="exp-grid" id="exp-grid" role="group" aria-label="Experience">' +
           cards +
         '</div>' +
         '<p class="picker-foot dim">Arrow keys to browse. Enter to pick and launch. Double-click to skip Next.</p>' +

@@ -1,5 +1,5 @@
 /* README experience: boot, markdown render, scroll-spy,
-   tab-switching (Code / Issues / Pull requests), skin toggle,
+   tab-switching (Code / Timeline), skin toggle,
    star/fork handlers, toast + modal plumbing. */
 
 (function () {
@@ -100,8 +100,7 @@
   const VIEWS = {
     MARKDOWN: 'markdown',
     TIMELINE: 'timeline',
-    ISSUES:   'issues',
-    PRS:      'prs',
+    CUBE:     'cube',
   };
 
   let CURRENT_VIEW = VIEWS.MARKDOWN;
@@ -110,13 +109,21 @@
     CURRENT_VIEW = view;
     $('#readme').hidden     = view !== VIEWS.MARKDOWN;
     $('#timeline').hidden   = view !== VIEWS.TIMELINE;
-    $('#issuesView').hidden = view !== VIEWS.ISSUES;
-    $('#prsView').hidden    = view !== VIEWS.PRS;
+    if ($('#cubeView')) $('#cubeView').hidden = view !== VIEWS.CUBE;
 
-    $('#tocWrap').hidden     = view !== VIEWS.MARKDOWN;
     $('#branchRail').hidden  = view !== VIEWS.TIMELINE;
-    $('#issuesRail').hidden  = view !== VIEWS.ISSUES;
-    $('#prsRail').hidden     = view !== VIEWS.PRS;
+    if ($('#cubeRail')) $('#cubeRail').hidden = view !== VIEWS.CUBE;
+    // Markdown view uses the file tree as nav; no right rail.
+    const layout = document.querySelector('.layout');
+    if (layout) layout.classList.toggle('no-rail', view === VIEWS.MARKDOWN);
+
+    // Cube widget is heavy; mount on enter, dispose on leave.
+    if (view === VIEWS.CUBE && window.GhCube) {
+      // wait one frame so the section becomes visible (clientWidth > 0)
+      requestAnimationFrame(() => window.GhCube.mount());
+    } else if (window.GhCube) {
+      window.GhCube.unmount();
+    }
 
     // reflect active top-tab
     $$('.gh-tab').forEach((t) => {
@@ -124,8 +131,7 @@
       const wantActive =
         (view === VIEWS.MARKDOWN && tab === 'code') ||
         (view === VIEWS.TIMELINE && tab === 'timeline') ||
-        (view === VIEWS.ISSUES   && tab === 'issues') ||
-        (view === VIEWS.PRS      && tab === 'prs');
+        (view === VIEWS.CUBE     && tab === 'cube');
       t.classList.toggle('active', !!wantActive);
     });
   }
@@ -151,75 +157,76 @@
       return;
     }
 
+    // Markdown view: README.md is the only document. Other "files"
+    // in the tree are anchor links into sections of the same README.
     showView(VIEWS.MARKDOWN);
     const readmeEl = $('#readme');
-    const src = window.CONTENT[key] || '# Not found';
-    readmeEl.innerHTML = marked.parse(src);
-    decorateCallouts(readmeEl);
-    buildTOC(readmeEl);
-    wireAnchorClicks(readmeEl);
-    wireCopyButtons(readmeEl);
+    if (!readmeEl.dataset.mounted) {
+      readmeEl.innerHTML = marked.parse(window.CONTENT.README || '');
+      decorateCallouts(readmeEl);
+      wireAnchorClicks(readmeEl);
+      wireCopyButtons(readmeEl);
+      readmeEl.dataset.mounted = '1';
+    }
     setActiveFile(key);
-    scrollPaneTop();
+    const anchor = FILE_ANCHORS[key];
+    if (anchor) {
+      const target = document.getElementById(anchor);
+      if (target) {
+        // If the target lives inside a <details>, open it so the
+        // anchor isn't hidden behind a collapsed accordion.
+        const det = target.closest('details');
+        if (det && !det.open) det.open = true;
+        smoothScrollTo(target);
+      } else {
+        scrollPaneTop();
+      }
+    } else {
+      scrollPaneTop();
+    }
+  }
+
+  // File tree click → scroll to this section in README.
+  // README.md scrolls to top; .gitignore scrolls to the footer note.
+  const FILE_ANCHORS = {
+    README:       null,
+    ABOUT:        'about',
+    WORK_HISTORY: 'work-history',
+    STOCK_UNLOCK: 'stock-unlock',
+    PROJECTS:     'recent-ai-projects-post-opus-45',
+    HOBBIES:      'mastery-hobbies',
+    GITIGNORE:    'bottom-note',
+  };
+
+  // Reverse map: anchor id → file key, so in-content links can sync
+  // the file-tree active state.
+  const ANCHOR_TO_FILE = Object.fromEntries(
+    Object.entries(FILE_ANCHORS).filter(([, v]) => v).map(([k, v]) => [v, k])
+  );
+
+  let scrollAnimId = 0;
+  function smoothScrollTo(el) {
+    const headerOffset = 170;
+    const start = window.scrollY;
+    const end = el.getBoundingClientRect().top + window.scrollY - headerOffset;
+    const dy = end - start;
+    if (Math.abs(dy) < 4) return;
+    const dur = Math.min(900, 280 + Math.sqrt(Math.abs(dy)) * 16);
+    const t0 = performance.now();
+    const myId = ++scrollAnimId;
+    const ease = (t) => 1 - Math.pow(1 - t, 4);
+    function step(now) {
+      // Cancel if a newer scroll started.
+      if (myId !== scrollAnimId) return;
+      const t = Math.min(1, (now - t0) / dur);
+      window.scrollTo(0, start + dy * ease(t));
+      if (t < 1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
   }
 
   function scrollPaneTop() {
     window.scrollTo({ top: 0, behavior: 'instant' in window ? 'instant' : 'auto' });
-  }
-
-  /* ========================================================== */
-  /* TOC                                                        */
-  /* ========================================================== */
-  let activeObserver = null;
-  function buildTOC(root) {
-    const tocList = $('#tocList');
-    tocList.innerHTML = '';
-    const h2s = $$('h2', root);
-    h2s.forEach((h) => {
-      const li = document.createElement('li');
-      const a = document.createElement('a');
-      a.href = '#' + h.id;
-      a.textContent = h.textContent.replace(/^#/, '').trim();
-      a.addEventListener('click', (e) => {
-        e.preventDefault();
-        const target = document.getElementById(h.id);
-        if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        history.replaceState(null, '', '#' + h.id);
-      });
-      li.appendChild(a);
-      tocList.appendChild(li);
-    });
-    wireTOCScrollSpy(h2s);
-  }
-
-  function wireTOCScrollSpy(headings) {
-    if (activeObserver) { try { activeObserver.disconnect(); } catch (e) {} activeObserver = null; }
-    if (!('IntersectionObserver' in window) || !headings.length) return;
-    const tocLinks = $$('#tocList a');
-    const byId = new Map(tocLinks.map((a) => [a.getAttribute('href').slice(1), a]));
-    // track the topmost visible heading (avoids flicker)
-    const visible = new Set();
-    activeObserver = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) visible.add(entry.target);
-          else visible.delete(entry.target);
-        });
-        let topmost = null;
-        let topY = Infinity;
-        visible.forEach((el) => {
-          const y = el.getBoundingClientRect().top;
-          if (y < topY) { topY = y; topmost = el; }
-        });
-        if (!topmost) return;
-        const link = byId.get(topmost.id);
-        if (!link) return;
-        tocLinks.forEach((a) => a.classList.remove('active'));
-        link.classList.add('active');
-      },
-      { rootMargin: '-92px 0px -60% 0px', threshold: 0 }
-    );
-    headings.forEach((h) => activeObserver.observe(h));
   }
 
   function wireAnchorClicks(root) {
@@ -228,7 +235,12 @@
         e.preventDefault();
         const id = a.getAttribute('href').slice(1);
         const target = document.getElementById(id);
-        if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        if (target) {
+          const det = target.closest('details');
+          if (det && !det.open) det.open = true;
+          smoothScrollTo(target);
+          if (ANCHOR_TO_FILE[id]) setActiveFile(ANCHOR_TO_FILE[id]);
+        }
         history.replaceState(null, '', '#' + id);
         if (navigator.clipboard) {
           navigator.clipboard.writeText(window.location.href).catch(() => {});
@@ -266,50 +278,107 @@
   }
 
   /* ========================================================== */
-  /* file tree + tabs                                           */
+  /* file tree + path header                                    */
   /* ========================================================== */
-  const OPEN_TABS = new Set(['README']);
   let ACTIVE = 'README';
+
+  // Breadcrumb path. The whole document is README.md; clicking a file
+  // in the tree jumps to a section but doesn't change the doc, so the
+  // path stays README.md for any markdown-view click. Timeline and
+  // Cube are real view changes and update the breadcrumb.
+  const FILE_PATHS = {
+    TIMELINE: 'TIMELINE',
+    CUBE:     'octocube.exe',
+  };
 
   function setActiveFile(key) {
     ACTIVE = key;
-    OPEN_TABS.add(key);
-    renderTabs();
+    const pathEl = $('#filePath');
+    if (pathEl) pathEl.textContent = FILE_PATHS[key] || 'README.md';
     $$('#fileTree li').forEach((li) => {
       li.classList.toggle('active', li.dataset.file === key);
     });
   }
 
-  function renderTabs() {
-    const tabs = $('#fileTabs');
-    tabs.innerHTML = '';
-    OPEN_TABS.forEach((key) => {
-      const b = document.createElement('button');
-      b.className = 'file-tab' + (key === ACTIVE ? ' active' : '');
-      b.dataset.file = key;
-      b.textContent = key === 'TIMELINE' ? 'TIMELINE' : (key + '.md');
-      b.addEventListener('click', () => renderFile(key));
-      tabs.appendChild(b);
-    });
-  }
-
   function wireFileTree() {
-    $$('#fileTree li.file').forEach((li) => {
-      li.addEventListener('click', (e) => {
+    // Click handler is on the .tree-row span (not the <li>) so a
+    // child row's click doesn't bubble up to its ancestor li and
+    // re-trigger the parent's nav.
+    $$('#fileTree .tree-row').forEach((row) => {
+      row.addEventListener('click', (e) => {
         e.stopPropagation();
+        const li = row.closest('li[data-file]');
+        if (!li) return;
         const key = li.dataset.file;
         if (!key) return;
-        if (key !== 'TIMELINE' && !window.CONTENT[key]) return;
+        if (key === 'GITIGNORE') {
+          ignoreEverything();
+          closeSidebarDrawer();
+          return;
+        }
+        if (key !== 'TIMELINE' && key !== 'README' && !(key in FILE_ANCHORS)) return;
         renderFile(key);
         closeSidebarDrawer();
       });
     });
-    $$('#fileTree li.dir').forEach((li) => {
-      li.addEventListener('click', (e) => {
-        e.stopPropagation();
-        li.classList.toggle('open');
-      });
+  }
+
+  // .gitignore Easter egg: the page briefly explodes — text glitches
+  // into garbage characters, layout shakes, color filter goes wild,
+  // cube spins fast — for ~700ms, then snaps back. The site briefly
+  // ignored itself.
+  const SCRAMBLE_CHARS = '!@#$%^&*+=<>?/~∞≈≠√∑∂∆Ωπµ░▒▓█▄▀';
+  let glitching = false;
+  function ignoreEverything() {
+    if (glitching) return;
+    glitching = true;
+    const body = document.body;
+
+    // Snapshot every visible text node we're going to garble.
+    const items = [];
+    const walker = document.createTreeWalker(body, NodeFilter.SHOW_TEXT, {
+      acceptNode(n) {
+        if (!n.textContent || !n.textContent.trim()) return NodeFilter.FILTER_REJECT;
+        const p = n.parentElement;
+        if (!p) return NodeFilter.FILTER_REJECT;
+        const tag = p.tagName;
+        if (tag === 'SCRIPT' || tag === 'STYLE' || tag === 'NOSCRIPT') return NodeFilter.FILTER_REJECT;
+        // Skip the cube canvas region's textless area; canvas children are not text nodes anyway.
+        return NodeFilter.FILTER_ACCEPT;
+      },
     });
+    let n;
+    while ((n = walker.nextNode())) items.push({ node: n, orig: n.textContent });
+
+    body.classList.add('ignoring');
+
+    let frame = 0;
+    const FRAMES = 12;
+    const id = setInterval(() => {
+      frame++;
+      if (frame >= FRAMES) {
+        clearInterval(id);
+        items.forEach((it) => { it.node.textContent = it.orig; });
+        body.classList.remove('ignoring');
+        glitching = false;
+        return;
+      }
+      // Scramble a high fraction of characters per frame; preserve
+      // whitespace so the rough shape of paragraphs stays.
+      const intensity = frame < FRAMES - 3 ? 0.82 : 0.4;
+      items.forEach((it) => {
+        const s = it.orig;
+        let out = '';
+        for (let k = 0; k < s.length; k++) {
+          const c = s[k];
+          if (c === ' ' || c === '\n' || c === '\t') { out += c; continue; }
+          out += Math.random() < intensity
+            ? SCRAMBLE_CHARS[(Math.random() * SCRAMBLE_CHARS.length) | 0]
+            : c;
+        }
+        it.node.textContent = out;
+      });
+    }, 70);
   }
 
   function openSidebarDrawer() {
@@ -340,31 +409,6 @@
     });
   }
 
-  function closeOverflow() {
-    const right = $('.gh-header-right');
-    const btn = $('#overflowBtn');
-    if (right) right.classList.remove('overflow-open');
-    if (btn) btn.setAttribute('aria-expanded', 'false');
-  }
-  function wireOverflowMenu() {
-    const btn = $('#overflowBtn');
-    const right = $('.gh-header-right');
-    if (!btn || !right) return;
-    btn.addEventListener('click', (e) => {
-      e.stopPropagation();
-      const isOpen = right.classList.toggle('overflow-open');
-      btn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
-    });
-    document.addEventListener('click', (e) => {
-      if (!right.classList.contains('overflow-open')) return;
-      if (e.target.closest('.gh-overflow-wrap') || e.target.closest('#overflowBtn')) return;
-      closeOverflow();
-    });
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') closeOverflow();
-    });
-  }
-
   /* ========================================================== */
   /* top tabs (Code / Issues / PRs)                             */
   /* ========================================================== */
@@ -375,122 +419,49 @@
         if (!tab) return;
         e.preventDefault();
         if (tab === 'code') {
-          if (ACTIVE === 'TIMELINE') renderFile('TIMELINE');
+          if (ACTIVE === 'TIMELINE' || ACTIVE === 'CUBE') renderFile('README');
           else renderFile(ACTIVE);
         } else if (tab === 'timeline') {
           renderFile('TIMELINE');
           scrollPaneTop();
-        } else if (tab === 'issues') {
-          showView(VIEWS.ISSUES);
-          renderIssues();
+        } else if (tab === 'cube') {
+          renderCube();
           scrollPaneTop();
-        } else if (tab === 'prs') {
-          showView(VIEWS.PRS);
-          renderPRs();
-          scrollPaneTop();
-        } else {
-          // visual-only tabs (Actions, Projects, Security, Insights)
-          toast('That tab is decorative. Try Code, Timeline, Issues, or Pull requests.');
         }
       });
     });
   }
 
-  /* ========================================================== */
-  /* Issues rendering                                           */
-  /* ========================================================== */
-  function renderIssues() {
-    const list = $('#issueList');
-    const items = window.CONTENT.ISSUES || [];
-    $('#openIssueCount').textContent = items.length;
-    list.innerHTML = items.map((it) => `
-      <li class="issue-item">
-        <svg class="issue-icon" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><circle cx="8" cy="8" r="7" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="8" cy="8" r="2" fill="currentColor"/></svg>
-        <div class="issue-body">
-          <div class="issue-title-row">
-            <span class="issue-title">${escapeHtml(it.title)}</span>
-            <span class="issue-labels">
-              ${(it.labels || []).map((l) => `<span class="issue-label" data-label="${escapeHtml(l)}">${escapeHtml(l)}</span>`).join('')}
-            </span>
-          </div>
-          <div class="issue-meta muted">
-            #${it.id} opened ${escapeHtml(it.opened)} by ${escapeHtml(it.author)} ·
-            <span class="c-count">${it.comments} comment${it.comments === 1 ? '' : 's'}</span>
-          </div>
-          <div class="issue-preview">${escapeHtml(it.body)}</div>
-        </div>
-      </li>
-    `).join('');
-
-    // label rail
-    const rail = $('#labelRail');
-    rail.innerHTML = (window.CONTENT.ISSUE_LABELS || []).map((l) => `
-      <li data-label="${escapeHtml(l.name)}">
-        <span class="label-swatch" style="background:${l.color}"></span>
-        <span class="label-name">${escapeHtml(l.name)}</span>
-        <span class="label-count">${l.count}</span>
-      </li>
-    `).join('');
-
-    // simple label filter click-through
-    rail.addEventListener('click', (e) => {
-      const li = e.target.closest('li');
-      if (!li) return;
-      const label = li.dataset.label;
-      rail.querySelectorAll('li').forEach((x) => x.classList.toggle('active', x === li));
-      $$('.issue-item').forEach((it) => {
-        const has = $$('.issue-label', it).some((sp) => sp.dataset.label === label);
-        it.classList.toggle('dim', !has);
-      });
-      // clicking the same label again clears
-      if (li.dataset.active === '1') {
-        rail.querySelectorAll('li').forEach((x) => x.classList.remove('active'));
-        $$('.issue-item').forEach((it) => it.classList.remove('dim'));
-        li.dataset.active = '';
-      } else {
-        rail.querySelectorAll('li').forEach((x) => (x.dataset.active = ''));
-        li.dataset.active = '1';
-      }
-    }, { once: false });
+  function renderCube() {
+    showView(VIEWS.CUBE);
+    const path = $('#filePath');
+    if (path) path.textContent = 'octocube.exe';
+    setActiveFile('CUBE');
+    renderCubeLegend();
+    wireCubeButtons();
   }
 
-  /* ========================================================== */
-  /* PRs rendering                                              */
-  /* ========================================================== */
-  function renderPRs() {
-    const list = $('#prList');
-    const items = window.CONTENT.PRS || [];
-    const merged = items.filter((p) => p.state === 'merged').length;
-    $('#mergedPrCount').textContent = merged;
-    list.innerHTML = items.map((p) => `
-      <li class="pr-item">
-        <svg class="pr-icon ${p.state}" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true">
-          ${p.state === 'merged'
-            ? '<path fill="currentColor" d="M5 3.25a2.25 2.25 0 1 1 3 2.122v5.256a2.25 2.25 0 0 1-1.5 0V5.372A2.25 2.25 0 0 1 5 3.25Zm3 9.5a.75.75 0 1 0 1.5 0 .75.75 0 0 0-1.5 0Zm-1-9.5a.75.75 0 1 0-1.5 0 .75.75 0 0 0 1.5 0Z"/>'
-            : '<path fill="currentColor" d="M1.5 3.25a2.25 2.25 0 1 1 3 2.122v5.256a2.251 2.251 0 1 1-1.5 0V5.372A2.25 2.25 0 0 1 1.5 3.25Zm8.5 0a2.25 2.25 0 1 1 3 2.122v5.256a2.251 2.251 0 1 1-1.5 0V5.372A2.25 2.25 0 0 1 10 3.25Z"/>'}
-        </svg>
-        <div class="pr-body">
-          <div class="pr-title-row">
-            <span class="pr-title">${escapeHtml(p.title)}</span>
-            <span class="pr-state ${p.state}">${p.state}</span>
-          </div>
-          <div class="pr-meta muted">
-            #${p.id} · ${escapeHtml(p.branch)} → ${escapeHtml(p.base)} ·
-            ${p.state === 'merged'
-              ? `merged ${escapeHtml(p.merged)} by ${escapeHtml(p.author)}`
-              : `opened ${escapeHtml(p.opened)} by ${escapeHtml(p.author)}`}
-          </div>
-          <div class="pr-preview">${escapeHtml(p.body)}</div>
-          <div class="pr-stats muted">
-            <span>${p.commits} commits</span>
-            <span>${p.changed} files changed</span>
-            <span class="added">+${p.additions.toLocaleString()}</span>
-            <span class="removed">-${p.deletions.toLocaleString()}</span>
-            ${(p.labels || []).map((l) => `<span class="pr-label">${escapeHtml(l)}</span>`).join('')}
-          </div>
-        </div>
+  function renderCubeLegend() {
+    const list = $('#cubeLegend');
+    if (!list || !window.GhCube) return;
+    const faces = window.GhCube.legendData();
+    list.innerHTML = faces.map((f) => `
+      <li>
+        <span class="cube-swatch" style="background:${f.bg}"></span>
+        <span class="cube-face-id">${f.id}</span>
+        <span class="cube-face-label">${f.label}</span>
       </li>
     `).join('');
+  }
+
+  function wireCubeButtons() {
+    if ($('#cubeView')?.dataset.cubeWired === '1') return;
+    $$('#cubeView [data-cube-action]').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        if (window.GhCube) window.GhCube.action(btn.dataset.cubeAction);
+      });
+    });
+    if ($('#cubeView')) $('#cubeView').dataset.cubeWired = '1';
   }
 
   /* ========================================================== */
@@ -517,85 +488,6 @@
       if (theme === 'dark') { darkCSS.disabled = false; lightCSS.disabled = true; }
       else { darkCSS.disabled = true; lightCSS.disabled = false; }
     }
-  }
-
-  /* ========================================================== */
-  /* terminal skin toggle (smooth crossfade, no layout shift)   */
-  /* ========================================================== */
-  function wireSkin() {
-    const btn = $('#skinToggle');
-    const label = $('#skinLabel');
-    const htmlEl = document.documentElement;
-    const saved = localStorage.getItem('rgf2-skin');
-    apply(saved || 'readme', /*initial*/ true);
-
-    btn.addEventListener('click', () => {
-      const next = htmlEl.dataset.skin === 'terminal' ? 'readme' : 'terminal';
-      apply(next);
-      localStorage.setItem('rgf2-skin', next);
-    });
-
-    function apply(skin, initial) {
-      if (!initial) {
-        htmlEl.classList.add('skin-transition');
-        setTimeout(() => htmlEl.classList.remove('skin-transition'), 260);
-      }
-      htmlEl.dataset.skin = skin;
-      label.textContent = skin === 'terminal' ? 'README' : 'Terminal';
-      btn.title = skin === 'terminal' ? 'Back to README skin' : 'Terminal skin';
-    }
-  }
-
-  /* ========================================================== */
-  /* raw source modal                                           */
-  /* ========================================================== */
-  function wireModal() {
-    const modal = $('#modal');
-    const openBtn = $('#viewSourceBtn');
-    const closeBtn = $('#closeModalBtn');
-    const rawEl = $('#rawSource');
-    const rawPath = $('#rawPath');
-    const copyBtn = $('#copyRawBtn');
-
-    function open() {
-      if (CURRENT_VIEW === VIEWS.TIMELINE) {
-        rawEl.textContent = window.TIMELINE.rawSource();
-        rawPath.innerHTML = 'TIMELINE <span class="muted">· git log --graph --oneline --all --decorate</span>';
-      } else if (CURRENT_VIEW === VIEWS.ISSUES) {
-        rawEl.textContent = (window.CONTENT.ISSUES || []).map((it) =>
-          `#${it.id}  [${(it.labels||[]).join(', ')}]\n  ${it.title}\n    ${it.body}\n`).join('\n');
-        rawPath.innerHTML = 'issues.json <span class="muted">· raw</span>';
-      } else if (CURRENT_VIEW === VIEWS.PRS) {
-        rawEl.textContent = (window.CONTENT.PRS || []).map((p) =>
-          `#${p.id}  [${p.state}]  ${p.branch} -> ${p.base}\n  ${p.title}\n    ${p.body}\n`).join('\n');
-        rawPath.innerHTML = 'pulls.json <span class="muted">· raw</span>';
-      } else {
-        rawEl.textContent = window.CONTENT[ACTIVE] || '';
-        rawPath.innerHTML = `${ACTIVE}.md <span class="muted">· raw</span>`;
-      }
-      modal.hidden = false;
-      document.body.style.overflow = 'hidden';
-      setTimeout(() => closeBtn.focus(), 20);
-    }
-    function close() { modal.hidden = true; document.body.style.overflow = ''; }
-
-    openBtn.addEventListener('click', open);
-    closeBtn.addEventListener('click', close);
-    modal.addEventListener('click', (e) => { if (e.target === modal) close(); });
-    document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && !modal.hidden) { close(); e.preventDefault(); } });
-
-    copyBtn.addEventListener('click', () => {
-      const text = rawEl.textContent;
-      if (!navigator.clipboard) fallbackCopy(text);
-      else navigator.clipboard.writeText(text).catch(() => fallbackCopy(text));
-      copyBtn.textContent = 'Copied';
-      setTimeout(() => (copyBtn.textContent = 'Copy'), 1400);
-    });
-
-    document.addEventListener('click', (e) => {
-      const t = e.target.closest('#hint-raw');
-      if (t) { e.preventDefault(); open(); }
-    });
   }
 
   /* ========================================================== */
@@ -639,6 +531,61 @@
   }
 
   /* ========================================================== */
+  /* accordion grouping: one <details> open per group           */
+  /* ========================================================== */
+  // Native <details> are independent. Match the XP page: when one
+  // opens, close peers in the same accordion group. A "group" is the
+  // run of <details> that sit between two section headings (h2/h3),
+  // so Work-history rows and Recent-AI-projects rows stay independent
+  // even though they're flat siblings under the same readme div.
+  function collectAccordionGroup(det) {
+    const group = [det];
+    const isBoundary = (el) => el && (el.tagName === 'H2' || el.tagName === 'H3');
+    let n = det.previousElementSibling;
+    while (n && !isBoundary(n)) {
+      if (n.tagName === 'DETAILS') group.push(n);
+      n = n.previousElementSibling;
+    }
+    n = det.nextElementSibling;
+    while (n && !isBoundary(n)) {
+      if (n.tagName === 'DETAILS') group.push(n);
+      n = n.nextElementSibling;
+    }
+    return group;
+  }
+  function wireAccordionGroups() {
+    // Mark a user-initiated open before <details> default-toggles so the
+    // toggle handler below can distinguish click-opens from programmatic
+    // ones (anchor nav, file render) that already do their own scroll.
+    document.addEventListener('click', (e) => {
+      const summary = e.target.closest('summary');
+      if (!summary) return;
+      const det = summary.parentElement;
+      if (!(det instanceof HTMLDetailsElement)) return;
+      if (!det.open) det.dataset.userOpening = '1';
+    }, true);
+    document.addEventListener('toggle', (e) => {
+      const det = e.target;
+      if (!(det instanceof HTMLDetailsElement)) return;
+      if (!det.open) return;
+      collectAccordionGroup(det).forEach((other) => {
+        if (other !== det && other.open) other.open = false;
+      });
+      // After peer-close reflows, anchor the just-opened row to a stable
+      // position below the sticky chrome. Native smooth scroll honors
+      // `scroll-margin-top: 170px` on .work-collapse and rides the
+      // compositor, so it doesn't fight Chrome's scroll-anchoring when
+      // a tall peer above collapses.
+      if (det.dataset.userOpening === '1') {
+        delete det.dataset.userOpening;
+        requestAnimationFrame(() => requestAnimationFrame(() => {
+          det.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }));
+      }
+    }, true);
+  }
+
+  /* ========================================================== */
   /* in-content anchor nav + TIMELINE shield hop                */
   /* ========================================================== */
   function wireInContentAnchors() {
@@ -647,17 +594,21 @@
       if (!a) return;
       const href = a.getAttribute('href') || '';
       if (href === '#TIMELINE') { e.preventDefault(); renderFile('TIMELINE'); return; }
-      if (/^#[A-Z][A-Z_]+$/.test(href) && window.CONTENT[href.slice(1)]) {
+      if (/^#[A-Z][A-Z_]+$/.test(href) && href.slice(1) in FILE_ANCHORS) {
         e.preventDefault();
         renderFile(href.slice(1));
         return;
       }
       if (href.startsWith('#') && href.length > 1) {
-        const target = document.getElementById(href.slice(1));
+        const id = href.slice(1);
+        const target = document.getElementById(id);
         if (target) {
           e.preventDefault();
-          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          const det = target.closest('details');
+          if (det && !det.open) det.open = true;
+          smoothScrollTo(target);
           history.replaceState(null, '', href);
+          if (ANCHOR_TO_FILE[id]) setActiveFile(ANCHOR_TO_FILE[id]);
         }
       }
     });
@@ -686,10 +637,8 @@
   function wireCopyAll() {
     $('#copyAllBtn').addEventListener('click', () => {
       let src = '';
-      if (CURRENT_VIEW === VIEWS.MARKDOWN) src = window.CONTENT[ACTIVE] || '';
+      if (CURRENT_VIEW === VIEWS.MARKDOWN) src = window.CONTENT.README || '';
       else if (CURRENT_VIEW === VIEWS.TIMELINE) src = window.TIMELINE.rawSource();
-      else if (CURRENT_VIEW === VIEWS.ISSUES) src = (window.CONTENT.ISSUES || []).map((i) => `#${i.id} ${i.title}`).join('\n');
-      else if (CURRENT_VIEW === VIEWS.PRS) src = (window.CONTENT.PRS || []).map((p) => `#${p.id} ${p.title}`).join('\n');
       if (!src) return;
       if (!navigator.clipboard) fallbackCopy(src);
       else navigator.clipboard.writeText(src).catch(() => fallbackCopy(src));
@@ -702,23 +651,26 @@
   /* ========================================================== */
   function boot() {
     wireTheme();
-    wireSkin();
     wireFileTree();
     wireSidebarDrawer();
-    wireOverflowMenu();
     wireTopTabs();
-    wireModal();
     wireStarFork();
     wireInContentAnchors();
     wireCopyAll();
+    wireAccordionGroups();
     renderFile('README');
 
     const hash = window.location.hash.slice(1);
     if (hash === 'TIMELINE') { renderFile('TIMELINE'); return; }
-    if (hash && window.CONTENT[hash]) { renderFile(hash); return; }
+    if (hash && hash in FILE_ANCHORS) { renderFile(hash); return; }
     if (hash) {
       const target = document.getElementById(hash);
-      if (target) setTimeout(() => target.scrollIntoView({ behavior: 'smooth', block: 'start' }), 60);
+      if (target) {
+        const det = target.closest('details');
+        if (det && !det.open) det.open = true;
+        if (ANCHOR_TO_FILE[hash]) setActiveFile(ANCHOR_TO_FILE[hash]);
+        setTimeout(() => smoothScrollTo(target), 60);
+      }
     }
   }
 

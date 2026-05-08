@@ -46,6 +46,15 @@ html, body {
 a { color: inherit; text-decoration: none; }
 a:hover { color: var(--accent); }
 
+/* Visible focus ring for keyboard users. Without this, gradient buttons
+   strip the UA outline and there's no indication of focus position. */
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: 3px;
+}
+.btn:focus-visible { outline-offset: 3px; }
+
 .mono {
   font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
   font-feature-settings: normal;
@@ -123,6 +132,39 @@ h1, h2, h3, h4 { font-weight: 600; letter-spacing: -0.012em; margin: 0; }
   border-color: var(--line-2);
 }
 .btn-ghost:hover { border-color: var(--accent); color: var(--accent); background: rgba(62,155,255,0.06); }
+
+/* "Try the live demo" CTA — saas-marketing tertiary button with a
+   pulsing dot. Distinct from primary/ghost so the demo reads as a
+   discrete affordance, not just another link. */
+.btn-demo {
+  background: linear-gradient(180deg, rgba(139,123,255,0.16), rgba(139,123,255,0.06));
+  color: var(--ink);
+  border-color: rgba(139,123,255,0.42);
+  font-family: inherit;
+  cursor: pointer;
+  position: relative;
+}
+.btn-demo:hover {
+  background: linear-gradient(180deg, rgba(139,123,255,0.26), rgba(139,123,255,0.10));
+  border-color: var(--violet);
+  color: #fff;
+  transform: translateY(-1px);
+}
+.btn-demo .lucide { font-size: 13px; color: var(--violet); transition: transform 0.15s; }
+.btn-demo:hover .lucide { transform: translate(1px, -1px); color: #c9c0ff; }
+.btn-demo-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--violet);
+  box-shadow: 0 0 0 0 rgba(139,123,255,0.6);
+  animation: btn-demo-pulse 1.8s ease-in-out infinite;
+  flex-shrink: 0;
+}
+@keyframes btn-demo-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(139,123,255,0.55); }
+  50%      { box-shadow: 0 0 0 6px rgba(139,123,255,0); }
+}
 
 /* ============================================================
    NAV
@@ -223,8 +265,99 @@ h1, h2, h3, h4 { font-weight: 600; letter-spacing: -0.012em; margin: 0; }
   pointer-events: none;
   mask-image: linear-gradient(180deg, black 0%, transparent 85%);
 }
+
+/* ============================================================
+   HOVER-GRID OF MICRO-CUBES (hero background)
+   ------------------------------------------------------------
+   Field of CSS-3D cubes that respond to cursor / touch. In
+   the hover radius, cubes scramble per-cube. Outside the
+   radius, cubes shrink in scale. When the cursor leaves a
+   previously-scrambled cube's radius, the cube auto-resolves
+   back to its solved orientation. JAKE keystroke triggers a
+   field-wide flourish (undocumented).
+   Tuned faint by default so it never competes with hero copy.
+   ============================================================ */
+.hero-cube-grid {
+  position: absolute;
+  inset: 0;
+  perspective: 800px;
+  perspective-origin: 50% 35%;
+  pointer-events: none;
+  z-index: 0;
+  /* Heavily fade behind the headline + softly fade out near footer */
+  mask-image: linear-gradient(180deg, transparent 0%, rgba(0,0,0,0.35) 22%, black 60%, transparent 100%);
+  -webkit-mask-image: linear-gradient(180deg, transparent 0%, rgba(0,0,0,0.35) 22%, black 60%, transparent 100%);
+}
+
+.micro-cube {
+  position: absolute;
+  width: 28px;
+  height: 28px;
+  transform-style: preserve-3d;
+  transform:
+    scale(var(--sc, 0.82))
+    rotateX(var(--rx, -22deg))
+    rotateY(var(--ry, 32deg));
+  opacity: var(--op, 0.22);
+  transition:
+    transform 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 0.5s ease;
+  pointer-events: none;
+  will-change: transform, opacity;
+}
+
+/* While in mouse radius, transitions feel snappier (scramble in fast). */
+.micro-cube.is-active {
+  transition:
+    transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
+    opacity 0.25s ease;
+}
+
+.micro-cube .face {
+  position: absolute;
+  inset: 0;
+  border: 1px solid rgba(62,155,255,0.16);
+  background: linear-gradient(135deg, rgba(62,155,255,0.10) 0%, rgba(62,155,255,0.02) 100%);
+}
+.micro-cube .face.f-front  { transform: translateZ(14px); }
+.micro-cube .face.f-back   { transform: rotateY(180deg) translateZ(14px); background: linear-gradient(135deg, rgba(139,123,255,0.10), rgba(139,123,255,0.02)); border-color: rgba(139,123,255,0.16); }
+.micro-cube .face.f-right  { transform: rotateY(90deg)  translateZ(14px); background: linear-gradient(135deg, rgba(39,198,120,0.10),  rgba(39,198,120,0.02));  border-color: rgba(39,198,120,0.16); }
+.micro-cube .face.f-left   { transform: rotateY(-90deg) translateZ(14px); background: linear-gradient(135deg, rgba(240,179,60,0.10),  rgba(240,179,60,0.02));  border-color: rgba(240,179,60,0.16); }
+.micro-cube .face.f-top    { transform: rotateX(90deg)  translateZ(14px); background: linear-gradient(135deg, rgba(255,255,255,0.06), rgba(255,255,255,0.01)); border-color: rgba(255,255,255,0.10); }
+.micro-cube .face.f-bottom { transform: rotateX(-90deg) translateZ(14px); background: linear-gradient(135deg, rgba(0,0,0,0.14),       rgba(0,0,0,0.04));       border-color: rgba(255,255,255,0.04); }
+
+/* JAKE keystroke flourish (undocumented power-user egg) */
+.hero-cube-grid.is-solving-all .micro-cube {
+  animation: cube-flourish 1.4s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  animation-delay: var(--ad, 0ms);
+}
+@keyframes cube-flourish {
+  0%   { transform: scale(1) rotateX(var(--rx)) rotateY(var(--ry)); opacity: 0.6; }
+  35%  { transform: scale(1.1) translateZ(18px) rotateX(180deg) rotateY(360deg); opacity: 0.85; }
+  70%  { transform: scale(1.05) translateZ(24px) rotateX(450deg) rotateY(720deg); opacity: 0.85; }
+  100% { transform: scale(0.85) translateZ(0) rotateX(-22deg) rotateY(32deg); opacity: 0.16; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .micro-cube { transition: none; }
+  .hero-cube-grid.is-solving-all .micro-cube { animation: none; }
+}
+
+@media (max-width: 640px) {
+  .hero-cube-grid { opacity: 0.85; }
+  .micro-cube { width: 24px; height: 24px; }
+  .micro-cube .face.f-front  { transform: translateZ(12px); }
+  .micro-cube .face.f-back   { transform: rotateY(180deg) translateZ(12px); }
+  .micro-cube .face.f-right  { transform: rotateY(90deg)  translateZ(12px); }
+  .micro-cube .face.f-left   { transform: rotateY(-90deg) translateZ(12px); }
+  .micro-cube .face.f-top    { transform: rotateX(90deg)  translateZ(12px); }
+  .micro-cube .face.f-bottom { transform: rotateX(-90deg) translateZ(12px); }
+}
+
 .hero-row {
   display: grid;
+  position: relative;
+  z-index: 1;
   grid-template-columns: minmax(0, 1.18fr) minmax(340px, 0.82fr);
   gap: 56px;
   align-items: start;
@@ -1260,7 +1393,9 @@ h1, h2, h3, h4 { font-weight: 600; letter-spacing: -0.012em; margin: 0; }
   .hero-title { font-size: 38px; }
   .hero-sub { font-size: 15px; }
   .hero-ctas { flex-wrap: wrap; }
-  .hero-ctas .btn-lg { padding: 12px 16px; font-size: 14px; }
+  /* Hero CTAs on mobile must clear the 44 px tap-target floor.
+     14 px vertical padding + 14 px font line ≈ 46 px clickable. */
+  .hero-ctas .btn-lg { padding: 14px 18px; font-size: 14px; min-height: 44px; touch-action: manipulation; }
   .section-title { font-size: 28px; }
   .section { padding: 56px 0; }
   .section-head { margin-bottom: 32px; }
@@ -1268,7 +1403,7 @@ h1, h2, h3, h4 { font-weight: 600; letter-spacing: -0.012em; margin: 0; }
   /* Nav */
   .nav-row { gap: 12px; height: 56px; }
   .nav-icon { display: none; }
-  .nav-cta .btn { padding: 9px 12px; font-size: 13px; }
+  .nav-cta .btn { padding: 12px 14px; font-size: 13px; min-height: 44px; touch-action: manipulation; }
   .brand-name { font-size: 13px; }
 
   /* Hero marquee: tighter padding, stats become 2x2 inside the card */
@@ -1304,21 +1439,47 @@ h1, h2, h3, h4 { font-weight: 600; letter-spacing: -0.012em; margin: 0; }
   /* Eyebrow num stays visible but tighter */
   .eyebrow-num { font-size: 10.5px; }
 
-  /* Work rows tighter */
-  .work-row-summary { grid-template-columns: 1fr 22px; gap: 8px; padding: 14px 16px; }
-  .work-row-dates { grid-column: 1 / -1; font-size: 11.5px; }
+  /* Work rows: explicit 2-row grid so chev stays top-right when dates wrap below.
+     Without explicit rows, the date's full-width span pushes the chev to row 3. */
+  .work-row-summary {
+    grid-template-columns: 1fr 22px;
+    grid-template-rows: auto auto;
+    gap: 4px 10px;
+    padding: 14px 16px;
+    align-items: baseline;
+  }
+  .work-row-title { grid-row: 1; grid-column: 1; }
+  .work-row-chev  { grid-row: 1; grid-column: 2; align-self: center; }
+  .work-row-dates { grid-row: 2; grid-column: 1 / -1; font-size: 11.5px; }
   .work-row-body { padding: 4px 16px 18px; }
   .work-row-prose { padding-top: 14px; }
 
-  /* AI projects tighter */
-  .ai-proj-summary { grid-template-columns: 1fr 22px; padding: 14px 18px; }
-  .ai-proj-meta { grid-column: 1 / -1; font-size: 11px; }
+  /* AI projects: same fix as work rows */
+  .ai-proj-summary {
+    grid-template-columns: 1fr 22px;
+    grid-template-rows: auto auto;
+    gap: 4px 10px;
+    padding: 14px 18px;
+    align-items: baseline;
+  }
+  .ai-proj-title-block { grid-row: 1; grid-column: 1; }
+  .ai-proj-chev        { grid-row: 1; grid-column: 2; align-self: center; }
+  .ai-proj-meta        { grid-row: 2; grid-column: 1 / -1; font-size: 11px; }
   .ai-proj-body { padding: 0 18px 18px; }
   .ai-proj-stack-row { grid-template-columns: 1fr; gap: 4px; }
 
-  /* Stories timeline tighter */
-  .story-summary { grid-template-columns: 12px 1fr 22px; gap: 10px; padding: 12px 14px; }
-  .story-date { grid-column: 2 / 4; font-size: 11px; padding-top: 2px; }
+  /* Stories timeline: same fix, but with the leading dot column */
+  .story-summary {
+    grid-template-columns: 12px 1fr 22px;
+    grid-template-rows: auto auto;
+    gap: 4px 10px;
+    padding: 12px 14px;
+    align-items: baseline;
+  }
+  .story-dot   { grid-row: 1; grid-column: 1; }
+  .story-title { grid-row: 1; grid-column: 2; }
+  .story-chev  { grid-row: 1; grid-column: 3; align-self: center; }
+  .story-date  { grid-row: 2; grid-column: 2 / -1; font-size: 11px; padding-top: 2px; }
   .story-body { padding: 0 14px 14px 28px; }
 
   /* Hobby cards tighter */
@@ -1335,4 +1496,266 @@ h1, h2, h3, h4 { font-weight: 600; letter-spacing: -0.012em; margin: 0; }
   .marquee-logo { width: 36px; height: 36px; }
   /* SU stats: 1 col so each gets full width and number stays readable */
   .su-stats-ribbon b { font-size: 20px; }
+}
+
+/* ============================================================
+   CUBE LAB MODAL
+   ------------------------------------------------------------
+   Fullscreen "live demo" overlay opened by the hero CTA.
+   Reads as a standalone program window: dot-strip header,
+   stage canvas in the middle, footer hint. Three.js scene
+   with 15 real Rubik's cubes lives inside .cube-lab-stage.
+   ============================================================ */
+.cube-lab-modal {
+  position: fixed;
+  inset: 0;
+  /* Above the shell topnav (z-index: 2147483000) so the modal reads
+     as a true standalone program. body.cube-lab-active also hides
+     the topnav as a belt-and-suspenders. */
+  z-index: 2147483647;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 32px;
+}
+.cube-lab-modal.is-open { display: flex; }
+body.cube-lab-active .topnav-host { display: none !important; }
+
+.cube-lab-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(7, 9, 14, 0.78);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  cursor: pointer;
+  animation: cube-lab-fade 0.22s ease;
+}
+@keyframes cube-lab-fade { from { opacity: 0; } to { opacity: 1; } }
+
+.cube-lab-window {
+  position: relative;
+  width: min(1180px, 96vw);
+  height: min(820px, 90vh);
+  background:
+    linear-gradient(180deg, rgba(62,155,255,0.04), transparent 30%),
+    var(--card);
+  border: 1px solid var(--line-2);
+  border-radius: 10px;
+  box-shadow:
+    0 40px 120px rgba(0, 0, 0, 0.55),
+    0 1px 0 rgba(255, 255, 255, 0.05) inset;
+  overflow: hidden;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  animation: cube-lab-rise 0.32s cubic-bezier(0.22, 1, 0.36, 1);
+}
+@keyframes cube-lab-rise {
+  from { opacity: 0; transform: translateY(14px) scale(0.985); }
+  to   { opacity: 1; transform: translateY(0)   scale(1); }
+}
+.cube-lab-window::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(62,155,255,0.5), transparent);
+  pointer-events: none;
+}
+
+.cube-lab-head {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 18px;
+  border-bottom: 1px solid var(--line);
+  background: linear-gradient(180deg, var(--card-2), var(--card));
+}
+.cube-lab-mark {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.cube-lab-dot {
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  border: 1px solid rgba(0, 0, 0, 0.35);
+}
+.cube-lab-dot-red    { background: #ff5f57; }
+.cube-lab-dot-amber  { background: #febc2e; }
+.cube-lab-dot-green  { background: #28c840; }
+
+.cube-lab-title {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ink);
+  letter-spacing: -0.005em;
+  margin-left: 6px;
+}
+.cube-lab-tag {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--violet);
+  background: rgba(139,123,255,0.12);
+  border: 1px solid rgba(139,123,255,0.32);
+  padding: 2px 7px;
+  border-radius: 3px;
+  font-weight: 600;
+}
+.cube-lab-close {
+  margin-left: auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  height: 32px;
+  padding: 0 10px;
+  border-radius: 4px;
+  border: 1px solid var(--line);
+  background: transparent;
+  color: var(--ink-2);
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 12.5px;
+  font-weight: 500;
+  transition: color 0.12s, border-color 0.12s, background 0.12s;
+  /* manipulation skips the legacy 300ms tap delay on mobile and keeps
+     pinch-zoom intact, so the close button reliably reacts to tap. */
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: rgba(255,255,255,0.06);
+}
+.cube-lab-close:hover { color: var(--ink); border-color: var(--accent); background: rgba(255,255,255,0.04); }
+.cube-lab-close:active { background: rgba(255,255,255,0.06); }
+.cube-lab-close-glyph {
+  font-size: 18px;
+  line-height: 1;
+  font-weight: 400;
+  /* Slightly tighter optical alignment of the multiplication sign */
+  margin-top: -2px;
+}
+
+.cube-lab-stage {
+  position: relative;
+  background:
+    radial-gradient(ellipse 70% 70% at 50% 50%, rgba(62,155,255,0.05), transparent),
+    var(--bg-alt);
+  overflow: hidden;
+  cursor: crosshair;
+  /* Stop the browser from treating finger drags as pan / zoom /
+     scroll. Without this, mobile pointermove never fires for the
+     cube grid because the gesture gets classified as a scroll. */
+  touch-action: none;
+  -ms-touch-action: none;
+  -webkit-user-select: none;
+  user-select: none;
+}
+.cube-lab-stage canvas {
+  display: block;
+  width: 100% !important;
+  height: 100% !important;
+  touch-action: none;
+}
+
+/* Light, fading hint overlay. Centered in the stage; fades out on
+   first cursor / touch interaction so it never competes with the
+   cubes once the user has caught on. */
+.cube-lab-hint-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 24px;
+  pointer-events: none;
+  transition: opacity 0.5s ease, transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+  z-index: 2;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.6);
+}
+.cube-lab-hint-overlay.is-faded {
+  opacity: 0;
+  transform: translateY(-6px);
+}
+.cube-lab-hint-strong {
+  margin: 0 0 8px;
+  font-size: 18px;
+  font-weight: 500;
+  color: var(--ink);
+  letter-spacing: -0.01em;
+  opacity: 0.92;
+}
+.cube-lab-hint-sub {
+  margin: 0 0 4px;
+  font-size: 13.5px;
+  color: var(--ink-2);
+  line-height: 1.55;
+  max-width: 480px;
+  opacity: 0.78;
+}
+.cube-lab-hint-meta {
+  margin: 6px 0 0;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 10.5px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+  opacity: 0.6;
+}
+@media (max-width: 720px) {
+  .cube-lab-hint-strong { font-size: 16px; }
+  .cube-lab-hint-sub { font-size: 12.5px; }
+}
+
+.cube-lab-foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 12px 18px;
+  border-top: 1px solid var(--line);
+  background: linear-gradient(180deg, var(--card), var(--card-2));
+  font-size: 12.5px;
+  color: var(--muted);
+}
+.cube-lab-hint { color: var(--ink-2); }
+.cube-lab-meta { font-size: 10.5px; letter-spacing: 0.06em; text-transform: uppercase; }
+
+@media (max-width: 720px) {
+  .cube-lab-modal { padding: 0; }
+  .cube-lab-window {
+    width: 100vw;
+    height: 100vh;
+    border-radius: 0;
+    border-left: none;
+    border-right: none;
+  }
+  .cube-lab-tag { display: none; }
+  .cube-lab-foot {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+    padding: 10px 14px;
+  }
+  .cube-lab-meta { display: none; }
+  /* Mobile close: bigger tap target (>=44px), brighter, sticky on top */
+  .cube-lab-close {
+    height: 44px;
+    padding: 0 14px;
+    color: var(--ink);
+    border-color: var(--line-2);
+    background: rgba(255,255,255,0.04);
+    font-size: 14px;
+  }
+  .cube-lab-close-glyph { font-size: 22px; }
+  .cube-lab-head {
+    padding: 12px 14px;
+    /* Make sure the header sits above any stage canvas pixels at the
+       very top edge so the close button is always tappable. */
+    position: relative;
+    z-index: 3;
+  }
 }

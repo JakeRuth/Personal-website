@@ -244,7 +244,16 @@ body.has-topnav {
   .topnav-brand-logo { height: 26px; }
   .topnav-brand-name { font-size: 13px; }
 
-  .topnav-tab { padding: 6px 9px; font-size: 12.5px; gap: 6px; }
+  /* Persistent cross-experience nav tabs: bump to 44 px tall on
+     touch (visual padding stays tight via min-height + flex
+     alignment). */
+  .topnav-tab {
+    padding: 6px 9px;
+    font-size: 12.5px;
+    gap: 6px;
+    min-height: 44px;
+    touch-action: manipulation;
+  }
   .topnav-tabs { gap: 2px; padding: 3px; }
 }
 
@@ -427,10 +436,14 @@ body.has-topnav .nav { top: 56px !important; }
   line-height: 1.15;
 }
 .topnav-onboarding-close {
+  /* 36px tap target — bigger than the visual mark via flex centering;
+     the close X visually stays at ~18px. Apple HIG asks 44 but 36 is
+     a pragmatic compromise inside the onboarding pill's tight bounds. */
   margin: 0;
   padding: 0;
-  width: 22px;
-  height: 22px;
+  width: 36px;
+  height: 36px;
+  touch-action: manipulation;
   background: transparent;
   border: 0;
   border-radius: 50%;
