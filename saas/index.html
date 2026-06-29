@@ -186,7 +186,7 @@
           </summary>
           <div class="work-row-body">
             <div class="work-row-prose">
-              <p>Joined at ~50 engineers under Alan Warren (formerly scaled Google Docs from 2&ndash;3 people to thousands); left at 150+. No formal levels initially; leveled in as Associate Software Engineer, promoted to Mid within ~1 year, <b>Senior Software Engineer</b> ~2 years later, Senior SWE for a year before leaving. Owned a portfolio of back-end services in Python and Golang plus a React front-end. One of those was the entire internal site for the hundreds of care-guides and ops staff in the Tempe office. SRE-adjacent on a custom-hosted analytics integration. Built <b>Emotiqueue</b>, the internal Slack bot. Half goof, half real tool, the kind of culture-carrier energy I try to seed wherever I work. Mentored newer engineers unofficially throughout. Left in 2021 to co-found <a href="https://stockunlock.com" target="_blank" rel="noopener">Stock Unlock</a> full-time.</p>
+              <p>Joined at ~50 engineers under Alan Warren (formerly scaled Google Docs from 2&ndash;3 people to thousands); left at ~200. No formal levels initially; leveled in as Associate Software Engineer, promoted to Mid within ~1 year, <b>Senior Software Engineer</b> ~2 years later, Senior SWE for a year before leaving. Owned a portfolio of back-end services in Python and Golang plus a React front-end. One of those was the entire internal site for the hundreds of care-guides and ops staff in the Tempe office. SRE-adjacent on a custom-hosted analytics integration. Built <b>Emotiqueue</b>, the internal Slack bot. Half goof, half real tool, the kind of culture-carrier energy I try to seed wherever I work. Mentored newer engineers unofficially throughout. Left in 2021 to co-found <a href="https://stockunlock.com" target="_blank" rel="noopener">Stock Unlock</a> full-time.</p>
               <p class="work-row-fineprint">The interview question, Emotiqueue, the talent shows: <a href="#stories">Stories timeline</a>.</p>
             </div>
           </div>
@@ -298,7 +298,7 @@
             <ul class="ai-proj-points">
               <li><b>Trained on real posts:</b> ingests Stock Unlock's own account plus competitor accounts via the X API. Top 50 of our posts become few-shot exemplars; the rest seed pattern signal. Every post tagged with full engagement metrics (reach, likes, retweets, replies, quotes, bookmarks) so the model learns what actually lands.</li>
               <li><b>LangGraph pipeline:</b> ideate, generate, fact-check, screenshot, quality-gate, save, with conditional retry on failure.</li>
-              <li><b>Self-improving prompt loop:</b> daily LangMem-backed optimizer ingests human edit-pair preferences, rejection reasons, approval commentary, and 30-day live engagement. Rewrites the system prompt, refreshes the few-shot library, and runs A/B prompt experiments that auto-promote winners and retire underperformers.</li>
+              <li><b>Self-improving prompt loop:</b> daily LangMem-backed optimizer ingests human edit-pair preferences, rejection reasons, approval commentary, and 30-day live engagement. Rewrites the system prompt, refreshes the few-shot library, and flags experiment posts that beat or trail baseline engagement as promote/retire candidates for human review.</li>
               <li><b>In-product evidence:</b> Playwright authenticates as a real user, takes attribute-targeted in-product screenshots, error-checks them; live API calls embed real stats.</li>
               <li><b>Human-in-the-loop:</b> custom React admin (&ldquo;Social Station&rdquo;) for review, edit, and publish-mark. Posting itself is intentionally disabled in code, approved drafts live in the DB and a human copies them to X.</li>
             </ul>
@@ -325,14 +325,14 @@
             <p class="ai-proj-lead">Built on the way out of full-time at <a href="https://stockunlock.com" target="_blank" rel="noopener">Stock Unlock</a> so the small, lean team can ship code changes and answer their own questions without needing me in chat day-to-day.</p>
             <ul class="ai-proj-points">
               <li><b>Harness:</b> Private Discord bot (Discord.py) on EC2 + Docker Compose, calling an OpenHands harness with source-level patches.</li>
-              <li><b><code>/code</code> is end-to-end full-stack engineering on demand.</b> Takes a plain-English ask in Discord, plans the change, writes the code (frontend, backend, or infra), opens a GitLab MR, and attaches Playwright screenshots (via the OpenHands browser tool) of the change actually running so a reviewer sees visual proof alongside the diff. Code-enforced human-in-the-loop at all critical steps.</li>
-              <li><b><code>/ask</code></b> answers across a dozen-plus read-only data sources: codebase, Aurora, PostHog, Stripe, RevenueCat, Sentry, and several more.</li>
+              <li><b><code>/code</code> is end-to-end full-stack engineering on demand.</b> Takes a plain-English ask in Discord, plans the change, writes the code (frontend, backend, or infra), opens a GitLab MR, and attaches Playwright screenshots (via the OpenHands browser tool) of the change actually running so a reviewer sees visual proof alongside the diff. Human-in-the-loop enforced via agent instructions, with code-side skip detection on the screenshot-approval step.</li>
+              <li><b><code>/ask</code></b> answers across a dozen read-only data sources: codebase, Aurora, PostHog, Stripe, RevenueCat, Sentry, and several more.</li>
               <li><b>Reliability:</b> SQLite task tracking with orphan-conversation reconciliation on restart; thread-aware UX so multiple people can run jobs in parallel.</li>
-              <li><b>Models + cost:</b> two model tiers, Claude Sonnet 4.6 for <code>/code</code> and MiniMax M2.7 for <code>/ask</code>, called via direct Anthropic and MiniMax SDKs (API keys in AWS Secrets Manager).</li>
+              <li><b>Models + cost:</b> two model tiers, Claude Sonnet 4.6 for <code>/code</code> and MiniMax M2.7 for <code>/ask</code>, selected via OpenHands and called through LiteLLM (API keys in AWS Secrets Manager).</li>
               <li><b>Security boundary:</b> strict secret isolation, <code>/code</code> runs with deployer / Aurora-write / OpenSearch creds while <code>/ask</code> runs read-only-only. The <code>/code</code>-only secrets are explicitly deleted on each <code>/ask</code> invocation to prevent privilege escalation, even if a previous <code>/code</code> session left them in the workspace. IAM least-privilege between the agent and prod.</li>
             </ul>
             <div class="ai-proj-stack">
-              <div class="ai-proj-stack-row"><span class="ai-proj-stack-label">Backend</span><span class="ai-proj-stack-chips"><span>Python</span><span>Discord.py</span><span>OpenHands</span><span>Playwright</span><span>BrowserGym</span><span>GitLab API</span><span>Anthropic SDK</span><span>MiniMax SDK</span></span></div>
+              <div class="ai-proj-stack-row"><span class="ai-proj-stack-label">Backend</span><span class="ai-proj-stack-chips"><span>Python</span><span>Discord.py</span><span>OpenHands</span><span>Playwright</span><span>BrowserGym</span><span>GitLab API</span><span>LiteLLM</span></span></div>
               <div class="ai-proj-stack-row"><span class="ai-proj-stack-label">AWS</span><span class="ai-proj-stack-chips"><span>EC2</span><span>IAM</span><span>Secrets Manager</span><span>Aurora (Postgres)</span></span></div>
               <div class="ai-proj-stack-row"><span class="ai-proj-stack-label">Infra</span><span class="ai-proj-stack-chips"><span>Docker Compose</span><span>SQLite</span></span></div>
               <div class="ai-proj-stack-row"><span class="ai-proj-stack-label">External</span><span class="ai-proj-stack-chips"><span>PostHog</span><span>Stripe</span><span>RevenueCat</span></span></div>
@@ -383,7 +383,7 @@
             <p class="ai-proj-lead">Migrated stockunlock.com off Webflow into a custom self-hosted codebase. Every line written by Claude Code, every commit reviewed by me. <b>~$500 to $1K per year saved</b> in hosting, contractor, and upkeep costs.</p>
             <ul class="ai-proj-points">
               <li><b>20&times; more content pages.</b> Full UX control Webflow couldn't deliver.</li>
-              <li><b>Programmatic SEO + GEO Lambdas</b> generate per-keyword and per-region pages. AI-generated, human-reviewed.</li>
+              <li><b>Programmatic-SEO Lambdas</b> generate per-keyword and per-region pages, with GEO (Generative Engine Optimization) meta layered on for AI search. AI-generated, human-reviewed.</li>
               <li><b>No more contractor dependency:</b> every copy update is a code change in our own repo.</li>
             </ul>
             <div class="ai-proj-stack">

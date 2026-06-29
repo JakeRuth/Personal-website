@@ -44,10 +44,10 @@ For depth on each item, see *Companies and orgs* below and *Stories*.
 - **Summers 2012 + 2013** — Barr Brothers Moving Company (NYC), mover. Two summers of hard labor in between freshman/sophomore and sophomore/junior year of college. Five to six days a week, up to 80 hours, full New York summer. Junior-to-senior summer was the CommerceHub internship instead. → see *Stories: The moving-van summers*.
 - **Nov 2013 – May 2015** — CommerceHub (Albany), Software Engineer Intern. Part-time fall/spring + full-time summers.
 - **July 2015 – July 2016** — CommerceHub, Associate Software Engineer. Exactly one year and seven days. Left to go full-time on Youni.
-- **late 2014 – ~Nov 2016** — Youni (Albany → Troy), co-founded with two UAlbany D1 soccer players (Anthony, CEO; Jordan). Started nights and weekends late 2014 alongside CommerceHub, ramped up over my last few months at CommerceHub, went full-time July 2016. Folded after ~4–5 months full-time. Title: Co-founder, CTO.
+- **Oct 2014 – Dec 2016** — Youni (Albany → Troy), co-founded with two UAlbany D1 soccer players (Anthony, CEO; Jordan). Started nights and weekends Oct 2014 alongside CommerceHub, ramped up over my last few months at CommerceHub, went full-time July 2016. Folded after ~5 months full-time. Title: Co-founder, CTO.
 - **~2014 – 2015** — My Plastic Brain, paid contract web-game work in college. **Parallel to the CommerceHub internship**, mostly during senior year.
-- **March 2017 – 2021** — Oscar Health (NYC). Joined at ~50 engineers under Alan Warren, left at ~150+. Built Emotiqueue (culture-carrier energy). Solved a Rubik's cube on a unicycle on stage. Twice. Levels: Associate → Mid → Senior Software Engineer.
-- **2021 – 2026** — Stock Unlock (NYC), YC W22. Co-founder, CEO. Scaled to a team of eight + thousands of paying customers. Right-sized in early 2026 to a small, lean team. On key decisions and weekend pokes since.
+- **March 2017 – 2021** — Oscar Health (NYC). Joined at ~50 engineers under Alan Warren, left at ~200. Built Emotiqueue (culture-carrier energy). Solved a Rubik's cube on a unicycle on stage. Twice. Levels: Associate → Mid → Senior Software Engineer.
+- **Jun 2021 – 2026** — Stock Unlock (NYC), YC W22. Co-founder, CEO. Scaled to a team of eight + thousands of paying customers. Right-sized in early 2026 to a small, lean team. On key decisions and weekend pokes since.
 - **~2022 → now** — AI era. My AI philosophy: *"I drive AI. It doesn't drive me."* (yes, like a car). → see *AI philosophy and projects* for the rendered version; → *Stories* for the migrations and side projects.
 
 ## Now (April 2026)
@@ -71,7 +71,7 @@ On the hunt for what's next.
 ### Youni (Albany → Troy, late 2014 – ~Nov 2016)
 
 - Co-founded with two UAlbany D1 soccer players: **Anthony** (CEO; ran the ACE entrepreneurship club at SUNY Albany) and **Jordan**. Met them via club mixers when ACM (which I ran) and ACE crossed paths. **My title: Co-founder, CTO.**
-- **Started nights and weekends late 2014**, very part-time alongside the CommerceHub internship. **Ramped up in the last quarter or two at CommerceHub.** Went full-time July 2016 after I left CommerceHub.
+- **Started nights and weekends Oct 2014**, very part-time alongside the CommerceHub internship. **Ramped up in the last quarter or two at CommerceHub.** Went full-time July 2016 after I left CommerceHub.
 - Anthony and Jordan were still in school after I graduated (I was a year ahead). They won ~$25K in equity-free business grants while still students.
 - iOS social-media app on React Native v0.13 / 0.14, plus a simple companion site. Free office space at an accelerator near Troy.
 - A "school-localized Instagram" — closed-loop networks per college, with Greek-life and sports-team features. Bootstrapped distribution by signing up campus leaders before launch and flyer-bombing.
@@ -82,7 +82,7 @@ On the hunt for what's next.
 ### Oscar Health (NYC, March 2017 – 2021)
 
 - Hired in March 2017 under Alan Warren — formerly the Google leader who scaled Google Docs and Apps from 2-3 people to thousands. That attracted heavy talent: lots of FAANG and Ivy-pedigreed engineers. The bar was visibly higher than CommerceHub.
-- Joined at ~50 engineers; left at ~150+. No formal levels initially (one of the reasons I joined). Levels were introduced mid-tenure: leveled in as Associate Software Engineer, promoted to Mid SWE within ~1 year, **Senior Software Engineer** ~2 years later. Senior SWE for a year before leaving.
+- Joined at ~50 engineers; left at ~200. No formal levels initially (one of the reasons I joined). Levels were introduced mid-tenure: leveled in as Associate Software Engineer, promoted to Mid SWE within ~1 year, **Senior Software Engineer** ~2 years later. Senior SWE for a year before leaving.
 - Mentored newer engineers unofficially throughout. Getting people up to speed is one of my strengths.
 - Owned a portfolio of back-end services in Python and Golang plus a React front-end. One of those was the entire internal site for the hundreds of care-guides and ops staff working out of the Tempe, AZ office. Worked tightly with SRE on a custom-hosted analytics integration. By my Senior year I was a go-to engineer across two teams for full-stack questions and just getting stuff shipped.
 - One of the more productive engineers there in terms of code shipped.
@@ -96,7 +96,7 @@ On the hunt for what's next.
 - **Code review automation across the team** (AI reviewing AI, with humans gating the merge).
 - Solved a Rubik's cube on a unicycle at the company talent show. Twice. → see *Stories: talent show*.
 
-### Stock Unlock (NYC, 2021 – 2026, YC W22)
+### Stock Unlock (NYC, Jun 2021 – 2026, YC W22)
 
 **Title: Co-founder, CEO.** I led the YC interview, the seed raise, and the company day-to-day until early 2026.
 
@@ -317,8 +317,8 @@ Three tight bullets, distilled from Jake's own voice in `rambles-personal-bio-co
 
 These ship as accordion rows on the rendered AI section. Order matches what's currently on `xp/`:
 
-1. **The X poster** (Stock Unlock internal). LangGraph self-improving pipeline (ideate, generate, fact-check, screenshot, quality-gate, save with conditional retry). Daily learning loop ingests human edits + live engagement, optimizes the system prompt, runs A/B prompt experiments. Custom React admin UI for human-in-the-loop. Playwright for in-product screenshots.
-2. **AI coding-and-question agent for the team** (Stock Unlock infra, built as part of Jake's off-boarding). Private Discord bot (Discord.py) calling an OpenHands harness, deployed on EC2 + Docker Compose. Four slash commands. `/code` opens GitLab MRs with Playwright screenshots (via the OpenHands browser tool, which uses Playwright + BrowserGym under the hood — verified in OpenHands' `pyproject.toml`), code-enforced human-in-the-loop at all critical steps (plan approval, screenshot approval, MR review). `/ask` answers across a dozen-plus read-only data sources (codebase, Aurora, PostHog, Stripe, RevenueCat, Sentry, plus Finnhub, Finchat, Google Analytics, CloudWatch, S3, Cognito). Two model tiers, Claude Sonnet 4.6 for `/code` and MiniMax M2.7 for `/ask`, called via direct Anthropic and MiniMax SDKs (API keys in AWS Secrets Manager). Strict secret-isolation: `/code`-only secrets are deleted on each `/ask` invocation to prevent privilege escalation. IAM least-privilege boundary between agent and prod.
+1. **The X poster** (Stock Unlock internal). LangGraph self-improving pipeline (ideate, generate, fact-check, screenshot, quality-gate, save with conditional retry). Daily learning loop ingests human edits + live engagement, optimizes the system prompt, flags promote/retire experiment candidates for human review. Custom React admin UI for human-in-the-loop. Playwright for in-product screenshots.
+2. **AI coding-and-question agent for the team** (Stock Unlock infra, built as part of Jake's off-boarding). Private Discord bot (Discord.py) calling an OpenHands harness, deployed on EC2 + Docker Compose. Four slash commands. `/code` opens GitLab MRs with Playwright screenshots (via the OpenHands browser tool, which uses Playwright + BrowserGym under the hood — verified in OpenHands' `pyproject.toml`), instruction-enforced human-in-the-loop at all critical steps (plan approval, screenshot approval, MR review), with code-side skip detection on the screenshot-approval step. `/ask` answers across a dozen read-only data sources (codebase, Aurora, PostHog, Stripe, RevenueCat, Sentry, plus Finnhub, Finchat, Google Analytics, CloudWatch, S3, Cognito). Two model tiers, Claude Sonnet 4.6 for `/code` and MiniMax M2.7 for `/ask`, selected via OpenHands and called through LiteLLM (API keys in AWS Secrets Manager). Strict secret-isolation: `/code`-only secrets are deleted on each `/ask` invocation to prevent privilege escalation. IAM least-privilege boundary between agent and prod.
 3. **Customer.io to AWS SES migration** (Stock Unlock, 27 days on the side). Three send modes: triggered (Lambda-direct), broadcasts (SQS-buffered + DLQs), campaigns (EventBridge-scheduled). Self-serve composer for non-engineers (three-button UI with live preview, ~5 min training). Claude Code helper prompt: a "Copy Agent Prompt" button copies a guided Q&A script into Claude that walks the user through the email's purpose, audience, and structure, then hands back finished HTML to paste into the composer. Bounces, complaints, and unsubscribes auto-route to the suppression list via SES feedback loops; full activity log with send/delivery/open/click counts. Stack note: FastAPI admin endpoints run on AWS Fargate; the send-mode workers run on Lambda. Hundreds of thousands of emails per month, over a million a year. Saved ~$5 to 6K/yr.
 4. **Webflow to self-hosted marketing site** (Stock Unlock). ~$500 to $1K/year saved in hosting, contractor, and upkeep costs. 20× more content pages. No contractor dependency. Programmatic SEO + GEO on top.
 5. **This site, jakeruth.com** (personal). Vanilla HTML/CSS/JS, three chrome experiences sharing one shell, custom Rubik's-cube solver (bidirectional BFS over a compact cubie model) animates the transition between mediums. AI-built, human-reviewed.
