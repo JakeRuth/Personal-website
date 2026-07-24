@@ -555,6 +555,7 @@ body {
   position: absolute;
   top: 6px;
   right: 6px;
+  z-index: 2; /* sit above .exp-mockup, which is positioned and later in the DOM */
   width: 20px;
   height: 20px;
   border-radius: 50%;
